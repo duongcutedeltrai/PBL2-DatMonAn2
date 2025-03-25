@@ -122,12 +122,22 @@
   <ItemGroup>
     <ClCompile Include="banManager.cpp" />
     <ClCompile Include="formAdmin.cpp" />
+    <ClCompile Include="FormBill.cpp" />
+    <ClCompile Include="FormFood.cpp" />
     <ClCompile Include="formStaff.cpp" />
     <ClCompile Include="Login.cpp" />
+    <ClCompile Include="MonAn.cpp" />
+    <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="banManager.h" />
     <ClInclude Include="formAdmin.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="FormBill.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="FormFood.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="formStaff.h">
@@ -136,10 +146,18 @@
     <ClInclude Include="Login.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="MonAn.h" />
+    <ClInclude Include="User.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="formAdmin.resx">
       <DependentUpon>formAdmin.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBill.resx">
+      <DependentUpon>FormBill.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFood.resx">
+      <DependentUpon>FormFood.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formStaff.resx">
       <DependentUpon>formStaff.h</DependentUpon>
@@ -147,6 +165,16 @@
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.h</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Image\anh0.jpg" />
+    <Image Include="Image\anh1.jpg" />
+    <Image Include="Image\anh2.jpg" />
+    <Image Include="Image\anh3.jpg" />
+    <Image Include="Image\anh4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="login.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

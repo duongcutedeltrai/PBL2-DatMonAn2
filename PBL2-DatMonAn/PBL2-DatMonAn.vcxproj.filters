@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Image">
+      <UniqueIdentifier>{343fefe9-8207-4cba-9478-657ad6bce28c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Login.cpp">
@@ -25,6 +28,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="banManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FormFood.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FormBill.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MonAn.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="User.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,5 +56,37 @@
     <ClInclude Include="banManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FormFood.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FormBill.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MonAn.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="User.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Image\anh0.jpg">
+      <Filter>Image</Filter>
+    </Image>
+    <Image Include="Image\anh1.jpg">
+      <Filter>Image</Filter>
+    </Image>
+    <Image Include="Image\anh2.jpg">
+      <Filter>Image</Filter>
+    </Image>
+    <Image Include="Image\anh3.jpg">
+      <Filter>Image</Filter>
+    </Image>
+    <Image Include="Image\anh4.jpg">
+      <Filter>Image</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="login.txt" />
   </ItemGroup>
 </Project>

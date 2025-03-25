@@ -1,8 +1,7 @@
 ﻿#pragma once
 #include <windows.h>
-#include "formStaff.h"
+#include "User.h"
 namespace PBL2DatMonAn {
-
 
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -18,6 +17,7 @@ namespace PBL2DatMonAn {
 
 	public ref class Login : public System::Windows::Forms::Form
 	{
+
 	public:
 		Login(void)
 		{
@@ -38,6 +38,8 @@ namespace PBL2DatMonAn {
 				delete components;
 			}
 		}
+	private:
+		System::Collections::Generic::List<User^>^ Account;
 
 	private: System::Windows::Forms::Panel^ panel1;
 	private: System::Windows::Forms::Label^ label2;
@@ -218,26 +220,45 @@ namespace PBL2DatMonAn {
 #pragma endregion
 
 	private: System::Void Login_Load(System::Object^ sender, System::EventArgs^ e) {
+		//dien thong tin dang nhap
+		//User^ saveUser = User::DocFile("login.txt");
+		//if (saveUser != nullptr) {
+		//	txtID->Text = saveUser->ID;
+		//	txtPass->Text = saveUser->Password;
+		//}
+
+		//tao danh sach tai khoan
+		//Account = gcnew System::Collections::Generic::List<User^>();
+	/*	User^ user = User::DocFile("login.txt");*/
+		Account = gcnew System::Collections::Generic::List<User^>();
+	/*	if (user != nullptr) {
+			Account->Add(user);
+		}*/
+
+		Account->Add(gcnew User("admin", "admin", "Admin"));
+		Account->Add(gcnew User("staff", "staff", "Staff"));
+
+
 		// Tạo border bo tròn cho txtID
 		HRGN hrgn = CreateRoundRectRgn(
-			0, 0, txtID->Width, txtID->Height, // Kích thước
-			20, 20                            // Độ cong bo tròn
+			0, 0, txtID->Width, txtID->Height, 
+			20, 20                           
 		);
 
 		txtID->Region = System::Drawing::Region::FromHrgn((IntPtr)hrgn);
 
 		// Tạo border bo tròn cho txtPass
 		hrgn = CreateRoundRectRgn(
-			0, 0, txtPass->Width, txtPass->Height, // Kích thước
-			20, 20                            // Độ cong bo tròn
+			0, 0, txtPass->Width, txtPass->Height,
+			20, 20                          
 		);
 
 		txtPass->Region = System::Drawing::Region::FromHrgn((IntPtr)hrgn);
 
 		// Tạo border bo tròn cho btnLogin
 		hrgn = CreateRoundRectRgn(
-			0, 0, btnLogin->Width, btnLogin->Height, // Kích thước
-			20, 20                            // Độ cong bo tròn
+			0, 0, btnLogin->Width, btnLogin->Height, 
+			20, 20                     
 		);
 
 		btnLogin->Region = System::Drawing::Region::FromHrgn((IntPtr)hrgn);
@@ -246,23 +267,18 @@ namespace PBL2DatMonAn {
 
 	private: System::Void txtID_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
 		if (e->KeyCode == Keys::Enter) {
-			e->SuppressKeyPress = true; // Chặn Enter
+			e->SuppressKeyPress = true; 
 		}
 	}
 
-	private: System::Void txtID_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-	}
+	private: System::Void txtID_TextChanged(System::Object^ sender, System::EventArgs^ e) {};
 	private: System::Void txtPass_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
 		if (e->KeyCode == Keys::Enter) {
-			e->SuppressKeyPress = true; // Chặn Enter
+			e->SuppressKeyPress = true; 
 		}
 	}
-private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->Hide();
-	formStaff^ f = gcnew formStaff();
-	f->ShowDialog();
-
-}
+private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ e);
 };
+
 }
 

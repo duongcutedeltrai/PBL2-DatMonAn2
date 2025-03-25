@@ -1,5 +1,5 @@
 ﻿#include "banManager.h"
-
+#include "FormFood.h"
 using namespace System;
 using namespace System::Windows::Forms;
 using namespace System::Drawing;
@@ -19,6 +19,7 @@ void BanManager::TaoDayBan(int soBan, FlowLayoutPanel^ flpBan) {
         btnBan->ForeColor = Color::Black;
 		btnBan->Cursor = Cursors::Hand;
 
+        btnBan->Click += gcnew EventHandler(this, &BanManager::btnBan_Click);
         flpBan->Controls->Add(btnBan);
 
     }
@@ -38,9 +39,21 @@ void BanManager::TakeAway(int soBan, FlowLayoutPanel^ flpMangVe) {
         btnBanMangve->ForeColor = Color::Black;
         btnBanMangve->Cursor = Cursors::Hand;
 
+        btnBanMangve->Click += gcnew EventHandler(this, &BanManager::btnBanMangve_Click);
+
         flpMangVe->Controls->Add(btnBanMangve);
 
     }
+}
+
+void BanManager::btnBan_Click(Object^ sender, EventArgs^ e) {
+    PBL2DatMonAn::FormFood^ food = gcnew PBL2DatMonAn::FormFood();
+    food->ShowDialog();
+}
+
+void BanManager::btnBanMangve_Click(Object^ sender, EventArgs^ e) {
+    PBL2DatMonAn::FormFood^ food = gcnew PBL2DatMonAn::FormFood();
+    food->ShowDialog();
 }
 
 
