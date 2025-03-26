@@ -398,21 +398,7 @@ namespace PBL2DatMonAn {
 		int headerHeight = datagridViewBill->ColumnHeadersHeight;
 		datagridViewBill->Height = headerHeight + totalRowHeight + 2;
 	};
-    private: System::Void Monandachon() {
-					datagridViewBill->Rows->Clear();
-					double tongtien = 0;
-					for each(MonAn ^ mon in danhSachMon) {
-						double gia = Convert::ToDouble(mon->Gia->Replace("$", ""));
-						int soluong = mon->SoLuong;
-						double thanhtien = gia * soluong;
-						tongtien += thanhtien;
-
-						datagridViewBill->Rows->Add(mon->TenMon, soluong.ToString(), gia.ToString("F2") + " $", thanhtien.ToString("F2") + " $");
-					}
-
-					txtPrice->Text = tongtien.ToString("F2") + " $";
-    }
-	private: System::Void btnChuyenKhoan_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
+	private: System::Void Monandachon();
+	private: System::Void btnChuyenKhoan_Click(System::Object^ sender, System::EventArgs^ e) {};
 };
 	}

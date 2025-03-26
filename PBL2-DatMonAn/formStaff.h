@@ -5,7 +5,8 @@
 
 #include "banManager.h"
 #include <windows.h>
-
+#include "FormBill.h"
+#include "DanhSachDonHang.h"
 
 // Forward declaration
 
@@ -27,6 +28,8 @@ namespace PBL2DatMonAn {
         formStaff(void)
         {
             InitializeComponent();
+			//
+            // Thêm panel vào form
         }
 
     protected:
@@ -55,15 +58,9 @@ namespace PBL2DatMonAn {
 
     private: System::Windows::Forms::Label^ labelTen;
 
-
-
-
-
     private: System::Windows::Forms::Panel^ panelMangVe;
 
     private: System::Windows::Forms::Panel^ panelDanhsachban;
-
-
     private: System::Windows::Forms::Label^ labelDanhsachban;
     private: System::Windows::Forms::FlowLayoutPanel^ flpMangVe;
 
@@ -71,10 +68,7 @@ namespace PBL2DatMonAn {
     private: System::Windows::Forms::FlowLayoutPanel^ flpBan;
     private: System::Windows::Forms::Panel^ panel8;
     private: System::Windows::Forms::Panel^ panel7;
-
-
-
-
+    private: DanhSachDonHang^ danhSachDonHang;
 
     private:
         System::ComponentModel::Container^ components;
@@ -123,7 +117,7 @@ namespace PBL2DatMonAn {
                 static_cast<System::Byte>(0)));
             this->panelStaff->Location = System::Drawing::Point(0, 0);
             this->panelStaff->Name = L"panelStaff";
-            this->panelStaff->Size = System::Drawing::Size(1137, 132);
+            this->panelStaff->Size = System::Drawing::Size(1144, 132);
             this->panelStaff->TabIndex = 0;
             // 
             // panel1
@@ -335,7 +329,7 @@ namespace PBL2DatMonAn {
             // 
             this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-            this->ClientSize = System::Drawing::Size(1137, 639);
+            this->ClientSize = System::Drawing::Size(1144, 639);
             this->Controls->Add(this->panelDanhsachban);
             this->Controls->Add(this->panelMangVe);
             this->Controls->Add(this->panelStaff);
@@ -355,58 +349,33 @@ namespace PBL2DatMonAn {
 
         }
 #pragma endregion
-
     private: System::Void formStaff_Load(System::Object^ sender, System::EventArgs^ e) {
         BanManager^ manager = gcnew BanManager();
         manager->TaoDayBan(10, flpBan);
         manager->TakeAway(4, flpMangVe);
-
-
         ResetMauButtonMenu();
         btnChonBan->BackColor = Color::IndianRed;
-
         BoGocControl(btnChonBan, 10);
         BoGocControl(btnDanhsach, 10);
         BoGocControl(btnDangXuat, 10);
-    }
 
+        danhSachDonHang = gcnew DanhSachDonHang();
+        this->Controls->Add(danhSachDonHang);
+        danhSachDonHang->Visible = false;
+        danhSachDonHang->Location = System::Drawing::Point(10, 110); // Đặt vị trí (x=10, y=150)
+        danhSachDonHang->Size = System::Drawing::Size(800, 400);     // Đặt kích thước
+
+
+    }
     private: System::Void ResetMauButtonMenu() {
         Color mauMacDinh = Color::Gainsboro;
         btnChonBan->BackColor = mauMacDinh;
         btnDanhsach->BackColor = mauMacDinh;
         btnDangXuat->BackColor = mauMacDinh;
     }
-
-    private: System::Void btnChonBan_Click(System::Object^ sender, System::EventArgs^ e) {
-        ResetMauButtonMenu();
-        panelMangVe->Visible = true;
-        panelDanhsachban->Visible = true;
-        btnChonBan->BackColor = Color::IndianRed;
-    }
-
-    private: System::Void btnDanhsach_Click(System::Object^ sender, System::EventArgs^ e) {
-        ResetMauButtonMenu();
-        panelMangVe->Visible = false;
-        panelDanhsachban->Visible = false;
-        btnDanhsach->BackColor = Color::IndianRed;
-    }
-
+    private: System::Void btnChonBan_Click(System::Object^ sender, System::EventArgs^ e);
     private: System::Void btnDangXuat_Click(System::Object^ sender, System::EventArgs^ e);
-
-     void BoGocControl(Control^ control, int radius) {
-           System::Drawing::Drawing2D::GraphicsPath^ path = gcnew System::Drawing::Drawing2D::GraphicsPath();
-            int w = control->Width;
-             int h = control->Height;
-               int d = radius * 2;
-
-               path->AddArc(0, 0, d, d, 180, 90);
-               path->AddArc(w - d, 0, d, d, 270, 90);
-               path->AddArc(w - d, h - d, d, d, 0, 90);
-               path->AddArc(0, h - d, d, d, 90, 90);
-               path->CloseFigure();
-
-               control->Region = gcnew System::Drawing::Region(path);
-           }
+    private: System::Void BoGocControl(Control^ control, int radius);
     private: System::Void panelDanhsachban_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 		BoGocControl(panelDanhsachban, 10);
     }
@@ -415,5 +384,15 @@ private: System::Void panelMangVe_Paint(System::Object^ sender, System::Windows:
 }
 private: System::Void labelDanhsachban_Click(System::Object^ sender, System::EventArgs^ e) {
 }
+           private: System::Void btnDanhsach_Click(System::Object^ sender, System::EventArgs^ e) {
+               ResetMauButtonMenu();
+               panelMangVe->Visible = false;
+               panelDanhsachban->Visible = false;
+               btnDanhsach->BackColor = Color::IndianRed;
+		    
+               danhSachDonHang->Visible = true;
+               danhSachDonHang->BringToFront();
+			  
+           }
 };
 }

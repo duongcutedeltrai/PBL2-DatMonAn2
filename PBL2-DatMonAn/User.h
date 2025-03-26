@@ -6,7 +6,7 @@ ref class User
 	//tao class User
 public:
 	System::String^ ID;
-	//String^ Name;
+	/*String^ Name;*/
 	System::String^ Password;
 	System::String^ Role;
 

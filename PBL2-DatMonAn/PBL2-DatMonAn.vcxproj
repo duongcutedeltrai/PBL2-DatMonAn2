@@ -121,16 +121,21 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="banManager.cpp" />
+    <ClCompile Include="DanhSachDonHang.cpp" />
     <ClCompile Include="formAdmin.cpp" />
     <ClCompile Include="FormBill.cpp" />
     <ClCompile Include="FormFood.cpp" />
     <ClCompile Include="formStaff.cpp" />
+    <ClCompile Include="HoaDon.cpp" />
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="MonAn.cpp" />
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="banManager.h" />
+    <ClInclude Include="DanhSachDonHang.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="formAdmin.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -143,6 +148,7 @@
     <ClInclude Include="formStaff.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="HoaDon.h" />
     <ClInclude Include="Login.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -150,6 +156,9 @@
     <ClInclude Include="User.h" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="DanhSachDonHang.resx">
+      <DependentUpon>DanhSachDonHang.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formAdmin.resx">
       <DependentUpon>formAdmin.h</DependentUpon>
     </EmbeddedResource>
