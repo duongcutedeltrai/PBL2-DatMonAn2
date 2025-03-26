@@ -11,6 +11,10 @@ public:
 	System::String^ Role;
 
 	User();
+
+
+
+
 	User(System::String^ id, System::String^ pass,System::String^ role) {
 		ID = id;
 		Password = pass;
