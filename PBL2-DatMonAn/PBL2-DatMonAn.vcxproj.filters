@@ -27,7 +27,7 @@
     <ClCompile Include="formStaff.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="banManager.cpp">
+    <ClCompile Include="CreateTable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FormFood.cpp">
@@ -48,6 +48,9 @@
     <ClCompile Include="DanhSachDonHang.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ManagerTable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Login.h">
@@ -59,7 +62,7 @@
     <ClInclude Include="formStaff.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="banManager.h">
+    <ClInclude Include="CreateTable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FormFood.h">
@@ -78,6 +81,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DanhSachDonHang.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ManagerTable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

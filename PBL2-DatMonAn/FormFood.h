@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "MonAn.h"
+#include "ManagerTable.h"
 namespace PBL2DatMonAn {
 
 	using namespace System;
@@ -15,9 +16,11 @@ namespace PBL2DatMonAn {
 	public ref class FormFood : public System::Windows::Forms::Form
 	{
 	public:
-		FormFood(void)
+		FormFood(ManagerTable^ ban)
 		{
 			InitializeComponent();
+			this->banHienTai = ban;
+			HienThiMonDaDat();
 			//
 			//TODO: Add the constructor code here
 			//
@@ -36,8 +39,13 @@ namespace PBL2DatMonAn {
 				delete components;
 			}
 		}
+
 	private:
+		ManagerTable^ banHienTai; // Lưu trữ bàn hiện tại
 		System::Collections::Generic::List<MonAn^>^ danhSachMon;
+		System::Void HienThiMonDaDat(); // Hàm hiển thị món đã đặt
+	//private:
+	//	System::Collections::Generic::List<MonAn^>^ danhSachMon;
 
 	private: System::Windows::Forms::Panel^ pnFood;
 	private: System::Windows::Forms::Panel^ pnNav;
@@ -470,66 +478,66 @@ namespace PBL2DatMonAn {
 
 		}
 #pragma endregion
-    // hiển thị danh sách món
-    private: System::Void HienThiDanhSachMon() {
+		// hiển thị danh sách món
+	private: System::Void HienThiDanhSachMon() {
 		FlpFood->Controls->Clear();
-					for each(MonAn ^ mon in danhSachMon)
-					{
-						Panel^ panel = gcnew Panel();
-						panel->BorderStyle = BorderStyle::FixedSingle;
-						panel->BackColor = System::Drawing::SystemColors::ActiveCaption;
-						panel->Location = System::Drawing::Point(23, 23);
-						panel->Size = System::Drawing::Size(188, 118);
-						panel->TabIndex = 0;
-						panel->Tag = mon;
-						panel->Click += gcnew EventHandler(this, &FormFood::panel_Clicked);
-						BoGocControl(panel, 15);
+		for each (MonAn ^ mon in danhSachMon)
+		{
+			Panel^ panel = gcnew Panel();
+			panel->BorderStyle = BorderStyle::FixedSingle;
+			panel->BackColor = System::Drawing::SystemColors::ActiveCaption;
+			panel->Location = System::Drawing::Point(23, 23);
+			panel->Size = System::Drawing::Size(188, 118);
+			panel->TabIndex = 0;
+			panel->Tag = mon;
+			panel->Click += gcnew EventHandler(this, &FormFood::panel_Clicked);
+			BoGocControl(panel, 15);
 
-						// Ảnh món ăn
-						PictureBox^ picBox = gcnew PictureBox();
-						picBox->Location = System::Drawing::Point(20, 4);
-						picBox->Size = System::Drawing::Size(138, 86);
-						picBox->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
-						picBox->TabIndex = 0;
-						picBox->BackColor = System::Drawing::Color::Transparent;
-						picBox->Parent = panel;
-						try { picBox->Image = Image::FromFile(mon->Anh); }
-						catch (...) {}
+			// Ảnh món ăn
+			PictureBox^ picBox = gcnew PictureBox();
+			picBox->Location = System::Drawing::Point(20, 4);
+			picBox->Size = System::Drawing::Size(138, 86);
+			picBox->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+			picBox->TabIndex = 0;
+			picBox->BackColor = System::Drawing::Color::Transparent;
+			picBox->Parent = panel;
+			try { picBox->Image = Image::FromFile(mon->Anh); }
+			catch (...) {}
 
-						Label^ lblTen = gcnew Label();
-						lblTen->Text = mon->TenMon;
-						lblTen->AutoSize = true;
-						lblTen->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-							static_cast<System::Byte>(0)));
-						lblTen->Location = System::Drawing::Point(3, 91);
-						lblTen->Size = System::Drawing::Size(92, 23);
-						lblTen->TabIndex = 1;
+			Label^ lblTen = gcnew Label();
+			lblTen->Text = mon->TenMon;
+			lblTen->AutoSize = true;
+			lblTen->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			lblTen->Location = System::Drawing::Point(3, 91);
+			lblTen->Size = System::Drawing::Size(92, 23);
+			lblTen->TabIndex = 1;
 
-						//gia
-						Label^ lblGia = gcnew Label();
-						lblGia->Text = mon->Gia;
-						lblGia->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-							static_cast<System::Byte>(0)));
-						lblGia->Location = System::Drawing::Point(126, 93);
-						lblGia->Size = System::Drawing::Size(32, 20);
-						lblGia->TabIndex = 2;
+			//gia
+			Label^ lblGia = gcnew Label();
+			lblGia->Text = mon->Gia;
+			lblGia->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			lblGia->Location = System::Drawing::Point(126, 93);
+			lblGia->Size = System::Drawing::Size(32, 20);
+			lblGia->TabIndex = 2;
 
 
-						panel->Controls->Add(picBox);
-						panel->Controls->Add(lblTen);
-						panel->Controls->Add(lblGia);
+			panel->Controls->Add(picBox);
+			panel->Controls->Add(lblTen);
+			panel->Controls->Add(lblGia);
 
-						FlpFood->Controls->Add(panel);
+			FlpFood->Controls->Add(panel);
 
-						// Các control bên trong cũng cần gán Tag để bắt được khi click:
-						picBox->Tag = mon;
-						lblTen->Tag = mon;
-						lblGia->Tag = mon;
-						picBox->Click += gcnew EventHandler(this, &FormFood::panel_Clicked);
-						lblTen->Click += gcnew EventHandler(this, &FormFood::panel_Clicked);
-						lblGia->Click += gcnew EventHandler(this, &FormFood::panel_Clicked);
-					}
-    }
+			// Các control bên trong cũng cần gán Tag để bắt được khi click:
+			picBox->Tag = mon;
+			lblTen->Tag = mon;
+			lblGia->Tag = mon;
+			picBox->Click += gcnew EventHandler(this, &FormFood::panel_Clicked);
+			lblTen->Click += gcnew EventHandler(this, &FormFood::panel_Clicked);
+			lblGia->Click += gcnew EventHandler(this, &FormFood::panel_Clicked);
+		}
+	}
 	private: System::Void FormFood_Load(System::Object^ sender, System::EventArgs^ e) {
 		BoGocControl(pnFood, 20);
 		BoGocControl(pnListFood, 20);
@@ -558,28 +566,35 @@ namespace PBL2DatMonAn {
 	}
 		   // Xóa món khi số lượng về 0
 	private: System::Void numSoLuong_ValueChanged(System::Object^ sender, System::EventArgs^ e) {
-		NumericUpDown^ numSoLuong = (NumericUpDown^)sender;
-		Panel^ panelOrder = (Panel^)numSoLuong->Parent;
+		NumericUpDown^ numSoLuong = safe_cast<NumericUpDown^>(sender);
+		Panel^ panelOrder = safe_cast<Panel^>(numSoLuong->Parent);
+		MonAn^ mon = safe_cast<MonAn^>(panelOrder->Tag);
 
 		if (numSoLuong->Value == 0) {
 			flowLayoutPanel1->Controls->Remove(panelOrder);
-		}
+			banHienTai->DanhSachMon->Remove(mon);
+			if (banHienTai->DanhSachMon->Count == 0) {
+				banHienTai->TrangThai = "Trống";
 
-		//// Cập nhật tổng tiền
+			}
+		}
+		else {
+			banHienTai->DanhSachMon[banHienTai->DanhSachMon->IndexOf(mon)]->SoLuong = Decimal::ToInt32(numSoLuong->Value);
+		}
 		CapNhatTongTien();
 	}
-private: System::Void btnThanhToan_Click(System::Object^ sender, System::EventArgs^ e);
-private: System::Void btnAll_Click(System::Object^ sender, System::EventArgs^ e) {
-	LocDanhSachMon("Tất cả");
-}
-private: System::Void btnFoodMain_Click(System::Object^ sender, System::EventArgs^ e) {
-	LocDanhSachMon("Món chính");
-}
-private: System::Void btnKhaiVi_Click(System::Object^ sender, System::EventArgs^ e) {
-	LocDanhSachMon("Khai vị");
-}
-private: System::Void btnSalah_Click(System::Object^ sender, System::EventArgs^ e) {
-	LocDanhSachMon("Salah");
-}
+	private: System::Void btnThanhToan_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void btnAll_Click(System::Object^ sender, System::EventArgs^ e) {
+		LocDanhSachMon("Tất cả");
+	}
+	private: System::Void btnFoodMain_Click(System::Object^ sender, System::EventArgs^ e) {
+		LocDanhSachMon("Món chính");
+	}
+	private: System::Void btnKhaiVi_Click(System::Object^ sender, System::EventArgs^ e) {
+		LocDanhSachMon("Khai vị");
+	}
+	private: System::Void btnSalah_Click(System::Object^ sender, System::EventArgs^ e) {
+		LocDanhSachMon("Salah");
+	}
 };
 }

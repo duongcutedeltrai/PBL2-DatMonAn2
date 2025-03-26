@@ -15,14 +15,20 @@ namespace PBL2DatMonAn {
         MonAn^ mon = dynamic_cast<MonAn^>(clicked->Tag);
         if (mon == nullptr) return;
 
-        for each(Control ^ ctrl in flowLayoutPanel1->Controls) {
+        for each (Control ^ ctrl in flowLayoutPanel1->Controls) {
             if (ctrl->Tag == mon) {
-                // Nếu đã có thì tăng số lượng
                 NumericUpDown^ numSoLuong = dynamic_cast<NumericUpDown^>(ctrl->Controls[3]);
                 numSoLuong->Value++;
+                banHienTai->DanhSachMon[banHienTai->DanhSachMon->IndexOf(mon)]->SoLuong++;
+                CapNhatTongTien();
                 return;
             }
         }
+
+        MonAn^ monMoi = gcnew MonAn(mon->LoaiMon, mon->TenMon, mon->Gia, mon->Anh);
+        monMoi->SoLuong = 1;
+        banHienTai->DanhSachMon->Add(monMoi);
+        banHienTai->TrangThai = "Có Khách"; // Cập nhật trạng thái bàn
 
         // Nếu chưa có, thêm món mới vào
         Panel^ panelOrder = gcnew Panel();
@@ -117,7 +123,8 @@ namespace PBL2DatMonAn {
         }
 
         // Gọi FormBill với danh sách món đã chọn
-        FormBill^ formBill = gcnew FormBill(danhsachMonDaChon);
+        this->Close();
+        FormBill^ formBill = gcnew FormBill(banHienTai->DanhSachMon, banHienTai);
         formBill->ShowDialog();
     }
 
@@ -233,5 +240,52 @@ namespace PBL2DatMonAn {
         }
 
         txtMoney->Text = tongTien.ToString("F2") + " $";
+    }
+
+    System::Void FormFood::HienThiMonDaDat() {
+        flowLayoutPanel1->Controls->Clear();
+        if (banHienTai->DanhSachMon->Count > 0) {
+            for each (MonAn ^ mon in banHienTai->DanhSachMon) {
+                Panel^ panelOrder = gcnew Panel();
+                panelOrder->Tag = mon;
+                panelOrder->BackColor = System::Drawing::Color::IndianRed;
+                panelOrder->Size = System::Drawing::Size(242, 124);
+
+                Label^ lblGia = gcnew Label();
+                lblGia->Text = mon->Gia;
+                lblGia->AutoSize = true;
+                lblGia->Font = gcnew Drawing::Font(L"Microsoft Sans Serif", 10.2F);
+                lblGia->Location = System::Drawing::Point(154, 48);
+
+                NumericUpDown^ numSoLuong = gcnew NumericUpDown();
+                numSoLuong->Minimum = 0;
+                numSoLuong->Maximum = 99;
+                numSoLuong->Value = mon->SoLuong;
+                numSoLuong->ValueChanged += gcnew System::EventHandler(this, &FormFood::numSoLuong_ValueChanged);
+                numSoLuong->Location = System::Drawing::Point(158, 80);
+                numSoLuong->Size = System::Drawing::Size(36, 22);
+
+                PictureBox^ picBox = gcnew PictureBox();
+                picBox->Location = System::Drawing::Point(18, 3);
+                picBox->Size = System::Drawing::Size(130, 116);
+                picBox->SizeMode = PictureBoxSizeMode::StretchImage;
+                try { picBox->Image = Image::FromFile(mon->Anh); }
+                catch (...) {}
+
+                Label^ lblTen = gcnew Label();
+                lblTen->Text = mon->TenMon;
+                lblTen->AutoSize = true;
+                lblTen->Font = gcnew Drawing::Font(L"Segoe UI Semibold", 10.2F, FontStyle::Bold);
+                lblTen->Location = System::Drawing::Point(154, 25);
+
+                BoGocControl(panelOrder, 20);
+                panelOrder->Controls->Add(picBox);
+                panelOrder->Controls->Add(lblTen);
+                panelOrder->Controls->Add(lblGia);
+                panelOrder->Controls->Add(numSoLuong);
+                flowLayoutPanel1->Controls->Add(panelOrder);
+            }
+            CapNhatTongTien();
+        }
     }
 }

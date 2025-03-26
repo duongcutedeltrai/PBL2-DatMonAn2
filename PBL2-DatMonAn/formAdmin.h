@@ -44,17 +44,18 @@ namespace PBL2DatMonAn {
 	private: System::Windows::Forms::Button^ btnQuanLyDonHang;
 	private: System::Windows::Forms::Label^ labelAdmin;
 	private: System::Windows::Forms::Panel^ panel3;
-	private: System::Windows::Forms::Panel^ panel4;
 
-	private: System::Windows::Forms::Label^ labelId;
-	private: System::Windows::Forms::Panel^ panel6;
-	private: System::Windows::Forms::Label^ lbTen;
 
-	private: System::Windows::Forms::Label^ label5;
 
-	private: System::Windows::Forms::Label^ lbID;
+
+
+
+
+
+
 	private: System::Windows::Forms::DateTimePicker^ dateTimePicker1;
 	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Label^ lblTenAdmin;
 
 
 	private:
@@ -72,24 +73,17 @@ namespace PBL2DatMonAn {
 		{
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->panel3 = (gcnew System::Windows::Forms::Panel());
-			this->panel6 = (gcnew System::Windows::Forms::Panel());
-			this->lbTen = (gcnew System::Windows::Forms::Label());
-			this->label5 = (gcnew System::Windows::Forms::Label());
-			this->panel4 = (gcnew System::Windows::Forms::Panel());
-			this->lbID = (gcnew System::Windows::Forms::Label());
-			this->labelId = (gcnew System::Windows::Forms::Label());
 			this->labelAdmin = (gcnew System::Windows::Forms::Label());
 			this->btnQuanLyDonHang = (gcnew System::Windows::Forms::Button());
 			this->btnDangXUatAdmin = (gcnew System::Windows::Forms::Button());
 			this->btnQuanlynhanvien = (gcnew System::Windows::Forms::Button());
 			this->btnThongKe = (gcnew System::Windows::Forms::Button());
 			this->panelThongke = (gcnew System::Windows::Forms::Panel());
-			this->dateTimePicker1 = (gcnew System::Windows::Forms::DateTimePicker());
 			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->dateTimePicker1 = (gcnew System::Windows::Forms::DateTimePicker());
+			this->lblTenAdmin = (gcnew System::Windows::Forms::Label());
 			this->panel1->SuspendLayout();
 			this->panel3->SuspendLayout();
-			this->panel6->SuspendLayout();
-			this->panel4->SuspendLayout();
 			this->panelThongke->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -111,66 +105,11 @@ namespace PBL2DatMonAn {
 			// panel3
 			// 
 			this->panel3->BackColor = System::Drawing::Color::RosyBrown;
-			this->panel3->Controls->Add(this->panel6);
-			this->panel3->Controls->Add(this->panel4);
+			this->panel3->Controls->Add(this->lblTenAdmin);
 			this->panel3->Location = System::Drawing::Point(12, 47);
 			this->panel3->Name = L"panel3";
 			this->panel3->Size = System::Drawing::Size(267, 101);
 			this->panel3->TabIndex = 7;
-			// 
-			// panel6
-			// 
-			this->panel6->Controls->Add(this->lbTen);
-			this->panel6->Controls->Add(this->label5);
-			this->panel6->Location = System::Drawing::Point(3, 55);
-			this->panel6->Name = L"panel6";
-			this->panel6->Size = System::Drawing::Size(264, 30);
-			this->panel6->TabIndex = 3;
-			// 
-			// lbTen
-			// 
-			this->lbTen->BackColor = System::Drawing::Color::DimGray;
-			this->lbTen->ForeColor = System::Drawing::SystemColors::ControlText;
-			this->lbTen->Location = System::Drawing::Point(106, 4);
-			this->lbTen->Name = L"lbTen";
-			this->lbTen->Size = System::Drawing::Size(155, 23);
-			this->lbTen->TabIndex = 1;
-			// 
-			// label5
-			// 
-			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(4, 4);
-			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(34, 16);
-			this->label5->TabIndex = 0;
-			this->label5->Text = L"Tên:";
-			// 
-			// panel4
-			// 
-			this->panel4->Controls->Add(this->lbID);
-			this->panel4->Controls->Add(this->labelId);
-			this->panel4->Location = System::Drawing::Point(3, 19);
-			this->panel4->Name = L"panel4";
-			this->panel4->Size = System::Drawing::Size(261, 30);
-			this->panel4->TabIndex = 0;
-			// 
-			// lbID
-			// 
-			this->lbID->BackColor = System::Drawing::Color::DimGray;
-			this->lbID->ForeColor = System::Drawing::SystemColors::ControlText;
-			this->lbID->Location = System::Drawing::Point(103, 0);
-			this->lbID->Name = L"lbID";
-			this->lbID->Size = System::Drawing::Size(100, 23);
-			this->lbID->TabIndex = 1;
-			// 
-			// labelId
-			// 
-			this->labelId->AutoSize = true;
-			this->labelId->Location = System::Drawing::Point(4, 4);
-			this->labelId->Name = L"labelId";
-			this->labelId->Size = System::Drawing::Size(23, 16);
-			this->labelId->TabIndex = 0;
-			this->labelId->Text = L"ID:";
 			// 
 			// labelAdmin
 			// 
@@ -257,15 +196,6 @@ namespace PBL2DatMonAn {
 			this->panelThongke->Size = System::Drawing::Size(1126, 607);
 			this->panelThongke->TabIndex = 1;
 			// 
-			// dateTimePicker1
-			// 
-			this->dateTimePicker1->CustomFormat = L"dd/MM/yyyy";
-			this->dateTimePicker1->Format = System::Windows::Forms::DateTimePickerFormat::Custom;
-			this->dateTimePicker1->Location = System::Drawing::Point(919, 15);
-			this->dateTimePicker1->Name = L"dateTimePicker1";
-			this->dateTimePicker1->Size = System::Drawing::Size(180, 22);
-			this->dateTimePicker1->TabIndex = 0;
-			// 
 			// label1
 			// 
 			this->label1->Font = (gcnew System::Drawing::Font(L"Segoe UI", 24, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
@@ -275,6 +205,25 @@ namespace PBL2DatMonAn {
 			this->label1->Size = System::Drawing::Size(231, 72);
 			this->label1->TabIndex = 1;
 			this->label1->Text = L"Thống Kê";
+			// 
+			// dateTimePicker1
+			// 
+			this->dateTimePicker1->CustomFormat = L"dd/MM/yyyy";
+			this->dateTimePicker1->Format = System::Windows::Forms::DateTimePickerFormat::Custom;
+			this->dateTimePicker1->Location = System::Drawing::Point(919, 15);
+			this->dateTimePicker1->Name = L"dateTimePicker1";
+			this->dateTimePicker1->Size = System::Drawing::Size(180, 22);
+			this->dateTimePicker1->TabIndex = 0;
+			// 
+			// lblTenAdmin
+			// 
+			this->lblTenAdmin->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lblTenAdmin->Location = System::Drawing::Point(14, 33);
+			this->lblTenAdmin->Name = L"lblTenAdmin";
+			this->lblTenAdmin->Size = System::Drawing::Size(250, 30);
+			this->lblTenAdmin->TabIndex = 0;
+			this->lblTenAdmin->Text = L"Tên:";
 			// 
 			// formAdmin
 			// 
@@ -289,10 +238,6 @@ namespace PBL2DatMonAn {
 			this->Load += gcnew System::EventHandler(this, &formAdmin::formAdmin_Load);
 			this->panel1->ResumeLayout(false);
 			this->panel3->ResumeLayout(false);
-			this->panel6->ResumeLayout(false);
-			this->panel6->PerformLayout();
-			this->panel4->ResumeLayout(false);
-			this->panel4->PerformLayout();
 			this->panelThongke->ResumeLayout(false);
 			this->ResumeLayout(false);
 

@@ -3,7 +3,8 @@
 #define NOMINMAX
 #define WIN32_LEAN_AND_MEAN
 
-#include "banManager.h"
+#include "CreateTable.h"
+#include "ManagerTable.h"
 #include <windows.h>
 #include "FormBill.h"
 #include "DanhSachDonHang.h"
@@ -49,15 +50,6 @@ namespace PBL2DatMonAn {
     private: System::Windows::Forms::Button^ btnDanhsach;
     private: System::Windows::Forms::Button^ btnChonBan;
     private: System::Windows::Forms::Panel^ panel1;
-    private: System::Windows::Forms::Panel^ panel2;
-    private: System::Windows::Forms::Label^ labelID;
-    private: System::Windows::Forms::Label^ lbID;
-
-    private: System::Windows::Forms::Panel^ panel4;
-    private: System::Windows::Forms::Label^ lbten;
-
-    private: System::Windows::Forms::Label^ labelTen;
-
     private: System::Windows::Forms::Panel^ panelMangVe;
 
     private: System::Windows::Forms::Panel^ panelDanhsachban;
@@ -69,6 +61,9 @@ namespace PBL2DatMonAn {
     private: System::Windows::Forms::Panel^ panel8;
     private: System::Windows::Forms::Panel^ panel7;
     private: DanhSachDonHang^ danhSachDonHang;
+    private: System::Windows::Forms::Label^ lblTenNhanVien;
+	private: List<ManagerTable^>^ danhSachBan;
+
 
     private:
         System::ComponentModel::Container^ components;
@@ -78,12 +73,6 @@ namespace PBL2DatMonAn {
         {
             this->panelStaff = (gcnew System::Windows::Forms::Panel());
             this->panel1 = (gcnew System::Windows::Forms::Panel());
-            this->panel4 = (gcnew System::Windows::Forms::Panel());
-            this->lbten = (gcnew System::Windows::Forms::Label());
-            this->labelTen = (gcnew System::Windows::Forms::Label());
-            this->panel2 = (gcnew System::Windows::Forms::Panel());
-            this->lbID = (gcnew System::Windows::Forms::Label());
-            this->labelID = (gcnew System::Windows::Forms::Label());
             this->btnDangXuat = (gcnew System::Windows::Forms::Button());
             this->btnDanhsach = (gcnew System::Windows::Forms::Button());
             this->btnChonBan = (gcnew System::Windows::Forms::Button());
@@ -96,10 +85,9 @@ namespace PBL2DatMonAn {
             this->panel7 = (gcnew System::Windows::Forms::Panel());
             this->flpBan = (gcnew System::Windows::Forms::FlowLayoutPanel());
             this->labelDanhsachban = (gcnew System::Windows::Forms::Label());
+            this->lblTenNhanVien = (gcnew System::Windows::Forms::Label());
             this->panelStaff->SuspendLayout();
             this->panel1->SuspendLayout();
-            this->panel4->SuspendLayout();
-            this->panel2->SuspendLayout();
             this->panelMangVe->SuspendLayout();
             this->panelDanhsachban->SuspendLayout();
             this->SuspendLayout();
@@ -123,72 +111,11 @@ namespace PBL2DatMonAn {
             // panel1
             // 
             this->panel1->BackColor = System::Drawing::Color::RosyBrown;
-            this->panel1->Controls->Add(this->panel4);
-            this->panel1->Controls->Add(this->panel2);
+            this->panel1->Controls->Add(this->lblTenNhanVien);
             this->panel1->Location = System::Drawing::Point(12, 38);
             this->panel1->Name = L"panel1";
             this->panel1->Size = System::Drawing::Size(320, 94);
             this->panel1->TabIndex = 4;
-            // 
-            // panel4
-            // 
-            this->panel4->Controls->Add(this->lbten);
-            this->panel4->Controls->Add(this->labelTen);
-            this->panel4->Location = System::Drawing::Point(3, 53);
-            this->panel4->Name = L"panel4";
-            this->panel4->Size = System::Drawing::Size(313, 29);
-            this->panel4->TabIndex = 2;
-            // 
-            // lbten
-            // 
-            this->lbten->BackColor = System::Drawing::Color::Gray;
-            this->lbten->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->lbten->Location = System::Drawing::Point(115, 4);
-            this->lbten->Name = L"lbten";
-            this->lbten->Size = System::Drawing::Size(171, 20);
-            this->lbten->TabIndex = 1;
-            // 
-            // labelTen
-            // 
-            this->labelTen->AutoSize = true;
-            this->labelTen->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->labelTen->Location = System::Drawing::Point(4, 4);
-            this->labelTen->Name = L"labelTen";
-            this->labelTen->Size = System::Drawing::Size(35, 20);
-            this->labelTen->TabIndex = 0;
-            this->labelTen->Text = L"Tên:";
-            // 
-            // panel2
-            // 
-            this->panel2->Controls->Add(this->lbID);
-            this->panel2->Controls->Add(this->labelID);
-            this->panel2->Location = System::Drawing::Point(3, 18);
-            this->panel2->Name = L"panel2";
-            this->panel2->Size = System::Drawing::Size(313, 29);
-            this->panel2->TabIndex = 0;
-            // 
-            // lbID
-            // 
-            this->lbID->BackColor = System::Drawing::Color::Gray;
-            this->lbID->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->lbID->Location = System::Drawing::Point(144, 4);
-            this->lbID->Name = L"lbID";
-            this->lbID->Size = System::Drawing::Size(142, 20);
-            this->lbID->TabIndex = 1;
-            // 
-            // labelID
-            // 
-            this->labelID->AutoSize = true;
-            this->labelID->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->labelID->Location = System::Drawing::Point(4, 4);
-            this->labelID->Name = L"labelID";
-            this->labelID->Size = System::Drawing::Size(27, 20);
-            this->labelID->TabIndex = 0;
-            this->labelID->Text = L"ID:";
             // 
             // btnDangXuat
             // 
@@ -325,6 +252,17 @@ namespace PBL2DatMonAn {
             this->labelDanhsachban->Text = L"Danh Sách Bàn";
             this->labelDanhsachban->Click += gcnew System::EventHandler(this, &formStaff::labelDanhsachban_Click);
             // 
+            // lblTenNhanVien
+            // 
+            this->lblTenNhanVien->BackColor = System::Drawing::Color::Silver;
+            this->lblTenNhanVien->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->lblTenNhanVien->Location = System::Drawing::Point(12, 20);
+            this->lblTenNhanVien->Name = L"lblTenNhanVien";
+            this->lblTenNhanVien->Size = System::Drawing::Size(286, 36);
+            this->lblTenNhanVien->TabIndex = 0;
+            this->lblTenNhanVien->Text = L"Tên:";
+            // 
             // formStaff
             // 
             this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -339,10 +277,6 @@ namespace PBL2DatMonAn {
             this->Load += gcnew System::EventHandler(this, &formStaff::formStaff_Load);
             this->panelStaff->ResumeLayout(false);
             this->panel1->ResumeLayout(false);
-            this->panel4->ResumeLayout(false);
-            this->panel4->PerformLayout();
-            this->panel2->ResumeLayout(false);
-            this->panel2->PerformLayout();
             this->panelMangVe->ResumeLayout(false);
             this->panelDanhsachban->ResumeLayout(false);
             this->ResumeLayout(false);
@@ -350,22 +284,24 @@ namespace PBL2DatMonAn {
         }
 #pragma endregion
     private: System::Void formStaff_Load(System::Object^ sender, System::EventArgs^ e) {
-        BanManager^ manager = gcnew BanManager();
-        manager->TaoDayBan(10, flpBan);
-        manager->TakeAway(4, flpMangVe);
+		danhSachBan = gcnew List<ManagerTable^>();
+		for (int i = 1; i <= 10; i++) {
+			ManagerTable^ ban = gcnew ManagerTable("Bàn" + i);
+			danhSachBan->Add(ban);
+		}
+        CreateTable^ createTable = gcnew CreateTable();
+        createTable->TaoDayBan(10, flpBan, danhSachBan);
+        createTable->TakeAway(4, flpMangVe);
         ResetMauButtonMenu();
         btnChonBan->BackColor = Color::IndianRed;
         BoGocControl(btnChonBan, 10);
         BoGocControl(btnDanhsach, 10);
         BoGocControl(btnDangXuat, 10);
-
         danhSachDonHang = gcnew DanhSachDonHang();
         this->Controls->Add(danhSachDonHang);
         danhSachDonHang->Visible = false;
-        danhSachDonHang->Location = System::Drawing::Point(10, 110); // Đặt vị trí (x=10, y=150)
-        danhSachDonHang->Size = System::Drawing::Size(800, 400);     // Đặt kích thước
-
-
+        danhSachDonHang->Location = System::Drawing::Point(10, 110); 
+        danhSachDonHang->Size = System::Drawing::Size(800, 400);    
     }
     private: System::Void ResetMauButtonMenu() {
         Color mauMacDinh = Color::Gainsboro;

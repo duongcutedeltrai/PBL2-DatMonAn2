@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include "MonAn.h"
-#include "Transfer.h"
+#include "ManagerTable.h"
 namespace PBL2DatMonAn {
 
 	using namespace System;
@@ -18,10 +18,12 @@ namespace PBL2DatMonAn {
 
 		ref class FormFood;
 	public:
-		FormBill(System::Collections::Generic::List<MonAn^>^ dsMon)
+		FormBill(System::Collections::Generic::List<MonAn^>^ dsMon, ManagerTable^ ban)
 		{
 			InitializeComponent();
 			danhSachMon = dsMon;
+			this->banHienTai = ban;
+			lblBanDat->Text = ban->SoBan;
 			Monandachon();
 			//  
 			//TODO: Add the constructor code here  
@@ -40,7 +42,10 @@ namespace PBL2DatMonAn {
 			}
 		}
 	private:
+		ManagerTable^ banHienTai; // Lưu trữ bàn hiện tại
 		System::Collections::Generic::List<MonAn^>^ danhSachMon;
+	//private:
+	//	System::Collections::Generic::List<MonAn^>^ danhSachMon;
 
 
 	private: System::Windows::Forms::Panel^ panel1;
@@ -49,15 +54,10 @@ namespace PBL2DatMonAn {
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::Label^ label5;
-	private: System::Windows::Forms::DateTimePicker^ dateTimePicker1;
-	private: System::Windows::Forms::Panel^ panel2;
-	private: System::Windows::Forms::Label^ LabelNhanVien;
+	private: System::Windows::Forms::Label^ lblBanDat;
 
-	private: System::Windows::Forms::Label^ label6;
-	private: System::Windows::Forms::Panel^ panel3;
-	private: System::Windows::Forms::Label^ label9;
-	private: System::Windows::Forms::Label^ labelDate;
+	private: System::Windows::Forms::DateTimePicker^ dateTimePicker1;
+
 
 	private: System::Windows::Forms::Panel^ pnPrice;
 
@@ -73,6 +73,8 @@ namespace PBL2DatMonAn {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
+	private: System::Windows::Forms::Label^ lblTenNhanVIen;
+	private: System::Windows::Forms::Label^ lblDateTime;
 
 	private:
 		/// <summary>
@@ -92,14 +94,8 @@ namespace PBL2DatMonAn {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->lblBanDat = (gcnew System::Windows::Forms::Label());
 			this->dateTimePicker1 = (gcnew System::Windows::Forms::DateTimePicker());
-			this->panel2 = (gcnew System::Windows::Forms::Panel());
-			this->LabelNhanVien = (gcnew System::Windows::Forms::Label());
-			this->label6 = (gcnew System::Windows::Forms::Label());
-			this->panel3 = (gcnew System::Windows::Forms::Panel());
-			this->labelDate = (gcnew System::Windows::Forms::Label());
-			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->pnPrice = (gcnew System::Windows::Forms::Panel());
 			this->txtPrice = (gcnew System::Windows::Forms::TextBox());
 			this->label14 = (gcnew System::Windows::Forms::Label());
@@ -111,9 +107,9 @@ namespace PBL2DatMonAn {
 			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->lblTenNhanVIen = (gcnew System::Windows::Forms::Label());
+			this->lblDateTime = (gcnew System::Windows::Forms::Label());
 			this->panel1->SuspendLayout();
-			this->panel2->SuspendLayout();
-			this->panel3->SuspendLayout();
 			this->pnPrice->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->datagridViewBill))->BeginInit();
 			this->SuspendLayout();
@@ -169,16 +165,16 @@ namespace PBL2DatMonAn {
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"DD RESTAURANT";
 			// 
-			// label5
+			// lblBanDat
 			// 
-			this->label5->BackColor = System::Drawing::SystemColors::ActiveCaption;
-			this->label5->Font = (gcnew System::Drawing::Font(L"Segoe UI", 16.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->lblBanDat->BackColor = System::Drawing::SystemColors::ActiveCaption;
+			this->lblBanDat->Font = (gcnew System::Drawing::Font(L"Segoe UI", 16.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label5->Location = System::Drawing::Point(190, 171);
-			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(112, 50);
-			this->label5->TabIndex = 1;
-			this->label5->Text = L"Bàn 01";
+			this->lblBanDat->Location = System::Drawing::Point(190, 171);
+			this->lblBanDat->Name = L"lblBanDat";
+			this->lblBanDat->Size = System::Drawing::Size(126, 50);
+			this->lblBanDat->TabIndex = 1;
+			this->lblBanDat->Text = L"Bàn";
 			// 
 			// dateTimePicker1
 			// 
@@ -188,63 +184,6 @@ namespace PBL2DatMonAn {
 			this->dateTimePicker1->Name = L"dateTimePicker1";
 			this->dateTimePicker1->Size = System::Drawing::Size(200, 22);
 			this->dateTimePicker1->TabIndex = 2;
-			// 
-			// panel2
-			// 
-			this->panel2->Controls->Add(this->LabelNhanVien);
-			this->panel2->Controls->Add(this->label6);
-			this->panel2->Location = System::Drawing::Point(19, 252);
-			this->panel2->Name = L"panel2";
-			this->panel2->Size = System::Drawing::Size(257, 42);
-			this->panel2->TabIndex = 3;
-			// 
-			// LabelNhanVien
-			// 
-			this->LabelNhanVien->BackColor = System::Drawing::SystemColors::Highlight;
-			this->LabelNhanVien->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->LabelNhanVien->Location = System::Drawing::Point(80, 7);
-			this->LabelNhanVien->Name = L"LabelNhanVien";
-			this->LabelNhanVien->Size = System::Drawing::Size(158, 35);
-			this->LabelNhanVien->TabIndex = 1;
-			this->LabelNhanVien->Text = L"label7";
-			// 
-			// label6
-			// 
-			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(3, 14);
-			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(75, 16);
-			this->label6->TabIndex = 0;
-			this->label6->Text = L"Nhân Viên: ";
-			// 
-			// panel3
-			// 
-			this->panel3->Controls->Add(this->labelDate);
-			this->panel3->Controls->Add(this->label9);
-			this->panel3->Location = System::Drawing::Point(285, 252);
-			this->panel3->Name = L"panel3";
-			this->panel3->Size = System::Drawing::Size(195, 42);
-			this->panel3->TabIndex = 4;
-			// 
-			// labelDate
-			// 
-			this->labelDate->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->labelDate->Location = System::Drawing::Point(52, 12);
-			this->labelDate->Name = L"labelDate";
-			this->labelDate->Size = System::Drawing::Size(136, 23);
-			this->labelDate->TabIndex = 1;
-			this->labelDate->Text = L"label8";
-			// 
-			// label9
-			// 
-			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(3, 14);
-			this->label9->Name = L"label9";
-			this->label9->Size = System::Drawing::Size(43, 16);
-			this->label9->TabIndex = 0;
-			this->label9->Text = L"In lúc: ";
 			// 
 			// pnPrice
 			// 
@@ -298,6 +237,7 @@ namespace PBL2DatMonAn {
 			this->btnTienMat->TabIndex = 8;
 			this->btnTienMat->Text = L"Tiền mặt";
 			this->btnTienMat->UseVisualStyleBackColor = true;
+			this->btnTienMat->Click += gcnew System::EventHandler(this, &FormBill::btnTienMat_Click);
 			// 
 			// btnChuyenKhoan
 			// 
@@ -355,20 +295,42 @@ namespace PBL2DatMonAn {
 			this->Column4->MinimumWidth = 6;
 			this->Column4->Name = L"Column4";
 			// 
+			// lblTenNhanVIen
+			// 
+			this->lblTenNhanVIen->BackColor = System::Drawing::SystemColors::ButtonShadow;
+			this->lblTenNhanVIen->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lblTenNhanVIen->Location = System::Drawing::Point(12, 265);
+			this->lblTenNhanVIen->Name = L"lblTenNhanVIen";
+			this->lblTenNhanVIen->Size = System::Drawing::Size(207, 29);
+			this->lblTenNhanVIen->TabIndex = 11;
+			this->lblTenNhanVIen->Text = L"Tên:";
+			// 
+			// lblDateTime
+			// 
+			this->lblDateTime->BackColor = System::Drawing::SystemColors::ButtonShadow;
+			this->lblDateTime->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lblDateTime->Location = System::Drawing::Point(240, 265);
+			this->lblDateTime->Name = L"lblDateTime";
+			this->lblDateTime->Size = System::Drawing::Size(207, 29);
+			this->lblDateTime->TabIndex = 12;
+			this->lblDateTime->Text = L"In lúc:";
+			// 
 			// FormBill
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(488, 685);
+			this->Controls->Add(this->lblDateTime);
+			this->Controls->Add(this->lblTenNhanVIen);
 			this->Controls->Add(this->datagridViewBill);
 			this->Controls->Add(this->btnChuyenKhoan);
 			this->Controls->Add(this->btnTienMat);
 			this->Controls->Add(this->label15);
 			this->Controls->Add(this->pnPrice);
-			this->Controls->Add(this->panel3);
-			this->Controls->Add(this->panel2);
 			this->Controls->Add(this->dateTimePicker1);
-			this->Controls->Add(this->label5);
+			this->Controls->Add(this->lblBanDat);
 			this->Controls->Add(this->panel1);
 			this->Name = L"FormBill";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
@@ -376,10 +338,6 @@ namespace PBL2DatMonAn {
 			this->Load += gcnew System::EventHandler(this, &FormBill::FormBill_Load);
 			this->panel1->ResumeLayout(false);
 			this->panel1->PerformLayout();
-			this->panel2->ResumeLayout(false);
-			this->panel2->PerformLayout();
-			this->panel3->ResumeLayout(false);
-			this->panel3->PerformLayout();
 			this->pnPrice->ResumeLayout(false);
 			this->pnPrice->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->datagridViewBill))->EndInit();
@@ -399,6 +357,15 @@ namespace PBL2DatMonAn {
 		datagridViewBill->Height = headerHeight + totalRowHeight + 2;
 	};
 	private: System::Void Monandachon();
-	private: System::Void btnChuyenKhoan_Click(System::Object^ sender, System::EventArgs^ e) {};
+	private: System::Void btnChuyenKhoan_Click(System::Object^ sender, System::EventArgs^ e) {
+		banHienTai->TrangThai = "Đã Thanh Toán";
+		banHienTai->DanhSachMon->Clear();
+		this->Close();
+	};
+private: System::Void btnTienMat_Click(System::Object^ sender, System::EventArgs^ e) {
+	banHienTai->TrangThai = "Đã Thanh Toán";
+	banHienTai->DanhSachMon->Clear();
+	this->Close();
+}
 };
 	}

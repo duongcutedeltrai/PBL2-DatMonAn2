@@ -1,14 +1,16 @@
-﻿#include "banManager.h"
+﻿#include "CreateTable.h"
+#include "ManagerTable.h"
 #include "FormFood.h"
 using namespace System;
 using namespace System::Windows::Forms;
 using namespace System::Drawing;
 using namespace System::Drawing::Drawing2D;
 
-void BanManager::TaoDayBan(int soBan, FlowLayoutPanel^ flpBan) {
+void CreateTable::TaoDayBan(int soBan, FlowLayoutPanel^ flpBan, List<ManagerTable^>^ danhSachBan) {
     for (int i = 1; i <= soBan; i++) {
         Button^ btnBan = gcnew Button();
-        btnBan->Text = "Bàn " + i;
+		btnBan->Text = danhSachBan[i-1]->SoBan;
+		btnBan->Tag = danhSachBan[i-1];
         btnBan->Width = 100;
         btnBan->Height = 100;
         btnBan->BackColor = Color::LightGray;
@@ -19,13 +21,13 @@ void BanManager::TaoDayBan(int soBan, FlowLayoutPanel^ flpBan) {
         btnBan->ForeColor = Color::Black;
 		btnBan->Cursor = Cursors::Hand;
 
-        btnBan->Click += gcnew EventHandler(this, &BanManager::btnBan_Click);
+        btnBan->Click += gcnew EventHandler(this, &CreateTable::btnBan_Click);
         flpBan->Controls->Add(btnBan);
 
     }
 }
 
-void BanManager::TakeAway(int soBan, FlowLayoutPanel^ flpMangVe) {
+void CreateTable::TakeAway(int soBan, FlowLayoutPanel^ flpMangVe) {
     for (int i = 1; i <= soBan; i++) {
         Button^ btnBanMangve = gcnew Button();
         btnBanMangve->Text = L"Mang Về " + i;
@@ -39,20 +41,34 @@ void BanManager::TakeAway(int soBan, FlowLayoutPanel^ flpMangVe) {
         btnBanMangve->ForeColor = Color::Black;
         btnBanMangve->Cursor = Cursors::Hand;
 
-        btnBanMangve->Click += gcnew EventHandler(this, &BanManager::btnBanMangve_Click);
+        btnBanMangve->Click += gcnew EventHandler(this, &CreateTable::btnBanMangve_Click);
 
         flpMangVe->Controls->Add(btnBanMangve);
 
     }
 }
 
-void BanManager::btnBan_Click(Object^ sender, EventArgs^ e) {
-    PBL2DatMonAn::FormFood^ food = gcnew PBL2DatMonAn::FormFood();
+void CreateTable::btnBan_Click(Object^ sender, EventArgs^ e) {
+    Button^ btn = safe_cast<Button^>(sender);
+    ManagerTable^ ban = safe_cast<ManagerTable^>(btn->Tag);
+    PBL2DatMonAn::FormFood^ food = gcnew PBL2DatMonAn::FormFood(ban);
     food->ShowDialog();
+
+    //cap nhat lai trang thai cua ban
+    if (ban->TrangThai == "Trống") {
+        btn->BackColor = Color::Red;
+    }
+    else if (ban->TrangThai == "Có Khách" || ban->TrangThai == "Chưa Thanh Toán") {
+        btn->BackColor = Color::Yellow;
+    }
+    else if (ban->TrangThai == "Đã Thanh Toán") {
+        btn->BackColor = Color::White;
+    }
 }
 
-void BanManager::btnBanMangve_Click(Object^ sender, EventArgs^ e) {
-    PBL2DatMonAn::FormFood^ food = gcnew PBL2DatMonAn::FormFood();
+void CreateTable::btnBanMangve_Click(Object^ sender, EventArgs^ e) {
+    ManagerTable^ banMangVe = gcnew ManagerTable("Mang Về");
+    PBL2DatMonAn::FormFood^ food = gcnew PBL2DatMonAn::FormFood(banMangVe);
     food->ShowDialog();
 }
 
