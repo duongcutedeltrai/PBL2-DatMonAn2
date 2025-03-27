@@ -575,12 +575,12 @@ namespace PBL2DatMonAn {
 			banHienTai->DanhSachMon->Remove(mon);
 			if (banHienTai->DanhSachMon->Count == 0) {
 				banHienTai->TrangThai = "Trống";
-
 			}
 		}
-		else {
+		if (banHienTai->DanhSachMon->Contains(mon)) {
 			banHienTai->DanhSachMon[banHienTai->DanhSachMon->IndexOf(mon)]->SoLuong = Decimal::ToInt32(numSoLuong->Value);
 		}
+
 		CapNhatTongTien();
 	}
 	private: System::Void btnThanhToan_Click(System::Object^ sender, System::EventArgs^ e);

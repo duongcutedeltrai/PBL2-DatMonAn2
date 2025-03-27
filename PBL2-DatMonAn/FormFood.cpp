@@ -19,7 +19,10 @@ namespace PBL2DatMonAn {
             if (ctrl->Tag == mon) {
                 NumericUpDown^ numSoLuong = dynamic_cast<NumericUpDown^>(ctrl->Controls[3]);
                 numSoLuong->Value++;
-                banHienTai->DanhSachMon[banHienTai->DanhSachMon->IndexOf(mon)]->SoLuong++;
+                int index = banHienTai->DanhSachMon->IndexOf(mon);
+                if (index >= 0 && index < banHienTai->DanhSachMon->Count) {
+                    banHienTai->DanhSachMon[index]->SoLuong++;
+                }
                 CapNhatTongTien();
                 return;
             }
