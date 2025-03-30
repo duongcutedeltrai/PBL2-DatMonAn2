@@ -56,10 +56,10 @@ void CreateTable::btnBan_Click(Object^ sender, EventArgs^ e) {
 
     //cap nhat lai trang thai cua ban
     if (ban->TrangThai == "Trống") {
-        btn->BackColor = Color::Red;
+        btn->BackColor = Color::White;
     }
     else if (ban->TrangThai == "Có Khách" || ban->TrangThai == "Chưa Thanh Toán") {
-        btn->BackColor = Color::Yellow;
+        btn->BackColor = Color::Green;
     }
     else if (ban->TrangThai == "Đã Thanh Toán") {
         btn->BackColor = Color::White;
