@@ -15,3 +15,5 @@ private:
 	void btnBan_Click(Object^ sender, EventArgs^ e);
 	void btnBanMangve_Click(Object^ sender, EventArgs^ e);
 };
+
+

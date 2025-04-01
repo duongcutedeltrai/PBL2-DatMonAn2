@@ -6,6 +6,12 @@ staff||staff||Staff
 admin||admin||Admin
 staff||staff||Staff
 staff||staff||Staff
+<<<<<<< Updated upstream
 admin||admin||Admin
+=======
+staff||staff||Staff
+staff||123||Invalid
+staff||123||Invalid
+>>>>>>> Stashed changes
 staff||staff||Staff
 staff||staff||Staff
