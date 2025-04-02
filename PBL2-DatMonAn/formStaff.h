@@ -26,9 +26,11 @@ namespace PBL2DatMonAn {
     public ref class formStaff : public System::Windows::Forms::Form
     {
     public:
-        formStaff(void)
+        formStaff(String^ nameStaff)
         {
             InitializeComponent();
+			this->nameStaff = nameStaff;
+			lblTenNhanVien->Text = "Ten nhan vien: " + nameStaff;
 			//
             // Thêm panel vào form
         }
@@ -41,7 +43,8 @@ namespace PBL2DatMonAn {
                 delete components;
             }
         }
-
+    private:
+		String^ nameStaff;
     private: System::Windows::Forms::Panel^ panelStaff;
 
     private: System::Windows::Forms::Label^ label1;
@@ -49,7 +52,7 @@ namespace PBL2DatMonAn {
     private: System::Windows::Forms::Button^ btnDangXuat;
     private: System::Windows::Forms::Button^ btnDanhsach;
     private: System::Windows::Forms::Button^ btnChonBan;
-    private: System::Windows::Forms::Panel^ panel1;
+
     private: System::Windows::Forms::Panel^ panelMangVe;
 
     private: System::Windows::Forms::Panel^ panelDanhsachban;
@@ -72,7 +75,7 @@ namespace PBL2DatMonAn {
         void InitializeComponent(void)
         {
             this->panelStaff = (gcnew System::Windows::Forms::Panel());
-            this->panel1 = (gcnew System::Windows::Forms::Panel());
+            this->lblTenNhanVien = (gcnew System::Windows::Forms::Label());
             this->btnDangXuat = (gcnew System::Windows::Forms::Button());
             this->btnDanhsach = (gcnew System::Windows::Forms::Button());
             this->btnChonBan = (gcnew System::Windows::Forms::Button());
@@ -85,9 +88,7 @@ namespace PBL2DatMonAn {
             this->panel7 = (gcnew System::Windows::Forms::Panel());
             this->flpBan = (gcnew System::Windows::Forms::FlowLayoutPanel());
             this->labelDanhsachban = (gcnew System::Windows::Forms::Label());
-            this->lblTenNhanVien = (gcnew System::Windows::Forms::Label());
             this->panelStaff->SuspendLayout();
-            this->panel1->SuspendLayout();
             this->panelMangVe->SuspendLayout();
             this->panelDanhsachban->SuspendLayout();
             this->SuspendLayout();
@@ -95,7 +96,7 @@ namespace PBL2DatMonAn {
             // panelStaff
             // 
             this->panelStaff->BackColor = System::Drawing::Color::Gainsboro;
-            this->panelStaff->Controls->Add(this->panel1);
+            this->panelStaff->Controls->Add(this->lblTenNhanVien);
             this->panelStaff->Controls->Add(this->btnDangXuat);
             this->panelStaff->Controls->Add(this->btnDanhsach);
             this->panelStaff->Controls->Add(this->btnChonBan);
@@ -108,14 +109,16 @@ namespace PBL2DatMonAn {
             this->panelStaff->Size = System::Drawing::Size(1144, 132);
             this->panelStaff->TabIndex = 0;
             // 
-            // panel1
+            // lblTenNhanVien
             // 
-            this->panel1->BackColor = System::Drawing::Color::RosyBrown;
-            this->panel1->Controls->Add(this->lblTenNhanVien);
-            this->panel1->Location = System::Drawing::Point(12, 38);
-            this->panel1->Name = L"panel1";
-            this->panel1->Size = System::Drawing::Size(320, 94);
-            this->panel1->TabIndex = 4;
+            this->lblTenNhanVien->BackColor = System::Drawing::Color::Transparent;
+            this->lblTenNhanVien->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->lblTenNhanVien->Location = System::Drawing::Point(19, 55);
+            this->lblTenNhanVien->Name = L"lblTenNhanVien";
+            this->lblTenNhanVien->Size = System::Drawing::Size(387, 36);
+            this->lblTenNhanVien->TabIndex = 0;
+            this->lblTenNhanVien->Click += gcnew System::EventHandler(this, &formStaff::lblTenNhanVien_Click);
             // 
             // btnDangXuat
             // 
@@ -252,17 +255,6 @@ namespace PBL2DatMonAn {
             this->labelDanhsachban->Text = L"Danh Sách Bàn";
             this->labelDanhsachban->Click += gcnew System::EventHandler(this, &formStaff::labelDanhsachban_Click);
             // 
-            // lblTenNhanVien
-            // 
-            this->lblTenNhanVien->BackColor = System::Drawing::Color::Silver;
-            this->lblTenNhanVien->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->lblTenNhanVien->Location = System::Drawing::Point(12, 20);
-            this->lblTenNhanVien->Name = L"lblTenNhanVien";
-            this->lblTenNhanVien->Size = System::Drawing::Size(286, 36);
-            this->lblTenNhanVien->TabIndex = 0;
-            this->lblTenNhanVien->Text = L"Tên:";
-            // 
             // formStaff
             // 
             this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -276,7 +268,6 @@ namespace PBL2DatMonAn {
             this->Text = L"formStaff";
             this->Load += gcnew System::EventHandler(this, &formStaff::formStaff_Load);
             this->panelStaff->ResumeLayout(false);
-            this->panel1->ResumeLayout(false);
             this->panelMangVe->ResumeLayout(false);
             this->panelDanhsachban->ResumeLayout(false);
             this->ResumeLayout(false);
@@ -289,7 +280,7 @@ namespace PBL2DatMonAn {
 			ManagerTable^ ban = gcnew ManagerTable("Bàn" + i);
 			danhSachBan->Add(ban);
 		}
-        CreateTable^ createTable = gcnew CreateTable();
+        CreateTable^ createTable = gcnew CreateTable(nameStaff);
         createTable->TaoDayBan(10, flpBan, danhSachBan);
         createTable->TakeAway(4, flpMangVe);
         ResetMauButtonMenu();
@@ -330,5 +321,7 @@ private: System::Void labelDanhsachban_Click(System::Object^ sender, System::Eve
                danhSachDonHang->BringToFront();
 			  
            }
+private: System::Void lblTenNhanVien_Click(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }

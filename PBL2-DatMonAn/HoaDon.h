@@ -1,17 +1,18 @@
 #pragma once
 #include "MonAn.h"
+#include <fstream>
 ref class HoaDon
 {	
 public:
 	System::String^ MaHoaDon;
-	System::String^ MaBan;
+	System::String^ soBan;
 	System::Collections::Generic::List<MonAn^>^ danhSachMon;
 	System::Double TongTien;
 	System::DateTime ThoiGian;
 
-	HoaDon(System::String^ maHoaDon, System::String^ maBan, System::Collections::Generic::List<MonAn^>^ dsMon, System::Double tongTien, System::DateTime thoiGian) {
+	HoaDon(System::String^ maHoaDon, System::String^ soBan, System::Collections::Generic::List<MonAn^>^ dsMon, System::Double tongTien, System::DateTime thoiGian) {
 		MaHoaDon = maHoaDon;
-		MaBan = maBan;
+		soBan = soBan;
 		danhSachMon = dsMon;
 		TongTien = 0.0;
 		ThoiGian = DateTime::Now;
@@ -24,6 +25,8 @@ public:
 		TongTien += Convert::ToDouble(mon->Gia->Replace("$", ""));
 	}
 
+	//luu vao file hoadon.txt
+	/*void SaveToFile(String^ MaHoaDon, String^ soBan, String^ TongTien, )*/
 	
 };
 

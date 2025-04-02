@@ -127,7 +127,7 @@ namespace PBL2DatMonAn {
 
         // Gọi FormBill với danh sách món đã chọn
         this->Close();
-        FormBill^ formBill = gcnew FormBill(banHienTai->DanhSachMon, banHienTai);
+        FormBill^ formBill = gcnew FormBill(banHienTai->DanhSachMon, banHienTai, nameStaff);
         formBill->ShowDialog();
     }
 

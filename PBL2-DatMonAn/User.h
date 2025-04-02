@@ -6,14 +6,15 @@ ref class User
 	//tao class User
 public:
 	System::String^ ID;
-	/*String^ Name;*/
+	System::String^ Name;
 	System::String^ Password;
 	System::String^ Role;
 
 	User();
 
-	User(System::String^ id, System::String^ pass,System::String^ role) {
+	User(System::String^ id, System::String^ name, System::String^ pass,System::String^ role) {
 		ID = id;
+		Name = name;
 		Password = pass;
 		Role = role;
 	}

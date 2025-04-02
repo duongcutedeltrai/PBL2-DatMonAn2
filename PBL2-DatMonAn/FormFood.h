@@ -16,10 +16,12 @@ namespace PBL2DatMonAn {
 	public ref class FormFood : public System::Windows::Forms::Form
 	{
 	public:
-		FormFood(ManagerTable^ ban)
+		FormFood(ManagerTable^ ban, String^ nameStaff)
 		{
 			InitializeComponent();
 			this->banHienTai = ban;
+			this->nameStaff = nameStaff;
+			lblTenNhanVien->Text = "Ten nhan vien: " + nameStaff;
 			HienThiMonDaDat();
 			//
 			//TODO: Add the constructor code here
@@ -41,8 +43,10 @@ namespace PBL2DatMonAn {
 		}
 
 	private:
-		ManagerTable^ banHienTai; // Lưu trữ bàn hiện tại
-		System::Collections::Generic::List<MonAn^>^ danhSachMon;
+		ManagerTable^ banHienTai;
+		String^ nameStaff;
+	private: System::Windows::Forms::Label^ lblTenNhanVien;
+		   System::Collections::Generic::List<MonAn^>^ danhSachMon;
 		System::Void HienThiMonDaDat(); // Hàm hiển thị món đã đặt
 	//private:
 	//	System::Collections::Generic::List<MonAn^>^ danhSachMon;
@@ -104,6 +108,7 @@ namespace PBL2DatMonAn {
 		void InitializeComponent(void)
 		{
 			this->pnFood = (gcnew System::Windows::Forms::Panel());
+			this->lblTenNhanVien = (gcnew System::Windows::Forms::Label());
 			this->FlpFood = (gcnew System::Windows::Forms::FlowLayoutPanel());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->lbtenGia = (gcnew System::Windows::Forms::Label());
@@ -146,11 +151,20 @@ namespace PBL2DatMonAn {
 			// pnFood
 			// 
 			this->pnFood->BackColor = System::Drawing::Color::Gainsboro;
+			this->pnFood->Controls->Add(this->lblTenNhanVien);
 			this->pnFood->Controls->Add(this->FlpFood);
 			this->pnFood->Location = System::Drawing::Point(12, 12);
 			this->pnFood->Name = L"pnFood";
 			this->pnFood->Size = System::Drawing::Size(921, 640);
 			this->pnFood->TabIndex = 0;
+			// 
+			// lblTenNhanVien
+			// 
+			this->lblTenNhanVien->Location = System::Drawing::Point(7, 0);
+			this->lblTenNhanVien->Name = L"lblTenNhanVien";
+			this->lblTenNhanVien->Size = System::Drawing::Size(331, 23);
+			this->lblTenNhanVien->TabIndex = 1;
+			this->lblTenNhanVien->Text = L"label3";
 			// 
 			// FlpFood
 			// 

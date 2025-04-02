@@ -235,8 +235,10 @@ namespace PBL2DatMonAn {
 			Account->Add(user);
 		}*/
 
-		Account->Add(gcnew User("admin", "admin", "Admin"));
-		Account->Add(gcnew User("staff", "staff", "Staff"));
+		Account->Add(gcnew User("admin","Pham anh duong" , "admin", "Admin"));
+		Account->Add(gcnew User("admin","Pham anh duong" , "admin", "Admin"));
+		Account->Add(gcnew User("staff","Pham anh duong" , "staff", "Staff"));
+		Account->Add(gcnew User("1","Pham anh duong" ,"1", "Staff"));
 
 
 		// Tạo border bo tròn cho txtID

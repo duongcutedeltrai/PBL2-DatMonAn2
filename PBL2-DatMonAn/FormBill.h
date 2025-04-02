@@ -18,11 +18,13 @@ namespace PBL2DatMonAn {
 
 		ref class FormFood;
 	public:
-		FormBill(System::Collections::Generic::List<MonAn^>^ dsMon, ManagerTable^ ban)
+		FormBill(System::Collections::Generic::List<MonAn^>^ dsMon, ManagerTable^ ban, String^ nameStaff)
 		{
 			InitializeComponent();
 			danhSachMon = dsMon;
 			this->banHienTai = ban;
+			this->nameStaff = nameStaff;
+			lblTenNhanVIen->Text = "Ten nhan vien: " + nameStaff;
 			lblBanDat->Text = ban->SoBan;
 			Monandachon();
 			//  
@@ -42,7 +44,8 @@ namespace PBL2DatMonAn {
 			}
 		}
 	private:
-		ManagerTable^ banHienTai; // Lưu trữ bàn hiện tại
+		ManagerTable^ banHienTai;
+		String^ nameStaff;
 		System::Collections::Generic::List<MonAn^>^ danhSachMon;
 	//private:
 	//	System::Collections::Generic::List<MonAn^>^ danhSachMon;
@@ -56,7 +59,7 @@ namespace PBL2DatMonAn {
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ lblBanDat;
 
-	private: System::Windows::Forms::DateTimePicker^ dateTimePicker1;
+
 
 
 	private: System::Windows::Forms::Panel^ pnPrice;
@@ -74,7 +77,8 @@ namespace PBL2DatMonAn {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
 	private: System::Windows::Forms::Label^ lblTenNhanVIen;
-	private: System::Windows::Forms::Label^ lblDateTime;
+	private: System::Windows::Forms::Label^ lblDateIn;
+
 
 	private:
 		/// <summary>
@@ -95,7 +99,6 @@ namespace PBL2DatMonAn {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->lblBanDat = (gcnew System::Windows::Forms::Label());
-			this->dateTimePicker1 = (gcnew System::Windows::Forms::DateTimePicker());
 			this->pnPrice = (gcnew System::Windows::Forms::Panel());
 			this->txtPrice = (gcnew System::Windows::Forms::TextBox());
 			this->label14 = (gcnew System::Windows::Forms::Label());
@@ -108,7 +111,7 @@ namespace PBL2DatMonAn {
 			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->lblTenNhanVIen = (gcnew System::Windows::Forms::Label());
-			this->lblDateTime = (gcnew System::Windows::Forms::Label());
+			this->lblDateIn = (gcnew System::Windows::Forms::Label());
 			this->panel1->SuspendLayout();
 			this->pnPrice->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->datagridViewBill))->BeginInit();
@@ -167,23 +170,15 @@ namespace PBL2DatMonAn {
 			// 
 			// lblBanDat
 			// 
-			this->lblBanDat->BackColor = System::Drawing::SystemColors::ActiveCaption;
+			this->lblBanDat->AutoSize = true;
+			this->lblBanDat->BackColor = System::Drawing::Color::Transparent;
 			this->lblBanDat->Font = (gcnew System::Drawing::Font(L"Segoe UI", 16.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lblBanDat->Location = System::Drawing::Point(190, 171);
 			this->lblBanDat->Name = L"lblBanDat";
-			this->lblBanDat->Size = System::Drawing::Size(126, 50);
+			this->lblBanDat->Size = System::Drawing::Size(67, 38);
 			this->lblBanDat->TabIndex = 1;
 			this->lblBanDat->Text = L"Bàn";
-			// 
-			// dateTimePicker1
-			// 
-			this->dateTimePicker1->CustomFormat = L"dd/MM/yyyy";
-			this->dateTimePicker1->Format = System::Windows::Forms::DateTimePickerFormat::Custom;
-			this->dateTimePicker1->Location = System::Drawing::Point(19, 224);
-			this->dateTimePicker1->Name = L"dateTimePicker1";
-			this->dateTimePicker1->Size = System::Drawing::Size(200, 22);
-			this->dateTimePicker1->TabIndex = 2;
 			// 
 			// pnPrice
 			// 
@@ -297,39 +292,37 @@ namespace PBL2DatMonAn {
 			// 
 			// lblTenNhanVIen
 			// 
+			this->lblTenNhanVIen->AutoSize = true;
 			this->lblTenNhanVIen->BackColor = System::Drawing::SystemColors::ButtonShadow;
-			this->lblTenNhanVIen->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->lblTenNhanVIen->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->lblTenNhanVIen->Location = System::Drawing::Point(12, 265);
+			this->lblTenNhanVIen->Location = System::Drawing::Point(45, 241);
 			this->lblTenNhanVIen->Name = L"lblTenNhanVIen";
-			this->lblTenNhanVIen->Size = System::Drawing::Size(207, 29);
+			this->lblTenNhanVIen->Size = System::Drawing::Size(36, 17);
 			this->lblTenNhanVIen->TabIndex = 11;
-			this->lblTenNhanVIen->Text = L"Tên:";
+			this->lblTenNhanVIen->Text = L"label";
 			// 
-			// lblDateTime
+			// lblDateIn
 			// 
-			this->lblDateTime->BackColor = System::Drawing::SystemColors::ButtonShadow;
-			this->lblDateTime->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->lblDateTime->Location = System::Drawing::Point(240, 265);
-			this->lblDateTime->Name = L"lblDateTime";
-			this->lblDateTime->Size = System::Drawing::Size(207, 29);
-			this->lblDateTime->TabIndex = 12;
-			this->lblDateTime->Text = L"In lúc:";
+			this->lblDateIn->AutoSize = true;
+			this->lblDateIn->Location = System::Drawing::Point(45, 278);
+			this->lblDateIn->Name = L"lblDateIn";
+			this->lblDateIn->Size = System::Drawing::Size(57, 16);
+			this->lblDateIn->TabIndex = 12;
+			this->lblDateIn->Text = L"Giờ vào:";
 			// 
 			// FormBill
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(488, 685);
-			this->Controls->Add(this->lblDateTime);
+			this->Controls->Add(this->lblDateIn);
 			this->Controls->Add(this->lblTenNhanVIen);
 			this->Controls->Add(this->datagridViewBill);
 			this->Controls->Add(this->btnChuyenKhoan);
 			this->Controls->Add(this->btnTienMat);
 			this->Controls->Add(this->label15);
 			this->Controls->Add(this->pnPrice);
-			this->Controls->Add(this->dateTimePicker1);
 			this->Controls->Add(this->lblBanDat);
 			this->Controls->Add(this->panel1);
 			this->Name = L"FormBill";

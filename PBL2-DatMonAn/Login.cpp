@@ -35,12 +35,13 @@ namespace PBL2DatMonAn {
             return;
         }
         String^ role = "Invalid";
-
+        String^ name = "Invalid";
 
         // Duyệt qua danh sách Account để tìm tài khoản phù hợp
         for each (User ^ acc in this->Account) {
             if (acc->ID == id && acc->Password == pass) {
-                role = acc->Role; // Lấy Role từ tài khoản trong danh sách
+                role = acc->Role; 
+				name = acc->Name;
                 break;
             }
         }
@@ -51,7 +52,7 @@ namespace PBL2DatMonAn {
             admin->ShowDialog();
         }
         else if (role == "Staff") {
-            formStaff^ staff = gcnew formStaff();
+            formStaff^ staff = gcnew formStaff(name);
             this->Hide();
             staff->ShowDialog();
         }
@@ -61,7 +62,7 @@ namespace PBL2DatMonAn {
 
 
         ////tao doi tuong user va ghi file text "login.txt"
-        User^ currentUser = gcnew User(id, pass, role);
+        User^ currentUser = gcnew User(id, name, pass, role);
         currentUser->GhiFile("login.txt");
     }
 }

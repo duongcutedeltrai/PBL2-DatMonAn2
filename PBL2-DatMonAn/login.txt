@@ -1,17 +1,8 @@
-staff||staff||Staff
-nv1||123||Staffnv1||123||Invalid
-staff||staff||Staff
-staff||staff||Staff
-staff||staff||Staff
-admin||admin||Admin
-staff||staff||Staff
-staff||staff||Staff
-<<<<<<< Updated upstream
-admin||admin||Admin
-=======
-staff||staff||Staff
-staff||123||Invalid
-staff||123||Invalid
->>>>>>> Stashed changes
-staff||staff||Staff
-staff||staff||Staff
+
+1||Pham anh duong||1||Staff
+1||Pham anh duong||1||Staff
+1||Pham anh duong||1||Staff
+1||Pham anh duong||1||Staff
+1||Pham anh duong||1||Staff
+1||Pham anh duong||1||Staff
+1||Pham anh duong||1||Staff

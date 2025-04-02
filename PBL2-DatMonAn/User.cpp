@@ -11,7 +11,7 @@ using namespace std;
 
 User::User() {
 	ID = "";
-	//Name = "";
+	Name = "";
 	Password = "";
 	Role = "";
 }
@@ -24,16 +24,16 @@ void User::GhiFile(System::String^ path) {
 
 	//chuyen doi string^ sang string
 	System::String^ idStr = this->ID;
-	/*const String^ nameStr = this->Name;*/
+	System::String^ nameStr = this->Name;
 	System::String^ passStr = this->Password;
 	System::String^ roleStr = this->Role;
 
 	string id = marshal_as<string>(idStr);
-	//string name = marshal_as<string>(nameStr);
+	string name = marshal_as<string>(nameStr);
 	string pass = marshal_as<string>(passStr);
 	string role = marshal_as<string>(roleStr);
 
-	file << id << "||" << pass << "||" << role << endl;
+	file << id << "||" <<name<<"||" << pass << "||" << role << endl;
 
 	file.close();
 }
@@ -44,17 +44,17 @@ User^ User::DocFile(System::String^ path) {
 		return nullptr;
 	}
 	//doc thong tin tu file txt
-	string id, pass, role;
+	string id, name, pass, role;
 	getline(file, id);
-	//getline(file, name);
+	getline(file, name);
 	getline(file, pass);
 	getline(file, role);
 	file.close();
 	//chuyen doi string sang string^
 	System::String^ ID = gcnew System::String(id.c_str());
-	//String^ Name = gcnew String(name.c_str());
+	System::String^ Name = gcnew System::String(name.c_str());
 	System::String^ Password = gcnew System::String(pass.c_str());
 	System::String^ Role = gcnew System::String(role.c_str());
 
-	return gcnew User(ID, Password, Role);
+	return gcnew User(ID, Name, Password, Role);
 }
