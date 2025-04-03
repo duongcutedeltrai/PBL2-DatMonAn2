@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include  "Login.h"
+#include "AddFoodForm.h"
 namespace PBL2DatMonAn {
 
 	using namespace System;
@@ -15,9 +16,16 @@ namespace PBL2DatMonAn {
 	public ref class formAdmin : public System::Windows::Forms::Form
 	{
 	public:
-		formAdmin(void)
+		formAdmin(String^ nameAdmin)
 		{
 			InitializeComponent();
+			this->nameAdmin = nameAdmin;
+			lblTenAdmin->Text = "Tên Admin: " + nameAdmin;
+			addFoodForm = gcnew AddFoodForm();
+			panelGeneral->Controls->Add(addFoodForm);
+			addFoodForm->Dock = DockStyle::Fill;
+			addFoodForm->Visible = false; 
+
 			//
 			//TODO: Add the constructor code here
 			//
@@ -34,30 +42,22 @@ namespace PBL2DatMonAn {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Panel^ panel1;
-	private: System::Windows::Forms::Panel^ panelThongke;
+
+
 	protected:
-
+	private: System::String^ nameAdmin;	
 	private: System::Windows::Forms::Button^ btnThongKe;
-	private: System::Windows::Forms::Button^ btnDangXUatAdmin;
 	private: System::Windows::Forms::Button^ btnQuanlynhanvien;
-	private: System::Windows::Forms::Button^ btnQuanLyDonHang;
+	private: System::Windows::Forms::Button^ btnThemMon;
+	private: System::Windows::Forms::Button^ btnDangXUatAdmin;
 	private: System::Windows::Forms::Label^ labelAdmin;
-	private: System::Windows::Forms::Panel^ panel3;
-
-
-
-
-
-
-
-
-
-	private: System::Windows::Forms::DateTimePicker^ dateTimePicker1;
-	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Panel^ panel1;
 	private: System::Windows::Forms::Label^ lblTenAdmin;
 
-
+	private: System::Windows::Forms::Panel^ panel2;
+	private: System::Windows::Forms::Panel^ panelGeneral;
+	private: System::Windows::Forms::Panel^ panel3;
+	private: AddFoodForm^ addFoodForm;
 	private:
 		/// <summary>
 		/// Required designer variable.
@@ -71,87 +71,35 @@ namespace PBL2DatMonAn {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->panel1 = (gcnew System::Windows::Forms::Panel());
-			this->panel3 = (gcnew System::Windows::Forms::Panel());
-			this->labelAdmin = (gcnew System::Windows::Forms::Label());
-			this->btnQuanLyDonHang = (gcnew System::Windows::Forms::Button());
-			this->btnDangXUatAdmin = (gcnew System::Windows::Forms::Button());
+			this->btnThemMon = (gcnew System::Windows::Forms::Button());
 			this->btnQuanlynhanvien = (gcnew System::Windows::Forms::Button());
 			this->btnThongKe = (gcnew System::Windows::Forms::Button());
-			this->panelThongke = (gcnew System::Windows::Forms::Panel());
-			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->dateTimePicker1 = (gcnew System::Windows::Forms::DateTimePicker());
+			this->btnDangXUatAdmin = (gcnew System::Windows::Forms::Button());
+			this->labelAdmin = (gcnew System::Windows::Forms::Label());
+			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->lblTenAdmin = (gcnew System::Windows::Forms::Label());
+			this->panel2 = (gcnew System::Windows::Forms::Panel());
+			this->panelGeneral = (gcnew System::Windows::Forms::Panel());
 			this->panel1->SuspendLayout();
-			this->panel3->SuspendLayout();
-			this->panelThongke->SuspendLayout();
+			this->panel2->SuspendLayout();
 			this->SuspendLayout();
 			// 
-			// panel1
+			// btnThemMon
 			// 
-			this->panel1->BackColor = System::Drawing::Color::Gainsboro;
-			this->panel1->Controls->Add(this->panel3);
-			this->panel1->Controls->Add(this->labelAdmin);
-			this->panel1->Controls->Add(this->btnQuanLyDonHang);
-			this->panel1->Controls->Add(this->btnDangXUatAdmin);
-			this->panel1->Controls->Add(this->btnQuanlynhanvien);
-			this->panel1->Controls->Add(this->btnThongKe);
-			this->panel1->Dock = System::Windows::Forms::DockStyle::Top;
-			this->panel1->Location = System::Drawing::Point(0, 0);
-			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(1150, 148);
-			this->panel1->TabIndex = 0;
-			// 
-			// panel3
-			// 
-			this->panel3->BackColor = System::Drawing::Color::RosyBrown;
-			this->panel3->Controls->Add(this->lblTenAdmin);
-			this->panel3->Location = System::Drawing::Point(12, 47);
-			this->panel3->Name = L"panel3";
-			this->panel3->Size = System::Drawing::Size(267, 101);
-			this->panel3->TabIndex = 7;
-			// 
-			// labelAdmin
-			// 
-			this->labelAdmin->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->btnThemMon->BackColor = System::Drawing::Color::Gainsboro;
+			this->btnThemMon->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->btnThemMon->FlatAppearance->BorderSize = 0;
+			this->btnThemMon->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnThemMon->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->labelAdmin->Location = System::Drawing::Point(54, 9);
-			this->labelAdmin->Name = L"labelAdmin";
-			this->labelAdmin->Size = System::Drawing::Size(141, 46);
-			this->labelAdmin->TabIndex = 6;
-			this->labelAdmin->Text = L"Quản Lý";
-			// 
-			// btnQuanLyDonHang
-			// 
-			this->btnQuanLyDonHang->BackColor = System::Drawing::Color::Gainsboro;
-			this->btnQuanLyDonHang->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->btnQuanLyDonHang->FlatAppearance->BorderSize = 0;
-			this->btnQuanLyDonHang->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnQuanLyDonHang->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->btnQuanLyDonHang->Location = System::Drawing::Point(628, 80);
-			this->btnQuanLyDonHang->Name = L"btnQuanLyDonHang";
-			this->btnQuanLyDonHang->Size = System::Drawing::Size(174, 68);
-			this->btnQuanLyDonHang->TabIndex = 5;
-			this->btnQuanLyDonHang->Text = L"Quản Lý Đơn Hàng";
-			this->btnQuanLyDonHang->UseVisualStyleBackColor = false;
-			this->btnQuanLyDonHang->Click += gcnew System::EventHandler(this, &formAdmin::btnQuanLyDonHang_Click);
-			// 
-			// btnDangXUatAdmin
-			// 
-			this->btnDangXUatAdmin->BackColor = System::Drawing::Color::Gainsboro;
-			this->btnDangXUatAdmin->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->btnDangXUatAdmin->FlatAppearance->BorderSize = 0;
-			this->btnDangXUatAdmin->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnDangXUatAdmin->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->btnDangXUatAdmin->Location = System::Drawing::Point(999, 80);
-			this->btnDangXUatAdmin->Name = L"btnDangXUatAdmin";
-			this->btnDangXUatAdmin->Size = System::Drawing::Size(160, 68);
-			this->btnDangXUatAdmin->TabIndex = 4;
-			this->btnDangXUatAdmin->Text = L"Đăng Xuất";
-			this->btnDangXUatAdmin->UseVisualStyleBackColor = false;
-			this->btnDangXUatAdmin->Click += gcnew System::EventHandler(this, &formAdmin::btnDangXUatAdmin_Click);
+			this->btnThemMon->Location = System::Drawing::Point(0, 133);
+			this->btnThemMon->Margin = System::Windows::Forms::Padding(0);
+			this->btnThemMon->Name = L"btnThemMon";
+			this->btnThemMon->Size = System::Drawing::Size(200, 68);
+			this->btnThemMon->TabIndex = 5;
+			this->btnThemMon->Text = L"Thêm Món";
+			this->btnThemMon->UseVisualStyleBackColor = false;
+			this->btnThemMon->Click += gcnew System::EventHandler(this, &formAdmin::btnThemMon_Click);
 			// 
 			// btnQuanlynhanvien
 			// 
@@ -161,9 +109,10 @@ namespace PBL2DatMonAn {
 			this->btnQuanlynhanvien->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->btnQuanlynhanvien->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnQuanlynhanvien->Location = System::Drawing::Point(448, 80);
+			this->btnQuanlynhanvien->Location = System::Drawing::Point(0, 65);
+			this->btnQuanlynhanvien->Margin = System::Windows::Forms::Padding(0);
 			this->btnQuanlynhanvien->Name = L"btnQuanlynhanvien";
-			this->btnQuanlynhanvien->Size = System::Drawing::Size(174, 68);
+			this->btnQuanlynhanvien->Size = System::Drawing::Size(200, 68);
 			this->btnQuanlynhanvien->TabIndex = 1;
 			this->btnQuanlynhanvien->Text = L"Quản Lý Nhân Viên";
 			this->btnQuanlynhanvien->UseVisualStyleBackColor = false;
@@ -178,67 +127,99 @@ namespace PBL2DatMonAn {
 			this->btnThongKe->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btnThongKe->ForeColor = System::Drawing::SystemColors::ControlText;
-			this->btnThongKe->Location = System::Drawing::Point(312, 80);
+			this->btnThongKe->Location = System::Drawing::Point(0, -3);
+			this->btnThongKe->Margin = System::Windows::Forms::Padding(0);
 			this->btnThongKe->Name = L"btnThongKe";
-			this->btnThongKe->Size = System::Drawing::Size(130, 68);
+			this->btnThongKe->Size = System::Drawing::Size(200, 68);
 			this->btnThongKe->TabIndex = 0;
 			this->btnThongKe->Text = L"Thống Kê";
 			this->btnThongKe->UseVisualStyleBackColor = false;
 			this->btnThongKe->Click += gcnew System::EventHandler(this, &formAdmin::btnThongKe_Click);
 			// 
-			// panelThongke
+			// btnDangXUatAdmin
 			// 
-			this->panelThongke->BackColor = System::Drawing::Color::Gainsboro;
-			this->panelThongke->Controls->Add(this->label1);
-			this->panelThongke->Controls->Add(this->dateTimePicker1);
-			this->panelThongke->Location = System::Drawing::Point(12, 154);
-			this->panelThongke->Name = L"panelThongke";
-			this->panelThongke->Size = System::Drawing::Size(1126, 607);
-			this->panelThongke->TabIndex = 1;
-			// 
-			// label1
-			// 
-			this->label1->Font = (gcnew System::Drawing::Font(L"Segoe UI", 24, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->btnDangXUatAdmin->BackColor = System::Drawing::Color::Gainsboro;
+			this->btnDangXUatAdmin->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->btnDangXUatAdmin->FlatAppearance->BorderSize = 0;
+			this->btnDangXUatAdmin->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnDangXUatAdmin->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(485, 15);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(231, 72);
-			this->label1->TabIndex = 1;
-			this->label1->Text = L"Thống Kê";
+			this->btnDangXUatAdmin->Location = System::Drawing::Point(0, 593);
+			this->btnDangXUatAdmin->Margin = System::Windows::Forms::Padding(0);
+			this->btnDangXUatAdmin->Name = L"btnDangXUatAdmin";
+			this->btnDangXUatAdmin->Size = System::Drawing::Size(200, 68);
+			this->btnDangXUatAdmin->TabIndex = 4;
+			this->btnDangXUatAdmin->Text = L"Đăng Xuất";
+			this->btnDangXUatAdmin->UseVisualStyleBackColor = false;
+			this->btnDangXUatAdmin->Click += gcnew System::EventHandler(this, &formAdmin::btnDangXUatAdmin_Click);
 			// 
-			// dateTimePicker1
+			// labelAdmin
 			// 
-			this->dateTimePicker1->CustomFormat = L"dd/MM/yyyy";
-			this->dateTimePicker1->Format = System::Windows::Forms::DateTimePickerFormat::Custom;
-			this->dateTimePicker1->Location = System::Drawing::Point(919, 15);
-			this->dateTimePicker1->Name = L"dateTimePicker1";
-			this->dateTimePicker1->Size = System::Drawing::Size(180, 22);
-			this->dateTimePicker1->TabIndex = 0;
+			this->labelAdmin->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->labelAdmin->Location = System::Drawing::Point(43, 9);
+			this->labelAdmin->Name = L"labelAdmin";
+			this->labelAdmin->Size = System::Drawing::Size(141, 46);
+			this->labelAdmin->TabIndex = 6;
+			this->labelAdmin->Text = L"Quản Lý";
+			// 
+			// panel1
+			// 
+			this->panel1->BackColor = System::Drawing::Color::Gainsboro;
+			this->panel1->Controls->Add(this->lblTenAdmin);
+			this->panel1->Controls->Add(this->labelAdmin);
+			this->panel1->Dock = System::Windows::Forms::DockStyle::Top;
+			this->panel1->Location = System::Drawing::Point(0, 0);
+			this->panel1->Name = L"panel1";
+			this->panel1->Size = System::Drawing::Size(1150, 98);
+			this->panel1->TabIndex = 0;
 			// 
 			// lblTenAdmin
 			// 
-			this->lblTenAdmin->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->lblTenAdmin->AutoSize = true;
+			this->lblTenAdmin->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->lblTenAdmin->Location = System::Drawing::Point(14, 33);
+			this->lblTenAdmin->Location = System::Drawing::Point(12, 55);
 			this->lblTenAdmin->Name = L"lblTenAdmin";
-			this->lblTenAdmin->Size = System::Drawing::Size(250, 30);
+			this->lblTenAdmin->Size = System::Drawing::Size(0, 25);
 			this->lblTenAdmin->TabIndex = 0;
-			this->lblTenAdmin->Text = L"Tên:";
+			// 
+			// panel2
+			// 
+			this->panel2->BackColor = System::Drawing::SystemColors::ActiveCaption;
+			this->panel2->Controls->Add(this->btnThongKe);
+			this->panel2->Controls->Add(this->btnDangXUatAdmin);
+			this->panel2->Controls->Add(this->btnQuanlynhanvien);
+			this->panel2->Controls->Add(this->btnThemMon);
+			this->panel2->Location = System::Drawing::Point(0, 100);
+			this->panel2->Name = L"panel2";
+			this->panel2->Size = System::Drawing::Size(200, 661);
+			this->panel2->TabIndex = 7;
+			// 
+			// panelGeneral
+			// 
+			this->panelGeneral->BackColor = System::Drawing::SystemColors::AppWorkspace;
+			this->panelGeneral->Location = System::Drawing::Point(204, 100);
+			this->panelGeneral->Name = L"panelGeneral";
+			this->panelGeneral->Size = System::Drawing::Size(946, 661);
+			this->panelGeneral->TabIndex = 8;
+
 			// 
 			// formAdmin
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1150, 766);
-			this->Controls->Add(this->panelThongke);
+			this->Controls->Add(this->panelGeneral);
+			this->Controls->Add(this->panel2);
 			this->Controls->Add(this->panel1);
 			this->Name = L"formAdmin";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"formAdmin";
 			this->Load += gcnew System::EventHandler(this, &formAdmin::formAdmin_Load);
 			this->panel1->ResumeLayout(false);
-			this->panel3->ResumeLayout(false);
-			this->panelThongke->ResumeLayout(false);
+			this->panel1->PerformLayout();
+			this->panel2->ResumeLayout(false);
 			this->ResumeLayout(false);
 
 		}
@@ -247,39 +228,34 @@ namespace PBL2DatMonAn {
 private: System::Void formAdmin_Load(System::Object^ sender, System::EventArgs^ e) {
 	ResetMauButtonMenu();
 	btnThongKe->BackColor = Color::RosyBrown;
-	BoGocControl(btnThongKe, 20);
-	BoGocControl(btnQuanlynhanvien, 20);
-	BoGocControl(btnQuanLyDonHang, 20);
-	BoGocControl(btnDangXUatAdmin, 20);
 }
 	private: System::Void ResetMauButtonMenu() {
 		Color mauMacDinh = Color::Gainsboro;
 		btnThongKe->BackColor = mauMacDinh;
 		btnQuanlynhanvien->BackColor = mauMacDinh;
-		btnQuanLyDonHang->BackColor = mauMacDinh;	
+		btnThemMon->BackColor = mauMacDinh;	
 		btnDangXUatAdmin->BackColor = mauMacDinh;
 	}
 	private: System::Void btnThongKe_Click(System::Object^ sender, System::EventArgs^ e) {
 		ResetMauButtonMenu();
 		btnThongKe->BackColor = Color::RosyBrown;
-		panelThongke->Visible = true;
+		addFoodForm->Visible = false;
 	}
 private: System::Void btnQuanlynhanvien_Click(System::Object^ sender, System::EventArgs^ e) {
 	ResetMauButtonMenu();
 	btnQuanlynhanvien->BackColor = Color::RosyBrown;
-	panelThongke->Visible = false;
+	addFoodForm->Visible = false;
 }
-private: System::Void btnQuanLyDonHang_Click(System::Object^ sender, System::EventArgs^ e) {
-	ResetMauButtonMenu();
-	btnQuanLyDonHang->BackColor = Color::RosyBrown;
-	panelThongke->Visible = false;
-}
+//private: System::Void btnQuanLyDonHang_Click(System::Object^ sender, System::EventArgs^ e) {
+//	ResetMauButtonMenu();
+//	btnThemMon->BackColor = Color::RosyBrown;
+//}
 	   private: System::Void btnDangXUatAdmin_Click(System::Object^ sender, System::EventArgs^ e) {
 		   this->Hide();
 		   Login^ login = gcnew Login();
 		   login->ShowDialog();
 	   }
-	private: System::Void BoGocControl(Control^ control, int radius) {
+	/*private: System::Void BoGocControl(Control^ control, int radius) {
 		System::Drawing::Drawing2D::GraphicsPath^ path = gcnew System::Drawing::Drawing2D::GraphicsPath();
 		int w = control->Width;
 		int h = control->Height;
@@ -292,6 +268,12 @@ private: System::Void btnQuanLyDonHang_Click(System::Object^ sender, System::Eve
 		path->CloseFigure();
 
 		control->Region = gcnew System::Drawing::Region(path);
-	}
+	}*/
+private: System::Void btnThemMon_Click(System::Object^ sender, System::EventArgs^ e) {
+	ResetMauButtonMenu();
+	btnThemMon->BackColor = Color::RosyBrown;
+	addFoodForm->Visible = true; 
+	addFoodForm->BringToFront();
+}
 };
 }

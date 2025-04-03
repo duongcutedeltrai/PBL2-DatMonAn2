@@ -235,7 +235,7 @@ namespace PBL2DatMonAn {
 			Account->Add(user);
 		}*/
 
-		Account->Add(gcnew User("admin","Pham anh duong" , "admin", "Admin"));
+		Account->Add(gcnew User("2","Pham anh duong" , "2", "Admin"));
 		Account->Add(gcnew User("admin","Pham anh duong" , "admin", "Admin"));
 		Account->Add(gcnew User("staff","Pham anh duong" , "staff", "Staff"));
 		Account->Add(gcnew User("1","Pham anh duong" ,"1", "Staff"));

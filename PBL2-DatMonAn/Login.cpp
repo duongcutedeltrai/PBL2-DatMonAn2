@@ -9,7 +9,7 @@ using namespace System::Windows::Forms;
 using namespace System::Runtime::InteropServices;
 
 [STAThreadAttribute]
-int main(array<String^>^ args) {
+int main(cli::array<String^>^ args) {
     Application::EnableVisualStyles();
     Application::SetCompatibleTextRenderingDefault(false);
     PBL2DatMonAn::Login form;
@@ -47,7 +47,7 @@ namespace PBL2DatMonAn {
         }
 
         if (role == "Admin") {
-            formAdmin^ admin = gcnew formAdmin();
+            formAdmin^ admin = gcnew formAdmin(name);
             this->Hide();
             admin->ShowDialog();
         }

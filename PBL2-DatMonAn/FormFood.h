@@ -559,11 +559,11 @@ namespace PBL2DatMonAn {
 		// Khởi tạo danh sách mon
 		danhSachMon = gcnew System::Collections::Generic::List<MonAn^>();
 
-		danhSachMon->Add(gcnew MonAn("Món chính", "Hamburger", "2.4$", "Image/anh0.jpg"));
-		danhSachMon->Add(gcnew MonAn("Món chính", "Pizza", "5.0$", "Image/anh1.jpg"));
-		danhSachMon->Add(gcnew MonAn("Món chính", L"Phở Bò", "3.2$", "Image/anh2.jpg"));
-		danhSachMon->Add(gcnew MonAn("Khai vị", "Bún Chả", "4.0$", "Image/anh3.jpg"));
-		danhSachMon->Add(gcnew MonAn("Khai vị", "Gỏi Cuốn", "2.8$", "Image/anh4.jpg"));
+	/*	danhSachMon->Add(gcnew MonAn("","Món chính", "Hamburger", "2.4$", "Image/anh0.jpg"));
+		danhSachMon->Add(gcnew MonAn("","Món chính", "Pizza", "5.0$", "Image/anh1.jpg"));
+		danhSachMon->Add(gcnew MonAn("","Món chính", L"Phở Bò", "3.2$", "Image/anh2.jpg"));
+		danhSachMon->Add(gcnew MonAn("","Khai vị", "Bún Chả", "4.0$", "Image/anh3.jpg"));
+		danhSachMon->Add(gcnew MonAn("","Khai vị", "Gỏi Cuốn", "2.8$", "Image/anh4.jpg"));*/
 
 		HienThiDanhSachMon();
 	}

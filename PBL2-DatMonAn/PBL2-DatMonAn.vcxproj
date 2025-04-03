@@ -120,6 +120,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AddFoodForm.cpp" />
     <ClCompile Include="CreateTable.cpp" />
     <ClCompile Include="DanhSachDonHang.cpp" />
     <ClCompile Include="formAdmin.cpp" />
@@ -133,6 +134,9 @@
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AddFoodForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="CreateTable.h" />
     <ClInclude Include="DanhSachDonHang.h">
       <FileType>CppForm</FileType>
@@ -158,6 +162,9 @@
     <ClInclude Include="User.h" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AddFoodForm.resx">
+      <DependentUpon>AddFoodForm.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DanhSachDonHang.resx">
       <DependentUpon>DanhSachDonHang.h</DependentUpon>
     </EmbeddedResource>
@@ -186,6 +193,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="login.txt" />
+    <Text Include="monan.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
