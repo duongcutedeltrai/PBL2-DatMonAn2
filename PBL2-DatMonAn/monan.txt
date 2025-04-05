@@ -1,2 +1,26 @@
-20250404003647||sfsfsf||232||Salad||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\anh2.jpg||
-20250404003803||dfada||232||Tr�ng Mi?ng||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\anh4.jpg||
+﻿20250405143952||Cơm gà xối mỡ||1.88$||Món Chính||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\com-ga-xoi-mo.jpg||
+20250405144618||Mì xào bò||2.08$||Món Chính||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\mi xao bo.png||
+20250405144646||Bún bò Huế||2.00$||Món Chính||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\bunbohue.jpg||
+20250405144726||Phở bò||2.08$||Món Chính||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\phobo.jpg||
+20250405144757||Cá kho tộ||2.29$||Món Chính||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\cakhoto.jpg||
+20250405144840||Chả giò||1.04$||Khai Vị||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\chagio.jpg||
+20250405144905||Gỏi cuốn||0.83$||Khai Vị||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\Gỏi cuốn.jpg||
+20250405145145||Súp cua||1.25$||Khai Vị||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\supcua.jpg||
+20250405145452||Cánh gà chiên nước mắm||1.67$||Món Chính||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\mon-canh-ga-chien-nuoc-mam-than-thanh-889x675.png||
+20250405145601||Khoai tây chiên||0.92$||Khai Vị||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\khoai-tay-chien.jpg||
+20250405145657||Salad trộn dầu giấm||1.17$||Salad||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\mon-salad-tron-dau-giam.jpg||
+20250405145732||Salad cá ngừ||1.46$||Salad||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\salad-ca-ngu.jpg||
+20250405145819||Salad gà xé||1.33$||Salad||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\salahgaxe.jpg||
+20250405145844||Salad trái cây||1.25$||Salad||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\salad-trai-cay-sot-mayonnaise-13.jpg||
+20250405145910||Salad rau củ||1.04$||Salad||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\slalhraucu.jpg||
+20250405145930||Chè đậu xanh||0.63$||Tráng Miệng||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\bi-quyet-nau-che-dau-xanh-pho-tai-thanh-nhiet-ngon-kho-cuong-202112231026073202.jpg||
+20250405150344||Rau câu||0.50$||Tráng Miệng||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\rau-cau-trai-cay-bich-470g.png||
+20250405150441||Kem vani||0.75$||Tráng Miệng||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\kemvani.jpg||
+20250405150513||Bánh flan||0.83$||Tráng Miệng||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\sddefault.jpg||
+20250405150626||Trái cây tươi||0.92$||Tráng Miệng||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\trai-cay-tuoi.jpg||
+20250405150703||Nước suối||0.42$||Nước uống||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\aquafina-355ml-new-2023.jpg||
+20250405150718||Trà đá||0.21$||Nước uống||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\Tra-Da.jpg||
+20250405150741||Nước cam ép||0.75$||Nước uống||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\nuocscam-620x620.jpg||
+20250405150900||Coca-Cola||0.63$||Nước uống||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\cocacola-marketing-strategy02.jpg||
+20250405150923||Sinh tố dâu||1.04$||Nước uống||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\cach-lam-sinh-to-dau-dodoto.vn_.jpg||
+20250405170615||Pepsi||0.85$||Nước uống||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\pepsi.jpg||

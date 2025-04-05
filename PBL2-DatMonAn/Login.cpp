@@ -31,7 +31,7 @@ namespace PBL2DatMonAn {
 
         //kiem tra trong
         if (id == "" || pass == "") {
-            MessageBox::Show("Vui lòng nhập đầy đủ thông tin", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+            MessageBox::Show(L"Vui lòng nhập đầy đủ thông tin", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Warning);
             return;
         }
         String^ role = "Invalid";
@@ -57,7 +57,7 @@ namespace PBL2DatMonAn {
             staff->ShowDialog();
         }
         else {
-            MessageBox::Show("Sai tên đăng nhập hoặc mật khẩu", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+            MessageBox::Show(L"Sai tên đăng nhập hoặc mật khẩu", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Warning);
         }
 
 

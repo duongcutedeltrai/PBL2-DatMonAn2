@@ -8,6 +8,9 @@ using namespace System;
 using namespace System::Collections::Generic;
 using namespace msclr::interop;
 using namespace std;
+using namespace System::Windows::Forms;
+
+
 ref class MonAn
 {
 public:
@@ -43,64 +46,46 @@ public:
 
     //ghi danh sach mon an
     static void GhiDanhSachMonAn(List<MonAn^>^ danhSachMon, String^ filePath) {
-        ofstream file(marshal_as<string>(filePath), ios::app);
-        if (!file.is_open()) {
-            return;
+        try {
+            // Tạo StreamWriter với mã hóa UTF-8 và ghi nối tiếp (append)
+            System::IO::StreamWriter^ writer = gcnew System::IO::StreamWriter(filePath, false, System::Text::Encoding::UTF8);
+            for each(MonAn ^ mon in danhSachMon) {
+                String^ dong = mon->ID + "||" + mon->TenMon + "||" + mon->Gia + "$||" + mon->LoaiMon + "||" + mon->Anh + "||";
+                writer->WriteLine(dong); // Ghi từng dòng vào file
+            }
+            writer->Close(); // Đóng file sau khi ghi xong
         }
-        for each (MonAn ^ mon in danhSachMon)
-        {
-
-            //chuyen doi string^ sang string
-            System::String^ idStr = mon->ID;
-            System::String^ loaiStr = mon->LoaiMon;
-            System::String^ tenStr = mon->TenMon;
-            System::String^ giaStr = mon->Gia;
-            System::String^ anhStr = mon->Anh;
-
-            file << marshal_as<string>(idStr) << "||"
-                << marshal_as<string>(tenStr) << "||"
-                << marshal_as<string>(giaStr) << "||"
-                << marshal_as<string>(loaiStr) << "||"
-                << marshal_as<string>(anhStr) << "||"
-                <<"\n";
+        catch (Exception^ ex) {
+            MessageBox::Show("Lỗi khi ghi file: " + ex->Message, "Lỗi", MessageBoxButtons::OK, MessageBoxIcon::Error);
         }
-        file.close();
     }
 
-	//doc danh sach mon an
     static List<MonAn^>^ DocDanhSachMonAn(String^ filePath) {
         List<MonAn^>^ danhSachMon = gcnew List<MonAn^>();
-        ifstream file(marshal_as<string>(filePath));
-
-        if (!file.is_open()) {
-            return danhSachMon;
-        }
-
-        string line;
-
-        while (getline(file, line)) {
-            if (line.empty()) continue; // Bỏ qua dòng trống
-            stringstream ss(line);
-            string id, loai, ten, gia, anh;
-            int soluong;
-            if (getline(ss, id, ',') &&
-                getline(ss, loai, ',') &&
-                getline(ss, ten, ',') &&
-                getline(ss, gia, ',') &&
-                getline(ss, anh, ',') &&
-                ss >> soluong) {
-                // Chuyển đổi từ string sang String^
-                String^ idStr = gcnew String(id.c_str());
-                String^ loaiStr = gcnew String(loai.c_str());
-                String^ tenStr = gcnew String(ten.c_str());
-                String^ giaStr = gcnew String(gia.c_str());
-                String^ anhStr = gcnew String(anh.c_str());
-
-                danhSachMon->Add(gcnew MonAn(idStr, loaiStr, tenStr, giaStr, anhStr, soluong));
+        try {
+            System::IO::StreamReader^ reader = gcnew System::IO::StreamReader(filePath,System::Text::Encoding::UTF8);
+            String^ dong;
+            while ((dong = reader->ReadLine()) != nullptr) {
+                if (String::IsNullOrWhiteSpace(dong)) continue; // Bỏ qua dòng trống
+                cli::array<String^>^ phan = dong->Split(gcnew cli::array<String^>{ "||" }, StringSplitOptions::RemoveEmptyEntries);
+                if (phan->Length >= 5) {
+                    String^ idStr = phan[0];
+                    String^ tenStr = phan[1];
+                    String^ giaStr = phan[2]->Replace("$", ""); // Loại bỏ ký tự "$" nếu cần
+                    String^ loaiStr = phan[3];
+                    String^ anhStr = phan[4];
+                    MonAn^ mon = gcnew MonAn(loaiStr, tenStr, giaStr, anhStr);
+                    mon->ID = idStr; // Gán ID
+                    danhSachMon->Add(mon);
+                }
             }
+            reader->Close(); // Đóng file sau khi đọc xong
         }
-        file.close();
+        catch (Exception^ ex) {
+            MessageBox::Show("Lỗi khi đọc file: " + ex->Message, "Lỗi", MessageBoxButtons::OK, MessageBoxIcon::Error);
+        }
         return danhSachMon;
     }
+
 };
 

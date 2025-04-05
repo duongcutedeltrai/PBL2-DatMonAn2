@@ -20,11 +20,15 @@ namespace PBL2DatMonAn {
 			InitializeComponent();
 			filePath = "monan.txt";
 			danhSachMonAn = MonAn::DocDanhSachMonAn(filePath);
+
+			for each(MonAn ^ monAn in danhSachMonAn)
+			{
+				ThemPanelMonAn(monAn, danhSachMonAn->IndexOf(monAn) + 1);
+			}
 			//
 			//TODO: Add the constructor code here
 			//
 		}
-
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
@@ -217,6 +221,8 @@ namespace PBL2DatMonAn {
 			this->txtTenMon->Name = L"txtTenMon";
 			this->txtTenMon->Size = System::Drawing::Size(285, 36);
 			this->txtTenMon->TabIndex = 1;
+			this->txtTenMon->Font = (gcnew System::Drawing::Font(L"Arial", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			// 
 			// label2
 			// 
@@ -417,13 +423,90 @@ namespace PBL2DatMonAn {
 			pictureBox1->Image = Image::FromFile(openFileDialog1->FileName);
 			}
 			catch (Exception^ ex) {
-				MessageBox::Show("Không thể tải ảnh: " + ex->Message, "Lỗi", MessageBoxButtons::OK, MessageBoxIcon::Error);
+				MessageBox::Show(L"Không thể tải ảnh: " + ex->Message, "Lỗi", MessageBoxButtons::OK, MessageBoxIcon::Error);
 			}
 		}
 	}
+	
+private: void ThemPanelMonAn(MonAn^ monAn, int stt)
+{
+	// Tạo panel cho món ăn với kích thước cố định và margin để tách các panel ra
+	Panel^ panelOrder = gcnew Panel();
+	panelOrder->Size = System::Drawing::Size(520, 70);
+	panelOrder->Margin = System::Windows::Forms::Padding(10);
+	panelOrder->BackColor = Color::White;
+
+	// Định nghĩa font chung cho các label
+	commonFont = gcnew System::Drawing::Font("Arial", 10, System::Drawing::FontStyle::Regular);
+
+	// Cột STT
+	Label^ lblSTTTitle = gcnew Label();
+	lblSTTTitle->Text = "STT";
+	lblSTTTitle->Font = commonFont;
+	lblSTTTitle->Size = System::Drawing::Size(50, 20);
+	lblSTTTitle->Location = System::Drawing::Point(10, 10);
+
+	Label^ lblSTTValue = gcnew Label();
+	lblSTTValue->Text = stt.ToString();
+	lblSTTValue->Font = commonFont;
+	lblSTTValue->Size = System::Drawing::Size(50, 20);
+	lblSTTValue->Location = System::Drawing::Point(10, 40);
+
+	// Cột Tên món
+	Label^ lblTenMonTitle = gcnew Label();
+	lblTenMonTitle->Text = L"Tên món";
+	lblTenMonTitle->Font = commonFont;
+	lblTenMonTitle->Size = System::Drawing::Size(150, 20);
+	lblTenMonTitle->Location = System::Drawing::Point(70, 10);
+
+	Label^ lblTenMonValue = gcnew Label();
+	lblTenMonValue->Text = monAn->TenMon; // Lấy tên món từ đối tượng MonAn
+	lblTenMonValue->Font = commonFont;
+	lblTenMonValue->Size = System::Drawing::Size(150, 20);
+	lblTenMonValue->Location = System::Drawing::Point(70, 40);
+
+	// Cột Đơn giá
+	Label^ lblDonGiaTitle = gcnew Label();
+	lblDonGiaTitle->Text = L"Đơn giá";
+	lblDonGiaTitle->Font = commonFont;
+	lblDonGiaTitle->Size = System::Drawing::Size(100, 20);
+	lblDonGiaTitle->Location = System::Drawing::Point(230, 10);
+
+	Label^ lblDonGiaValue = gcnew Label();
+	lblDonGiaValue->Text = monAn->Gia + " $"; // Lấy giá từ đối tượng MonAn
+	lblDonGiaValue->Font = commonFont;
+	lblDonGiaValue->Size = System::Drawing::Size(100, 20);
+	lblDonGiaValue->Location = System::Drawing::Point(230, 40);
+
+	// Cột Phân loại
+	Label^ lblPhanLoaiTitle = gcnew Label();
+	lblPhanLoaiTitle->Text = L"Phân loại";
+	lblPhanLoaiTitle->Font = commonFont;
+	lblPhanLoaiTitle->Size = System::Drawing::Size(100, 20);
+	lblPhanLoaiTitle->Location = System::Drawing::Point(340, 10);
+
+	Label^ lblPhanLoaiValue = gcnew Label();
+	lblPhanLoaiValue->Text = monAn->LoaiMon; // Lấy loại món từ đối tượng MonAn
+	lblPhanLoaiValue->Font = commonFont;
+	lblPhanLoaiValue->Size = System::Drawing::Size(100, 20);
+	lblPhanLoaiValue->Location = System::Drawing::Point(340, 40);
+
+	// Thêm các label vào panel
+	panelOrder->Controls->Add(lblSTTTitle);
+	panelOrder->Controls->Add(lblSTTValue);
+	panelOrder->Controls->Add(lblTenMonTitle);
+	panelOrder->Controls->Add(lblTenMonValue);
+	panelOrder->Controls->Add(lblDonGiaTitle);
+	panelOrder->Controls->Add(lblDonGiaValue);
+	panelOrder->Controls->Add(lblPhanLoaiTitle);
+	panelOrder->Controls->Add(lblPhanLoaiValue);
+
+	// Thêm panel mới vào FlowLayoutPanel
+	flowLayoutPanel1->Controls->Add(panelOrder);
+}
 	private: System::Void btnThemMon_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (txtTenMon->Text == "" || txtDonGia->Text == "") {
-			MessageBox::Show("Vui lòng nhập đầy đủ thông tin món ăn", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+			MessageBox::Show(L"Vui lòng nhập đầy đủ thông tin món ăn", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 			return;
 		}
 
@@ -434,90 +517,22 @@ namespace PBL2DatMonAn {
 		String^ anh = openFileDialog1->FileName;
 
 		MonAn^ monAn = gcnew MonAn(loaiMon, tenMon, gia, anh);
-		danhSachMonAn->Add(monAn); // Thêm món ăn vào danh sách
-
+		danhSachMonAn->Add(monAn); 
 		// Ghi lại danh sách món ăn vào file
 		MonAn::GhiDanhSachMonAn(danhSachMonAn, filePath);
 			// Tạo panel cho món ăn với kích thước cố định và margin để tách các panel ra
-			MessageBox::Show("Thêm món thành công", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
-			Panel^ panelOrder = gcnew Panel();
-			panelOrder->Size = System::Drawing::Size(520, 70);
-			panelOrder->Margin = System::Windows::Forms::Padding(10);
-			panelOrder->BackColor = Color::White;
-
-			// Định nghĩa font chung cho các label
-			commonFont = gcnew System::Drawing::Font("Segoe UI", 10, System::Drawing::FontStyle::Regular);
-
-			// Cột STT
-			Label^ lblSTTTitle = gcnew Label();
-			lblSTTTitle->Text = "STT";
-			lblSTTTitle->Font = commonFont;
-			lblSTTTitle->Size = System::Drawing::Size(50, 20);
-			lblSTTTitle->Location = System::Drawing::Point(10, 10);
-
-			Label^ lblSTTValue = gcnew Label();
-			lblSTTValue->Text = (flowLayoutPanel1->Controls->Count + 1).ToString();
-			lblSTTValue->Font = commonFont;
-			lblSTTValue->Size = System::Drawing::Size(50, 20);
-			lblSTTValue->Location = System::Drawing::Point(10, 40);
-
-			// Cột Tên món
-			Label^ lblTenMonTitle = gcnew Label();
-			lblTenMonTitle->Text = "Tên món";
-			lblTenMonTitle->Font = commonFont;
-			lblTenMonTitle->Size = System::Drawing::Size(150, 20);
-			lblTenMonTitle->Location = System::Drawing::Point(70, 10);
-
-			Label^ lblTenMonValue = gcnew Label();
-			lblTenMonValue->Text = txtTenMon->Text;
-			lblTenMonValue->Font = commonFont;
-			lblTenMonValue->Size = System::Drawing::Size(150, 20);
-			lblTenMonValue->Location = System::Drawing::Point(70, 40);
-
-			// Cột Đơn giá
-			Label^ lblDonGiaTitle = gcnew Label();
-			lblDonGiaTitle->Text = "Đơn giá";
-			lblDonGiaTitle->Font = commonFont;
-			lblDonGiaTitle->Size = System::Drawing::Size(100, 20);
-			lblDonGiaTitle->Location = System::Drawing::Point(230, 10);
-
-			Label^ lblDonGiaValue = gcnew Label();
-			lblDonGiaValue->Text = txtDonGia->Text;
-			lblDonGiaValue->Font = commonFont;
-			lblDonGiaValue->Size = System::Drawing::Size(100, 20);
-			lblDonGiaValue->Location = System::Drawing::Point(230, 40);
-
-			// Cột Phân loại
-			Label^ lblPhanLoaiTitle = gcnew Label();
-			lblPhanLoaiTitle->Text = "Phân loại";
-			lblPhanLoaiTitle->Font = commonFont;
-			lblPhanLoaiTitle->Size = System::Drawing::Size(100, 20);
-			lblPhanLoaiTitle->Location = System::Drawing::Point(340, 10);
-
-			Label^ lblPhanLoaiValue = gcnew Label();
-			lblPhanLoaiValue->Text = cbLoaiMon->Text;
-			lblPhanLoaiValue->Font = commonFont;
-			lblPhanLoaiValue->Size = System::Drawing::Size(100, 20);
-			lblPhanLoaiValue->Location = System::Drawing::Point(340, 40);
-
-			// Thêm các label vào panel
-			panelOrder->Controls->Add(lblSTTTitle);
-			panelOrder->Controls->Add(lblSTTValue);
-			panelOrder->Controls->Add(lblTenMonTitle);
-			panelOrder->Controls->Add(lblTenMonValue);
-			panelOrder->Controls->Add(lblDonGiaTitle);
-			panelOrder->Controls->Add(lblDonGiaValue);
-			panelOrder->Controls->Add(lblPhanLoaiTitle);
-			panelOrder->Controls->Add(lblPhanLoaiValue);
+			MessageBox::Show(L"Thêm món thành công", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
 
 			// Thêm panel mới vào FlowLayoutPanel
-			flowLayoutPanel1->Controls->Add(panelOrder);
+			ThemPanelMonAn(monAn, danhSachMonAn->Count);
 
 			txtTenMon->Clear();
 			txtDonGia->Clear();
 			cbLoaiMon->SelectedIndex = -1;
 			pictureBox1->Image = nullptr; // Xóa ảnh cũ
 	}
+
+
 
 private: System::Void txtDonGia_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
 	// Chỉ cho phép nhập số và dấu chấm

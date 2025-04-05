@@ -54,6 +54,9 @@
     <ClCompile Include="AddFoodForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Login.h">
@@ -92,26 +95,25 @@
     <ClInclude Include="AddFoodForm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Image\anh0.jpg">
-      <Filter>Image</Filter>
-    </Image>
-    <Image Include="Image\anh1.jpg">
-      <Filter>Image</Filter>
-    </Image>
-    <Image Include="Image\anh2.jpg">
-      <Filter>Image</Filter>
-    </Image>
-    <Image Include="Image\anh3.jpg">
-      <Filter>Image</Filter>
-    </Image>
-    <Image Include="Image\anh4.jpg">
+    <Image Include="Image\iconAdd.png">
       <Filter>Image</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="login.txt" />
     <Text Include="monan.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="PBL2-DatMonAn.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

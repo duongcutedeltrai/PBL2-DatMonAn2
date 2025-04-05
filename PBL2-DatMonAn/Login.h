@@ -24,7 +24,6 @@ namespace PBL2DatMonAn {
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
-			//
 		}
 
 	protected:

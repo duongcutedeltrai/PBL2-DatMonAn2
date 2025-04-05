@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 namespace PBL2DatMonAn {
 
@@ -34,7 +34,17 @@ namespace PBL2DatMonAn {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Button^ btnRound;
+	private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel1;
+	protected:
+	private: System::Windows::Forms::Panel^ panel1;
+	private: System::Windows::Forms::Panel^ panel2;
+	private: System::Windows::Forms::Panel^ panel3;
+	private: System::Windows::Forms::Panel^ panel4;
+
+
+
+
+
 	protected:
 
 	protected:
@@ -52,42 +62,77 @@ namespace PBL2DatMonAn {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->btnRound = (gcnew System::Windows::Forms::Button());
+			this->flowLayoutPanel1 = (gcnew System::Windows::Forms::FlowLayoutPanel());
+			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->panel2 = (gcnew System::Windows::Forms::Panel());
+			this->panel3 = (gcnew System::Windows::Forms::Panel());
+			this->panel4 = (gcnew System::Windows::Forms::Panel());
+			this->flowLayoutPanel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
-			// btnRound
+			// flowLayoutPanel1
 			// 
-			this->btnRound->FlatAppearance->BorderColor = System::Drawing::Color::Black;
-			this->btnRound->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnRound->Location = System::Drawing::Point(238, 127);
-			this->btnRound->Name = L"btnRound";
-			this->btnRound->Size = System::Drawing::Size(203, 182);
-			this->btnRound->TabIndex = 0;
-			this->btnRound->Text = L"button1";
-			this->btnRound->UseVisualStyleBackColor = true;
-			this->btnRound->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &test::btnRound_Paint);
+			this->flowLayoutPanel1->Controls->Add(this->panel1);
+			this->flowLayoutPanel1->Controls->Add(this->panel2);
+			this->flowLayoutPanel1->Controls->Add(this->panel3);
+			this->flowLayoutPanel1->Controls->Add(this->panel4);
+			this->flowLayoutPanel1->Location = System::Drawing::Point(58, 87);
+			this->flowLayoutPanel1->Name = L"flowLayoutPanel1";
+			this->flowLayoutPanel1->Padding = System::Windows::Forms::Padding(40, 3, 3, 3);
+			this->flowLayoutPanel1->Size = System::Drawing::Size(349, 147);
+			this->flowLayoutPanel1->TabIndex = 6;
+			this->flowLayoutPanel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &test::flowLayoutPanel1_Paint);
+			// 
+			// panel1
+			// 
+			this->panel1->Location = System::Drawing::Point(43, 6);
+			this->panel1->Name = L"panel1";
+			this->panel1->Size = System::Drawing::Size(85, 69);
+			this->panel1->TabIndex = 0;
+			// 
+			// panel2
+			// 
+			this->panel2->Location = System::Drawing::Point(134, 6);
+			this->panel2->Name = L"panel2";
+			this->panel2->Size = System::Drawing::Size(101, 69);
+			this->panel2->TabIndex = 1;
+			// 
+			// panel3
+			// 
+			this->panel3->Location = System::Drawing::Point(241, 6);
+			this->panel3->Name = L"panel3";
+			this->panel3->Size = System::Drawing::Size(101, 69);
+			this->panel3->TabIndex = 2;
+			// 
+			// panel4
+			// 
+			this->panel4->Location = System::Drawing::Point(41, 79);
+			this->panel4->Margin = System::Windows::Forms::Padding(1);
+			this->panel4->Name = L"panel4";
+			this->panel4->Padding = System::Windows::Forms::Padding(0, 3, 0, 4);
+			this->panel4->Size = System::Drawing::Size(101, 69);
+			this->panel4->TabIndex = 2;
 			// 
 			// test
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(610, 508);
-			this->Controls->Add(this->btnRound);
+			this->ClientSize = System::Drawing::Size(771, 564);
+			this->Controls->Add(this->flowLayoutPanel1);
 			this->Name = L"test";
 			this->Text = L"test";
+			this->flowLayoutPanel1->ResumeLayout(false);
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
-	private: System::Void btnRound_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-		Button^ btn = safe_cast<Button^>(sender);
-		System::Drawing::Drawing2D::GraphicsPath^ path = gcnew System::Drawing::Drawing2D::GraphicsPath();
-		path->AddEllipse(0, 0, btn->Width, btn->Height);
-		btn->Region = gcnew System::Drawing::Region(path);
-
-		// Vẽ viền
-		System::Drawing::Pen^ pen = gcnew System::Drawing::Pen(System::Drawing::Color::Black, 2);
-		e->Graphics->DrawEllipse(pen, 1, 1, btn->Width - 2, btn->Height - 2);
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+	private: System::Void flowLayoutPanel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 	}
 	};
 }

@@ -21,7 +21,7 @@ namespace PBL2DatMonAn {
 		FormBill(System::Collections::Generic::List<MonAn^>^ dsMon, ManagerTable^ ban, String^ nameStaff)
 		{
 			InitializeComponent();
-			danhSachMon = dsMon;
+			this->danhSachMon = dsMon;
 			this->banHienTai = ban;
 			this->nameStaff = nameStaff;
 			lblTenNhanVIen->Text = "Ten nhan vien: " + nameStaff;
