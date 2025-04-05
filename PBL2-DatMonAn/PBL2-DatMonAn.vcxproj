@@ -121,6 +121,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AddFoodForm.cpp" />
+    <ClCompile Include="AddUserForm.cpp" />
     <ClCompile Include="CreateTable.cpp" />
     <ClCompile Include="DanhSachDonHang.cpp" />
     <ClCompile Include="formAdmin.cpp" />
@@ -136,6 +137,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AddFoodForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="AddUserForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="CreateTable.h" />
@@ -170,6 +174,9 @@
     <EmbeddedResource Include="AddFoodForm.resx">
       <DependentUpon>AddFoodForm.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AddUserForm.resx">
+      <DependentUpon>AddUserForm.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DanhSachDonHang.resx">
       <DependentUpon>DanhSachDonHang.h</DependentUpon>
     </EmbeddedResource>
@@ -196,6 +203,7 @@
     <Image Include="Image\iconAdd.png" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="Account.txt" />
     <Text Include="login.txt" />
     <Text Include="monan.txt" />
   </ItemGroup>

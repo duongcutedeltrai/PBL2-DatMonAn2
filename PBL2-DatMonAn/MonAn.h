@@ -53,7 +53,7 @@ public:
                 String^ dong = mon->ID + "||" + mon->TenMon + "||" + mon->Gia + "$||" + mon->LoaiMon + "||" + mon->Anh + "||";
                 writer->WriteLine(dong); // Ghi từng dòng vào file
             }
-            writer->Close(); // Đóng file sau khi ghi xong
+            writer->Close();
         }
         catch (Exception^ ex) {
             MessageBox::Show("Lỗi khi ghi file: " + ex->Message, "Lỗi", MessageBoxButtons::OK, MessageBoxIcon::Error);

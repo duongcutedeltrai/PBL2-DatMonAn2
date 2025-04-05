@@ -46,14 +46,11 @@ namespace PBL2DatMonAn {
 	private: System::Windows::Forms::Panel^ panel1;
 	private: System::Windows::Forms::Panel^ pnTenMon;
 	protected:
-
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Panel^ pnDanhSachMon;
-
 	private: System::Windows::Forms::TextBox^ txtTenMon;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Button^ btnThemMon;
-
 	private: System::Windows::Forms::Panel^ pnDonGia;
 	private: System::Windows::Forms::TextBox^ txtDonGia;
 	private: System::Windows::Forms::Label^ label3;

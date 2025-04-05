@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include <windows.h>
 #include "User.h"
+#include "AddUserForm.h"
 namespace PBL2DatMonAn {
 
 	using namespace System;
@@ -22,6 +23,9 @@ namespace PBL2DatMonAn {
 		Login(void)
 		{
 			InitializeComponent();
+			filePath = "Account.txt";
+			danhsachTaiKhoan = User::DocDanhSachTaiKhoan(filePath);
+
 			//
 			//TODO: Add the constructor code here
 		}
@@ -38,8 +42,9 @@ namespace PBL2DatMonAn {
 			}
 		}
 	private:
-		System::Collections::Generic::List<User^>^ Account;
-
+		//System::Collections::Generic::List<User^>^ Account;
+	private: System::String^ filePath;
+		   List<User^>^ danhsachTaiKhoan;
 	private: System::Windows::Forms::Panel^ panel1;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::TextBox^ txtID;
@@ -48,7 +53,6 @@ namespace PBL2DatMonAn {
 	private: System::Windows::Forms::Panel^ panel3;
 	private: System::Windows::Forms::Panel^ panel4;
 	private: System::Windows::Forms::TextBox^ txtPass;
-
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Button^ btnLogin;
 
@@ -118,11 +122,11 @@ namespace PBL2DatMonAn {
 			// 
 			this->label2->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label2->Location = System::Drawing::Point(43, 9);
+			this->label2->Location = System::Drawing::Point(17, 8);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(94, 23);
 			this->label2->TabIndex = 0;
-			this->label2->Text = L"ID: ";
+			this->label2->Text = L"Tài khoản:";
 			this->label2->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			// 
 			// label1
@@ -229,15 +233,12 @@ namespace PBL2DatMonAn {
 		//tao danh sach tai khoan
 		//Account = gcnew System::Collections::Generic::List<User^>();
 	/*	User^ user = User::DocFile("login.txt");*/
-		Account = gcnew System::Collections::Generic::List<User^>();
+		//Account = gcnew System::Collections::Generic::List<User^>();
 	/*	if (user != nullptr) {
 			Account->Add(user);
 		}*/
-
-		Account->Add(gcnew User("2","Pham anh duong" , "2", "Admin"));
-		Account->Add(gcnew User("admin","Pham anh duong" , "admin", "Admin"));
-		Account->Add(gcnew User("staff","Pham anh duong" , "staff", "Staff"));
-		Account->Add(gcnew User("1","Pham anh duong" ,"1", "Staff"));
+		danhsachTaiKhoan = User::DocDanhSachTaiKhoan(filePath);
+        danhsachTaiKhoan->Add(gcnew User("Pham anh duong", "2", "123", "03/11/2004", "Nam",  "Thu ngân", "Admin"));
 
 
 		// Tạo border bo tròn cho txtID

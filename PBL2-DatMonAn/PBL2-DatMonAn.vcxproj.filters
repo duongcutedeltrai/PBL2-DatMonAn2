@@ -57,6 +57,9 @@
     <ClCompile Include="test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="AddUserForm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Login.h">
@@ -101,6 +104,9 @@
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AddUserForm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Image\iconAdd.png">
@@ -110,6 +116,7 @@
   <ItemGroup>
     <Text Include="login.txt" />
     <Text Include="monan.txt" />
+    <Text Include="Account.txt" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PBL2-DatMonAn.rc">

@@ -25,23 +25,27 @@ extern "C" HRGN __stdcall CreateRoundRectRgn(
 namespace PBL2DatMonAn {      
 
     System::Void Login::btnLogin_Click(System::Object^ sender, System::EventArgs^ e) {
-        String^ id = txtID->Text;
+        String^ taikhoan = txtID->Text;
         String^ pass = txtPass->Text;
-
-
         //kiem tra trong
-        if (id == "" || pass == "") {
+        if (taikhoan == "" || pass == "") {
             MessageBox::Show(L"Vui lòng nhập đầy đủ thông tin", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Warning);
             return;
         }
         String^ role = "Invalid";
         String^ name = "Invalid";
+        String^ sex = "Invalid";
+        String^ birt = "Invalid";
+        String^ pos = "Invalid";
 
         // Duyệt qua danh sách Account để tìm tài khoản phù hợp
-        for each (User ^ acc in this->Account) {
-            if (acc->ID == id && acc->Password == pass) {
+        for each (User ^ acc in this->danhsachTaiKhoan) {
+            if (acc->Account && acc->Password == pass) {
                 role = acc->Role; 
 				name = acc->Name;
+                sex = acc->Sex;
+				birt = acc->Birtday;
+				pos = acc->Position;
                 break;
             }
         }
@@ -51,7 +55,7 @@ namespace PBL2DatMonAn {
             this->Hide();
             admin->ShowDialog();
         }
-        else if (role == "Staff") {
+        else if (role == "Nhân viên") {
             formStaff^ staff = gcnew formStaff(name);
             this->Hide();
             staff->ShowDialog();
@@ -62,7 +66,5 @@ namespace PBL2DatMonAn {
 
 
         ////tao doi tuong user va ghi file text "login.txt"
-        User^ currentUser = gcnew User(id, name, pass, role);
-        currentUser->GhiFile("login.txt");
     }
 }

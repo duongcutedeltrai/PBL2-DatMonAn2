@@ -4,10 +4,10 @@ using namespace System::Windows::Forms;
 using namespace System::Runtime::InteropServices;
 
 //[STAThreadAttribute]
-//int main(array<String^>^ args) {
+//int main(cli::array<String^>^ args) {
 //    Application::EnableVisualStyles();
 //    Application::SetCompatibleTextRenderingDefault(false);
-//    PBL2DatMonAn::formAdmin form;
-//    Application::Run(% form);
+//    PBL2DatMonAn::formAdmin ;
+//    Application::Run();
 //}
 

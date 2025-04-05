@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include  "Login.h"
 #include "AddFoodForm.h"
+#include "AddUserForm.h"
 namespace PBL2DatMonAn {
 
 	using namespace System;
@@ -25,6 +26,11 @@ namespace PBL2DatMonAn {
 			panelGeneral->Controls->Add(addFoodForm);
 			addFoodForm->Dock = DockStyle::Fill;
 			addFoodForm->Visible = false; 
+
+			addUserForm = gcnew AddUserForm();
+			panelGeneral->Controls->Add(addUserForm);
+			addUserForm->Dock = DockStyle::Fill;
+			addUserForm->Visible = false;
 
 			//
 			//TODO: Add the constructor code here
@@ -53,11 +59,11 @@ namespace PBL2DatMonAn {
 	private: System::Windows::Forms::Label^ labelAdmin;
 	private: System::Windows::Forms::Panel^ panel1;
 	private: System::Windows::Forms::Label^ lblTenAdmin;
-
 	private: System::Windows::Forms::Panel^ panel2;
 	private: System::Windows::Forms::Panel^ panelGeneral;
 	private: System::Windows::Forms::Panel^ panel3;
 	private: AddFoodForm^ addFoodForm;
+	private: AddUserForm^ addUserForm;
 	private:
 		/// <summary>
 		/// Required designer variable.
@@ -245,11 +251,10 @@ private: System::Void btnQuanlynhanvien_Click(System::Object^ sender, System::Ev
 	ResetMauButtonMenu();
 	btnQuanlynhanvien->BackColor = Color::RosyBrown;
 	addFoodForm->Visible = false;
+	addUserForm->Visible = true;
+	addUserForm->BringToFront();
 }
-//private: System::Void btnQuanLyDonHang_Click(System::Object^ sender, System::EventArgs^ e) {
-//	ResetMauButtonMenu();
-//	btnThemMon->BackColor = Color::RosyBrown;
-//}
+
 	   private: System::Void btnDangXUatAdmin_Click(System::Object^ sender, System::EventArgs^ e) {
 		   this->Hide();
 		   Login^ login = gcnew Login();
@@ -273,6 +278,7 @@ private: System::Void btnThemMon_Click(System::Object^ sender, System::EventArgs
 	ResetMauButtonMenu();
 	btnThemMon->BackColor = Color::RosyBrown;
 	addFoodForm->Visible = true; 
+	addUserForm->Visible = false;
 	addFoodForm->BringToFront();
 }
 };
