@@ -59,15 +59,15 @@ public:
 			while ((dong = reader->ReadLine()) != nullptr) {
 				if (String::IsNullOrWhiteSpace(dong)) continue; // Bỏ qua dòng trống
 				cli::array<String^>^ phan = dong->Split(gcnew cli::array<String^>{ "||" }, StringSplitOptions::RemoveEmptyEntries);
-				if (phan->Length >= 9) {
+				if (phan->Length >= 8) {
 					String^ idStr = phan[0];
 					String^ nameStr = phan[1];
 					String^ accStr = phan[2];
 					String^ passStr = phan[3];
-					String^ dayStr = phan[5];
-					String^ sexStr = phan[6];
-					String^ posStr = phan[7];
-					String^ roleStr = phan[8];
+					String^ dayStr = phan[4];
+					String^ sexStr = phan[5];
+					String^ posStr = phan[6];
+					String^ roleStr = phan[7];
 					User^ account = gcnew User(nameStr, accStr, passStr, dayStr, sexStr, posStr, roleStr);
 					account->ID = idStr; // Gán ID
 					dsTaiKhoan->Add(account);

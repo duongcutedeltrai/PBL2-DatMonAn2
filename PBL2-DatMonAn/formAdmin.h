@@ -21,7 +21,6 @@ namespace PBL2DatMonAn {
 		{
 			InitializeComponent();
 			this->nameAdmin = nameAdmin;
-			lblTenAdmin->Text = "Tên Admin: " + nameAdmin;
 			addFoodForm = gcnew AddFoodForm();
 			panelGeneral->Controls->Add(addFoodForm);
 			addFoodForm->Dock = DockStyle::Fill;
@@ -58,7 +57,7 @@ namespace PBL2DatMonAn {
 	private: System::Windows::Forms::Button^ btnDangXUatAdmin;
 	private: System::Windows::Forms::Label^ labelAdmin;
 	private: System::Windows::Forms::Panel^ panel1;
-	private: System::Windows::Forms::Label^ lblTenAdmin;
+
 	private: System::Windows::Forms::Panel^ panel2;
 	private: System::Windows::Forms::Panel^ panelGeneral;
 	private: System::Windows::Forms::Panel^ panel3;
@@ -83,7 +82,6 @@ namespace PBL2DatMonAn {
 			this->btnDangXUatAdmin = (gcnew System::Windows::Forms::Button());
 			this->labelAdmin = (gcnew System::Windows::Forms::Label());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
-			this->lblTenAdmin = (gcnew System::Windows::Forms::Label());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
 			this->panelGeneral = (gcnew System::Windows::Forms::Panel());
 			this->panel1->SuspendLayout();
@@ -172,23 +170,12 @@ namespace PBL2DatMonAn {
 			// panel1
 			// 
 			this->panel1->BackColor = System::Drawing::Color::Gainsboro;
-			this->panel1->Controls->Add(this->lblTenAdmin);
 			this->panel1->Controls->Add(this->labelAdmin);
 			this->panel1->Dock = System::Windows::Forms::DockStyle::Top;
 			this->panel1->Location = System::Drawing::Point(0, 0);
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(1150, 98);
 			this->panel1->TabIndex = 0;
-			// 
-			// lblTenAdmin
-			// 
-			this->lblTenAdmin->AutoSize = true;
-			this->lblTenAdmin->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->lblTenAdmin->Location = System::Drawing::Point(12, 55);
-			this->lblTenAdmin->Name = L"lblTenAdmin";
-			this->lblTenAdmin->Size = System::Drawing::Size(0, 25);
-			this->lblTenAdmin->TabIndex = 0;
 			// 
 			// panel2
 			// 
@@ -209,7 +196,6 @@ namespace PBL2DatMonAn {
 			this->panelGeneral->Name = L"panelGeneral";
 			this->panelGeneral->Size = System::Drawing::Size(946, 661);
 			this->panelGeneral->TabIndex = 8;
-
 			// 
 			// formAdmin
 			// 
@@ -224,7 +210,6 @@ namespace PBL2DatMonAn {
 			this->Text = L"formAdmin";
 			this->Load += gcnew System::EventHandler(this, &formAdmin::formAdmin_Load);
 			this->panel1->ResumeLayout(false);
-			this->panel1->PerformLayout();
 			this->panel2->ResumeLayout(false);
 			this->ResumeLayout(false);
 
@@ -246,6 +231,7 @@ private: System::Void formAdmin_Load(System::Object^ sender, System::EventArgs^ 
 		ResetMauButtonMenu();
 		btnThongKe->BackColor = Color::RosyBrown;
 		addFoodForm->Visible = false;
+		addUserForm->Visible = false;
 	}
 private: System::Void btnQuanlynhanvien_Click(System::Object^ sender, System::EventArgs^ e) {
 	ResetMauButtonMenu();
@@ -281,5 +267,6 @@ private: System::Void btnThemMon_Click(System::Object^ sender, System::EventArgs
 	addUserForm->Visible = false;
 	addFoodForm->BringToFront();
 }
+
 };
 }

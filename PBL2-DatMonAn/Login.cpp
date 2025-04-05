@@ -40,7 +40,7 @@ namespace PBL2DatMonAn {
 
         // Duyệt qua danh sách Account để tìm tài khoản phù hợp
         for each (User ^ acc in this->danhsachTaiKhoan) {
-            if (acc->Account && acc->Password == pass) {
+            if (acc->Account == taikhoan && acc->Password == pass) {
                 role = acc->Role; 
 				name = acc->Name;
                 sex = acc->Sex;
