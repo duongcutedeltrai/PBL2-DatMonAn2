@@ -21,6 +21,10 @@ namespace PBL2DatMonAn {
 			filePath = "Account.txt";
 			danhsachTaiKhoan = User::DocDanhSachTaiKhoan(filePath);
 
+			for each(User ^ account in danhsachTaiKhoan)
+			{
+				AddPanelUser(account, danhsachTaiKhoan->IndexOf(account) + 1);
+			}
 			//
 			//TODO: Add the constructor code here
 			//
@@ -79,15 +83,16 @@ namespace PBL2DatMonAn {
 	private: System::Windows::Forms::Label^ lblNavTwo;
 	private: System::Windows::Forms::Label^ lblNavOne;
 	private: System::Windows::Forms::Label^ label5;
-	private: System::Windows::Forms::Panel^ panel3;
-	private: System::Windows::Forms::Label^ lblAddNameStaff;
-	private: System::Windows::Forms::Label^ lblSTT;
-	private: System::Windows::Forms::PictureBox^ pictureBox1;
-	private: System::Windows::Forms::Label^ lblAddPossition;
-	private: System::Windows::Forms::Label^ lblAddPass;
-	private: System::Windows::Forms::Label^ lblAddAccount;
-	private: System::Windows::Forms::Label^ lblAddBirtday;
-	private: System::Windows::Forms::Label^ lblAddSex;
+
+
+
+
+
+
+
+
+
+	private: System::Drawing::Font^ commonFont;
 
 	protected:
 
@@ -95,7 +100,7 @@ namespace PBL2DatMonAn {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -134,15 +139,6 @@ namespace PBL2DatMonAn {
 			this->lblNavThree = (gcnew System::Windows::Forms::Label());
 			this->lblNavTwo = (gcnew System::Windows::Forms::Label());
 			this->lblNavOne = (gcnew System::Windows::Forms::Label());
-			this->panel3 = (gcnew System::Windows::Forms::Panel());
-			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			this->lblAddPossition = (gcnew System::Windows::Forms::Label());
-			this->lblAddPass = (gcnew System::Windows::Forms::Label());
-			this->lblAddAccount = (gcnew System::Windows::Forms::Label());
-			this->lblAddBirtday = (gcnew System::Windows::Forms::Label());
-			this->lblAddSex = (gcnew System::Windows::Forms::Label());
-			this->lblAddNameStaff = (gcnew System::Windows::Forms::Label());
-			this->lblSTT = (gcnew System::Windows::Forms::Label());
 			this->panel1->SuspendLayout();
 			this->pnPosition->SuspendLayout();
 			this->pnBirthday->SuspendLayout();
@@ -152,8 +148,6 @@ namespace PBL2DatMonAn {
 			this->pnAddAccount->SuspendLayout();
 			this->flowLayoutPanel1->SuspendLayout();
 			this->panel2->SuspendLayout();
-			this->panel3->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// panel1
@@ -375,7 +369,6 @@ namespace PBL2DatMonAn {
 			// 
 			this->flowLayoutPanel1->BackColor = System::Drawing::SystemColors::ActiveCaption;
 			this->flowLayoutPanel1->Controls->Add(this->panel2);
-			this->flowLayoutPanel1->Controls->Add(this->panel3);
 			this->flowLayoutPanel1->Location = System::Drawing::Point(3, 458);
 			this->flowLayoutPanel1->Name = L"flowLayoutPanel1";
 			this->flowLayoutPanel1->Padding = System::Windows::Forms::Padding(3);
@@ -474,108 +467,6 @@ namespace PBL2DatMonAn {
 			this->lblNavOne->TabIndex = 0;
 			this->lblNavOne->Text = L"STT";
 			// 
-			// panel3
-			// 
-			this->panel3->Controls->Add(this->pictureBox1);
-			this->panel3->Controls->Add(this->lblAddPossition);
-			this->panel3->Controls->Add(this->lblAddPass);
-			this->panel3->Controls->Add(this->lblAddAccount);
-			this->panel3->Controls->Add(this->lblAddBirtday);
-			this->panel3->Controls->Add(this->lblAddSex);
-			this->panel3->Controls->Add(this->lblAddNameStaff);
-			this->panel3->Controls->Add(this->lblSTT);
-			this->panel3->Location = System::Drawing::Point(6, 40);
-			this->panel3->Margin = System::Windows::Forms::Padding(3, 0, 3, 3);
-			this->panel3->Name = L"panel3";
-			this->panel3->Size = System::Drawing::Size(923, 34);
-			this->panel3->TabIndex = 1;
-			// 
-			// pictureBox1
-			// 
-			this->pictureBox1->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->pictureBox1->Location = System::Drawing::Point(886, 3);
-			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(34, 28);
-			this->pictureBox1->TabIndex = 8;
-			this->pictureBox1->TabStop = false;
-			// 
-			// lblAddPossition
-			// 
-			this->lblAddPossition->AutoSize = true;
-			this->lblAddPossition->Font = (gcnew System::Drawing::Font(L"Arial", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->lblAddPossition->Location = System::Drawing::Point(815, 9);
-			this->lblAddPossition->Name = L"lblAddPossition";
-			this->lblAddPossition->Size = System::Drawing::Size(44, 19);
-			this->lblAddPossition->TabIndex = 7;
-			this->lblAddPossition->Text = L"Vị trí";
-			// 
-			// lblAddPass
-			// 
-			this->lblAddPass->AutoSize = true;
-			this->lblAddPass->Font = (gcnew System::Drawing::Font(L"Arial", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->lblAddPass->Location = System::Drawing::Point(698, 9);
-			this->lblAddPass->Name = L"lblAddPass";
-			this->lblAddPass->Size = System::Drawing::Size(75, 19);
-			this->lblAddPass->TabIndex = 7;
-			this->lblAddPass->Text = L"Mật khẩu";
-			// 
-			// lblAddAccount
-			// 
-			this->lblAddAccount->AutoSize = true;
-			this->lblAddAccount->Font = (gcnew System::Drawing::Font(L"Arial", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->lblAddAccount->Location = System::Drawing::Point(578, 9);
-			this->lblAddAccount->Name = L"lblAddAccount";
-			this->lblAddAccount->Size = System::Drawing::Size(80, 19);
-			this->lblAddAccount->TabIndex = 7;
-			this->lblAddAccount->Text = L"Tài khoản";
-			// 
-			// lblAddBirtday
-			// 
-			this->lblAddBirtday->AutoSize = true;
-			this->lblAddBirtday->Font = (gcnew System::Drawing::Font(L"Arial", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->lblAddBirtday->Location = System::Drawing::Point(424, 9);
-			this->lblAddBirtday->Name = L"lblAddBirtday";
-			this->lblAddBirtday->Size = System::Drawing::Size(82, 19);
-			this->lblAddBirtday->TabIndex = 7;
-			this->lblAddBirtday->Text = L"Ngày sinh";
-			// 
-			// lblAddSex
-			// 
-			this->lblAddSex->AutoSize = true;
-			this->lblAddSex->Font = (gcnew System::Drawing::Font(L"Arial", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->lblAddSex->Location = System::Drawing::Point(280, 9);
-			this->lblAddSex->Name = L"lblAddSex";
-			this->lblAddSex->Size = System::Drawing::Size(72, 19);
-			this->lblAddSex->TabIndex = 7;
-			this->lblAddSex->Text = L"Giới tính";
-			// 
-			// lblAddNameStaff
-			// 
-			this->lblAddNameStaff->AutoSize = true;
-			this->lblAddNameStaff->Font = (gcnew System::Drawing::Font(L"Arial", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->lblAddNameStaff->Location = System::Drawing::Point(84, 9);
-			this->lblAddNameStaff->Name = L"lblAddNameStaff";
-			this->lblAddNameStaff->Size = System::Drawing::Size(111, 19);
-			this->lblAddNameStaff->TabIndex = 1;
-			this->lblAddNameStaff->Text = L"Tên nhân viên";
-			// 
-			// lblSTT
-			// 
-			this->lblSTT->AutoSize = true;
-			this->lblSTT->Font = (gcnew System::Drawing::Font(L"Arial", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->lblSTT->Location = System::Drawing::Point(3, 9);
-			this->lblSTT->Name = L"lblSTT";
-			this->lblSTT->Size = System::Drawing::Size(38, 19);
-			this->lblSTT->TabIndex = 0;
-			this->lblSTT->Text = L"STT";
-			// 
 			// AddUserForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -602,45 +493,185 @@ namespace PBL2DatMonAn {
 			this->flowLayoutPanel1->ResumeLayout(false);
 			this->panel2->ResumeLayout(false);
 			this->panel2->PerformLayout();
-			this->panel3->ResumeLayout(false);
-			this->panel3->PerformLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
 	private: System::Void AddUserForm_Load(System::Object^ sender, System::EventArgs^ e) {
+
 	}
-private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-	if (txtAddAccount->Text == "" || txtAddPass->Text == "" || txtNameStaff->Text == "" || dateTimePicker1->Value == DateTime::Now) {
-		MessageBox::Show(L"Vui lòng nhập đầy đủ thông tin" , L"Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Warning);
-		return;
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (txtAddAccount->Text == "" || txtAddPass->Text == "" || txtNameStaff->Text == "" || dateTimePicker1->Value == DateTime::Now) {
+			MessageBox::Show(L"Vui lòng nhập đầy đủ thông tin", L"Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+			return;
+		}
+		// Thêm tài khoản vào database
+		String^ acc = txtAddAccount->Text;
+		String^ pass = txtAddPass->Text;
+		String^ name = txtNameStaff->Text;
+		String^ sex = cbSex->Text;
+		String^ birt = dateTimePicker1->Text;
+		String^ pos = cbPosition->Text;
+		String^ role = "Nhân viên";
+
+		User^ account = gcnew User(name, acc, pass, birt, sex, pos, role);
+		danhsachTaiKhoan->Add(account);
+		//ghi file
+		User::GhiDanhSachTaiKhoan(danhsachTaiKhoan, filePath);
+		MessageBox::Show(L"Thêm tài khoản thành công", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
+
+		// Thêm panel mới vào FlowLayoutPanel
+		AddPanelUser(account, danhsachTaiKhoan->Count);
+		txtAddAccount->Clear();
+		txtAddPass->Clear();
+		txtNameStaff->Clear();
+		cbSex->SelectedIndex = -1;
+		cbPosition->SelectedIndex = -1;
+		dateTimePicker1->Value = DateTime::Now;
 	}
 
-	// Thêm tài khoản vào database
-	String^ acc = txtAddAccount->Text;
-	String^ pass = txtAddPass->Text;
-	String^ name = txtNameStaff->Text;
-	String^ sex = cbSex->Text;
-	String^ birt = dateTimePicker1->Text;
-	String^ pos = cbPosition->Text;
-	String^ role = "Nhân viên";
+	private: System::Void AddPanelUser(User^ user, int stt) {
+			//add panel detail user
+			Panel^ AddPanel = gcnew Panel();
+			AddPanel->Location = System::Drawing::Point(6, 40);
+			AddPanel->Margin = System::Windows::Forms::Padding(3, 0, 3, 3);
+			AddPanel->Name = L"panelUser";
+			AddPanel->Tag = user;
+			AddPanel->Size = System::Drawing::Size(923, 34);
+			AddPanel->TabIndex = 1;
 
-	User^ account = gcnew User(name, acc, pass, birt,sex , pos, role);
-	danhsachTaiKhoan->Add(account);
-	//ghi file
-	User::GhiDanhSachTaiKhoan(danhsachTaiKhoan, filePath);
-	MessageBox::Show(L"Thêm tài khoản thành công", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			// Định nghĩa font chung cho các label
+			commonFont = gcnew System::Drawing::Font("Arial", 10, System::Drawing::FontStyle::Regular);
 
-	// Thêm panel mới vào FlowLayoutPanel
-	//ThemPanelMonAn(monAn, danhSachMonAn->Count);
+			//add stt
+			Label^ lblSTT = gcnew Label();
+			lblSTT->AutoSize = true;
+			lblSTT->Location = System::Drawing::Point(3, 9);
+			lblSTT->Font = commonFont;
+			lblSTT->Name = L"lblSTT";
+			lblSTT->Size = System::Drawing::Size(38, 19);
+			lblSTT->TabIndex = 0;
+			lblSTT->Text = stt.ToString();
 
-	txtAddAccount->Clear();
-	txtAddPass->Clear();
-	txtNameStaff->Clear();
-	cbSex->SelectedIndex = -1;
-	cbPosition->SelectedIndex = -1;
-	dateTimePicker1->Value = DateTime::Now;
-}
+			//add name
+			Label^ lblAddNameStaff = gcnew Label();
+			lblAddNameStaff->AutoSize = true;
+			lblAddNameStaff->Font = commonFont;
+			lblAddNameStaff->Location = System::Drawing::Point(50, 9);
+			lblAddNameStaff->Text = user->Name;
+			lblAddNameStaff->Name = L"lblAddNameStaff";
+			lblAddNameStaff->Size = System::Drawing::Size(100, 19);
+			lblAddNameStaff->TabIndex = 1;
+
+			//add sex
+			Label^ lblAddSex = gcnew Label();
+			lblAddSex->AutoSize = true;
+			lblAddSex->Font = commonFont;
+			lblAddSex->Location = System::Drawing::Point(220, 9);
+			lblAddSex->Text = user->Sex;
+			lblAddSex->Name = L"lblAddSex";
+			lblAddSex->Size = System::Drawing::Size(72, 19);
+			lblAddSex->TabIndex = 7;
+
+			//add birtday
+			Label^ lblAddBirtday = gcnew Label();
+			lblAddBirtday->AutoSize = true;
+			lblAddBirtday->Font = commonFont;
+			lblAddBirtday->Location = System::Drawing::Point(300, 9);
+			lblAddBirtday->Text = user->Birtday;
+			lblAddBirtday->Name = L"lblAddBirtday";
+			lblAddBirtday->Size = System::Drawing::Size(82, 19);
+			lblAddBirtday->TabIndex = 7;
+
+			//add account
+			Label^ lblAddAccount = gcnew Label();
+			lblAddAccount->AutoSize = true;
+			lblAddAccount->Font = commonFont;
+			lblAddAccount->Location = System::Drawing::Point(450, 9);
+			lblAddAccount->Text = user->Account;
+			lblAddAccount->Name = L"lblAddAccount";
+			lblAddAccount->Size = System::Drawing::Size(80, 19);
+			lblAddAccount->TabIndex = 7;
+
+			//add pass
+			Label^ lblAddPass = gcnew Label();
+			lblAddPass->AutoSize = true;
+			lblAddPass->Font = commonFont;
+			lblAddPass->Location = System::Drawing::Point(535, 9);
+			lblAddPass->Text = user->Password;
+			lblAddPass->Name = L"lblAddPass";
+			lblAddPass->Size = System::Drawing::Size(75, 19);
+			lblAddPass->TabIndex = 7;
+
+			//add position	
+			Label^ lblAddPossition = gcnew Label();
+			lblAddPossition->AutoSize = true;
+			lblAddPossition->Font = commonFont;
+			lblAddPossition->Location = System::Drawing::Point(600, 9);
+			lblAddPossition->Text = user->Position;
+			lblAddPossition->Name = L"lblAddPossition";
+			lblAddPossition->Size = System::Drawing::Size(44, 19);
+			lblAddPossition->TabIndex = 7;
+
+			//add icon 
+			PictureBox^ pictureBox1 = gcnew PictureBox();
+			pictureBox1->Location = System::Drawing::Point(670, 3);
+			pictureBox1->Name = L"pictureBox1";
+			pictureBox1->Size = System::Drawing::Size(25, 25);
+			pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+			pictureBox1->TabIndex = 0;
+			pictureBox1->BackColor = System::Drawing::Color::Transparent;
+            pictureBox1->Cursor = Cursors::Hand;
+			pictureBox1->BringToFront();
+			pictureBox1->Parent = AddPanel;
+			pictureBox1->Image = Image::FromFile(".\\Image\\thungrac2.png");
+
+			pictureBox1->Tag = user;
+			pictureBox1->Click += gcnew System::EventHandler(this, &AddUserForm::picBox_Click);
+
+            
+			AddPanel->Controls->Add(lblSTT);
+			AddPanel->Controls->Add(lblAddNameStaff);
+			AddPanel->Controls->Add(lblAddSex);
+			AddPanel->Controls->Add(lblAddBirtday);
+			AddPanel->Controls->Add(lblAddAccount);
+			AddPanel->Controls->Add(lblAddPass);
+			AddPanel->Controls->Add(lblAddPossition);
+			AddPanel->Controls->Add(pictureBox1);
+			flowLayoutPanel1->Controls->Add(AddPanel);
+	};
+
+	private: System::Void picBox_Click(System::Object^ sender, System::EventArgs^ e) {
+		PictureBox^ pic = (PictureBox^)sender;
+		User^ userToDele = (User^)pic->Tag;
+		
+		if (MessageBox::Show(L"Bạn có chắc chắn muốn xóa tài khoản này không?", "Thông báo", MessageBoxButtons::YesNo, MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes)
+		{
+			danhsachTaiKhoan->Remove(userToDele);
+			Panel^ panelToRemove = safe_cast<Panel^>(pic->Parent);
+			flowLayoutPanel1->Controls->Remove(panelToRemove);
+			UpdateStt();
+			User::GhiDanhSachTaiKhoan(danhsachTaiKhoan, filePath);
+			MessageBox::Show(L"Xóa tài khoản thành công", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		}		
+	}
+
+	private: System::Void UpdateStt() {
+		// Cập nhật lại số thứ tự cho các label
+		int stt = 1;
+		for each (Control ^ control in flowLayoutPanel1->Controls)
+		{
+			if (control->Name == L"panelUser")
+			{
+				Panel^ panel = safe_cast<Panel^>(control);
+				Label^ lblSTT = safe_cast<Label^>(panel->Controls["lblSTT"]);
+				if (lblSTT != nullptr)
+				{
+					lblSTT->Text = stt.ToString();
+					stt++;
+				}
+			}
+		}
+	}
 };
 }

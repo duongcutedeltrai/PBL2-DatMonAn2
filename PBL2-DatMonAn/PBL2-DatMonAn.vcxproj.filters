@@ -112,6 +112,12 @@
     <Image Include="Image\iconAdd.png">
       <Filter>Image</Filter>
     </Image>
+    <Image Include="Image\thung-rac.ico">
+      <Filter>Image</Filter>
+    </Image>
+    <Image Include="Image\thungrac2.png">
+      <Filter>Image</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="login.txt" />

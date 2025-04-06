@@ -201,6 +201,8 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Image\iconAdd.png" />
+    <Image Include="Image\thung-rac.ico" />
+    <Image Include="Image\thungrac2.png" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Account.txt" />

@@ -41,11 +41,11 @@ namespace PBL2DatMonAn {
         // Duyệt qua danh sách Account để tìm tài khoản phù hợp
         for each (User ^ acc in this->danhsachTaiKhoan) {
             if (acc->Account == taikhoan && acc->Password == pass) {
-                role = acc->Role; 
-				name = acc->Name;
+                role = acc->Role;
+                name = acc->Name;
                 sex = acc->Sex;
-				birt = acc->Birtday;
-				pos = acc->Position;
+                birt = acc->Birtday;
+                pos = acc->Position;
                 break;
             }
         }
@@ -66,5 +66,5 @@ namespace PBL2DatMonAn {
 
 
         ////tao doi tuong user va ghi file text "login.txt"
-    }
+    };
 }
