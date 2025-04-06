@@ -15,18 +15,18 @@
 //cac mon duoc chon duoc dua vao datagridbill
 namespace PBL2DatMonAn {
     System::Void FormBill::Monandachon() {
-        datagridViewBill->Rows->Clear(); // Xóa các hàng hiện có trong DataGridView
-        double tongtien = 0.0; // Khởi tạo tổng tiền
+        datagridViewBill->Rows->Clear(); 
+        double tongtien = 0.0; 
 
         // Duyệt qua danh sách món ăn đã chọn
         for each(MonAn ^ mon in danhSachMon) {
-            // Chỉ hiển thị các món có số lượng lớn hơn 0
+           
             if (mon->SoLuong <= 0) continue;
 
             try {
-                // Xử lý giá: Loại bỏ ký hiệu "$" và chuyển đổi thành double
-                String^ giaStr = mon->Gia->Trim(); // Loại bỏ khoảng trắng thừa
-                giaStr = giaStr->Replace("$", "")->Trim(); // Loại bỏ ký hiệu "$"
+          
+                String^ giaStr = mon->Gia->Trim();
+                giaStr = giaStr->Replace("$", "")->Trim(); 
                 double gia = Convert::ToDouble(giaStr);
 
                 // Lấy số lượng
@@ -38,10 +38,10 @@ namespace PBL2DatMonAn {
 
                 // Thêm hàng vào DataGridView
                 datagridViewBill->Rows->Add(
-                    mon->TenMon,                    // Cột 1: Tên món
-                    soluong.ToString(),             // Cột 2: Số lượng
-                    gia.ToString("F2") + " $",      // Cột 3: Giá (định dạng 2 chữ số thập phân, thêm $)
-                    thanhtien.ToString("F2") + " $"  // Cột 4: Thành tiền (thêm $)
+                    mon->TenMon,                  
+                    soluong.ToString(),             
+                    gia.ToString("F2") + " $",    
+                    thanhtien.ToString("F2") + " $"
                 );
             }
             catch (Exception^ ex) {

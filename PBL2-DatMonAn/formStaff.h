@@ -7,7 +7,6 @@
 #include "ManagerTable.h"
 #include <windows.h>
 #include "FormBill.h"
-#include "DanhSachDonHang.h"
 
 // Forward declaration
 
@@ -31,6 +30,8 @@ namespace PBL2DatMonAn {
             InitializeComponent();
 			this->nameStaff = nameStaff;
 			lblTenNhanVien->Text = "Ten nhan vien: " + nameStaff;
+            banFilePath = "Table.txt";
+			danhSachBan = ManagerTable::DocDanhSachBan(banFilePath);
 			//
             // Thêm panel vào form
         }
@@ -43,6 +44,8 @@ namespace PBL2DatMonAn {
                 delete components;
             }
         }
+	private: System::String^ banFilePath;
+
     private:
 		String^ nameStaff;
     private: System::Windows::Forms::Panel^ panelStaff;
@@ -63,7 +66,6 @@ namespace PBL2DatMonAn {
     private: System::Windows::Forms::FlowLayoutPanel^ flpBan;
     private: System::Windows::Forms::Panel^ panel8;
     private: System::Windows::Forms::Panel^ panel7;
-    private: DanhSachDonHang^ danhSachDonHang;
     private: System::Windows::Forms::Label^ lblTenNhanVien;
 	private: List<ManagerTable^>^ danhSachBan;
 
@@ -275,24 +277,15 @@ namespace PBL2DatMonAn {
         }
 #pragma endregion
     private: System::Void formStaff_Load(System::Object^ sender, System::EventArgs^ e) {
-		danhSachBan = gcnew List<ManagerTable^>();
-		for (int i = 1; i <= 10; i++) {
-			ManagerTable^ ban = gcnew ManagerTable("Bàn" + i);
-			danhSachBan->Add(ban);
-		}
-        CreateTable^ createTable = gcnew CreateTable(nameStaff);
+		
+        CreateTable^ createTable = gcnew CreateTable(nameStaff, banFilePath);
         createTable->TaoDayBan(10, flpBan, danhSachBan);
         createTable->TakeAway(4, flpMangVe);
         ResetMauButtonMenu();
         btnChonBan->BackColor = Color::IndianRed;
         BoGocControl(btnChonBan, 10);
         BoGocControl(btnDanhsach, 10);
-        BoGocControl(btnDangXuat, 10);
-        danhSachDonHang = gcnew DanhSachDonHang();
-        this->Controls->Add(danhSachDonHang);
-        danhSachDonHang->Visible = false;
-        danhSachDonHang->Location = System::Drawing::Point(10, 110); 
-        danhSachDonHang->Size = System::Drawing::Size(800, 400);    
+        BoGocControl(btnDangXuat, 10); 
     }
     private: System::Void ResetMauButtonMenu() {
         Color mauMacDinh = Color::Gainsboro;
@@ -316,10 +309,6 @@ private: System::Void labelDanhsachban_Click(System::Object^ sender, System::Eve
                panelMangVe->Visible = false;
                panelDanhsachban->Visible = false;
                btnDanhsach->BackColor = Color::IndianRed;
-		    
-               danhSachDonHang->Visible = true;
-               danhSachDonHang->BringToFront();
-			  
            }
 private: System::Void lblTenNhanVien_Click(System::Object^ sender, System::EventArgs^ e) {
 }

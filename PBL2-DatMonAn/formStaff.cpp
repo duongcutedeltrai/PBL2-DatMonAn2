@@ -21,7 +21,7 @@ namespace PBL2DatMonAn {
         this->Hide();
         Login^ login = gcnew Login();
         login->ShowDialog();
-        danhSachDonHang->Visible = false;
+     
     }
 
     System::Void formStaff::btnChonBan_Click(System::Object^ sender, System::EventArgs^ e){
@@ -29,7 +29,6 @@ namespace PBL2DatMonAn {
         panelMangVe->Visible = true;
         panelDanhsachban->Visible = true;
         btnChonBan->BackColor = Color::IndianRed;
-        danhSachDonHang->Visible = false;
     }
 
     //System::Void formStaff::btnDanhsach_Click(System::Object^ sender, System::EventArgs^ e) {

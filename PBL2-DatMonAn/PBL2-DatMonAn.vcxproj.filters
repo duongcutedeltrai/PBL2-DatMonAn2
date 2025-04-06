@@ -42,22 +42,16 @@
     <ClCompile Include="User.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HoaDon.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DanhSachDonHang.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ManagerTable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="AddFoodForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="test.cpp">
+    <ClCompile Include="AddUserForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AddUserForm.cpp">
+    <ClCompile Include="AddHistoryBillForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -86,25 +80,19 @@
     <ClInclude Include="User.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="HoaDon.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DanhSachDonHang.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ManagerTable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AddFoodForm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AddUserForm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AddHistoryBillForm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -123,6 +111,7 @@
     <Text Include="login.txt" />
     <Text Include="monan.txt" />
     <Text Include="Account.txt" />
+    <Text Include="Table.txt" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PBL2-DatMonAn.rc">

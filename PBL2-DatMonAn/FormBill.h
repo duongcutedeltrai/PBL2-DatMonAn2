@@ -18,12 +18,14 @@ namespace PBL2DatMonAn {
 
 		ref class FormFood;
 	public:
-		FormBill(System::Collections::Generic::List<MonAn^>^ dsMon, ManagerTable^ ban, String^ nameStaff)
+		FormBill(System::Collections::Generic::List<MonAn^>^ dsMon, ManagerTable^ ban, String^ nameStaff, List<ManagerTable^>^ dsBan, String^ banFilePath)
 		{
 			InitializeComponent();
 			this->danhSachMon = dsMon;
 			this->banHienTai = ban;
 			this->nameStaff = nameStaff;
+			this->danhSachBan = dsBan;
+			this->banFilePath = banFilePath;
 			lblTenNhanVIen->Text = "Ten nhan vien: " + nameStaff;
 			lblBanDat->Text = ban->SoBan;
 			Monandachon();
@@ -47,6 +49,8 @@ namespace PBL2DatMonAn {
 		ManagerTable^ banHienTai;
 		String^ nameStaff;
 		System::Collections::Generic::List<MonAn^>^ danhSachMon;
+		List<ManagerTable^>^ danhSachBan;
+		String^ banFilePath;
 	//private:
 	//	System::Collections::Generic::List<MonAn^>^ danhSachMon;
 
@@ -351,13 +355,33 @@ namespace PBL2DatMonAn {
 	};
 	private: System::Void Monandachon();
 	private: System::Void btnChuyenKhoan_Click(System::Object^ sender, System::EventArgs^ e) {
-		banHienTai->TrangThai = "Đã Thanh Toán";
+		banHienTai->TrangThai = L"Đã Thanh Toán";
 		banHienTai->DanhSachMon->Clear();
 		this->Close();
 	};
 private: System::Void btnTienMat_Click(System::Object^ sender, System::EventArgs^ e) {
-	banHienTai->TrangThai = "Đã Thanh Toán";
+	if (danhSachMon->Count == 0) {
+		MessageBox::Show(L"Không có món nào trong hóa đơn", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+		return;
+	}
+
+	MessageBox::Show(L"Thanh toán thành công", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
+	banHienTai->TrangThai = L"Đã Thanh Toán";
+	banHienTai->TrangThai = L"Trống";
 	banHienTai->DanhSachMon->Clear();
+
+	// cap nhat danh sach mon
+	for each (ManagerTable ^ ban in danhSachBan)
+	{
+		if (ban->SoBan == banHienTai->SoBan) {
+			ban->TrangThai == banHienTai->TrangThai;
+			ban->DanhSachMon = banHienTai->DanhSachMon;
+			break;
+		}
+	}
+
+	//ghi lai file
+	ManagerTable::GhiDanhSachBan(danhSachBan, banFilePath);
 	this->Close();
 }
 };

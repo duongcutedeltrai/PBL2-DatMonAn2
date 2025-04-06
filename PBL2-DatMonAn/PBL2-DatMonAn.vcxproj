@@ -121,31 +121,29 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AddFoodForm.cpp" />
+    <ClCompile Include="AddHistoryBillForm.cpp" />
     <ClCompile Include="AddUserForm.cpp" />
     <ClCompile Include="CreateTable.cpp" />
-    <ClCompile Include="DanhSachDonHang.cpp" />
     <ClCompile Include="formAdmin.cpp" />
     <ClCompile Include="FormBill.cpp" />
     <ClCompile Include="FormFood.cpp" />
     <ClCompile Include="formStaff.cpp" />
-    <ClCompile Include="HoaDon.cpp" />
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="ManagerTable.cpp" />
     <ClCompile Include="MonAn.cpp" />
-    <ClCompile Include="test.cpp" />
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AddFoodForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="AddHistoryBillForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="AddUserForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="CreateTable.h" />
-    <ClInclude Include="DanhSachDonHang.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
     <ClInclude Include="formAdmin.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -158,27 +156,23 @@
     <ClInclude Include="formStaff.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="HoaDon.h" />
     <ClInclude Include="Login.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="ManagerTable.h" />
     <ClInclude Include="MonAn.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="test.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
     <ClInclude Include="User.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AddFoodForm.resx">
       <DependentUpon>AddFoodForm.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AddHistoryBillForm.resx">
+      <DependentUpon>AddHistoryBillForm.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddUserForm.resx">
       <DependentUpon>AddUserForm.h</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DanhSachDonHang.resx">
-      <DependentUpon>DanhSachDonHang.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formAdmin.resx">
       <DependentUpon>formAdmin.h</DependentUpon>
@@ -195,9 +189,6 @@
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="test.resx">
-      <DependentUpon>test.h</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Image\iconAdd.png" />
@@ -208,6 +199,7 @@
     <Text Include="Account.txt" />
     <Text Include="login.txt" />
     <Text Include="monan.txt" />
+    <Text Include="Table.txt" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PBL2-DatMonAn.rc" />

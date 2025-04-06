@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "MonAn.h"
+#include "FormBill.h"
 #include "formStaff.h"
 #include "ManagerTable.h"
 #include "AddFoodForm.h"
@@ -18,12 +19,14 @@ namespace PBL2DatMonAn {
 	public ref class FormFood : public System::Windows::Forms::Form
 	{
 	public:
-		FormFood(ManagerTable^ ban, String^ nameStaff)
+		FormFood(ManagerTable^ ban, String^ nameStaff, List<ManagerTable^>^ danhSachBan, String^ banFilePath)
 		{
 			InitializeComponent();
 			this->banHienTai = ban;
 			this->nameStaff = nameStaff;
 			filePath = "monan.txt";
+			this->danhSachBan = danhSachBan;
+			this->banFilePath = banFilePath;
 			danhSachMonAn = MonAn::DocDanhSachMonAn(filePath);
 			lblTenNhanVien->Text = "Ten nhan vien: " + nameStaff;
 			HienThiMonDaDat();
@@ -43,6 +46,10 @@ namespace PBL2DatMonAn {
 				delete components;
 			}
 		}
+
+	private: List<ManagerTable^>^ danhSachBan;
+	private: System::String^ banFilePath;
+
 	private: String^ filePath;
 	private:
 		ManagerTable^ banHienTai;
@@ -658,7 +665,7 @@ namespace PBL2DatMonAn {
 
 				   // Cập nhật trạng thái bàn nếu không còn món nào
 				   if (banHienTai->DanhSachMon->Count == 0) {
-					   banHienTai->TrangThai = "Trống";
+					   banHienTai->TrangThai = L"Trống";
 				   }
 			   }
 

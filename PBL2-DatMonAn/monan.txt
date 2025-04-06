@@ -14,7 +14,6 @@
 20250405145844||Salad trái cây||1.25$||Salad||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\salad-trai-cay-sot-mayonnaise-13.jpg||
 20250405145910||Salad rau củ||1.04$||Salad||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\slalhraucu.jpg||
 20250405145930||Chè đậu xanh||0.63$||Tráng Miệng||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\bi-quyet-nau-che-dau-xanh-pho-tai-thanh-nhiet-ngon-kho-cuong-202112231026073202.jpg||
-20250405150344||Rau câu||0.50$||Tráng Miệng||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\rau-cau-trai-cay-bich-470g.png||
 20250405150441||Kem vani||0.75$||Tráng Miệng||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\kemvani.jpg||
 20250405150513||Bánh flan||0.83$||Tráng Miệng||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\sddefault.jpg||
 20250405150626||Trái cây tươi||0.92$||Tráng Miệng||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\trai-cay-tuoi.jpg||

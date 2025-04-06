@@ -57,7 +57,7 @@ namespace PBL2DatMonAn {
             monMoi->ID = mon->ID; // Gán ID để đồng bộ
             monMoi->SoLuong = 1;
             banHienTai->DanhSachMon->Add(monMoi);
-            banHienTai->TrangThai = "Có Khách"; // Cập nhật trạng thái bàn
+            banHienTai->TrangThai = L"Có Khách"; // Cập nhật trạng thái bàn
 
             // Tạo panel mới để hiển thị món đã chọn
             Panel^ panelOrder = gcnew Panel();
@@ -123,36 +123,16 @@ namespace PBL2DatMonAn {
 
     //thanhtoan
     System::Void FormFood::btnThanhToan_Click(System::Object^ sender, System::EventArgs^ e) {
-        // Lấy danh sách món đã chọn
-        auto danhsachMonDaChon = gcnew System::Collections::Generic::List<MonAn^>();
+		if (banHienTai->DanhSachMon->Count == 0) {
+			MessageBox::Show(L"Không có món nào trong danh sách!", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			return;
+		}
 
-        for each (Control ^ ctrl in flowLayoutPanel1->Controls) {
-            Panel^ panelOrder = dynamic_cast<Panel^>(ctrl);
-            if (panelOrder == nullptr || panelOrder->Tag == nullptr)
-                continue;
-            MonAn^ mon = dynamic_cast<MonAn^>(panelOrder->Tag);
-            if (mon == nullptr)
-                continue;
-
-            int soLuong = 1;
-            for each (Control ^ child in panelOrder->Controls) {
-                NumericUpDown^ num = dynamic_cast<NumericUpDown^>(child);
-                if (num != nullptr) {
-                    soLuong = Decimal::ToInt32(num->Value);
-                    break;
-                }
-            }
-
-            // Tạo bản sao của món ăn với số lượng đã chọn
-            MonAn^ monMoi = gcnew MonAn(mon->LoaiMon, mon->TenMon, mon->Gia, mon->Anh);
-            monMoi->SoLuong = soLuong;
-            danhsachMonDaChon->Add(monMoi);
-        }
-
-        // Gọi FormBill với danh sách món đã chọn
-        this->Close();
-        FormBill^ formBill = gcnew FormBill(banHienTai->DanhSachMon, banHienTai, nameStaff);
+		//goi form bill
+		FormBill^ formBill = gcnew FormBill(banHienTai->DanhSachMon, banHienTai,nameStaff, danhSachBan, banFilePath);
         formBill->ShowDialog();
+        HienThiMonDaDat();
+		CapNhatTongTien();
     }
 
 
@@ -292,17 +272,82 @@ namespace PBL2DatMonAn {
         txtMoney->Text = tongTien.ToString("F2") + " $";
     }
 
+    //System::Void FormFood::HienThiMonDaDat() {
+    //    flowLayoutPanel1->Controls->Clear();
+    //    if (banHienTai->DanhSachMon->Count > 0) {
+    //        for each (MonAn ^ mon in banHienTai->DanhSachMon) {
+    //            Panel^ panelOrder = gcnew Panel();
+    //            panelOrder->Tag = mon;
+    //            panelOrder->BackColor = System::Drawing::Color::IndianRed;
+    //            panelOrder->Size = System::Drawing::Size(268, 124);
+
+    //            Label^ lblGia = gcnew Label();
+    //            lblGia->Text = mon->Gia + "$";
+    //            lblGia->AutoSize = true;
+    //            lblGia->Font = gcnew Drawing::Font(L"Microsoft Sans Serif", 10.2F);
+    //            lblGia->Location = System::Drawing::Point(154, 48);
+
+    //            NumericUpDown^ numSoLuong = gcnew NumericUpDown();
+    //            numSoLuong->Minimum = 0;
+    //            numSoLuong->Maximum = 99;
+    //            numSoLuong->Value = mon->SoLuong;
+    //            numSoLuong->ValueChanged += gcnew System::EventHandler(this, &FormFood::numSoLuong_ValueChanged);
+    //            numSoLuong->Location = System::Drawing::Point(158, 80);
+    //            numSoLuong->Size = System::Drawing::Size(36, 22);
+
+    //            PictureBox^ picBox = gcnew PictureBox();
+    //            picBox->Location = System::Drawing::Point(18, 3);
+    //            picBox->Size = System::Drawing::Size(130, 116);
+    //            picBox->SizeMode = PictureBoxSizeMode::StretchImage;
+    //            try {
+    //                picBox->Image = Image::FromFile(mon->Anh);
+    //            }
+    //            catch (...) {
+    //                picBox->Image = nullptr; // Xử lý nếu ảnh không tồn tại
+    //            }
+
+    //            Label^ lblTen = gcnew Label();
+    //            lblTen->Text = mon->TenMon;
+    //            lblTen->AutoSize = true;
+    //            lblTen->Font = gcnew Drawing::Font(L"Segoe UI Semibold", 10.2F, FontStyle::Bold);
+    //            lblTen->Location = System::Drawing::Point(154, 25);
+
+    //            BoGocControl(panelOrder, 20);
+    //            panelOrder->Controls->Add(picBox);
+    //            panelOrder->Controls->Add(lblTen);
+    //            panelOrder->Controls->Add(lblGia);
+    //            panelOrder->Controls->Add(numSoLuong);
+    //            flowLayoutPanel1->Controls->Add(panelOrder);
+    //        }
+    //        CapNhatTongTien();
+    //    }
+    //}
+
     System::Void FormFood::HienThiMonDaDat() {
         flowLayoutPanel1->Controls->Clear();
-        if (banHienTai->DanhSachMon->Count > 0) {
-            for each (MonAn ^ mon in banHienTai->DanhSachMon) {
+        if (banHienTai->DanhSachMon != nullptr && banHienTai->DanhSachMon->Count > 0) {
+            for each(MonAn ^ mon in banHienTai->DanhSachMon) {
+                // Tìm món ăn trong danhSachMonAn để lấy thông tin đầy đủ (nếu cần)
+                MonAn^ monDayDu = nullptr;
+                for each(MonAn ^ monAn in danhSachMonAn) {
+                    if (monAn->ID == mon->ID) {
+                        monDayDu = monAn;
+                        break;
+                    }
+                }
+
+                if (monDayDu == nullptr) {
+                    // Nếu không tìm thấy món trong danhSachMonAn, bỏ qua hoặc xử lý lỗi
+                    continue;
+                }
+
                 Panel^ panelOrder = gcnew Panel();
                 panelOrder->Tag = mon;
                 panelOrder->BackColor = System::Drawing::Color::IndianRed;
                 panelOrder->Size = System::Drawing::Size(268, 124);
 
                 Label^ lblGia = gcnew Label();
-                lblGia->Text = mon->Gia + "$";
+                lblGia->Text = monDayDu->Gia + "$";
                 lblGia->AutoSize = true;
                 lblGia->Font = gcnew Drawing::Font(L"Microsoft Sans Serif", 10.2F);
                 lblGia->Location = System::Drawing::Point(154, 48);
@@ -310,7 +355,7 @@ namespace PBL2DatMonAn {
                 NumericUpDown^ numSoLuong = gcnew NumericUpDown();
                 numSoLuong->Minimum = 0;
                 numSoLuong->Maximum = 99;
-                numSoLuong->Value = mon->SoLuong;
+                numSoLuong->Value = mon->SoLuong; // Sử dụng SoLuong từ DanhSachMon
                 numSoLuong->ValueChanged += gcnew System::EventHandler(this, &FormFood::numSoLuong_ValueChanged);
                 numSoLuong->Location = System::Drawing::Point(158, 80);
                 numSoLuong->Size = System::Drawing::Size(36, 22);
@@ -320,14 +365,14 @@ namespace PBL2DatMonAn {
                 picBox->Size = System::Drawing::Size(130, 116);
                 picBox->SizeMode = PictureBoxSizeMode::StretchImage;
                 try {
-                    picBox->Image = Image::FromFile(mon->Anh);
+                    picBox->Image = Image::FromFile(monDayDu->Anh);
                 }
                 catch (...) {
                     picBox->Image = nullptr; // Xử lý nếu ảnh không tồn tại
                 }
 
                 Label^ lblTen = gcnew Label();
-                lblTen->Text = mon->TenMon;
+                lblTen->Text = monDayDu->TenMon;
                 lblTen->AutoSize = true;
                 lblTen->Font = gcnew Drawing::Font(L"Segoe UI Semibold", 10.2F, FontStyle::Bold);
                 lblTen->Location = System::Drawing::Point(154, 25);
