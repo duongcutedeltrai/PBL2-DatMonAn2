@@ -18,6 +18,22 @@ namespace PBL2DatMonAn {
             billFilePath = "bill.txt";
         }
 
+        System::Void UpdateHistory() {
+            String^ billFilePath = "bill.txt";
+            List<PayMent^>^ danhSachHoaDon = PayMent::DocDanhSachHoaDon(billFilePath);
+
+            // Remove all panels except panel1
+            for (int i = flowLayoutPanel1->Controls->Count - 1; i >= 0; i--) {
+                if (flowLayoutPanel1->Controls[i] != panel1) {
+                    flowLayoutPanel1->Controls->RemoveAt(i);
+                }
+            }
+            int stt = 1;
+            for each(PayMent ^ bill in danhSachHoaDon) {
+                AddPanelDonHang(bill, stt++);
+            }
+        }
+
     protected:
         ~AddHistoryBillForm()
         {

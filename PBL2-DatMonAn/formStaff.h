@@ -41,7 +41,7 @@ namespace PBL2DatMonAn {
 
 			//truyen addhistoryForm vao createtable
 			CreateTable^ createTable = gcnew CreateTable(nameStaff, banFilePath);
-			//createTable->SetHistoryForm(addHistoryBillForm);
+			createTable->SetHistoryForm(addHistoryBillForm);
 			createTable->TaoDayBan(10, flpBan, danhSachBan);
 			createTable->TakeAway(4, flpMangVe);
 		
@@ -341,6 +341,7 @@ private: System::Void btnLichSuDonHang_Click_1(System::Object^ sender, System::E
     panelDanhsachban->Visible = false;
     panelMangVe->Visible = false;
     addHistoryBillForm->Visible = true;
+    addHistoryBillForm->UpdateHistory();
     btnLichSuDonHang->BackColor = Color::IndianRed;
 }
 };

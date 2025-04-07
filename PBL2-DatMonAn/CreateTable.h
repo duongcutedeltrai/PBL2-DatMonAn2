@@ -6,7 +6,7 @@
 using namespace System;
 using namespace System::Windows::Forms;
 using namespace System::Collections::Generic;
-
+using namespace PBL2DatMonAn;
     ref class CreateTable {
     public:
         CreateTable(String^ nameStaff, String^ banFilePath) {
@@ -14,9 +14,9 @@ using namespace System::Collections::Generic;
             this->banFilePath = banFilePath;
         }
 
-        /*void SetHistoryForm(AddHistoryBillForm^ historyForm) {
-            this->historyForm = historyForm;
-        }*/
+        void SetHistoryForm(AddHistoryBillForm^ historyForm) {
+            addHistoryBillForm = historyForm;
+        }
 
         void TaoDayBan(int soBan, FlowLayoutPanel^ flpBan, List<ManagerTable^>^ danhSachBan);
         void TakeAway(int soBan, FlowLayoutPanel^ flpMangVe);
@@ -24,7 +24,7 @@ using namespace System::Collections::Generic;
     private:
         String^ nameStaff;
         String^ banFilePath;
-  /*      AddHistoryBillForm^ historyForm;*/
+        AddHistoryBillForm^ addHistoryBillForm;
 
         void btnBan_Click(Object^ sender, EventArgs^ e);
         void btnBanMangve_Click(Object^ sender, EventArgs^ e);

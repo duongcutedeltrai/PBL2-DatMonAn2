@@ -129,7 +129,7 @@ namespace PBL2DatMonAn {
 		}
 
 		//goi form bill
-		FormBill^ formBill = gcnew FormBill(banHienTai->DanhSachMon, banHienTai,nameStaff, danhSachBan, banFilePath);
+		FormBill^ formBill = gcnew FormBill(banHienTai->DanhSachMon, banHienTai,nameStaff, danhSachBan, banFilePath, addHistoryBillForm);
         formBill->ShowDialog();
         HienThiMonDaDat();
 		CapNhatTongTien();

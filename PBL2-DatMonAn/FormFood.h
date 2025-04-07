@@ -21,7 +21,7 @@ namespace PBL2DatMonAn {
 	public ref class FormFood : public System::Windows::Forms::Form
 	{
 	public:
-		FormFood(ManagerTable^ ban, String^ nameStaff, List<ManagerTable^>^ danhSachBan, String^ banFilePath)
+		FormFood(ManagerTable^ ban, String^ nameStaff, List<ManagerTable^>^ danhSachBan, String^ banFilePath, AddHistoryBillForm^ historyForm)
 		{
 			InitializeComponent();
 			this->banHienTai = ban;
@@ -29,7 +29,7 @@ namespace PBL2DatMonAn {
 			filePath = "monan.txt";
 			this->danhSachBan = danhSachBan;
 			this->banFilePath = banFilePath;
-			//this->historyForm = historyForm;
+			this->addHistoryBillForm = historyForm;
 			danhSachMonAn = MonAn::DocDanhSachMonAn(filePath);
 			lblTenNhanVien->Text = "Ten nhan vien: " + nameStaff;
 			HienThiMonDaDat();
@@ -50,7 +50,7 @@ namespace PBL2DatMonAn {
 				delete components;
 			}
 		}
-	//private: AddHistoryBillForm^ historyForm;
+	private: AddHistoryBillForm^ addHistoryBillForm;
 	private: List<ManagerTable^>^ danhSachBan;
 	private: System::String^ banFilePath;
 

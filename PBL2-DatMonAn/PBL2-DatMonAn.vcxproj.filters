@@ -114,9 +114,9 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="login.txt" />
     <Text Include="monan.txt" />
     <Text Include="Account.txt" />
+    <Text Include="Table.txt" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PBL2-DatMonAn.rc">

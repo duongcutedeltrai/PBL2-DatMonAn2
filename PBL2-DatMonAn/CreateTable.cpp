@@ -1,6 +1,7 @@
 ﻿#include "CreateTable.h"
 #include "ManagerTable.h"
 #include "FormFood.h"
+#include "AddHistoryBillForm.h"
 using namespace System;
 using namespace System::Windows::Forms;
 using namespace System::Drawing;
@@ -49,7 +50,7 @@ using namespace System::Drawing::Drawing2D;
         ManagerTable^ ban = safe_cast<ManagerTable^>(tags[0]);
         List<ManagerTable^>^ danhSachBan = safe_cast<List<ManagerTable^>^>(tags[1]);
 
-        PBL2DatMonAn::FormFood^ food = gcnew PBL2DatMonAn::FormFood(ban, nameStaff, danhSachBan, banFilePath);
+        PBL2DatMonAn::FormFood^ food = gcnew PBL2DatMonAn::FormFood(ban, nameStaff, danhSachBan, banFilePath, addHistoryBillForm);
         food->ShowDialog();
 
         if (ban->TrangThai == L"Trống") {
@@ -70,7 +71,7 @@ using namespace System::Drawing::Drawing2D;
     void CreateTable::btnBanMangve_Click(Object^ sender, EventArgs^ e) {
         Button^ btn = safe_cast<Button^>(sender);
         ManagerTable^ banMangVe = gcnew ManagerTable(btn->Text);
-        PBL2DatMonAn::FormFood^ food = gcnew PBL2DatMonAn::FormFood(banMangVe, nameStaff, nullptr, banFilePath);
+        PBL2DatMonAn::FormFood^ food = gcnew PBL2DatMonAn::FormFood(banMangVe, nameStaff, nullptr, banFilePath, addHistoryBillForm);
         food->ShowDialog();
     }
   

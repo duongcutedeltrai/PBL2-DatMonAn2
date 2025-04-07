@@ -19,7 +19,7 @@ namespace PBL2DatMonAn {
 	{
 		//ref class FormFood;
 	public:
-		FormBill(System::Collections::Generic::List<MonAn^>^ dsMon, ManagerTable^ ban, String^ nameStaff, List<ManagerTable^>^ dsBan, String^ banFilePath)
+		FormBill(System::Collections::Generic::List<MonAn^>^ dsMon, ManagerTable^ ban, String^ nameStaff, List<ManagerTable^>^ dsBan, String^ banFilePath, AddHistoryBillForm^ historyForm)
 		{
 			InitializeComponent();
 			this->danhSachMon = dsMon;
@@ -27,7 +27,7 @@ namespace PBL2DatMonAn {
 			this->nameStaff = nameStaff;
 			this->danhSachBan = dsBan;
 			this->banFilePath = banFilePath;
-			//this->historyForm = historyForm;
+			this->addHistoryBillForm = historyForm;
 			this->billFilePath = "bill.txt";
 			lblTenNhanVIen->Text = "Ten nhan vien: " + nameStaff;
 			lblBanDat->Text = ban->SoBan;
@@ -49,7 +49,7 @@ namespace PBL2DatMonAn {
 			}
 		}
 	private:
-		//AddHistoryBillForm^ historyForm;
+		AddHistoryBillForm^ addHistoryBillForm;
 		String^ billFilePath;
 		ManagerTable^ banHienTai;
 		String^ nameStaff;
@@ -387,9 +387,9 @@ namespace PBL2DatMonAn {
 		ManagerTable::GhiDanhSachBan(danhSachBan, banFilePath);
 
 		//cap nhat lich su hoa don
-		/*if (historyForm != nullptr) {
-			historyForm->UpdateHistory();
-		}*/
+		if (addHistoryBillForm != nullptr) {
+			addHistoryBillForm->UpdateHistory();
+		}
 		MessageBox::Show(L"Thanh toán thành công!", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
 
 		this->Close();
@@ -426,9 +426,9 @@ private: System::Void btnTienMat_Click(System::Object^ sender, System::EventArgs
 	ManagerTable::GhiDanhSachBan(danhSachBan, banFilePath);
 
 	//cap nhat lich su hoa don
-	/*if (historyForm != nullptr) {
-		historyForm->UpdateHistory();
-	}*/
+	if (addHistoryBillForm != nullptr) {
+		addHistoryBillForm->UpdateHistory();
+	}
 
 	MessageBox::Show(L"Thanh toán thành công!", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
 	this->Close();

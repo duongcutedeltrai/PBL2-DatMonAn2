@@ -8,7 +8,6 @@
 20250405145145||Súp cua||1.25$||Khai Vị||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\supcua.jpg||
 20250405145452||Cánh gà chiên nước mắm||1.67$||Món Chính||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\mon-canh-ga-chien-nuoc-mam-than-thanh-889x675.png||
 20250405145601||Khoai tây chiên||0.92$||Khai Vị||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\khoai-tay-chien.jpg||
-20250405145657||Salad trộn dầu giấm||1.17$||Salad||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\mon-salad-tron-dau-giam.jpg||
 20250405145732||Salad cá ngừ||1.46$||Salad||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\salad-ca-ngu.jpg||
 20250405145819||Salad gà xé||1.33$||Salad||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\salahgaxe.jpg||
 20250405145844||Salad trái cây||1.25$||Salad||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\salad-trai-cay-sot-mayonnaise-13.jpg||
