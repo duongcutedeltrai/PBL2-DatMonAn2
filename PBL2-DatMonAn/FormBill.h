@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include "MonAn.h"
 #include "ManagerTable.h"
+#include "PayMent.h"
+#include "AddHistoryBillForm.h"
 namespace PBL2DatMonAn {
 
 	using namespace System;
@@ -26,6 +28,8 @@ namespace PBL2DatMonAn {
 			this->nameStaff = nameStaff;
 			this->danhSachBan = dsBan;
 			this->banFilePath = banFilePath;
+			this->historyForm = historyForm;
+			this->billFilePath = "bill.txt";
 			lblTenNhanVIen->Text = "Ten nhan vien: " + nameStaff;
 			lblBanDat->Text = ban->SoBan;
 			Monandachon();
@@ -46,6 +50,8 @@ namespace PBL2DatMonAn {
 			}
 		}
 	private:
+		AddHistoryBillForm^ historyForm;
+		String^ billFilePath;
 		ManagerTable^ banHienTai;
 		String^ nameStaff;
 		System::Collections::Generic::List<MonAn^>^ danhSachMon;
@@ -266,8 +272,8 @@ namespace PBL2DatMonAn {
 			this->datagridViewBill->RowHeadersVisible = false;
 			this->datagridViewBill->RowHeadersWidth = 25;
 			this->datagridViewBill->RowTemplate->Height = 24;
-			this->datagridViewBill->ScrollBars = System::Windows::Forms::ScrollBars::None;
 			this->datagridViewBill->Size = System::Drawing::Size(468, 71);
+			this->datagridViewBill->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
 			this->datagridViewBill->TabIndex = 10;
 			// 
 			// Column1
@@ -355,33 +361,81 @@ namespace PBL2DatMonAn {
 	};
 	private: System::Void Monandachon();
 	private: System::Void btnChuyenKhoan_Click(System::Object^ sender, System::EventArgs^ e) {
-		banHienTai->TrangThai = L"Đã Thanh Toán";
+		if (danhSachMon -> Count == 0) {
+			MessageBox::Show(L"Không có món nào trong danh sách!", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			return;
+		}
+		double tongTien = 0.0;
+		for each(MonAn ^ mon in danhSachMon) {
+			double gia = Convert::ToDouble(mon->Gia->Replace("$", ""));
+			tongTien += gia * mon->SoLuong;
+		}
+		//tao va luu hoa don
+		PayMent^ payMent = gcnew PayMent(banHienTai->ID, banHienTai->SoBan, nameStaff, danhSachMon, tongTien, L"Chuyển khoản");
+		List<PayMent^>^ danhSachHoaDon = gcnew List<PayMent^>();
+		danhSachHoaDon->Add(payMent);
+		PayMent::GhiDanhSachHoaDon(danhSachHoaDon, billFilePath);
+
+		//cap nhat trang thai ban
+		banHienTai->TrangThai = L"Trống";
 		banHienTai->DanhSachMon->Clear();
+
+		//cap nhat danh sach ban
+		for each(ManagerTable ^ ban in danhSachBan) {
+			if (ban->SoBan == banHienTai->SoBan) {
+				ban->TrangThai = banHienTai->TrangThai;
+				ban->DanhSachMon = banHienTai->DanhSachMon;
+				break;
+			}
+		}
+
+		ManagerTable::GhiDanhSachBan(danhSachBan, banFilePath);
+
+		//cap nhat lich su hoa don
+		if (historyForm != nullptr) {
+			historyForm->UpdateHistory();
+		}
+		MessageBox::Show(L"Thanh toán thành công!", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
+
 		this->Close();
 	};
 private: System::Void btnTienMat_Click(System::Object^ sender, System::EventArgs^ e) {
 	if (danhSachMon->Count == 0) {
-		MessageBox::Show(L"Không có món nào trong hóa đơn", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+		MessageBox::Show(L"Không có món nào trong danh sách!", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
 		return;
 	}
+	double tongTien = 0;
+	for each(MonAn ^ mon in danhSachMon) {
+		double gia = Convert::ToDouble(mon->Gia->Replace("$", ""));
+		tongTien += gia * mon->SoLuong;
+	}
+	//tao va luu hoa don
+	PayMent^ payMent = gcnew PayMent(banHienTai->ID, banHienTai->SoBan, nameStaff, danhSachMon, tongTien, L"Tiền mặt");
+	List<PayMent^>^ danhSachHoaDon = gcnew List<PayMent^>();
+	danhSachHoaDon->Add(payMent);
+	PayMent::GhiDanhSachHoaDon(danhSachHoaDon, billFilePath);
 
-	MessageBox::Show(L"Thanh toán thành công", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
-	banHienTai->TrangThai = L"Đã Thanh Toán";
+	//cap nhat trang thai ban
 	banHienTai->TrangThai = L"Trống";
 	banHienTai->DanhSachMon->Clear();
 
-	// cap nhat danh sach mon
-	for each (ManagerTable ^ ban in danhSachBan)
-	{
+	//cap nhat danh sach ban
+	for each(ManagerTable ^ ban in danhSachBan) {
 		if (ban->SoBan == banHienTai->SoBan) {
-			ban->TrangThai == banHienTai->TrangThai;
+			ban->TrangThai = banHienTai->TrangThai;
 			ban->DanhSachMon = banHienTai->DanhSachMon;
 			break;
 		}
 	}
 
-	//ghi lai file
 	ManagerTable::GhiDanhSachBan(danhSachBan, banFilePath);
+
+	//cap nhat lich su hoa don
+	if (historyForm != nullptr) {
+		historyForm->UpdateHistory();
+	}
+
+	MessageBox::Show(L"Thanh toán thành công!", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
 	this->Close();
 }
 };

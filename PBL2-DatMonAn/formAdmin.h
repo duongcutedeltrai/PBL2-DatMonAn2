@@ -25,7 +25,6 @@ namespace PBL2DatMonAn {
 			panelGeneral->Controls->Add(addFoodForm);
 			addFoodForm->Dock = DockStyle::Fill;
 			addFoodForm->Visible = false; 
-
 			addUserForm = gcnew AddUserForm();
 			panelGeneral->Controls->Add(addUserForm);
 			addUserForm->Dock = DockStyle::Fill;

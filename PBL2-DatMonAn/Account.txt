@@ -1,1 +1,2 @@
-﻿20250407034048||Phạm Ánh Dương||1||123||   03/11/2004||Nam ||Đầu bếp||Nhân viên
+﻿20250407145933||Pham Anh DUong||1||123||   17/02/2025||Nam ||Phục vụ||Nhân viên
+20250407194427||Nguyen quoc dung||3||123||   09/01/2025||Nam ||Thu ngân||Nhân viên

@@ -83,15 +83,6 @@ namespace PBL2DatMonAn {
 	private: System::Windows::Forms::Label^ lblNavTwo;
 	private: System::Windows::Forms::Label^ lblNavOne;
 	private: System::Windows::Forms::Label^ label5;
-
-
-
-
-
-
-
-
-
 	private: System::Drawing::Font^ commonFont;
 
 	protected:

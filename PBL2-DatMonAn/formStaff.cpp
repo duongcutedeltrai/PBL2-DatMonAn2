@@ -26,8 +26,9 @@ namespace PBL2DatMonAn {
 
     System::Void formStaff::btnChonBan_Click(System::Object^ sender, System::EventArgs^ e){
         ResetMauButtonMenu();
-        panelMangVe->Visible = true;
         panelDanhsachban->Visible = true;
+        panelMangVe->Visible = true;
+        addHistoryBillForm->Visible = false;
         btnChonBan->BackColor = Color::IndianRed;
     }
 

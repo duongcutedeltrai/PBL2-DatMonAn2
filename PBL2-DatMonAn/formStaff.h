@@ -7,7 +7,8 @@
 #include "ManagerTable.h"
 #include <windows.h>
 #include "FormBill.h"
-
+#include "MonAn.h"
+#include "AddHistoryBillForm.h"
 // Forward declaration
 
 
@@ -28,12 +29,22 @@ namespace PBL2DatMonAn {
         formStaff(String^ nameStaff)
         {
             InitializeComponent();
-			this->nameStaff = nameStaff;
-			lblTenNhanVien->Text = "Ten nhan vien: " + nameStaff;
+            this->nameStaff = nameStaff;
+            lblTenNhanVien->Text = "Tên nhân viên: " + nameStaff;
             banFilePath = "Table.txt";
-			danhSachBan = ManagerTable::DocDanhSachBan(banFilePath);
-			//
-            // Thêm panel vào form
+            danhSachBan = ManagerTable::DocDanhSachBan(banFilePath);
+            addHistoryBillForm = gcnew AddHistoryBillForm();
+            addHistoryBillForm->Dock = DockStyle::Fill;
+            panelGeneral->Controls->Add(addHistoryBillForm);
+            panelGeneral->Controls->Add(panelDanhsachban);
+            panelGeneral->Controls->Add(panelMangVe);
+
+			//truyen addhistoryForm vao createtable
+	/*		CreateTable^ createTable = gcnew CreateTable(nameStaff, banFilePath);
+			createTable->SetHistoryForm(addHistoryBillForm);
+			createTable->TaoDayBan(10, flpBan, danhSachBan);
+			createTable->TakeAway(4, flpMangVe);*/
+		
         }
 
     protected:
@@ -44,8 +55,8 @@ namespace PBL2DatMonAn {
                 delete components;
             }
         }
-	private: System::String^ banFilePath;
-
+    private: AddHistoryBillForm^ addHistoryBillForm;
+    private: System::String^ banFilePath;
     private:
 		String^ nameStaff;
     private: System::Windows::Forms::Panel^ panelStaff;
@@ -53,7 +64,8 @@ namespace PBL2DatMonAn {
     private: System::Windows::Forms::Label^ label1;
 
     private: System::Windows::Forms::Button^ btnDangXuat;
-    private: System::Windows::Forms::Button^ btnDanhsach;
+    private: System::Windows::Forms::Button^ btnLichSuDonHang;
+
     private: System::Windows::Forms::Button^ btnChonBan;
 
     private: System::Windows::Forms::Panel^ panelMangVe;
@@ -68,8 +80,8 @@ namespace PBL2DatMonAn {
     private: System::Windows::Forms::Panel^ panel7;
     private: System::Windows::Forms::Label^ lblTenNhanVien;
 	private: List<ManagerTable^>^ danhSachBan;
-
-
+	private: List<MonAn^>^ danhSachMonAn;
+    private: System::Windows::Forms::Panel^ panelGeneral;
     private:
         System::ComponentModel::Container^ components;
 
@@ -79,7 +91,7 @@ namespace PBL2DatMonAn {
             this->panelStaff = (gcnew System::Windows::Forms::Panel());
             this->lblTenNhanVien = (gcnew System::Windows::Forms::Label());
             this->btnDangXuat = (gcnew System::Windows::Forms::Button());
-            this->btnDanhsach = (gcnew System::Windows::Forms::Button());
+            this->btnLichSuDonHang = (gcnew System::Windows::Forms::Button());
             this->btnChonBan = (gcnew System::Windows::Forms::Button());
             this->label1 = (gcnew System::Windows::Forms::Label());
             this->panelMangVe = (gcnew System::Windows::Forms::Panel());
@@ -90,9 +102,11 @@ namespace PBL2DatMonAn {
             this->panel7 = (gcnew System::Windows::Forms::Panel());
             this->flpBan = (gcnew System::Windows::Forms::FlowLayoutPanel());
             this->labelDanhsachban = (gcnew System::Windows::Forms::Label());
+            this->panelGeneral = (gcnew System::Windows::Forms::Panel());
             this->panelStaff->SuspendLayout();
             this->panelMangVe->SuspendLayout();
             this->panelDanhsachban->SuspendLayout();
+            this->panelGeneral->SuspendLayout();
             this->SuspendLayout();
             // 
             // panelStaff
@@ -100,7 +114,7 @@ namespace PBL2DatMonAn {
             this->panelStaff->BackColor = System::Drawing::Color::Gainsboro;
             this->panelStaff->Controls->Add(this->lblTenNhanVien);
             this->panelStaff->Controls->Add(this->btnDangXuat);
-            this->panelStaff->Controls->Add(this->btnDanhsach);
+            this->panelStaff->Controls->Add(this->btnLichSuDonHang);
             this->panelStaff->Controls->Add(this->btnChonBan);
             this->panelStaff->Controls->Add(this->label1);
             this->panelStaff->Dock = System::Windows::Forms::DockStyle::Top;
@@ -138,21 +152,21 @@ namespace PBL2DatMonAn {
             this->btnDangXuat->UseVisualStyleBackColor = false;
             this->btnDangXuat->Click += gcnew System::EventHandler(this, &formStaff::btnDangXuat_Click);
             // 
-            // btnDanhsach
+            // btnLichSuDonHang
             // 
-            this->btnDanhsach->BackColor = System::Drawing::Color::Gainsboro;
-            this->btnDanhsach->Cursor = System::Windows::Forms::Cursors::Hand;
-            this->btnDanhsach->FlatAppearance->BorderSize = 0;
-            this->btnDanhsach->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-            this->btnDanhsach->Font = (gcnew System::Drawing::Font(L"Segoe UI", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->btnLichSuDonHang->BackColor = System::Drawing::Color::Gainsboro;
+            this->btnLichSuDonHang->Cursor = System::Windows::Forms::Cursors::Hand;
+            this->btnLichSuDonHang->FlatAppearance->BorderSize = 0;
+            this->btnLichSuDonHang->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+            this->btnLichSuDonHang->Font = (gcnew System::Drawing::Font(L"Segoe UI", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->btnDanhsach->Location = System::Drawing::Point(555, 74);
-            this->btnDanhsach->Name = L"btnDanhsach";
-            this->btnDanhsach->Size = System::Drawing::Size(261, 58);
-            this->btnDanhsach->TabIndex = 2;
-            this->btnDanhsach->Text = L"Danh sách đơn hàng";
-            this->btnDanhsach->UseVisualStyleBackColor = false;
-            this->btnDanhsach->Click += gcnew System::EventHandler(this, &formStaff::btnDanhsach_Click);
+            this->btnLichSuDonHang->Location = System::Drawing::Point(555, 74);
+            this->btnLichSuDonHang->Name = L"btnLichSuDonHang";
+            this->btnLichSuDonHang->Size = System::Drawing::Size(261, 58);
+            this->btnLichSuDonHang->TabIndex = 2;
+            this->btnLichSuDonHang->Text = L"Lịch sử đơn hàng";
+            this->btnLichSuDonHang->UseVisualStyleBackColor = false;
+            this->btnLichSuDonHang->Click += gcnew System::EventHandler(this, &formStaff::btnLichSuDonHang_Click_1);
             // 
             // btnChonBan
             // 
@@ -186,7 +200,7 @@ namespace PBL2DatMonAn {
             this->panelMangVe->Controls->Add(this->panel8);
             this->panelMangVe->Controls->Add(this->flpMangVe);
             this->panelMangVe->Controls->Add(this->labelMangve);
-            this->panelMangVe->Location = System::Drawing::Point(748, 138);
+            this->panelMangVe->Location = System::Drawing::Point(739, 0);
             this->panelMangVe->Name = L"panelMangVe";
             this->panelMangVe->Size = System::Drawing::Size(389, 489);
             this->panelMangVe->TabIndex = 1;
@@ -224,7 +238,7 @@ namespace PBL2DatMonAn {
             this->panelDanhsachban->Controls->Add(this->panel7);
             this->panelDanhsachban->Controls->Add(this->flpBan);
             this->panelDanhsachban->Controls->Add(this->labelDanhsachban);
-            this->panelDanhsachban->Location = System::Drawing::Point(12, 138);
+            this->panelDanhsachban->Location = System::Drawing::Point(3, 0);
             this->panelDanhsachban->Name = L"panelDanhsachban";
             this->panelDanhsachban->Size = System::Drawing::Size(730, 489);
             this->panelDanhsachban->TabIndex = 2;
@@ -257,14 +271,22 @@ namespace PBL2DatMonAn {
             this->labelDanhsachban->Text = L"Danh Sách Bàn";
             this->labelDanhsachban->Click += gcnew System::EventHandler(this, &formStaff::labelDanhsachban_Click);
             // 
+            // panelGeneral
+            // 
+            this->panelGeneral->Controls->Add(this->panelMangVe);
+            this->panelGeneral->Location = System::Drawing::Point(0, 138);
+            this->panelGeneral->Name = L"panelGeneral";
+            this->panelGeneral->Size = System::Drawing::Size(1144, 498);
+            this->panelGeneral->TabIndex = 3;
+            // 
             // formStaff
             // 
             this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
             this->ClientSize = System::Drawing::Size(1144, 639);
             this->Controls->Add(this->panelDanhsachban);
-            this->Controls->Add(this->panelMangVe);
             this->Controls->Add(this->panelStaff);
+            this->Controls->Add(this->panelGeneral);
             this->Name = L"formStaff";
             this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
             this->Text = L"formStaff";
@@ -272,25 +294,33 @@ namespace PBL2DatMonAn {
             this->panelStaff->ResumeLayout(false);
             this->panelMangVe->ResumeLayout(false);
             this->panelDanhsachban->ResumeLayout(false);
+            this->panelGeneral->ResumeLayout(false);
             this->ResumeLayout(false);
 
         }
 #pragma endregion
     private: System::Void formStaff_Load(System::Object^ sender, System::EventArgs^ e) {
-		
+
         CreateTable^ createTable = gcnew CreateTable(nameStaff, banFilePath);
         createTable->TaoDayBan(10, flpBan, danhSachBan);
         createTable->TakeAway(4, flpMangVe);
+            //createTable->SetHistoryForm(addHistoryBillForm);
+
         ResetMauButtonMenu();
         btnChonBan->BackColor = Color::IndianRed;
         BoGocControl(btnChonBan, 10);
-        BoGocControl(btnDanhsach, 10);
-        BoGocControl(btnDangXuat, 10); 
+        BoGocControl(btnLichSuDonHang, 10);
+        BoGocControl(btnDangXuat, 10);  
+
+        panelDanhsachban->Visible = true;
+        panelMangVe->Visible = true;
+        addHistoryBillForm->Visible = false;
+
     }
     private: System::Void ResetMauButtonMenu() {
         Color mauMacDinh = Color::Gainsboro;
         btnChonBan->BackColor = mauMacDinh;
-        btnDanhsach->BackColor = mauMacDinh;
+        btnLichSuDonHang->BackColor = mauMacDinh;
         btnDangXuat->BackColor = mauMacDinh;
     }
     private: System::Void btnChonBan_Click(System::Object^ sender, System::EventArgs^ e);
@@ -304,13 +334,14 @@ private: System::Void panelMangVe_Paint(System::Object^ sender, System::Windows:
 }
 private: System::Void labelDanhsachban_Click(System::Object^ sender, System::EventArgs^ e) {
 }
-           private: System::Void btnDanhsach_Click(System::Object^ sender, System::EventArgs^ e) {
-               ResetMauButtonMenu();
-               panelMangVe->Visible = false;
-               panelDanhsachban->Visible = false;
-               btnDanhsach->BackColor = Color::IndianRed;
-           }
 private: System::Void lblTenNhanVien_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void btnLichSuDonHang_Click_1(System::Object^ sender, System::EventArgs^ e) {
+    ResetMauButtonMenu();
+    panelDanhsachban->Visible = false;
+    panelMangVe->Visible = false;
+    addHistoryBillForm->Visible = true;
+    btnLichSuDonHang->BackColor = Color::IndianRed;
 }
 };
 }

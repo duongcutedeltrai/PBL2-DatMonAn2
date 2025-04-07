@@ -131,6 +131,7 @@
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="ManagerTable.cpp" />
     <ClCompile Include="MonAn.cpp" />
+    <ClCompile Include="PayMent.cpp" />
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -161,6 +162,7 @@
     </ClInclude>
     <ClInclude Include="ManagerTable.h" />
     <ClInclude Include="MonAn.h" />
+    <ClInclude Include="PayMent.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="User.h" />
   </ItemGroup>
@@ -199,7 +201,6 @@
     <Text Include="Account.txt" />
     <Text Include="login.txt" />
     <Text Include="monan.txt" />
-    <Text Include="Table.txt" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PBL2-DatMonAn.rc" />

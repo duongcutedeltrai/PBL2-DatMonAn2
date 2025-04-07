@@ -9,11 +9,8 @@ using namespace System::Collections::Generic;
 using namespace msclr::interop;
 using namespace std;
 using namespace System::Windows::Forms;
-ref class User {
-	//tao class User
-
-	
-public:
+ref  class User {
+	public:
 	String^ ID;
 	String^ Name;
 	String^ Account;

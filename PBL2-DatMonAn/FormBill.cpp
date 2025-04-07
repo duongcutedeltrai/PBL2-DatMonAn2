@@ -15,50 +15,32 @@
 //cac mon duoc chon duoc dua vao datagridbill
 namespace PBL2DatMonAn {
     System::Void FormBill::Monandachon() {
-        datagridViewBill->Rows->Clear(); 
-        double tongtien = 0.0; 
+        // Xóa các dòng cũ trong DataGridView
+        datagridViewBill->Rows->Clear();
 
-        // Duyệt qua danh sách món ăn đã chọn
-        for each(MonAn ^ mon in danhSachMon) {
-           
-            if (mon->SoLuong <= 0) continue;
-
-            try {
-          
-                String^ giaStr = mon->Gia->Trim();
-                giaStr = giaStr->Replace("$", "")->Trim(); 
-                double gia = Convert::ToDouble(giaStr);
-
-                // Lấy số lượng
-                int soluong = mon->SoLuong;
-
-                // Tính thành tiền
-                double thanhtien = gia * soluong;
-                tongtien += thanhtien;
-
-                // Thêm hàng vào DataGridView
-                datagridViewBill->Rows->Add(
-                    mon->TenMon,                  
-                    soluong.ToString(),             
-                    gia.ToString("F2") + " $",    
-                    thanhtien.ToString("F2") + " $"
-                );
-            }
-            catch (Exception^ ex) {
-                // Xử lý lỗi nếu không thể chuyển đổi giá
-                MessageBox::Show(L"Lỗi khi xử lý giá của món " + mon->TenMon + ": " + ex->Message,
-                    "Lỗi", MessageBoxButtons::OK, MessageBoxIcon::Error);
-                continue; // Bỏ qua món này và tiếp tục với món khác
+        // Hiển thị danh sách món ăn trong DataGridView và tính tổng tiền
+        double tongTien = 0;
+        if (danhSachMon != nullptr && danhSachMon->Count > 0) {
+            for each(MonAn ^ mon in danhSachMon) {
+                double gia = Convert::ToDouble(mon->Gia->Replace("$", ""));
+                double thanhTien = gia * mon->SoLuong;
+                datagridViewBill->Rows->Add(mon->TenMon, mon->SoLuong, mon->Gia + "$", thanhTien.ToString("F2") + "$");
+                tongTien += thanhTien;
             }
         }
 
-        // Cập nhật tổng tiền vào txtPrice
-        txtPrice->Text = tongtien.ToString("F2") + " $";
+        // Hiển thị tổng tiền
+        txtPrice->Text = tongTien.ToString("F2") + "$";
 
-        // Nếu không có món nào được hiển thị, thông báo cho người dùng
-        if (datagridViewBill->Rows->Count == 0) {
-            MessageBox::Show(L"Không có món ăn nào được chọn.", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        // Cập nhật chiều cao DataGridView
+        int totalRowHeight = 0;
+        for (int i = 0; i < datagridViewBill->Rows->Count; i++) {
+            totalRowHeight += datagridViewBill->Rows[i]->Height;
         }
+        int headerHeight = datagridViewBill->ColumnHeadersHeight;
+        int newHeight = headerHeight + totalRowHeight + 2;
+        if (newHeight > 200) newHeight = 200;
+        datagridViewBill->Height = newHeight;
     }
 
 }

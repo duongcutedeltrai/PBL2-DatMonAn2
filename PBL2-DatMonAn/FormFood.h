@@ -3,7 +3,9 @@
 #include "FormBill.h"
 #include "formStaff.h"
 #include "ManagerTable.h"
+#include "CreateTable.h"
 #include "AddFoodForm.h"
+#include "AddHistoryBillForm.h"
 namespace PBL2DatMonAn {
 
 	using namespace System;
@@ -27,6 +29,7 @@ namespace PBL2DatMonAn {
 			filePath = "monan.txt";
 			this->danhSachBan = danhSachBan;
 			this->banFilePath = banFilePath;
+			//this->historyForm = historyForm;
 			danhSachMonAn = MonAn::DocDanhSachMonAn(filePath);
 			lblTenNhanVien->Text = "Ten nhan vien: " + nameStaff;
 			HienThiMonDaDat();
@@ -34,6 +37,7 @@ namespace PBL2DatMonAn {
 			//TODO: Add the constructor code here
 			//
 		}
+
 
 	protected:
 		/// <summary>
@@ -46,7 +50,7 @@ namespace PBL2DatMonAn {
 				delete components;
 			}
 		}
-
+	//private: AddHistoryBillForm^ historyForm;
 	private: List<ManagerTable^>^ danhSachBan;
 	private: System::String^ banFilePath;
 
@@ -684,13 +688,13 @@ private: System::Void btnSalah_Click(System::Object^ sender, System::EventArgs^ 
 	LocDanhSachMon("Salad");
 }
 private: System::Void btnAppetizer_Click(System::Object^ sender, System::EventArgs^ e) {
-	LocDanhSachMon("Khai Vị");
+	LocDanhSachMon(L"Khai Vị");
 }
 private: System::Void btnTrangMieng_Click(System::Object^ sender, System::EventArgs^ e) {	
-	LocDanhSachMon("Tráng Miệng");
+	LocDanhSachMon(L"Tráng Miệng");
 }
 private: System::Void btnNuocUong_Click(System::Object^ sender, System::EventArgs^ e) {
-	LocDanhSachMon("Nước uống");
+	LocDanhSachMon(L"Nước uống");
 }
 private: System::Void btnTrangChu_Click(System::Object^ sender, System::EventArgs^ e) {
 	// Chuyển về trang chủ
