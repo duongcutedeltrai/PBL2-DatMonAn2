@@ -1,11 +1,12 @@
 #pragma once
 #include "ManagerTable.h"
 //#include "FormFood.h"
-//#include "AddHistoryBillForm.h"
+#include "AddHistoryBillForm.h"
 
 using namespace System;
 using namespace System::Windows::Forms;
 using namespace System::Collections::Generic;
+
     ref class CreateTable {
     public:
         CreateTable(String^ nameStaff, String^ banFilePath) {
@@ -23,10 +24,11 @@ using namespace System::Collections::Generic;
     private:
         String^ nameStaff;
         String^ banFilePath;
-        //AddHistoryBillForm^ historyForm;
+  /*      AddHistoryBillForm^ historyForm;*/
 
         void btnBan_Click(Object^ sender, EventArgs^ e);
         void btnBanMangve_Click(Object^ sender, EventArgs^ e);
     };
+
 
 

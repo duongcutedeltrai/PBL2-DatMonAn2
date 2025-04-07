@@ -16,13 +16,6 @@ namespace PBL2DatMonAn {
         {
             InitializeComponent();
             billFilePath = "bill.txt";
-            commonFont = gcnew System::Drawing::Font("Arial", 10, System::Drawing::FontStyle::Regular);
-            LoadHistory();
-        }
-
-        void UpdateHistory()
-        {
-            LoadHistory();
         }
 
     protected:
@@ -171,24 +164,7 @@ namespace PBL2DatMonAn {
 
     private:
         System::Void AddHistoryBillForm_Load(System::Object^ sender, System::EventArgs^ e) {
-            LoadHistory();
         }
-
-    private:
-        void LoadHistory() {
-            for (int i = flowLayoutPanel1->Controls->Count - 1; i >= 0; i--) {
-                if (flowLayoutPanel1->Controls[i]->Name != L"panel1") {
-                    flowLayoutPanel1->Controls->RemoveAt(i);
-                }
-            }
-
-            List<PayMent^>^ danhSachHoaDon = PayMent::DocDanhSachHoaDon(billFilePath);
-            int stt = 1;
-            for each(PayMent ^ hoaDon in danhSachHoaDon) {
-                AddPanelDonHang(hoaDon, stt++);
-            }
-        }
-
     private:
         void AddPanelDonHang(PayMent^ bill, int stt) {
             Button^ btnBill = gcnew Button();
@@ -199,6 +175,8 @@ namespace PBL2DatMonAn {
             btnBill->Tag = bill;
             btnBill->TabIndex = 0;
             btnBill->Cursor = Cursors::Hand;
+
+            commonFont = gcnew System::Drawing::Font("Arial", 10, System::Drawing::FontStyle::Regular);
 
             Label^ lblSTT = gcnew Label();
             lblSTT->AutoSize = true;

@@ -40,10 +40,10 @@ namespace PBL2DatMonAn {
             panelGeneral->Controls->Add(panelMangVe);
 
 			//truyen addhistoryForm vao createtable
-	/*		CreateTable^ createTable = gcnew CreateTable(nameStaff, banFilePath);
-			createTable->SetHistoryForm(addHistoryBillForm);
+			CreateTable^ createTable = gcnew CreateTable(nameStaff, banFilePath);
+			//createTable->SetHistoryForm(addHistoryBillForm);
 			createTable->TaoDayBan(10, flpBan, danhSachBan);
-			createTable->TakeAway(4, flpMangVe);*/
+			createTable->TakeAway(4, flpMangVe);
 		
         }
 
@@ -301,10 +301,10 @@ namespace PBL2DatMonAn {
 #pragma endregion
     private: System::Void formStaff_Load(System::Object^ sender, System::EventArgs^ e) {
 
-        CreateTable^ createTable = gcnew CreateTable(nameStaff, banFilePath);
+    /*    CreateTable^ createTable = gcnew CreateTable(nameStaff, banFilePath);
         createTable->TaoDayBan(10, flpBan, danhSachBan);
         createTable->TakeAway(4, flpMangVe);
-            //createTable->SetHistoryForm(addHistoryBillForm);
+        createTable->SetHistoryForm(addHistoryBillForm);*/
 
         ResetMauButtonMenu();
         btnChonBan->BackColor = Color::IndianRed;

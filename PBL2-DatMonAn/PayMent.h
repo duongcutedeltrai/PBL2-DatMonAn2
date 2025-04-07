@@ -1,13 +1,9 @@
 ﻿#pragma once
 #include "MonAn.h"
-
 using namespace System;
 using namespace System::Collections::Generic;
 using namespace System::Windows::Forms;
-
-namespace PBL2DatMonAn {
-
-    ref class PayMent
+ref class PayMent
     {
     public:
         System::String^ ID;
@@ -23,7 +19,7 @@ namespace PBL2DatMonAn {
             DateTime now = DateTime::Now;
             ID = now.ToString("yyyyMMddHHmmss");
             BanID = banID;
-            SoBan = soBan;
+            SoBan = soBan;  
             TenNhanVien = tenNhanVien;
             DanhSachMon = gcnew List<MonAn^>();
             for each(MonAn ^ mon in danhSachMon) {
@@ -99,5 +95,4 @@ namespace PBL2DatMonAn {
             }
             return danhSachHoaDon;
         }
-    };
-}
+  };
