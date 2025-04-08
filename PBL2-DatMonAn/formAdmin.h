@@ -3,6 +3,8 @@
 #include "AddFoodForm.h"
 #include "AddUserForm.h"
 #include "AddStatiticForm.h"
+#include "AddDiscountForm.h"
+#include "FormBill.h"
 namespace PBL2DatMonAn {
 
 	using namespace System;
@@ -33,7 +35,9 @@ namespace PBL2DatMonAn {
 			addStatiticForm = gcnew AddStatiticForm();
 			panelGeneral->Controls->Add(addStatiticForm);
 			addStatiticForm->Dock = DockStyle::Fill;
-
+			addDiscountForm = gcnew AddDiscountForm();
+			panelGeneral->Controls->Add(addDiscountForm);
+			addDiscountForm->Dock = DockStyle::Fill;
 			//
 			//TODO: Add the constructor code here
 			//
@@ -53,6 +57,7 @@ namespace PBL2DatMonAn {
 
 
 	protected:
+		FormBill^ formBill;
 	private: System::String^ nameAdmin;	
 	private: System::Windows::Forms::Button^ btnThongKe;
 	private: System::Windows::Forms::Button^ btnQuanlynhanvien;
@@ -67,8 +72,11 @@ namespace PBL2DatMonAn {
 	private: AddFoodForm^ addFoodForm;
 	private: AddUserForm^ addUserForm;
 	private: AddStatiticForm^ addStatiticForm;
+	private: AddDiscountForm^ addDiscountForm;
 	private: System::Windows::Forms::Panel^ panelGeneral;
 	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Button^ btnDiscount;
+
 	private:
 		/// <summary>
 		/// Required designer variable.
@@ -88,16 +96,18 @@ namespace PBL2DatMonAn {
 			this->btnDangXUatAdmin = (gcnew System::Windows::Forms::Button());
 			this->labelAdmin = (gcnew System::Windows::Forms::Label());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
-			this->panel2 = (gcnew System::Windows::Forms::Panel());
-			this->panelGeneral = (gcnew System::Windows::Forms::Panel());
 			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->panel2 = (gcnew System::Windows::Forms::Panel());
+			this->btnDiscount = (gcnew System::Windows::Forms::Button());
+			this->panelGeneral = (gcnew System::Windows::Forms::Panel());
 			this->panel1->SuspendLayout();
 			this->panel2->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// btnThemMon
 			// 
-			this->btnThemMon->BackColor = System::Drawing::Color::FromArgb(167, 141, 120);
+			this->btnThemMon->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(167)), static_cast<System::Int32>(static_cast<System::Byte>(141)),
+				static_cast<System::Int32>(static_cast<System::Byte>(120)));
 			this->btnThemMon->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->btnThemMon->FlatAppearance->BorderSize = 0;
 			this->btnThemMon->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
@@ -105,10 +115,10 @@ namespace PBL2DatMonAn {
 				static_cast<System::Byte>(0)));
 			this->btnThemMon->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
 				static_cast<System::Int32>(static_cast<System::Byte>(18)));
-			this->btnThemMon->Location = System::Drawing::Point(348, 7);
+			this->btnThemMon->Location = System::Drawing::Point(464, 9);
 			this->btnThemMon->Margin = System::Windows::Forms::Padding(0);
 			this->btnThemMon->Name = L"btnThemMon";
-			this->btnThemMon->Size = System::Drawing::Size(136, 41);
+			this->btnThemMon->Size = System::Drawing::Size(181, 50);
 			this->btnThemMon->TabIndex = 5;
 			this->btnThemMon->Text = L"Thêm Món";
 			this->btnThemMon->UseVisualStyleBackColor = false;
@@ -125,10 +135,10 @@ namespace PBL2DatMonAn {
 				static_cast<System::Byte>(0)));
 			this->btnQuanlynhanvien->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)),
 				static_cast<System::Int32>(static_cast<System::Byte>(41)), static_cast<System::Int32>(static_cast<System::Byte>(18)));
-			this->btnQuanlynhanvien->Location = System::Drawing::Point(180, 7);
+			this->btnQuanlynhanvien->Location = System::Drawing::Point(240, 9);
 			this->btnQuanlynhanvien->Margin = System::Windows::Forms::Padding(0);
 			this->btnQuanlynhanvien->Name = L"btnQuanlynhanvien";
-			this->btnQuanlynhanvien->Size = System::Drawing::Size(144, 42);
+			this->btnQuanlynhanvien->Size = System::Drawing::Size(192, 52);
 			this->btnQuanlynhanvien->TabIndex = 1;
 			this->btnQuanlynhanvien->Text = L"Quản Lý Nhân Viên";
 			this->btnQuanlynhanvien->UseVisualStyleBackColor = false;
@@ -145,10 +155,10 @@ namespace PBL2DatMonAn {
 				static_cast<System::Byte>(0)));
 			this->btnThongKe->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
 				static_cast<System::Int32>(static_cast<System::Byte>(18)));
-			this->btnThongKe->Location = System::Drawing::Point(9, 7);
+			this->btnThongKe->Location = System::Drawing::Point(12, 9);
 			this->btnThongKe->Margin = System::Windows::Forms::Padding(0);
 			this->btnThongKe->Name = L"btnThongKe";
-			this->btnThongKe->Size = System::Drawing::Size(150, 42);
+			this->btnThongKe->Size = System::Drawing::Size(200, 52);
 			this->btnThongKe->TabIndex = 0;
 			this->btnThongKe->Text = L"Thống Kê";
 			this->btnThongKe->UseVisualStyleBackColor = false;
@@ -165,10 +175,10 @@ namespace PBL2DatMonAn {
 				static_cast<System::Byte>(0)));
 			this->btnDangXUatAdmin->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
 				static_cast<System::Int32>(static_cast<System::Byte>(18)));
-			this->btnDangXUatAdmin->Location = System::Drawing::Point(703, 11);
+			this->btnDangXUatAdmin->Location = System::Drawing::Point(937, 14);
 			this->btnDangXUatAdmin->Margin = System::Windows::Forms::Padding(0);
 			this->btnDangXUatAdmin->Name = L"btnDangXUatAdmin";
-			this->btnDangXUatAdmin->Size = System::Drawing::Size(150, 55);
+			this->btnDangXUatAdmin->Size = System::Drawing::Size(200, 68);
 			this->btnDangXUatAdmin->TabIndex = 4;
 			this->btnDangXUatAdmin->Text = L"Đăng Xuất";
 			this->btnDangXUatAdmin->UseVisualStyleBackColor = false;
@@ -180,10 +190,9 @@ namespace PBL2DatMonAn {
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->labelAdmin->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
 				static_cast<System::Int32>(static_cast<System::Byte>(18)));
-			this->labelAdmin->Location = System::Drawing::Point(64, 43);
-			this->labelAdmin->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->labelAdmin->Location = System::Drawing::Point(85, 53);
 			this->labelAdmin->Name = L"labelAdmin";
-			this->labelAdmin->Size = System::Drawing::Size(114, 37);
+			this->labelAdmin->Size = System::Drawing::Size(152, 46);
 			this->labelAdmin->TabIndex = 6;
 			this->labelAdmin->Text = L"Quản Lý";
 			this->labelAdmin->Click += gcnew System::EventHandler(this, &formAdmin::labelAdmin_Click);
@@ -197,34 +206,11 @@ namespace PBL2DatMonAn {
 			this->panel1->Controls->Add(this->btnDangXUatAdmin);
 			this->panel1->Dock = System::Windows::Forms::DockStyle::Top;
 			this->panel1->Location = System::Drawing::Point(0, 0);
-			this->panel1->Margin = System::Windows::Forms::Padding(2);
+			this->panel1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(862, 80);
+			this->panel1->Size = System::Drawing::Size(1149, 98);
 			this->panel1->TabIndex = 0;
 			this->panel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &formAdmin::panel1_Paint);
-			// 
-			// panel2
-			// 
-			this->panel2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(223)),
-				static_cast<System::Int32>(static_cast<System::Byte>(206)));
-			this->panel2->Controls->Add(this->btnThongKe);
-			this->panel2->Controls->Add(this->btnQuanlynhanvien);
-			this->panel2->Controls->Add(this->btnThemMon);
-			this->panel2->Location = System::Drawing::Point(0, 84);
-			this->panel2->Margin = System::Windows::Forms::Padding(2);
-			this->panel2->Name = L"panel2";
-			this->panel2->Size = System::Drawing::Size(862, 60);
-			this->panel2->TabIndex = 7;
-			// 
-			// panelGeneral
-			// 
-			this->panelGeneral->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(223)),
-				static_cast<System::Int32>(static_cast<System::Byte>(206)));
-			this->panelGeneral->Location = System::Drawing::Point(0, 148);
-			this->panelGeneral->Margin = System::Windows::Forms::Padding(2);
-			this->panelGeneral->Name = L"panelGeneral";
-			this->panelGeneral->Size = System::Drawing::Size(863, 470);
-			this->panelGeneral->TabIndex = 8;
 			// 
 			// label1
 			// 
@@ -233,21 +219,67 @@ namespace PBL2DatMonAn {
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->label1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
 				static_cast<System::Int32>(static_cast<System::Byte>(18)));
-			this->label1->Location = System::Drawing::Point(12, 5);
+			this->label1->Location = System::Drawing::Point(16, 6);
+			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(222, 38);
+			this->label1->Size = System::Drawing::Size(275, 47);
 			this->label1->TabIndex = 7;
 			this->label1->Text = L"Restaurant D^D";
 			// 
+			// panel2
+			// 
+			this->panel2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(223)),
+				static_cast<System::Int32>(static_cast<System::Byte>(206)));
+			this->panel2->Controls->Add(this->btnDiscount);
+			this->panel2->Controls->Add(this->btnThongKe);
+			this->panel2->Controls->Add(this->btnQuanlynhanvien);
+			this->panel2->Controls->Add(this->btnThemMon);
+			this->panel2->Location = System::Drawing::Point(0, 103);
+			this->panel2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->panel2->Name = L"panel2";
+			this->panel2->Size = System::Drawing::Size(1149, 74);
+			this->panel2->TabIndex = 7;
+			// 
+			// btnDiscount
+			// 
+			this->btnDiscount->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(167)), static_cast<System::Int32>(static_cast<System::Byte>(141)),
+				static_cast<System::Int32>(static_cast<System::Byte>(120)));
+			this->btnDiscount->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->btnDiscount->FlatAppearance->BorderColor = System::Drawing::Color::White;
+			this->btnDiscount->FlatAppearance->BorderSize = 0;
+			this->btnDiscount->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnDiscount->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btnDiscount->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+				static_cast<System::Int32>(static_cast<System::Byte>(18)));
+			this->btnDiscount->Location = System::Drawing::Point(684, 9);
+			this->btnDiscount->Margin = System::Windows::Forms::Padding(0);
+			this->btnDiscount->Name = L"btnDiscount";
+			this->btnDiscount->Size = System::Drawing::Size(181, 50);
+			this->btnDiscount->TabIndex = 6;
+			this->btnDiscount->Text = L"Giảm giá";
+			this->btnDiscount->UseVisualStyleBackColor = false;
+			this->btnDiscount->Click += gcnew System::EventHandler(this, &formAdmin::btnDiscount_Click);
+			// 
+			// panelGeneral
+			// 
+			this->panelGeneral->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(223)),
+				static_cast<System::Int32>(static_cast<System::Byte>(206)));
+			this->panelGeneral->Location = System::Drawing::Point(0, 182);
+			this->panelGeneral->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->panelGeneral->Name = L"panelGeneral";
+			this->panelGeneral->Size = System::Drawing::Size(1151, 578);
+			this->panelGeneral->TabIndex = 8;
+			// 
 			// formAdmin
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(862, 622);
+			this->ClientSize = System::Drawing::Size(1149, 766);
 			this->Controls->Add(this->panelGeneral);
 			this->Controls->Add(this->panel2);
 			this->Controls->Add(this->panel1);
-			this->Margin = System::Windows::Forms::Padding(2);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"formAdmin";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"formAdmin";
@@ -270,21 +302,25 @@ private: System::Void formAdmin_Load(System::Object^ sender, System::EventArgs^ 
 		btnQuanlynhanvien->BackColor = mauMacDinh;
 		btnThemMon->BackColor = mauMacDinh;	
 		btnDangXUatAdmin->BackColor = mauMacDinh;
+		btnDiscount->BackColor = mauMacDinh;
 	}
 	private: System::Void btnThongKe_Click(System::Object^ sender, System::EventArgs^ e) {
 		ResetMauButtonMenu();
 		btnThongKe->BackColor = Color::RosyBrown;
 		addFoodForm->Visible = false;
 		addUserForm->Visible = false;
+		addDiscountForm->Visible = false;
 		addStatiticForm->Visible = true;
 		addStatiticForm->BringToFront();
+
 	}
 private: System::Void btnQuanlynhanvien_Click(System::Object^ sender, System::EventArgs^ e) {
 	ResetMauButtonMenu();
 	btnQuanlynhanvien->BackColor = Color::RosyBrown;
 	addFoodForm->Visible = false;
-	addUserForm->Visible = true;
 	addStatiticForm->Visible = false;
+	addDiscountForm->Visible = false;
+	addUserForm->Visible = true;
 	addUserForm->BringToFront();
 }
 
@@ -313,12 +349,22 @@ private: System::Void btnThemMon_Click(System::Object^ sender, System::EventArgs
 	addFoodForm->Visible = true; 
 	addUserForm->Visible = false;
 	addStatiticForm->Visible = false;
+	addDiscountForm->Visible = false;
 	addFoodForm->BringToFront();
 }
 
 private: System::Void panel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 }
 private: System::Void labelAdmin_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void btnDiscount_Click(System::Object^ sender, System::EventArgs^ e) {
+	ResetMauButtonMenu();
+	btnDiscount->BackColor = Color::RosyBrown;
+	addFoodForm->Visible = false;
+	addUserForm->Visible = false;
+	addStatiticForm->Visible = false;
+	addDiscountForm->Visible = true;
+	addDiscountForm->BringToFront();
 }
 };
 }

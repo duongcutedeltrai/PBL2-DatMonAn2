@@ -20,7 +20,6 @@ using namespace System::Drawing::Drawing2D;
             btnBan->Font = gcnew Drawing::Font("Segoe UI", 10, FontStyle::Bold);
             btnBan->ForeColor = Color::Black;
             btnBan->Cursor = Cursors::Hand;
-
             btnBan->Click += gcnew EventHandler(this, &CreateTable::btnBan_Click);
             flpBan->Controls->Add(btnBan);
         }

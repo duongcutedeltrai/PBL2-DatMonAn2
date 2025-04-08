@@ -3,6 +3,7 @@
 #include "ManagerTable.h"
 #include "PayMent.h"
 #include "AddHistoryBillForm.h"
+#include "AddDiscountForm.h"	
 namespace PBL2DatMonAn {
 
 	using namespace System;
@@ -35,6 +36,11 @@ namespace PBL2DatMonAn {
 			//  
 			//TODO: Add the constructor code here  
 			//  
+		}
+		//cap nhat tong tiwn say khi giam gia
+		void CapNhatGiamGia(double tyLeGiamGia) {
+			txtDiscount->Text = tyLeGiamGia.ToString("F2") + "%";
+			Monandachon(); // Cập nhật lại tổng tiền trong txtPrice
 		}
 
 	protected:
@@ -83,6 +89,9 @@ namespace PBL2DatMonAn {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
 	private: System::Windows::Forms::Label^ lblTenNhanVIen;
 	private: System::Windows::Forms::Label^ lblDateIn;
+	private: System::Windows::Forms::TextBox^ txtDiscount;
+	private: System::Windows::Forms::Label^ lblDiscount;
+	private: System::Windows::Forms::DateTimePicker^ dateTimePicker1;
 
 
 	private:
@@ -117,6 +126,9 @@ namespace PBL2DatMonAn {
 			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->lblTenNhanVIen = (gcnew System::Windows::Forms::Label());
 			this->lblDateIn = (gcnew System::Windows::Forms::Label());
+			this->lblDiscount = (gcnew System::Windows::Forms::Label());
+			this->txtDiscount = (gcnew System::Windows::Forms::TextBox());
+			this->dateTimePicker1 = (gcnew System::Windows::Forms::DateTimePicker());
 			this->panel1->SuspendLayout();
 			this->pnPrice->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->datagridViewBill))->BeginInit();
@@ -128,10 +140,10 @@ namespace PBL2DatMonAn {
 			this->panel1->Controls->Add(this->label3);
 			this->panel1->Controls->Add(this->label2);
 			this->panel1->Controls->Add(this->label1);
-			this->panel1->Location = System::Drawing::Point(23, 11);
-			this->panel1->Margin = System::Windows::Forms::Padding(2);
+			this->panel1->Location = System::Drawing::Point(31, 14);
+			this->panel1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(337, 126);
+			this->panel1->Size = System::Drawing::Size(449, 155);
 			this->panel1->TabIndex = 0;
 			// 
 			// label4
@@ -141,10 +153,9 @@ namespace PBL2DatMonAn {
 				static_cast<System::Byte>(0)));
 			this->label4->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
 				static_cast<System::Int32>(static_cast<System::Byte>(18)));
-			this->label4->Location = System::Drawing::Point(66, 89);
-			this->label4->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label4->Location = System::Drawing::Point(88, 110);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(211, 30);
+			this->label4->Size = System::Drawing::Size(270, 38);
 			this->label4->TabIndex = 3;
 			this->label4->Text = L"Hóa Đơn Bán Hàng";
 			// 
@@ -153,10 +164,9 @@ namespace PBL2DatMonAn {
 			this->label3->AutoSize = true;
 			this->label3->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
 				static_cast<System::Int32>(static_cast<System::Byte>(18)));
-			this->label3->Location = System::Drawing::Point(121, 75);
-			this->label3->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label3->Location = System::Drawing::Point(161, 92);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(88, 13);
+			this->label3->Size = System::Drawing::Size(101, 16);
 			this->label3->TabIndex = 2;
 			this->label3->Text = L"ĐT: 0123456789";
 			// 
@@ -166,10 +176,9 @@ namespace PBL2DatMonAn {
 				static_cast<System::Byte>(0)));
 			this->label2->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
 				static_cast<System::Int32>(static_cast<System::Byte>(18)));
-			this->label2->Location = System::Drawing::Point(38, 41);
-			this->label2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label2->Location = System::Drawing::Point(51, 50);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(259, 34);
+			this->label2->Size = System::Drawing::Size(345, 42);
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"Địa chỉ: Nguyễn Lương Bằng, Quận LIên CHiểu, Thành Phố Đà Nẵng";
 			this->label2->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
@@ -181,10 +190,9 @@ namespace PBL2DatMonAn {
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->label1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
 				static_cast<System::Int32>(static_cast<System::Byte>(18)));
-			this->label1->Location = System::Drawing::Point(42, 4);
-			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label1->Location = System::Drawing::Point(71, 4);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(235, 37);
+			this->label1->Size = System::Drawing::Size(287, 46);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"RESTAURANT D^D";
 			// 
@@ -196,21 +204,22 @@ namespace PBL2DatMonAn {
 				static_cast<System::Byte>(0)));
 			this->lblBanDat->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
 				static_cast<System::Int32>(static_cast<System::Byte>(18)));
-			this->lblBanDat->Location = System::Drawing::Point(142, 139);
-			this->lblBanDat->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->lblBanDat->Location = System::Drawing::Point(189, 171);
 			this->lblBanDat->Name = L"lblBanDat";
-			this->lblBanDat->Size = System::Drawing::Size(52, 30);
+			this->lblBanDat->Size = System::Drawing::Size(67, 38);
 			this->lblBanDat->TabIndex = 1;
 			this->lblBanDat->Text = L"Bàn";
 			// 
 			// pnPrice
 			// 
+			this->pnPrice->Controls->Add(this->txtDiscount);
+			this->pnPrice->Controls->Add(this->lblDiscount);
 			this->pnPrice->Controls->Add(this->txtPrice);
 			this->pnPrice->Controls->Add(this->label14);
-			this->pnPrice->Location = System::Drawing::Point(9, 440);
-			this->pnPrice->Margin = System::Windows::Forms::Padding(2);
+			this->pnPrice->Location = System::Drawing::Point(12, 542);
+			this->pnPrice->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->pnPrice->Name = L"pnPrice";
-			this->pnPrice->Size = System::Drawing::Size(346, 47);
+			this->pnPrice->Size = System::Drawing::Size(461, 58);
 			this->pnPrice->TabIndex = 6;
 			// 
 			// txtPrice
@@ -218,11 +227,11 @@ namespace PBL2DatMonAn {
 			this->txtPrice->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(223)),
 				static_cast<System::Int32>(static_cast<System::Byte>(206)));
 			this->txtPrice->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->txtPrice->Location = System::Drawing::Point(280, 15);
-			this->txtPrice->Margin = System::Windows::Forms::Padding(8);
+			this->txtPrice->Location = System::Drawing::Point(373, 18);
+			this->txtPrice->Margin = System::Windows::Forms::Padding(11, 10, 11, 10);
 			this->txtPrice->Multiline = true;
 			this->txtPrice->Name = L"txtPrice";
-			this->txtPrice->Size = System::Drawing::Size(44, 35);
+			this->txtPrice->Size = System::Drawing::Size(59, 43);
 			this->txtPrice->TabIndex = 1;
 			this->txtPrice->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			this->txtPrice->TextChanged += gcnew System::EventHandler(this, &FormBill::txtPrice_TextChanged);
@@ -234,10 +243,9 @@ namespace PBL2DatMonAn {
 				static_cast<System::Byte>(0)));
 			this->label14->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
 				static_cast<System::Int32>(static_cast<System::Byte>(18)));
-			this->label14->Location = System::Drawing::Point(215, 4);
-			this->label14->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label14->Location = System::Drawing::Point(287, 5);
 			this->label14->Name = L"label14";
-			this->label14->Size = System::Drawing::Size(69, 30);
+			this->label14->Size = System::Drawing::Size(89, 38);
 			this->label14->TabIndex = 0;
 			this->label14->Text = L"Tổng:";
 			this->label14->Click += gcnew System::EventHandler(this, &FormBill::label14_Click);
@@ -247,10 +255,9 @@ namespace PBL2DatMonAn {
 			this->label15->AutoSize = true;
 			this->label15->Font = (gcnew System::Drawing::Font(L"Segoe UI", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label15->Location = System::Drawing::Point(92, 535);
-			this->label15->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label15->Location = System::Drawing::Point(123, 658);
 			this->label15->Name = L"label15";
-			this->label15->Size = System::Drawing::Size(180, 13);
+			this->label15->Size = System::Drawing::Size(213, 17);
 			this->label15->TabIndex = 7;
 			this->label15->Text = L"Cảm ơn quý khách và hẹn gặp lại";
 			// 
@@ -262,10 +269,10 @@ namespace PBL2DatMonAn {
 				static_cast<System::Byte>(0)));
 			this->btnTienMat->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
 				static_cast<System::Int32>(static_cast<System::Byte>(18)));
-			this->btnTienMat->Location = System::Drawing::Point(64, 490);
-			this->btnTienMat->Margin = System::Windows::Forms::Padding(2);
+			this->btnTienMat->Location = System::Drawing::Point(85, 603);
+			this->btnTienMat->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnTienMat->Name = L"btnTienMat";
-			this->btnTienMat->Size = System::Drawing::Size(103, 36);
+			this->btnTienMat->Size = System::Drawing::Size(137, 44);
 			this->btnTienMat->TabIndex = 8;
 			this->btnTienMat->Text = L"Tiền mặt";
 			this->btnTienMat->UseVisualStyleBackColor = false;
@@ -285,10 +292,10 @@ namespace PBL2DatMonAn {
 				static_cast<System::Byte>(0)));
 			this->btnChuyenKhoan->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
 				static_cast<System::Int32>(static_cast<System::Byte>(18)));
-			this->btnChuyenKhoan->Location = System::Drawing::Point(191, 490);
-			this->btnChuyenKhoan->Margin = System::Windows::Forms::Padding(2);
+			this->btnChuyenKhoan->Location = System::Drawing::Point(255, 603);
+			this->btnChuyenKhoan->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnChuyenKhoan->Name = L"btnChuyenKhoan";
-			this->btnChuyenKhoan->Size = System::Drawing::Size(109, 36);
+			this->btnChuyenKhoan->Size = System::Drawing::Size(145, 44);
 			this->btnChuyenKhoan->TabIndex = 9;
 			this->btnChuyenKhoan->Text = L"Chuyển khoản";
 			this->btnChuyenKhoan->UseVisualStyleBackColor = false;
@@ -306,14 +313,14 @@ namespace PBL2DatMonAn {
 				this->Column1,
 					this->Column2, this->Column3, this->Column4
 			});
-			this->datagridViewBill->Location = System::Drawing::Point(9, 254);
-			this->datagridViewBill->Margin = System::Windows::Forms::Padding(2);
+			this->datagridViewBill->Location = System::Drawing::Point(12, 313);
+			this->datagridViewBill->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->datagridViewBill->Name = L"datagridViewBill";
 			this->datagridViewBill->RowHeadersVisible = false;
 			this->datagridViewBill->RowHeadersWidth = 25;
 			this->datagridViewBill->RowTemplate->Height = 24;
 			this->datagridViewBill->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
-			this->datagridViewBill->Size = System::Drawing::Size(351, 58);
+			this->datagridViewBill->Size = System::Drawing::Size(468, 71);
 			this->datagridViewBill->TabIndex = 10;
 			this->datagridViewBill->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &FormBill::datagridViewBill_CellContentClick);
 			// 
@@ -349,30 +356,55 @@ namespace PBL2DatMonAn {
 				static_cast<System::Byte>(0)));
 			this->lblTenNhanVIen->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
 				static_cast<System::Int32>(static_cast<System::Byte>(18)));
-			this->lblTenNhanVIen->Location = System::Drawing::Point(34, 196);
-			this->lblTenNhanVIen->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->lblTenNhanVIen->Location = System::Drawing::Point(45, 238);
 			this->lblTenNhanVIen->Name = L"lblTenNhanVIen";
-			this->lblTenNhanVIen->Size = System::Drawing::Size(32, 13);
+			this->lblTenNhanVIen->Size = System::Drawing::Size(36, 17);
 			this->lblTenNhanVIen->TabIndex = 11;
 			this->lblTenNhanVIen->Text = L"label";
 			// 
 			// lblDateIn
 			// 
 			this->lblDateIn->AutoSize = true;
-			this->lblDateIn->Location = System::Drawing::Point(34, 226);
-			this->lblDateIn->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->lblDateIn->Location = System::Drawing::Point(45, 278);
 			this->lblDateIn->Name = L"lblDateIn";
-			this->lblDateIn->Size = System::Drawing::Size(47, 13);
+			this->lblDateIn->Size = System::Drawing::Size(57, 16);
 			this->lblDateIn->TabIndex = 12;
 			this->lblDateIn->Text = L"Giờ vào:";
 			// 
+			// lblDiscount
+			// 
+			this->lblDiscount->AutoSize = true;
+			this->lblDiscount->Location = System::Drawing::Point(19, 18);
+			this->lblDiscount->Name = L"lblDiscount";
+			this->lblDiscount->Size = System::Drawing::Size(64, 16);
+			this->lblDiscount->TabIndex = 2;
+			this->lblDiscount->Text = L"Giảm giá:";
+			// 
+			// txtDiscount
+			// 
+			this->txtDiscount->Location = System::Drawing::Point(90, 11);
+			this->txtDiscount->Multiline = true;
+			this->txtDiscount->Name = L"txtDiscount";
+			this->txtDiscount->Size = System::Drawing::Size(100, 32);
+			this->txtDiscount->TabIndex = 3;
+			// 
+			// dateTimePicker1
+			// 
+			this->dateTimePicker1->CustomFormat = L"    dd/MM/yyyy";
+			this->dateTimePicker1->Format = System::Windows::Forms::DateTimePickerFormat::Custom;
+			this->dateTimePicker1->Location = System::Drawing::Point(110, 271);
+			this->dateTimePicker1->Name = L"dateTimePicker1";
+			this->dateTimePicker1->Size = System::Drawing::Size(200, 22);
+			this->dateTimePicker1->TabIndex = 13;
+			// 
 			// FormBill
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(223)),
 				static_cast<System::Int32>(static_cast<System::Byte>(206)));
-			this->ClientSize = System::Drawing::Size(372, 557);
+			this->ClientSize = System::Drawing::Size(496, 686);
+			this->Controls->Add(this->dateTimePicker1);
 			this->Controls->Add(this->lblDateIn);
 			this->Controls->Add(this->lblTenNhanVIen);
 			this->Controls->Add(this->datagridViewBill);
@@ -382,7 +414,7 @@ namespace PBL2DatMonAn {
 			this->Controls->Add(this->pnPrice);
 			this->Controls->Add(this->lblBanDat);
 			this->Controls->Add(this->panel1);
-			this->Margin = System::Windows::Forms::Padding(2);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"FormBill";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"FormBill";

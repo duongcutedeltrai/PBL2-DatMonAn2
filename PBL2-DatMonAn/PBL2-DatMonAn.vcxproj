@@ -121,6 +121,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AddDiscountForm.cpp" />
     <ClCompile Include="AddFoodForm.cpp" />
     <ClCompile Include="AddHistoryBillForm.cpp" />
     <ClCompile Include="AddStatiticForm.cpp" />
@@ -137,6 +138,9 @@
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AddDiscountForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="AddFoodForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -172,6 +176,9 @@
     <ClInclude Include="User.h" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AddDiscountForm.resx">
+      <DependentUpon>AddDiscountForm.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddFoodForm.resx">
       <DependentUpon>AddFoodForm.h</DependentUpon>
     </EmbeddedResource>
