@@ -21,3 +21,4 @@
 20250405150741||Nước cam ép||0.75$||Nước uống||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\nuocscam-620x620.jpg||
 20250405150900||Coca-Cola||0.63$||Nước uống||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\cocacola-marketing-strategy02.jpg||
 20250405150923||Sinh tố dâu||1.04$||Nước uống||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\cach-lam-sinh-to-dau-dodoto.vn_.jpg||
+20250408133601||Phở Bò||2.5$||Món Chính||openFileDialog1||

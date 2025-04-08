@@ -62,7 +62,7 @@ namespace PBL2DatMonAn {
             // Tạo panel mới để hiển thị món đã chọn
             Panel^ panelOrder = gcnew Panel();
             panelOrder->Tag = monMoi; // Gán Tag là monMoi để đồng bộ
-            panelOrder->BackColor = System::Drawing::Color::IndianRed;
+            panelOrder->BackColor = System::Drawing::Color::WhiteSmoke;
             panelOrder->Size = System::Drawing::Size(268, 124);
             panelOrder->TabIndex = 3;
 
@@ -345,9 +345,9 @@ namespace PBL2DatMonAn {
 
                 Panel^ panelOrder = gcnew Panel();
                 panelOrder->Tag = mon;
-                panelOrder->BackColor = System::Drawing::Color::IndianRed;
+                panelOrder->BackColor = System::Drawing::Color::WhiteSmoke;
                 panelOrder->Size = System::Drawing::Size(268, 124);
-
+                    
                 Label^ lblGia = gcnew Label();
                 lblGia->Text = monDayDu->Gia + "$";
                 lblGia->AutoSize = true;

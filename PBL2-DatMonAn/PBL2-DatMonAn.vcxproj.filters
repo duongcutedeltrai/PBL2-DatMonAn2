@@ -57,6 +57,9 @@
     <ClCompile Include="PayMent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="AddStatiticForm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Login.h">
@@ -101,6 +104,9 @@
     <ClInclude Include="PayMent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AddStatiticForm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Image\iconAdd.png">
@@ -117,6 +123,7 @@
     <Text Include="monan.txt" />
     <Text Include="Account.txt" />
     <Text Include="Table.txt" />
+    <Text Include="bill.txt" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PBL2-DatMonAn.rc">
