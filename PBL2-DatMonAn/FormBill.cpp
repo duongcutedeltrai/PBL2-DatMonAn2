@@ -19,7 +19,7 @@ namespace PBL2DatMonAn {
         datagridViewBill->Rows->Clear();
 
         // Hiển thị danh sách món ăn trong DataGridView và tính tổng tiền
-        double tongTien = 0;
+        double tongTien = 0.0;
         if (danhSachMon != nullptr && danhSachMon->Count > 0) {
             for each(MonAn ^ mon in danhSachMon) {
                 double gia = Convert::ToDouble(mon->Gia->Replace("$", ""));

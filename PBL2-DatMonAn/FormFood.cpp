@@ -247,7 +247,7 @@ namespace PBL2DatMonAn {
                 if (mon == nullptr) continue;
 
                 // Tìm Label giá và NumericUpDown trong Controls
-                double gia = 0.00;
+                double gia = 0.0;
                 int soLuong = 1;
 
                 for each(Control ^ child in panelOrder->Controls) {
@@ -256,6 +256,8 @@ namespace PBL2DatMonAn {
                             // Nếu label là giá (khớp nội dung với mon->Gia)
                             try {
                                 gia = Convert::ToDouble(mon->Gia->Replace("$",""));
+                                //gia = Convert::ToDouble(mon->Gia + "$");
+
                             }
                             catch (...) {}
                         }
@@ -327,7 +329,7 @@ namespace PBL2DatMonAn {
         flowLayoutPanel1->Controls->Clear();
         if (banHienTai->DanhSachMon != nullptr && banHienTai->DanhSachMon->Count > 0) {
             for each(MonAn ^ mon in banHienTai->DanhSachMon) {
-                // Tìm món ăn trong danhSachMonAn để lấy thông tin đầy đủ (nếu cần)
+                 //Tìm món ăn trong danhSachMonAn để lấy thông tin đầy đủ (nếu cần)
                 MonAn^ monDayDu = nullptr;
                 for each(MonAn ^ monAn in danhSachMonAn) {
                     if (monAn->ID == mon->ID) {

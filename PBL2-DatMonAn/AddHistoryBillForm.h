@@ -206,7 +206,7 @@ namespace PBL2DatMonAn {
             Label^ lblAddNameStaff = gcnew Label();
             lblAddNameStaff->AutoSize = true;
             lblAddNameStaff->Font = commonFont;
-            lblAddNameStaff->Location = System::Drawing::Point(126, 8);
+            lblAddNameStaff->Location = System::Drawing::Point(110, 8);
             lblAddNameStaff->Text = bill->TenNhanVien;
             lblAddNameStaff->Name = L"lblAddNameStaff";
             lblAddNameStaff->Size = System::Drawing::Size(113, 19);
@@ -215,7 +215,7 @@ namespace PBL2DatMonAn {
             Label^ lblAddSoBan = gcnew Label();
             lblAddSoBan->AutoSize = true;
             lblAddSoBan->Font = commonFont;
-            lblAddSoBan->Location = System::Drawing::Point(317, 8);
+            lblAddSoBan->Location = System::Drawing::Point(250, 8);
             lblAddSoBan->Text = bill->SoBan;
             lblAddSoBan->Name = L"lblAddSoBan";
             lblAddSoBan->Size = System::Drawing::Size(38, 19);
@@ -225,7 +225,7 @@ namespace PBL2DatMonAn {
             lblAddTongTien->AutoSize = true;
             lblAddTongTien->Font = commonFont;
             lblAddTongTien->Location = System::Drawing::Point(437, 8);
-            lblAddTongTien->Text = bill->TongTien.ToString("F2");
+            lblAddTongTien->Text = bill->TongTien.ToString("F2") + "$";
             lblAddTongTien->Name = L"lblAddTongTien";
             lblAddTongTien->Size = System::Drawing::Size(76, 19);
             lblAddTongTien->TabIndex = 3;

@@ -363,6 +363,7 @@ namespace PBL2DatMonAn {
 		double tongTien = 0.0;
 		for each(MonAn ^ mon in danhSachMon) {
 			double gia = Convert::ToDouble(mon->Gia->Replace("$", ""));
+			//double gia = Convert::ToDouble(mon->Gia + "$");
 			tongTien += gia * mon->SoLuong;
 		}
 		//tao va luu hoa don
@@ -402,7 +403,8 @@ private: System::Void btnTienMat_Click(System::Object^ sender, System::EventArgs
 	double tongTien = 0;
 	for each(MonAn ^ mon in danhSachMon) {
 		double gia = Convert::ToDouble(mon->Gia->Replace("$", ""));
-		tongTien += gia * mon->SoLuong;
+		//double gia = Convert::ToDouble(mon->Gia + "$");
+		tongTien += gia * mon->SoLuong ;
 	}
 	//tao va luu hoa don
 	PayMent^ payMent = gcnew PayMent(banHienTai->ID, banHienTai->SoBan, nameStaff, danhSachMon, tongTien, L"Tiền mặt");
