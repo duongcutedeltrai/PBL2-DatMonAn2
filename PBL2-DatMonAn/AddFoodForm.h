@@ -115,18 +115,22 @@ namespace PBL2DatMonAn {
             this->panel1->Controls->Add(this->pnTenMon);
             this->panel1->Controls->Add(this->label1);
             this->panel1->Controls->Add(this->panel3);
-            this->panel1->Location = System::Drawing::Point(3, 4);
+            this->panel1->Location = System::Drawing::Point(2, 3);
+            this->panel1->Margin = System::Windows::Forms::Padding(2);
             this->panel1->Name = L"panel1";
-            this->panel1->Size = System::Drawing::Size(396, 662);
+            this->panel1->Size = System::Drawing::Size(297, 477);
             this->panel1->TabIndex = 0;
             // 
             // btnXoaMon
             // 
             this->btnXoaMon->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->btnXoaMon->Location = System::Drawing::Point(190, 608);
+            this->btnXoaMon->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+                static_cast<System::Int32>(static_cast<System::Byte>(18)));
+            this->btnXoaMon->Location = System::Drawing::Point(158, 422);
+            this->btnXoaMon->Margin = System::Windows::Forms::Padding(2);
             this->btnXoaMon->Name = L"btnXoaMon";
-            this->btnXoaMon->Size = System::Drawing::Size(147, 36);
+            this->btnXoaMon->Size = System::Drawing::Size(110, 29);
             this->btnXoaMon->TabIndex = 5;
             this->btnXoaMon->Text = L"Xóa Món";
             this->btnXoaMon->UseVisualStyleBackColor = true;
@@ -139,18 +143,22 @@ namespace PBL2DatMonAn {
                 L"Món Chính", L"Khai Vị", L"Salad", L"Tráng Miệng",
                     L"Nước uống"
             });
-            this->cbLoaiMon->Location = System::Drawing::Point(216, 284);
+            this->cbLoaiMon->Location = System::Drawing::Point(191, 198);
+            this->cbLoaiMon->Margin = System::Windows::Forms::Padding(2);
             this->cbLoaiMon->Name = L"cbLoaiMon";
-            this->cbLoaiMon->Size = System::Drawing::Size(121, 24);
+            this->cbLoaiMon->Size = System::Drawing::Size(92, 21);
             this->cbLoaiMon->TabIndex = 4;
             // 
             // btnThemMon
             // 
             this->btnThemMon->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->btnThemMon->Location = System::Drawing::Point(14, 608);
+            this->btnThemMon->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+                static_cast<System::Int32>(static_cast<System::Byte>(18)));
+            this->btnThemMon->Location = System::Drawing::Point(32, 422);
+            this->btnThemMon->Margin = System::Windows::Forms::Padding(2);
             this->btnThemMon->Name = L"btnThemMon";
-            this->btnThemMon->Size = System::Drawing::Size(147, 36);
+            this->btnThemMon->Size = System::Drawing::Size(110, 29);
             this->btnThemMon->TabIndex = 3;
             this->btnThemMon->Text = L"Thêm món";
             this->btnThemMon->UseVisualStyleBackColor = true;
@@ -160,17 +168,19 @@ namespace PBL2DatMonAn {
             // 
             this->pnDonGia->Controls->Add(this->txtDonGia);
             this->pnDonGia->Controls->Add(this->label3);
-            this->pnDonGia->Location = System::Drawing::Point(14, 189);
+            this->pnDonGia->Location = System::Drawing::Point(10, 122);
+            this->pnDonGia->Margin = System::Windows::Forms::Padding(2);
             this->pnDonGia->Name = L"pnDonGia";
-            this->pnDonGia->Size = System::Drawing::Size(364, 89);
+            this->pnDonGia->Size = System::Drawing::Size(273, 72);
             this->pnDonGia->TabIndex = 2;
             // 
             // txtDonGia
             // 
-            this->txtDonGia->Location = System::Drawing::Point(38, 40);
+            this->txtDonGia->Location = System::Drawing::Point(28, 32);
+            this->txtDonGia->Margin = System::Windows::Forms::Padding(2);
             this->txtDonGia->Multiline = true;
             this->txtDonGia->Name = L"txtDonGia";
-            this->txtDonGia->Size = System::Drawing::Size(285, 36);
+            this->txtDonGia->Size = System::Drawing::Size(215, 30);
             this->txtDonGia->TabIndex = 1;
             this->txtDonGia->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &AddFoodForm::txtDonGia_KeyPress);
             // 
@@ -179,9 +189,12 @@ namespace PBL2DatMonAn {
             this->label3->AutoSize = true;
             this->label3->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label3->Location = System::Drawing::Point(40, 12);
+            this->label3->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+                static_cast<System::Int32>(static_cast<System::Byte>(18)));
+            this->label3->Location = System::Drawing::Point(30, 10);
+            this->label3->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
             this->label3->Name = L"label3";
-            this->label3->Size = System::Drawing::Size(78, 25);
+            this->label3->Size = System::Drawing::Size(63, 20);
             this->label3->TabIndex = 0;
             this->label3->Text = L"Đơn giá";
             // 
@@ -189,19 +202,21 @@ namespace PBL2DatMonAn {
             // 
             this->pnTenMon->Controls->Add(this->txtTenMon);
             this->pnTenMon->Controls->Add(this->label2);
-            this->pnTenMon->Location = System::Drawing::Point(14, 85);
+            this->pnTenMon->Location = System::Drawing::Point(10, 38);
+            this->pnTenMon->Margin = System::Windows::Forms::Padding(2);
             this->pnTenMon->Name = L"pnTenMon";
-            this->pnTenMon->Size = System::Drawing::Size(364, 89);
+            this->pnTenMon->Size = System::Drawing::Size(273, 80);
             this->pnTenMon->TabIndex = 1;
             // 
             // txtTenMon
             // 
             this->txtTenMon->Font = (gcnew System::Drawing::Font(L"Arial", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->txtTenMon->Location = System::Drawing::Point(38, 40);
+            this->txtTenMon->Location = System::Drawing::Point(28, 32);
+            this->txtTenMon->Margin = System::Windows::Forms::Padding(2);
             this->txtTenMon->Multiline = true;
             this->txtTenMon->Name = L"txtTenMon";
-            this->txtTenMon->Size = System::Drawing::Size(285, 36);
+            this->txtTenMon->Size = System::Drawing::Size(215, 30);
             this->txtTenMon->TabIndex = 1;
             // 
             // label2
@@ -209,9 +224,12 @@ namespace PBL2DatMonAn {
             this->label2->AutoSize = true;
             this->label2->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label2->Location = System::Drawing::Point(33, 12);
+            this->label2->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+                static_cast<System::Int32>(static_cast<System::Byte>(18)));
+            this->label2->Location = System::Drawing::Point(25, 10);
+            this->label2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
             this->label2->Name = L"label2";
-            this->label2->Size = System::Drawing::Size(85, 25);
+            this->label2->Size = System::Drawing::Size(70, 20);
             this->label2->TabIndex = 0;
             this->label2->Text = L"Tên món";
             // 
@@ -220,27 +238,33 @@ namespace PBL2DatMonAn {
             this->label1->AutoSize = true;
             this->label1->Font = (gcnew System::Drawing::Font(L"Segoe UI", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label1->Location = System::Drawing::Point(131, 39);
+            this->label1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+                static_cast<System::Int32>(static_cast<System::Byte>(18)));
+            this->label1->Location = System::Drawing::Point(91, 15);
+            this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
             this->label1->Name = L"label1";
-            this->label1->Size = System::Drawing::Size(113, 28);
+            this->label1->Size = System::Drawing::Size(92, 21);
             this->label1->TabIndex = 0;
             this->label1->Text = L"Thêm món";
+            this->label1->Click += gcnew System::EventHandler(this, &AddFoodForm::label1_Click);
             // 
             // panel3
             // 
             this->panel3->Controls->Add(this->pictureBox1);
             this->panel3->Controls->Add(this->btnChonAnh);
-            this->panel3->Location = System::Drawing::Point(14, 334);
+            this->panel3->Location = System::Drawing::Point(10, 223);
+            this->panel3->Margin = System::Windows::Forms::Padding(2);
             this->panel3->Name = L"panel3";
-            this->panel3->Size = System::Drawing::Size(364, 252);
+            this->panel3->Size = System::Drawing::Size(273, 195);
             this->panel3->TabIndex = 3;
             // 
             // pictureBox1
             // 
             this->pictureBox1->BackColor = System::Drawing::SystemColors::ActiveCaption;
-            this->pictureBox1->Location = System::Drawing::Point(29, 13);
+            this->pictureBox1->Location = System::Drawing::Point(22, 11);
+            this->pictureBox1->Margin = System::Windows::Forms::Padding(2);
             this->pictureBox1->Name = L"pictureBox1";
-            this->pictureBox1->Size = System::Drawing::Size(294, 183);
+            this->pictureBox1->Size = System::Drawing::Size(220, 149);
             this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
             this->pictureBox1->TabIndex = 2;
             this->pictureBox1->TabStop = false;
@@ -250,9 +274,12 @@ namespace PBL2DatMonAn {
             this->btnChonAnh->AutoSize = true;
             this->btnChonAnh->Font = (gcnew System::Drawing::Font(L"Segoe UI", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->btnChonAnh->Location = System::Drawing::Point(113, 202);
+            this->btnChonAnh->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+                static_cast<System::Int32>(static_cast<System::Byte>(18)));
+            this->btnChonAnh->Location = System::Drawing::Point(85, 164);
+            this->btnChonAnh->Margin = System::Windows::Forms::Padding(2);
             this->btnChonAnh->Name = L"btnChonAnh";
-            this->btnChonAnh->Size = System::Drawing::Size(97, 33);
+            this->btnChonAnh->Size = System::Drawing::Size(73, 27);
             this->btnChonAnh->TabIndex = 1;
             this->btnChonAnh->Text = L"Chọn Ảnh";
             this->btnChonAnh->UseVisualStyleBackColor = true;
@@ -262,19 +289,23 @@ namespace PBL2DatMonAn {
             // 
             this->pnDanhSachMon->BackColor = System::Drawing::SystemColors::ActiveCaption;
             this->pnDanhSachMon->Controls->Add(this->flowLayoutPanel1);
-            this->pnDanhSachMon->Location = System::Drawing::Point(405, 3);
+            this->pnDanhSachMon->Location = System::Drawing::Point(304, 2);
+            this->pnDanhSachMon->Margin = System::Windows::Forms::Padding(2);
             this->pnDanhSachMon->Name = L"pnDanhSachMon";
-            this->pnDanhSachMon->Size = System::Drawing::Size(532, 663);
+            this->pnDanhSachMon->Size = System::Drawing::Size(550, 453);
             this->pnDanhSachMon->TabIndex = 1;
             // 
             // flowLayoutPanel1
             // 
             this->flowLayoutPanel1->AutoScroll = true;
+            this->flowLayoutPanel1->BackColor = System::Drawing::Color::White;
             this->flowLayoutPanel1->Controls->Add(this->panel2);
-            this->flowLayoutPanel1->Location = System::Drawing::Point(0, 4);
+            this->flowLayoutPanel1->Location = System::Drawing::Point(-1, -2);
+            this->flowLayoutPanel1->Margin = System::Windows::Forms::Padding(2);
             this->flowLayoutPanel1->Name = L"flowLayoutPanel1";
-            this->flowLayoutPanel1->Size = System::Drawing::Size(535, 659);
+            this->flowLayoutPanel1->Size = System::Drawing::Size(550, 480);
             this->flowLayoutPanel1->TabIndex = 0;
+            this->flowLayoutPanel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &AddFoodForm::flowLayoutPanel1_Paint);
             // 
             // panel2
             // 
@@ -286,81 +317,114 @@ namespace PBL2DatMonAn {
             this->panel2->Controls->Add(this->label5);
             this->panel2->Controls->Add(this->lblMonDaThem);
             this->panel2->Controls->Add(this->label4);
-            this->panel2->Location = System::Drawing::Point(3, 3);
+            this->panel2->Location = System::Drawing::Point(2, 2);
+            this->panel2->Margin = System::Windows::Forms::Padding(2);
             this->panel2->Name = L"panel2";
-            this->panel2->Size = System::Drawing::Size(526, 72);
+            this->panel2->Size = System::Drawing::Size(394, 58);
             this->panel2->TabIndex = 0;
             this->panel2->Visible = false;
             // 
             // lblSTT
             // 
             this->lblSTT->AutoSize = true;
-            this->lblSTT->Location = System::Drawing::Point(3, 33);
+            this->lblSTT->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+                static_cast<System::Int32>(static_cast<System::Byte>(18)));
+            this->lblSTT->Location = System::Drawing::Point(2, 27);
+            this->lblSTT->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
             this->lblSTT->Name = L"lblSTT";
-            this->lblSTT->Size = System::Drawing::Size(34, 16);
+            this->lblSTT->Size = System::Drawing::Size(28, 13);
             this->lblSTT->TabIndex = 7;
             this->lblSTT->Text = L"STT";
             // 
             // label7
             // 
             this->label7->AutoSize = true;
-            this->label7->Location = System::Drawing::Point(3, 4);
+            this->label7->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label7->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+                static_cast<System::Int32>(static_cast<System::Byte>(18)));
+            this->label7->Location = System::Drawing::Point(2, 3);
+            this->label7->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
             this->label7->Name = L"label7";
-            this->label7->Size = System::Drawing::Size(34, 16);
+            this->label7->Size = System::Drawing::Size(31, 13);
             this->label7->TabIndex = 6;
             this->label7->Text = L"STT";
             // 
             // lblPhanLoaiMon
             // 
             this->lblPhanLoaiMon->AutoSize = true;
-            this->lblPhanLoaiMon->Location = System::Drawing::Point(387, 33);
+            this->lblPhanLoaiMon->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+                static_cast<System::Int32>(static_cast<System::Byte>(18)));
+            this->lblPhanLoaiMon->Location = System::Drawing::Point(290, 27);
+            this->lblPhanLoaiMon->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
             this->lblPhanLoaiMon->Name = L"lblPhanLoaiMon";
-            this->lblPhanLoaiMon->Size = System::Drawing::Size(67, 16);
+            this->lblPhanLoaiMon->Size = System::Drawing::Size(57, 13);
             this->lblPhanLoaiMon->TabIndex = 5;
             this->lblPhanLoaiMon->Text = L"Mon chinh";
             // 
             // label6
             // 
             this->label6->AutoSize = true;
-            this->label6->Location = System::Drawing::Point(387, 4);
+            this->label6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label6->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+                static_cast<System::Int32>(static_cast<System::Byte>(18)));
+            this->label6->Location = System::Drawing::Point(290, 3);
+            this->label6->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
             this->label6->Name = L"label6";
-            this->label6->Size = System::Drawing::Size(63, 16);
+            this->label6->Size = System::Drawing::Size(60, 13);
             this->label6->TabIndex = 4;
             this->label6->Text = L"Phân loại";
             // 
             // lblGiaDaThem
             // 
             this->lblGiaDaThem->AutoSize = true;
-            this->lblGiaDaThem->Location = System::Drawing::Point(279, 33);
+            this->lblGiaDaThem->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+                static_cast<System::Int32>(static_cast<System::Byte>(18)));
+            this->lblGiaDaThem->Location = System::Drawing::Point(209, 27);
+            this->lblGiaDaThem->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
             this->lblGiaDaThem->Name = L"lblGiaDaThem";
-            this->lblGiaDaThem->Size = System::Drawing::Size(44, 16);
+            this->lblGiaDaThem->Size = System::Drawing::Size(35, 13);
             this->lblGiaDaThem->TabIndex = 3;
             this->lblGiaDaThem->Text = L"label5";
             // 
             // label5
             // 
             this->label5->AutoSize = true;
-            this->label5->Location = System::Drawing::Point(279, 4);
+            this->label5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label5->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+                static_cast<System::Int32>(static_cast<System::Byte>(18)));
+            this->label5->Location = System::Drawing::Point(209, 3);
+            this->label5->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
             this->label5->Name = L"label5";
-            this->label5->Size = System::Drawing::Size(31, 16);
+            this->label5->Size = System::Drawing::Size(30, 13);
             this->label5->TabIndex = 2;
             this->label5->Text = L"Giá:";
             // 
             // lblMonDaThem
             // 
             this->lblMonDaThem->AutoSize = true;
-            this->lblMonDaThem->Location = System::Drawing::Point(151, 33);
+            this->lblMonDaThem->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+                static_cast<System::Int32>(static_cast<System::Byte>(18)));
+            this->lblMonDaThem->Location = System::Drawing::Point(113, 27);
+            this->lblMonDaThem->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
             this->lblMonDaThem->Name = L"lblMonDaThem";
-            this->lblMonDaThem->Size = System::Drawing::Size(44, 16);
+            this->lblMonDaThem->Size = System::Drawing::Size(35, 13);
             this->lblMonDaThem->TabIndex = 1;
             this->lblMonDaThem->Text = L"label5";
             // 
             // label4
             // 
             this->label4->AutoSize = true;
-            this->label4->Location = System::Drawing::Point(151, 4);
+            this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label4->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+                static_cast<System::Int32>(static_cast<System::Byte>(18)));
+            this->label4->Location = System::Drawing::Point(113, 3);
+            this->label4->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
             this->label4->Name = L"label4";
-            this->label4->Size = System::Drawing::Size(63, 16);
+            this->label4->Size = System::Drawing::Size(60, 13);
             this->label4->TabIndex = 0;
             this->label4->Text = L"Tên món:";
             // 
@@ -372,12 +436,13 @@ namespace PBL2DatMonAn {
             // 
             // AddFoodForm
             // 
-            this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+            this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
             this->Controls->Add(this->pnDanhSachMon);
             this->Controls->Add(this->panel1);
+            this->Margin = System::Windows::Forms::Padding(2);
             this->Name = L"AddFoodForm";
-            this->Size = System::Drawing::Size(940, 669);
+            this->Size = System::Drawing::Size(704, 456);
             this->panel1->ResumeLayout(false);
             this->panel1->PerformLayout();
             this->pnDonGia->ResumeLayout(false);
@@ -392,6 +457,7 @@ namespace PBL2DatMonAn {
             this->panel2->ResumeLayout(false);
             this->panel2->PerformLayout();
             this->ResumeLayout(false);
+
         }
 #pragma endregion
 
@@ -562,5 +628,9 @@ namespace PBL2DatMonAn {
             }
         }
     }
-    };
+    private: System::Void flowLayoutPanel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+    }
+private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+};
 }

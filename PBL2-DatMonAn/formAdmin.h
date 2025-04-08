@@ -58,10 +58,12 @@ namespace PBL2DatMonAn {
 	private: System::Windows::Forms::Panel^ panel1;
 
 	private: System::Windows::Forms::Panel^ panel2;
-	private: System::Windows::Forms::Panel^ panelGeneral;
+
 	private: System::Windows::Forms::Panel^ panel3;
 	private: AddFoodForm^ addFoodForm;
 	private: AddUserForm^ addUserForm;
+	private: System::Windows::Forms::Panel^ panelGeneral;
+	private: System::Windows::Forms::Label^ label1;
 	private:
 		/// <summary>
 		/// Required designer variable.
@@ -83,22 +85,25 @@ namespace PBL2DatMonAn {
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
 			this->panelGeneral = (gcnew System::Windows::Forms::Panel());
+			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->panel1->SuspendLayout();
 			this->panel2->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// btnThemMon
 			// 
-			this->btnThemMon->BackColor = System::Drawing::Color::Gainsboro;
+			this->btnThemMon->BackColor = System::Drawing::Color::FromArgb(167, 141, 120);
 			this->btnThemMon->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->btnThemMon->FlatAppearance->BorderSize = 0;
 			this->btnThemMon->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->btnThemMon->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnThemMon->Location = System::Drawing::Point(0, 133);
+			this->btnThemMon->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+				static_cast<System::Int32>(static_cast<System::Byte>(18)));
+			this->btnThemMon->Location = System::Drawing::Point(348, 7);
 			this->btnThemMon->Margin = System::Windows::Forms::Padding(0);
 			this->btnThemMon->Name = L"btnThemMon";
-			this->btnThemMon->Size = System::Drawing::Size(200, 68);
+			this->btnThemMon->Size = System::Drawing::Size(136, 41);
 			this->btnThemMon->TabIndex = 5;
 			this->btnThemMon->Text = L"Thêm Món";
 			this->btnThemMon->UseVisualStyleBackColor = false;
@@ -106,16 +111,19 @@ namespace PBL2DatMonAn {
 			// 
 			// btnQuanlynhanvien
 			// 
-			this->btnQuanlynhanvien->BackColor = System::Drawing::Color::Gainsboro;
+			this->btnQuanlynhanvien->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(167)),
+				static_cast<System::Int32>(static_cast<System::Byte>(141)), static_cast<System::Int32>(static_cast<System::Byte>(120)));
 			this->btnQuanlynhanvien->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->btnQuanlynhanvien->FlatAppearance->BorderSize = 0;
 			this->btnQuanlynhanvien->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->btnQuanlynhanvien->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnQuanlynhanvien->Location = System::Drawing::Point(0, 65);
+			this->btnQuanlynhanvien->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)),
+				static_cast<System::Int32>(static_cast<System::Byte>(41)), static_cast<System::Int32>(static_cast<System::Byte>(18)));
+			this->btnQuanlynhanvien->Location = System::Drawing::Point(180, 7);
 			this->btnQuanlynhanvien->Margin = System::Windows::Forms::Padding(0);
 			this->btnQuanlynhanvien->Name = L"btnQuanlynhanvien";
-			this->btnQuanlynhanvien->Size = System::Drawing::Size(200, 68);
+			this->btnQuanlynhanvien->Size = System::Drawing::Size(144, 42);
 			this->btnQuanlynhanvien->TabIndex = 1;
 			this->btnQuanlynhanvien->Text = L"Quản Lý Nhân Viên";
 			this->btnQuanlynhanvien->UseVisualStyleBackColor = false;
@@ -123,17 +131,19 @@ namespace PBL2DatMonAn {
 			// 
 			// btnThongKe
 			// 
-			this->btnThongKe->BackColor = System::Drawing::Color::Gainsboro;
+			this->btnThongKe->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(167)), static_cast<System::Int32>(static_cast<System::Byte>(141)),
+				static_cast<System::Int32>(static_cast<System::Byte>(120)));
 			this->btnThongKe->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->btnThongKe->FlatAppearance->BorderSize = 0;
 			this->btnThongKe->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->btnThongKe->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnThongKe->ForeColor = System::Drawing::SystemColors::ControlText;
-			this->btnThongKe->Location = System::Drawing::Point(0, -3);
+			this->btnThongKe->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+				static_cast<System::Int32>(static_cast<System::Byte>(18)));
+			this->btnThongKe->Location = System::Drawing::Point(9, 7);
 			this->btnThongKe->Margin = System::Windows::Forms::Padding(0);
 			this->btnThongKe->Name = L"btnThongKe";
-			this->btnThongKe->Size = System::Drawing::Size(200, 68);
+			this->btnThongKe->Size = System::Drawing::Size(150, 42);
 			this->btnThongKe->TabIndex = 0;
 			this->btnThongKe->Text = L"Thống Kê";
 			this->btnThongKe->UseVisualStyleBackColor = false;
@@ -141,16 +151,19 @@ namespace PBL2DatMonAn {
 			// 
 			// btnDangXUatAdmin
 			// 
-			this->btnDangXUatAdmin->BackColor = System::Drawing::Color::Gainsboro;
+			this->btnDangXUatAdmin->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(142)),
+				static_cast<System::Int32>(static_cast<System::Byte>(121)), static_cast<System::Int32>(static_cast<System::Byte>(92)));
 			this->btnDangXUatAdmin->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->btnDangXUatAdmin->FlatAppearance->BorderSize = 0;
 			this->btnDangXUatAdmin->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->btnDangXUatAdmin->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnDangXUatAdmin->Location = System::Drawing::Point(0, 593);
+			this->btnDangXUatAdmin->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+				static_cast<System::Int32>(static_cast<System::Byte>(18)));
+			this->btnDangXUatAdmin->Location = System::Drawing::Point(703, 11);
 			this->btnDangXUatAdmin->Margin = System::Windows::Forms::Padding(0);
 			this->btnDangXUatAdmin->Name = L"btnDangXUatAdmin";
-			this->btnDangXUatAdmin->Size = System::Drawing::Size(200, 68);
+			this->btnDangXUatAdmin->Size = System::Drawing::Size(150, 55);
 			this->btnDangXUatAdmin->TabIndex = 4;
 			this->btnDangXUatAdmin->Text = L"Đăng Xuất";
 			this->btnDangXUatAdmin->UseVisualStyleBackColor = false;
@@ -158,57 +171,84 @@ namespace PBL2DatMonAn {
 			// 
 			// labelAdmin
 			// 
-			this->labelAdmin->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->labelAdmin->Location = System::Drawing::Point(43, 9);
+			this->labelAdmin->Font = (gcnew System::Drawing::Font(L"Arial", 18, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->labelAdmin->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+				static_cast<System::Int32>(static_cast<System::Byte>(18)));
+			this->labelAdmin->Location = System::Drawing::Point(64, 43);
+			this->labelAdmin->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->labelAdmin->Name = L"labelAdmin";
-			this->labelAdmin->Size = System::Drawing::Size(141, 46);
+			this->labelAdmin->Size = System::Drawing::Size(114, 37);
 			this->labelAdmin->TabIndex = 6;
 			this->labelAdmin->Text = L"Quản Lý";
+			this->labelAdmin->Click += gcnew System::EventHandler(this, &formAdmin::labelAdmin_Click);
 			// 
 			// panel1
 			// 
-			this->panel1->BackColor = System::Drawing::Color::Gainsboro;
+			this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(223)),
+				static_cast<System::Int32>(static_cast<System::Byte>(206)));
+			this->panel1->Controls->Add(this->label1);
 			this->panel1->Controls->Add(this->labelAdmin);
+			this->panel1->Controls->Add(this->btnDangXUatAdmin);
 			this->panel1->Dock = System::Windows::Forms::DockStyle::Top;
 			this->panel1->Location = System::Drawing::Point(0, 0);
+			this->panel1->Margin = System::Windows::Forms::Padding(2);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(1150, 98);
+			this->panel1->Size = System::Drawing::Size(862, 80);
 			this->panel1->TabIndex = 0;
+			this->panel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &formAdmin::panel1_Paint);
 			// 
 			// panel2
 			// 
-			this->panel2->BackColor = System::Drawing::SystemColors::ActiveCaption;
+			this->panel2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(223)),
+				static_cast<System::Int32>(static_cast<System::Byte>(206)));
 			this->panel2->Controls->Add(this->btnThongKe);
-			this->panel2->Controls->Add(this->btnDangXUatAdmin);
 			this->panel2->Controls->Add(this->btnQuanlynhanvien);
 			this->panel2->Controls->Add(this->btnThemMon);
-			this->panel2->Location = System::Drawing::Point(0, 100);
+			this->panel2->Location = System::Drawing::Point(0, 84);
+			this->panel2->Margin = System::Windows::Forms::Padding(2);
 			this->panel2->Name = L"panel2";
-			this->panel2->Size = System::Drawing::Size(200, 661);
+			this->panel2->Size = System::Drawing::Size(862, 60);
 			this->panel2->TabIndex = 7;
 			// 
 			// panelGeneral
 			// 
-			this->panelGeneral->BackColor = System::Drawing::SystemColors::AppWorkspace;
-			this->panelGeneral->Location = System::Drawing::Point(204, 100);
+			this->panelGeneral->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(223)),
+				static_cast<System::Int32>(static_cast<System::Byte>(206)));
+			this->panelGeneral->Location = System::Drawing::Point(0, 148);
+			this->panelGeneral->Margin = System::Windows::Forms::Padding(2);
 			this->panelGeneral->Name = L"panelGeneral";
-			this->panelGeneral->Size = System::Drawing::Size(946, 661);
+			this->panelGeneral->Size = System::Drawing::Size(863, 470);
 			this->panelGeneral->TabIndex = 8;
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Bernard MT Condensed", 24, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->label1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+				static_cast<System::Int32>(static_cast<System::Byte>(18)));
+			this->label1->Location = System::Drawing::Point(12, 5);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(222, 38);
+			this->label1->TabIndex = 7;
+			this->label1->Text = L"Restaurant D^D";
 			// 
 			// formAdmin
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1150, 766);
+			this->ClientSize = System::Drawing::Size(862, 622);
 			this->Controls->Add(this->panelGeneral);
 			this->Controls->Add(this->panel2);
 			this->Controls->Add(this->panel1);
+			this->Margin = System::Windows::Forms::Padding(2);
 			this->Name = L"formAdmin";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"formAdmin";
 			this->Load += gcnew System::EventHandler(this, &formAdmin::formAdmin_Load);
 			this->panel1->ResumeLayout(false);
+			this->panel1->PerformLayout();
 			this->panel2->ResumeLayout(false);
 			this->ResumeLayout(false);
 
@@ -267,5 +307,9 @@ private: System::Void btnThemMon_Click(System::Object^ sender, System::EventArgs
 	addFoodForm->BringToFront();
 }
 
+private: System::Void panel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void labelAdmin_Click(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }
