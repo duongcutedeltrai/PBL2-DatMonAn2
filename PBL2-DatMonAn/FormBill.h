@@ -62,8 +62,6 @@ namespace PBL2DatMonAn {
 		double discountPercent;
 	//private:
 	//	System::Collections::Generic::List<MonAn^>^ danhSachMon;
-
-
 	private: System::Windows::Forms::Panel^ panel1;
 	protected:
 	private: System::Windows::Forms::Label^ label1;
@@ -72,13 +70,10 @@ namespace PBL2DatMonAn {
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ lblBanDat;
 	private: System::Windows::Forms::Panel^ pnPrice;
-
 	private: System::Windows::Forms::Label^ label14;
 	private: System::Windows::Forms::TextBox^ txtPrice;
-
 	private: System::Windows::Forms::Label^ label15;
 	private: System::Windows::Forms::Button^ btnTienMat;
-
 	private: System::Windows::Forms::Button^ btnChuyenKhoan;
 	private: System::Windows::Forms::DataGridView^ datagridViewBill;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
@@ -232,7 +227,6 @@ namespace PBL2DatMonAn {
 			this->txtPrice->Size = System::Drawing::Size(59, 43);
 			this->txtPrice->TabIndex = 1;
 			this->txtPrice->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
-			this->txtPrice->TextChanged += gcnew System::EventHandler(this, &FormBill::txtPrice_TextChanged);
 			// 
 			// label14
 			// 
@@ -246,7 +240,7 @@ namespace PBL2DatMonAn {
 			this->label14->Size = System::Drawing::Size(89, 38);
 			this->label14->TabIndex = 0;
 			this->label14->Text = L"Tổng:";
-			this->label14->Click += gcnew System::EventHandler(this, &FormBill::label14_Click);
+
 			// 
 			// label15
 			// 
@@ -320,7 +314,6 @@ namespace PBL2DatMonAn {
 			this->datagridViewBill->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
 			this->datagridViewBill->Size = System::Drawing::Size(468, 71);
 			this->datagridViewBill->TabIndex = 10;
-			this->datagridViewBill->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &FormBill::datagridViewBill_CellContentClick);
 			// 
 			// Column1
 			// 
@@ -428,115 +421,10 @@ namespace PBL2DatMonAn {
 		}
 #pragma endregion
 
-	private: System::Void FormBill_Load(System::Object^ sender, System::EventArgs^ e) {
-		// dan theo mon an
-		int totalRowHeight = 0;
-		for (int i = 0; i < datagridViewBill->Rows->Count; i++) {
-			totalRowHeight += datagridViewBill->Rows[i]->Height;
-		}
-		int headerHeight = datagridViewBill->ColumnHeadersHeight;
-		datagridViewBill->Height = headerHeight + totalRowHeight + 2;
-
-	};
+	private: System::Void FormBill_Load(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void Monandachon();
-	private: System::Void btnChuyenKhoan_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (danhSachMon -> Count == 0) {
-			MessageBox::Show(L"Không có món nào trong danh sách!", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
-			return;
-		}
-		double total = 0.0;
-		for each(MonAn ^ mon in danhSachMon) {
-			double gia = Convert::ToDouble(mon->Gia->Replace("$", ""));
-			//double gia = Convert::ToDouble(mon->Gia + "$");
-			total += gia * mon->SoLuong;
-		}
-		//tao va luu hoa don
-		PayMent^ payMent = gcnew PayMent(banHienTai->ID, banHienTai->SoBan, nameStaff, danhSachMon, total, L"Chuyển khoản");
-		List<PayMent^>^ danhSachHoaDon = gcnew List<PayMent^>();
-		danhSachHoaDon->Add(payMent);
-		PayMent::GhiDanhSachHoaDon(danhSachHoaDon, billFilePath);
-
-		//cap nhat trang thai ban
-		banHienTai->TrangThai = L"Trống";
-		banHienTai->DanhSachMon->Clear();
-
-		//cap nhat danh sach ban
-		for each(ManagerTable ^ ban in danhSachBan) {
-			if (ban->SoBan == banHienTai->SoBan) {
-				ban->TrangThai = banHienTai->TrangThai;
-				ban->DanhSachMon = banHienTai->DanhSachMon;
-				break;
-			}
-		}
-
-		ManagerTable::GhiDanhSachBan(danhSachBan, banFilePath);
-
-		//cap nhat lich su hoa don
-		if (addHistoryBillForm != nullptr) {
-			addHistoryBillForm->UpdateHistory();
-		}
-		MessageBox::Show(L"Thanh toán thành công!", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
-
-		this->Close();
-	};
-private: System::Void btnTienMat_Click(System::Object^ sender, System::EventArgs^ e) {
-	if (danhSachMon->Count == 0) {
-		MessageBox::Show(L"Không có món nào trong danh sách!", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
-		return;
-	}
-	double total = 0.0;
-	for each(MonAn ^ mon in danhSachMon) {
-		double gia = Convert::ToDouble(mon->Gia->Replace("$", ""));
-		total += gia * mon->SoLuong ;
-	}
-	//tao va luu hoa don
-	PayMent^ payMent = gcnew PayMent(banHienTai->ID, banHienTai->SoBan, nameStaff, danhSachMon, total, L"Tiền mặt");
-	List<PayMent^>^ danhSachHoaDon = gcnew List<PayMent^>();
-	danhSachHoaDon->Add(payMent);
-	PayMent::GhiDanhSachHoaDon(danhSachHoaDon, billFilePath);
-
-	//cap nhat trang thai ban
-	banHienTai->TrangThai = L"Trống";
-	banHienTai->DanhSachMon->Clear();
-
-	//cap nhat danh sach ban
-	for each(ManagerTable ^ ban in danhSachBan) {
-		if (ban->SoBan == banHienTai->SoBan) {
-			ban->TrangThai = banHienTai->TrangThai;
-			ban->DanhSachMon = banHienTai->DanhSachMon;
-			break;
-		}
-	}
-
-	ManagerTable::GhiDanhSachBan(danhSachBan, banFilePath);
-
-	//cap nhat lich su hoa don
-	if (addHistoryBillForm != nullptr) {
-		addHistoryBillForm->UpdateHistory();
-	}
-
-	MessageBox::Show(L"Thanh toán thành công!", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
-	this->Close();
-}
-	 private: System::Void ApplyDiscount() {
-				  discountPercent = DiscountManager::DiscountPercent; // lay giam gia
-				  double total = 0.0;
-				  for each (MonAn ^ mon in danhSachMon) {
-					  double gia = Convert::ToDouble(mon->Gia->Replace("$", ""));
-					  total += gia * mon->SoLuong;
-				  }
-
-				  double discountAmount = total * (discountPercent / 100); //chiet khau
-				  double finalTotal = total - discountAmount;
-
-				  txtDiscount->Text = discountPercent.ToString("F2") + "%";
-				  txtPrice->Text = finalTotal.ToString("F2") + "$";
-			  }
-private: System::Void datagridViewBill_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-}
-private: System::Void txtPrice_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void label14_Click(System::Object^ sender, System::EventArgs^ e) {
-}
+	private: System::Void btnChuyenKhoan_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void btnTienMat_Click(System::Object^ sender, System::EventArgs^ e);
+	 private: System::Void ApplyDiscount();
 };
 	}

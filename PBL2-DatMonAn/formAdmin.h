@@ -195,7 +195,7 @@ namespace PBL2DatMonAn {
 			this->labelAdmin->Size = System::Drawing::Size(152, 46);
 			this->labelAdmin->TabIndex = 6;
 			this->labelAdmin->Text = L"Quản Lý";
-			this->labelAdmin->Click += gcnew System::EventHandler(this, &formAdmin::labelAdmin_Click);
+
 			// 
 			// panel1
 			// 
@@ -210,7 +210,7 @@ namespace PBL2DatMonAn {
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(1149, 98);
 			this->panel1->TabIndex = 0;
-			this->panel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &formAdmin::panel1_Paint);
+
 			// 
 			// label1
 			// 
@@ -292,79 +292,12 @@ namespace PBL2DatMonAn {
 		}
 #pragma endregion
 	
-private: System::Void formAdmin_Load(System::Object^ sender, System::EventArgs^ e) {
-	ResetMauButtonMenu();
-	btnThongKe->BackColor = Color::RosyBrown;
-}
-	private: System::Void ResetMauButtonMenu() {
-		Color mauMacDinh = Color::Gainsboro;
-		btnThongKe->BackColor = mauMacDinh;
-		btnQuanlynhanvien->BackColor = mauMacDinh;
-		btnThemMon->BackColor = mauMacDinh;	
-		btnDangXUatAdmin->BackColor = mauMacDinh;
-		btnDiscount->BackColor = mauMacDinh;
-	}
-	private: System::Void btnThongKe_Click(System::Object^ sender, System::EventArgs^ e) {
-		ResetMauButtonMenu();
-		btnThongKe->BackColor = Color::RosyBrown;
-		addFoodForm->Visible = false;
-		addUserForm->Visible = false;
-		addDiscountForm->Visible = false;
-		addStatiticForm->Visible = true;
-		addStatiticForm->BringToFront();
-
-	}
-private: System::Void btnQuanlynhanvien_Click(System::Object^ sender, System::EventArgs^ e) {
-	ResetMauButtonMenu();
-	btnQuanlynhanvien->BackColor = Color::RosyBrown;
-	addFoodForm->Visible = false;
-	addStatiticForm->Visible = false;
-	addDiscountForm->Visible = false;
-	addUserForm->Visible = true;
-	addUserForm->BringToFront();
-}
-
-	   private: System::Void btnDangXUatAdmin_Click(System::Object^ sender, System::EventArgs^ e) {
-		   this->Hide();
-		   Login^ login = gcnew Login();
-		   login->ShowDialog();
-	   }
-	/*private: System::Void BoGocControl(Control^ control, int radius) {
-		System::Drawing::Drawing2D::GraphicsPath^ path = gcnew System::Drawing::Drawing2D::GraphicsPath();
-		int w = control->Width;
-		int h = control->Height;
-		int d = radius * 2;
-
-		path->AddArc(0, 0, d, d, 180, 90);
-		path->AddArc(w - d, 0, d, d, 270, 90);
-		path->AddArc(w - d, h - d, d, d, 0, 90);
-		path->AddArc(0, h - d, d, d, 90, 90);
-		path->CloseFigure();
-
-		control->Region = gcnew System::Drawing::Region(path);
-	}*/
-private: System::Void btnThemMon_Click(System::Object^ sender, System::EventArgs^ e) {
-	ResetMauButtonMenu();
-	btnThemMon->BackColor = Color::RosyBrown;
-	addFoodForm->Visible = true; 
-	addUserForm->Visible = false;
-	addStatiticForm->Visible = false;
-	addDiscountForm->Visible = false;
-	addFoodForm->BringToFront();
-}
-
-private: System::Void panel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-}
-private: System::Void labelAdmin_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void btnDiscount_Click(System::Object^ sender, System::EventArgs^ e) {
-	ResetMauButtonMenu();
-	btnDiscount->BackColor = Color::RosyBrown;
-	addFoodForm->Visible = false;
-	addUserForm->Visible = false;
-	addStatiticForm->Visible = false;
-	addDiscountForm->Visible = true;
-	addDiscountForm->BringToFront();
-}
+private: System::Void formAdmin_Load(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void ResetMauButtonMenu();
+	private: System::Void btnThongKe_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void btnQuanlynhanvien_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void btnThemMon_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void btnDiscount_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void btnDangXUatAdmin_Click(System::Object^ sender, System::EventArgs^ e);	
 };
 }

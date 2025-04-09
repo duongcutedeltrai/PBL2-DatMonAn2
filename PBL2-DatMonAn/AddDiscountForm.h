@@ -93,7 +93,6 @@ namespace PBL2DatMonAn {
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(634, 281);
 			this->panel1->TabIndex = 0;
-			this->panel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &AddDiscountForm::panel1_Paint);
 			// 
 			// label1
 			// 
@@ -138,40 +137,7 @@ namespace PBL2DatMonAn {
 			this->ResumeLayout(false);
 
 		}
-#pragma endregion
-	private: System::Void panel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-	}
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		/*if (currentBill == nullptr) {
-			MessageBox::Show(L"Không có hóa đơn nào được chọn", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Warning);
-			return;
-		}*/
-
-		//giam gia trong txtbox
-		String^ NumberGiamGia = textBox1->Text->Trim();
-		if (String::IsNullOrEmpty(NumberGiamGia)) {
-			MessageBox::Show(L"Vui lòng nhập mã giảm giá", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Warning);
-			return;
-		}
-
-		//chuyen doi sang so
-		double giamGia;
-		try {
-			discountPercent = Convert::ToDouble(NumberGiamGia);
-			if (discountPercent < 0 || discountPercent > 100) {
-				MessageBox::Show(L"Mã giảm giá không hợp lệ", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Warning);
-				return;
-			}
-		}
-		catch (FormatException^ ex) {
-			MessageBox::Show(L"Mã giảm giá không hợp lệ", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Warning);
-			return;
-		}
-
-		//luu phan tram giam gia
-		DiscountManager::DiscountPercent = discountPercent;
-		//hien thu giam gia thanh cong
-		MessageBox::Show(L"Áp dụng mã giảm giá thành công", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
-	};
+#pragma endregion}
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e);
 	};
 }

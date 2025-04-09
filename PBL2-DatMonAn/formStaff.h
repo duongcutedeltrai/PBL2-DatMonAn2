@@ -136,7 +136,6 @@ namespace PBL2DatMonAn {
             this->lblTenNhanVien->Name = L"lblTenNhanVien";
             this->lblTenNhanVien->Size = System::Drawing::Size(290, 29);
             this->lblTenNhanVien->TabIndex = 0;
-            this->lblTenNhanVien->Click += gcnew System::EventHandler(this, &formStaff::lblTenNhanVien_Click);
             // 
             // btnDangXuat
             // 
@@ -229,7 +228,7 @@ namespace PBL2DatMonAn {
             this->flpMangVe->Name = L"flpMangVe";
             this->flpMangVe->Size = System::Drawing::Size(284, 320);
             this->flpMangVe->TabIndex = 5;
-            this->flpMangVe->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &formStaff::flpMangVe_Paint);
+
             // 
             // labelMangve
             // 
@@ -253,7 +252,7 @@ namespace PBL2DatMonAn {
             this->panelDanhsachban->Name = L"panelDanhsachban";
             this->panelDanhsachban->Size = System::Drawing::Size(549, 397);
             this->panelDanhsachban->TabIndex = 2;
-            this->panelDanhsachban->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &formStaff::panelDanhsachban_Paint_1);
+
             // 
             // panel7
             // 
@@ -272,7 +271,7 @@ namespace PBL2DatMonAn {
             this->flpBan->Name = L"flpBan";
             this->flpBan->Size = System::Drawing::Size(536, 320);
             this->flpBan->TabIndex = 4;
-            this->flpBan->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &formStaff::flpBan_Paint);
+
             // 
             // labelDanhsachban
             // 
@@ -284,7 +283,6 @@ namespace PBL2DatMonAn {
             this->labelDanhsachban->Size = System::Drawing::Size(167, 29);
             this->labelDanhsachban->TabIndex = 3;
             this->labelDanhsachban->Text = L"Danh Sách Bàn";
-            this->labelDanhsachban->Click += gcnew System::EventHandler(this, &formStaff::labelDanhsachban_Click);
             // 
             // panelGeneral
             // 
@@ -316,58 +314,13 @@ namespace PBL2DatMonAn {
 
         }
 #pragma endregion
-    private: System::Void formStaff_Load(System::Object^ sender, System::EventArgs^ e) {
-
-    /*    CreateTable^ createTable = gcnew CreateTable(nameStaff, banFilePath);
-        createTable->TaoDayBan(10, flpBan, danhSachBan);
-        createTable->TakeAway(4, flpMangVe);
-        createTable->SetHistoryForm(addHistoryBillForm);*/
-
-        ResetMauButtonMenu();
-        btnChonBan->BackColor = Color::IndianRed;
-        BoGocControl(btnChonBan, 10);
-        BoGocControl(btnLichSuDonHang, 10);
-        BoGocControl(btnDangXuat, 10);  
-
-        panelDanhsachban->Visible = true;
-        panelMangVe->Visible = true;
-        addHistoryBillForm->Visible = false;
-
-    }
-    private: System::Void ResetMauButtonMenu() {
-        Color mauMacDinh = Color::Gainsboro;
-        btnChonBan->BackColor = mauMacDinh;
-        btnLichSuDonHang->BackColor = mauMacDinh;
-        btnDangXuat->BackColor = mauMacDinh;
-    }
+    private: System::Void formStaff_Load(System::Object^ sender, System::EventArgs^ e);
     private: System::Void btnChonBan_Click(System::Object^ sender, System::EventArgs^ e);
     private: System::Void btnDangXuat_Click(System::Object^ sender, System::EventArgs^ e);
+    private: System::Void btnLichSuDonHang_Click_1(System::Object^ sender, System::EventArgs^ e);
+    private: System::Void panelDanhsachban_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e);
+    private: System::Void panelMangVe_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e); 
     private: System::Void BoGocControl(Control^ control, int radius);
-    private: System::Void panelDanhsachban_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-		BoGocControl(panelDanhsachban, 10);
-
-    }
-private: System::Void panelMangVe_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-	BoGocControl(panelMangVe, 10);
-}
-private: System::Void labelDanhsachban_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void lblTenNhanVien_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void btnLichSuDonHang_Click_1(System::Object^ sender, System::EventArgs^ e) {
-    ResetMauButtonMenu();
-    panelDanhsachban->Visible = false;
-    panelMangVe->Visible = false;
-    addHistoryBillForm->Visible = true;
-    addHistoryBillForm->UpdateHistory();
-    btnLichSuDonHang->BackColor = Color::IndianRed;
-}
-
-private: System::Void panelDanhsachban_Paint_1(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-}
-private: System::Void flpBan_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-}
-private: System::Void flpMangVe_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-}
+    private: System::Void ResetMauButtonMenu();
 };
 }

@@ -6,15 +6,19 @@ using namespace System::Windows::Forms;
 using namespace System::Runtime::InteropServices;
 
 
-//[STAThreadAttribute]
-//int main(array<String^>^ args) {
-//    Application::EnableVisualStyles();
-//    Application::SetCompatibleTextRenderingDefault(false);
-//    PBL2DatMonAn::formStaff form;
-//    Application::Run(% form);
-//}
-
 namespace PBL2DatMonAn {
+    System::Void formStaff::formStaff_Load(System::Object^ sender, System::EventArgs^ e) {
+        ResetMauButtonMenu();
+        btnChonBan->BackColor = Color::IndianRed;
+        BoGocControl(btnChonBan, 10);
+        BoGocControl(btnLichSuDonHang, 10);
+        BoGocControl(btnDangXuat, 10);
+
+        panelDanhsachban->Visible = true;
+        panelMangVe->Visible = true;
+        addHistoryBillForm->Visible = false;
+    }
+  
     System::Void formStaff::btnDangXuat_Click(System::Object^ sender, System::EventArgs^ e) {
         ResetMauButtonMenu();
         btnDangXuat->BackColor = Color::IndianRed;
@@ -24,6 +28,15 @@ namespace PBL2DatMonAn {
      
     }
 
+    System::Void formStaff::btnLichSuDonHang_Click_1(System::Object^ sender, System::EventArgs^ e) {
+        ResetMauButtonMenu();
+        panelDanhsachban->Visible = false;
+        panelMangVe->Visible = false;
+        addHistoryBillForm->Visible = true;
+        addHistoryBillForm->UpdateHistory();
+        btnLichSuDonHang->BackColor = Color::IndianRed;
+    }
+
     System::Void formStaff::btnChonBan_Click(System::Object^ sender, System::EventArgs^ e){
         ResetMauButtonMenu();
         panelDanhsachban->Visible = true;
@@ -31,13 +44,6 @@ namespace PBL2DatMonAn {
         addHistoryBillForm->Visible = false;
         btnChonBan->BackColor = Color::IndianRed;
     }
-
-    //System::Void formStaff::btnDanhsach_Click(System::Object^ sender, System::EventArgs^ e) {
-    //    ResetMauButtonMenu();
-    //    panelMangVe->Visible = false;
-    //    panelDanhsachban->Visible = false;
-    //    btnDanhsach->BackColor = Color::IndianRed;
-    //}
 
     System::Void formStaff::BoGocControl(Control^ control, int radius) {
         System::Drawing::Drawing2D::GraphicsPath^ path = gcnew System::Drawing::Drawing2D::GraphicsPath();
@@ -52,5 +58,20 @@ namespace PBL2DatMonAn {
         path->CloseFigure();
 
         control->Region = gcnew System::Drawing::Region(path);
+    }
+
+    System::Void formStaff::panelDanhsachban_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+        BoGocControl(panelDanhsachban, 10);
+    }
+    System::Void formStaff::panelMangVe_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+        BoGocControl(panelMangVe, 10);
+    }
+
+
+    System::Void formStaff::ResetMauButtonMenu() {
+        Color mauMacDinh = Color::Gainsboro;
+        btnChonBan->BackColor = mauMacDinh;
+        btnLichSuDonHang->BackColor = mauMacDinh;
+        btnDangXuat->BackColor = mauMacDinh;
     }
 }
