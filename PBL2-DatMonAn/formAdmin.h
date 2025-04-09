@@ -24,6 +24,7 @@ namespace PBL2DatMonAn {
 		{
 			InitializeComponent();
 			this->nameAdmin = nameAdmin;
+
 			addFoodForm = gcnew AddFoodForm();
 			panelGeneral->Controls->Add(addFoodForm);
 			addFoodForm->Dock = DockStyle::Fill;
@@ -57,7 +58,6 @@ namespace PBL2DatMonAn {
 
 
 	protected:
-		FormBill^ formBill;
 	private: System::String^ nameAdmin;	
 	private: System::Windows::Forms::Button^ btnThongKe;
 	private: System::Windows::Forms::Button^ btnQuanlynhanvien;

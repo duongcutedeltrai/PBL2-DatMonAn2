@@ -63,6 +63,9 @@
     <ClCompile Include="AddDiscountForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DiscountManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Login.h">
@@ -111,6 +114,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AddDiscountForm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DiscountManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

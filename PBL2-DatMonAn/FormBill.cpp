@@ -31,6 +31,7 @@ namespace PBL2DatMonAn {
 
         // Hiển thị tổng tiền
         txtPrice->Text = tongTien.ToString("F2") + "$";
+		txtDiscount->Text = "0.00%";
 
         // Cập nhật chiều cao DataGridView
         int totalRowHeight = 0;

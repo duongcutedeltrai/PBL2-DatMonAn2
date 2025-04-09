@@ -14,6 +14,7 @@ ref class PayMent
         double TongTien;
         System::DateTime ThoiGianThanhToan;
         System::String^ PhuongThucThanhToan;
+		double Discountpercent;
 
         PayMent(String^ banID, String^ soBan, String^ tenNhanVien, List<MonAn^>^ danhSachMon, double tongTien, String^ phuongThucThanhToan) {
             DateTime now = DateTime::Now;
@@ -31,6 +32,7 @@ ref class PayMent
             TongTien = tongTien;
             ThoiGianThanhToan = now;
             PhuongThucThanhToan = phuongThucThanhToan;
+			Discountpercent = 0.0;
         }
 
         /*static void GhiDanhSachHoaDon(List<PayMent^>^ danhSachHoaDon, String^ filePath) {
@@ -68,7 +70,7 @@ ref class PayMent
                         if (monAnStr != "") monAnStr = monAnStr->Substring(0, monAnStr->Length - 1);
                         String^ line = bill->ID + "|" + bill->BanID + "|" + bill->SoBan + "|" + bill->TenNhanVien + "|" + monAnStr + "|" +
                             bill->TongTien.ToString("F2") + "|" + bill->ThoiGianThanhToan.ToString("yyyy-MM-dd HH:mm:ss") + "|" +
-                            bill->PhuongThucThanhToan;
+                            bill->PhuongThucThanhToan + bill->Discountpercent.ToString("F2");
                         writer->WriteLine(line);
                     }
                     writer->Close();
@@ -130,7 +132,7 @@ ref class PayMent
                     while ((line = reader->ReadLine()) != nullptr) {
                         if (String::IsNullOrWhiteSpace(line)) continue;
                         cli::array<String^>^ parts = line->Split(gcnew cli::array<Char>{ '|' });
-                        if (parts->Length != 8) {
+                        if (parts->Length != 9) {
                             System::IO::File::AppendAllText("error.log", DateTime::Now + ": Dòng không hợp lệ trong bill.txt: " + line + "\n");
                             continue;
                         }
@@ -144,6 +146,7 @@ ref class PayMent
                         PayMent^ bill = gcnew PayMent(parts[1], parts[2], parts[3], gcnew List<MonAn^>(), tongTien, parts[7]);
                         bill->ID = parts[0];
                         bill->ThoiGianThanhToan = DateTime::Parse(parts[6]);
+						bill->Discountpercent = Convert::ToDouble(parts[8]); 
                         if (!String::IsNullOrEmpty(parts[4])) {
                             cli::array<String^>^ monAnParts = parts[4]->Split(';');
                             for each (String ^ monAnStr in monAnParts) {

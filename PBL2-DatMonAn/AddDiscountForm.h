@@ -1,5 +1,6 @@
 ﻿#pragma once
-#include "PayMent.h"
+//#include "PayMent.h"
+#include "DiscountManager.h"
 namespace PBL2DatMonAn {
 
 	using namespace System;
@@ -14,29 +15,35 @@ namespace PBL2DatMonAn {
 	/// </summary>
 	public ref class AddDiscountForm : public System::Windows::Forms::UserControl
 	{
+	private:
+		//PayMent^ currentBill;
+		double discountPercent;
 	public:
-		AddDiscountForm(PayMent^ bill)
+		AddDiscountForm()
 		{
 			InitializeComponent();
-			currenBill = bill;
-			tyLeGiamGia = 0.0;
+			//currentBill = ;
+			discountPercent = 0.0;
 			//
 			//TODO: Add the constructor code here
 			//
 		}
 
-		//thuoc tinh lay ty le giam gia
-		property double TyLeGiamGia
+		//get formbill truy cap phan tram giam gia
+		property double DiscountPercent
 		{
 			double get()
 			{
-				return tyLeGiamGia;
-			}
-			void set(double value)
-			{
-				tyLeGiamGia = value;
+				return discountPercent;
 			}
 		}
+
+			//set formbill truyen payment
+			/*void SetCurrentBill(PayMent^ bill)
+		{
+			currentBill = bill;
+		}*/
+	
 
 	protected:
 		/// <summary>
@@ -49,8 +56,7 @@ namespace PBL2DatMonAn {
 				delete components;
 			}
 		}
-	private: PayMent^ currenBill;
-		   double tyLeGiamGia;
+
 	private: System::Windows::Forms::Panel^ panel1;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Button^ button1;
@@ -136,49 +142,36 @@ namespace PBL2DatMonAn {
 	private: System::Void panel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 	}
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (currenBill == nullptr) {
-			MessageBox::Show("Không có hóa đơn nào được chọn", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+		/*if (currentBill == nullptr) {
+			MessageBox::Show(L"Không có hóa đơn nào được chọn", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 			return;
-		}
+		}*/
 
 		//giam gia trong txtbox
 		String^ NumberGiamGia = textBox1->Text->Trim();
 		if (String::IsNullOrEmpty(NumberGiamGia)) {
-			MessageBox::Show("Vui lòng nhập mã giảm giá", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+			MessageBox::Show(L"Vui lòng nhập mã giảm giá", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 			return;
 		}
 
 		//chuyen doi sang so
 		double giamGia;
 		try {
-			giamGia = Convert::ToDouble(NumberGiamGia);
-			if (giamGia < 0 || giamGia > 100) {
-				MessageBox::Show("Mã giảm giá không hợp lệ", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+			discountPercent = Convert::ToDouble(NumberGiamGia);
+			if (discountPercent < 0 || discountPercent > 100) {
+				MessageBox::Show(L"Mã giảm giá không hợp lệ", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 				return;
 			}
 		}
 		catch (FormatException^ ex) {
-			MessageBox::Show("Mã giảm giá không hợp lệ", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+			MessageBox::Show(L"Mã giảm giá không hợp lệ", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 			return;
 		}
 
-		//tinh so tien giam
-		tyLeGiamGia = giamGia;
-		double soTienGiam = (giamGia) / 100.0;
-		double soTienSauGiam = currenBill->TongTien * soTienGiam;
-		double tongTienBanDau = currenBill->TongTien;
-		currenBill->TongTien = soTienGiam;
-
-		//hine thi thong bao
-		System::Windows::Forms::MessageBox::Show(
-			"Giảm giá thành công\n" +
-			"Mã giảm giá: " + giamGia + "\n" +
-			"Số tiền giảm: " + soTienSauGiam.ToString("NO") + "$" + "\n" +
-			"Tổng tiền sau giảm: " + currenBill->TongTien.ToString("NO") + "$",
-			"Thông báo",
-			MessageBoxButtons::OK,
-			MessageBoxIcon::Information
-		);
+		//luu phan tram giam gia
+		DiscountManager::DiscountPercent = discountPercent;
+		//hien thu giam gia thanh cong
+		MessageBox::Show(L"Áp dụng mã giảm giá thành công", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
 	};
 	};
 }

@@ -4,6 +4,7 @@
 #include "PayMent.h"
 #include "AddHistoryBillForm.h"
 #include "AddDiscountForm.h"	
+#include "DiscountManager.h"
 namespace PBL2DatMonAn {
 
 	using namespace System;
@@ -33,14 +34,10 @@ namespace PBL2DatMonAn {
 			lblTenNhanVIen->Text = "Ten nhan vien: " + nameStaff;
 			lblBanDat->Text = ban->SoBan;
 			Monandachon();
+			ApplyDiscount(); //giam gia
 			//  
 			//TODO: Add the constructor code here  
 			//  
-		}
-		//cap nhat tong tiwn say khi giam gia
-		void CapNhatGiamGia(double tyLeGiamGia) {
-			txtDiscount->Text = tyLeGiamGia.ToString("F2") + "%";
-			Monandachon(); // Cập nhật lại tổng tiền trong txtPrice
 		}
 
 	protected:
@@ -62,6 +59,7 @@ namespace PBL2DatMonAn {
 		System::Collections::Generic::List<MonAn^>^ danhSachMon;
 		List<ManagerTable^>^ danhSachBan;
 		String^ banFilePath;
+		double discountPercent;
 	//private:
 	//	System::Collections::Generic::List<MonAn^>^ danhSachMon;
 
@@ -438,6 +436,7 @@ namespace PBL2DatMonAn {
 		}
 		int headerHeight = datagridViewBill->ColumnHeadersHeight;
 		datagridViewBill->Height = headerHeight + totalRowHeight + 2;
+
 	};
 	private: System::Void Monandachon();
 	private: System::Void btnChuyenKhoan_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -445,14 +444,14 @@ namespace PBL2DatMonAn {
 			MessageBox::Show(L"Không có món nào trong danh sách!", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			return;
 		}
-		double tongTien = 0.0;
+		double total = 0.0;
 		for each(MonAn ^ mon in danhSachMon) {
 			double gia = Convert::ToDouble(mon->Gia->Replace("$", ""));
 			//double gia = Convert::ToDouble(mon->Gia + "$");
-			tongTien += gia * mon->SoLuong;
+			total += gia * mon->SoLuong;
 		}
 		//tao va luu hoa don
-		PayMent^ payMent = gcnew PayMent(banHienTai->ID, banHienTai->SoBan, nameStaff, danhSachMon, tongTien, L"Chuyển khoản");
+		PayMent^ payMent = gcnew PayMent(banHienTai->ID, banHienTai->SoBan, nameStaff, danhSachMon, total, L"Chuyển khoản");
 		List<PayMent^>^ danhSachHoaDon = gcnew List<PayMent^>();
 		danhSachHoaDon->Add(payMent);
 		PayMent::GhiDanhSachHoaDon(danhSachHoaDon, billFilePath);
@@ -485,14 +484,13 @@ private: System::Void btnTienMat_Click(System::Object^ sender, System::EventArgs
 		MessageBox::Show(L"Không có món nào trong danh sách!", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
 		return;
 	}
-	double tongTien = 0;
+	double total = 0.0;
 	for each(MonAn ^ mon in danhSachMon) {
 		double gia = Convert::ToDouble(mon->Gia->Replace("$", ""));
-		//double gia = Convert::ToDouble(mon->Gia + "$");
-		tongTien += gia * mon->SoLuong ;
+		total += gia * mon->SoLuong ;
 	}
 	//tao va luu hoa don
-	PayMent^ payMent = gcnew PayMent(banHienTai->ID, banHienTai->SoBan, nameStaff, danhSachMon, tongTien, L"Tiền mặt");
+	PayMent^ payMent = gcnew PayMent(banHienTai->ID, banHienTai->SoBan, nameStaff, danhSachMon, total, L"Tiền mặt");
 	List<PayMent^>^ danhSachHoaDon = gcnew List<PayMent^>();
 	danhSachHoaDon->Add(payMent);
 	PayMent::GhiDanhSachHoaDon(danhSachHoaDon, billFilePath);
@@ -520,6 +518,20 @@ private: System::Void btnTienMat_Click(System::Object^ sender, System::EventArgs
 	MessageBox::Show(L"Thanh toán thành công!", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
 	this->Close();
 }
+	 private: System::Void ApplyDiscount() {
+				  discountPercent = DiscountManager::DiscountPercent; // lay giam gia
+				  double total = 0.0;
+				  for each (MonAn ^ mon in danhSachMon) {
+					  double gia = Convert::ToDouble(mon->Gia->Replace("$", ""));
+					  total += gia * mon->SoLuong;
+				  }
+
+				  double discountAmount = total * (discountPercent / 100); //chiet khau
+				  double finalTotal = total - discountAmount;
+
+				  txtDiscount->Text = discountPercent.ToString("F2") + "%";
+				  txtPrice->Text = finalTotal.ToString("F2") + "$";
+			  }
 private: System::Void datagridViewBill_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 }
 private: System::Void txtPrice_TextChanged(System::Object^ sender, System::EventArgs^ e) {
