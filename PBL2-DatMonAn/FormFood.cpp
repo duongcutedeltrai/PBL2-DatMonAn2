@@ -237,7 +237,7 @@ namespace PBL2DatMonAn {
 
     //tinh tien
     System::Void FormFood::CapNhatTongTien() {
-        double tongTien = 0;
+        double tongTien = 0.0;
 
         for each(Control ^ ctrl in flowLayoutPanel1->Controls) {
             Panel^ panelOrder = dynamic_cast<Panel^>(ctrl);
@@ -256,7 +256,6 @@ namespace PBL2DatMonAn {
                             // Nếu label là giá (khớp nội dung với mon->Gia)
                             try {
                                 gia = Convert::ToDouble(mon->Gia->Replace("$",""));
-                                //gia = Convert::ToDouble(mon->Gia + "$");
 
                             }
                             catch (...) {}
@@ -330,18 +329,18 @@ namespace PBL2DatMonAn {
         if (banHienTai->DanhSachMon != nullptr && banHienTai->DanhSachMon->Count > 0) {
             for each(MonAn ^ mon in banHienTai->DanhSachMon) {
                  //Tìm món ăn trong danhSachMonAn để lấy thông tin đầy đủ (nếu cần)
-                MonAn^ monDayDu = nullptr;
+               /* MonAn^ monDayDu = nullptr;
                 for each(MonAn ^ monAn in danhSachMonAn) {
                     if (monAn->ID == mon->ID) {
                         monDayDu = monAn;
                         break;
                     }
-                }
+                }*/
 
-                if (monDayDu == nullptr) {
-                    // Nếu không tìm thấy món trong danhSachMonAn, bỏ qua hoặc xử lý lỗi
-                    continue;
-                }
+                //if (monDayDu == nullptr) {
+                //    // Nếu không tìm thấy món trong danhSachMonAn, bỏ qua hoặc xử lý lỗi
+                //    continue;
+                //}
 
                 Panel^ panelOrder = gcnew Panel();
                 panelOrder->Tag = mon;
@@ -349,7 +348,7 @@ namespace PBL2DatMonAn {
                 panelOrder->Size = System::Drawing::Size(268, 124);
                     
                 Label^ lblGia = gcnew Label();
-                lblGia->Text = monDayDu->Gia + "$";
+                lblGia->Text = mon->Gia + "$";
                 lblGia->AutoSize = true;
                 lblGia->Font = gcnew Drawing::Font(L"Microsoft Sans Serif", 10.2F);
                 lblGia->Location = System::Drawing::Point(154, 48);
@@ -367,14 +366,14 @@ namespace PBL2DatMonAn {
                 picBox->Size = System::Drawing::Size(130, 116);
                 picBox->SizeMode = PictureBoxSizeMode::StretchImage;
                 try {
-                    picBox->Image = Image::FromFile(monDayDu->Anh);
+                    picBox->Image = Image::FromFile(mon->Anh);
                 }
                 catch (...) {
                     picBox->Image = nullptr; // Xử lý nếu ảnh không tồn tại
                 }
 
                 Label^ lblTen = gcnew Label();
-                lblTen->Text = monDayDu->TenMon;
+                lblTen->Text = mon->TenMon;
                 lblTen->AutoSize = true;
                 lblTen->Font = gcnew Drawing::Font(L"Segoe UI Semibold", 10.2F, FontStyle::Bold);
                 lblTen->Location = System::Drawing::Point(154, 25);

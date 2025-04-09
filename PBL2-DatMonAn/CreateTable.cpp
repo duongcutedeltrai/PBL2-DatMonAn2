@@ -52,15 +52,20 @@ using namespace System::Drawing::Drawing2D;
         PBL2DatMonAn::FormFood^ food = gcnew PBL2DatMonAn::FormFood(ban, nameStaff, danhSachBan, banFilePath, addHistoryBillForm);
         food->ShowDialog();
 
-        if (ban->TrangThai == L"Trống") {
-            btn->BackColor = Color::White;
-        }
-        else if (ban->TrangThai == L"Có Khách" || ban->TrangThai == L"Chưa Thanh Toán") {
-            btn->BackColor = Color::Green;
-        }
-        else if (ban->TrangThai == L"Đã Thanh Toán") {
-            btn->BackColor = Color::White;
-        }
+		for each(Control ^ control in btn->Parent->Controls) {
+			Button^ btnBan = dynamic_cast<Button^>(control);
+            if (btnBan != nullptr) {
+                if (ban->TrangThai == L"Trống") {
+                    btn->BackColor = Color::White;
+                }
+                else if (ban->TrangThai == L"Có Khách" || ban->TrangThai == L"Chưa Thanh Toán") {
+                    btn->BackColor = Color::Green;
+                }
+                else if (ban->TrangThai == L"Đã Thanh Toán") {
+                    btn->BackColor = Color::White;
+                }
+            }
+		}
 
         if (danhSachBan != nullptr) {
             ManagerTable::GhiDanhSachBan(danhSachBan, banFilePath);

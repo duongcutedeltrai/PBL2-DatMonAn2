@@ -32,6 +32,15 @@ namespace PBL2DatMonAn {
 			this->addHistoryBillForm = historyForm;
 			danhSachMonAn = MonAn::DocDanhSachMonAn(filePath);
 			lblTenNhanVien->Text = "Ten nhan vien: " + nameStaff;
+
+			cbChangerTable->Items->Clear();
+			if (danhSachBan != nullptr)
+			{
+				for each(ManagerTable ^ ban in danhSachBan)
+				{
+					cbChangerTable->Items->Add(ban->SoBan);
+				}
+			}
 			HienThiMonDaDat();
 			//
 			//TODO: Add the constructor code here
@@ -64,8 +73,10 @@ namespace PBL2DatMonAn {
 	private: System::Windows::Forms::Label^ lbtenGia;
 	private: System::Windows::Forms::Label^ lbtenMonan;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
-	private: System::Windows::Forms::Button^ btnDiscount;
+
 	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::ComboBox^ cbChangerTable;
+
 		   List<MonAn^>^ danhSachMonAn;
 
 		System::Void HienThiMonDaDat(); // Hàm hiển thị món đã đặt
@@ -109,8 +120,9 @@ namespace PBL2DatMonAn {
 	private: System::Windows::Forms::NumericUpDown^ numericUpDown1;
 	private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel1;
 	private: System::Windows::Forms::Button^ btnTrangChu;
+	private: System::Windows::Forms::Button^ btnChangerTable;
 
-	private: System::Windows::Forms::Button^ button1;
+
 	private: System::Windows::Forms::Button^ btnThanhToan;
 	private: System::Windows::Forms::Panel^ panel2;
 	private: System::Windows::Forms::TextBox^ txtMoney;
@@ -139,13 +151,13 @@ namespace PBL2DatMonAn {
 			this->btnFoodMain = (gcnew System::Windows::Forms::Button());
 			this->btnAll = (gcnew System::Windows::Forms::Button());
 			this->pnListFood = (gcnew System::Windows::Forms::Panel());
-			this->btnDiscount = (gcnew System::Windows::Forms::Button());
+			this->cbChangerTable = (gcnew System::Windows::Forms::ComboBox());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->txtMoney = (gcnew System::Windows::Forms::TextBox());
 			this->btnTrangChu = (gcnew System::Windows::Forms::Button());
 			this->btnThanhToan = (gcnew System::Windows::Forms::Button());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->btnChangerTable = (gcnew System::Windows::Forms::Button());
 			this->flowLayoutPanel1 = (gcnew System::Windows::Forms::FlowLayoutPanel());
 			this->panelOrder = (gcnew System::Windows::Forms::Panel());
 			this->label2 = (gcnew System::Windows::Forms::Label());
@@ -182,10 +194,10 @@ namespace PBL2DatMonAn {
 			this->pnNav->Controls->Add(this->btnAppetizer);
 			this->pnNav->Controls->Add(this->btnFoodMain);
 			this->pnNav->Controls->Add(this->btnAll);
-			this->pnNav->Location = System::Drawing::Point(9, 548);
-			this->pnNav->Margin = System::Windows::Forms::Padding(2);
+			this->pnNav->Location = System::Drawing::Point(12, 674);
+			this->pnNav->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->pnNav->Name = L"pnNav";
-			this->pnNav->Size = System::Drawing::Size(691, 101);
+			this->pnNav->Size = System::Drawing::Size(921, 124);
 			this->pnNav->TabIndex = 1;
 			// 
 			// btnNuocUong
@@ -193,10 +205,10 @@ namespace PBL2DatMonAn {
 			this->btnNuocUong->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->btnNuocUong->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnNuocUong->Location = System::Drawing::Point(568, 16);
-			this->btnNuocUong->Margin = System::Windows::Forms::Padding(2);
+			this->btnNuocUong->Location = System::Drawing::Point(757, 20);
+			this->btnNuocUong->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnNuocUong->Name = L"btnNuocUong";
-			this->btnNuocUong->Size = System::Drawing::Size(107, 54);
+			this->btnNuocUong->Size = System::Drawing::Size(143, 66);
 			this->btnNuocUong->TabIndex = 6;
 			this->btnNuocUong->Text = L"Nước uống";
 			this->btnNuocUong->UseVisualStyleBackColor = true;
@@ -207,10 +219,10 @@ namespace PBL2DatMonAn {
 			this->btnTrangMieng->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->btnTrangMieng->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnTrangMieng->Location = System::Drawing::Point(457, 16);
-			this->btnTrangMieng->Margin = System::Windows::Forms::Padding(2);
+			this->btnTrangMieng->Location = System::Drawing::Point(609, 20);
+			this->btnTrangMieng->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnTrangMieng->Name = L"btnTrangMieng";
-			this->btnTrangMieng->Size = System::Drawing::Size(107, 54);
+			this->btnTrangMieng->Size = System::Drawing::Size(143, 66);
 			this->btnTrangMieng->TabIndex = 5;
 			this->btnTrangMieng->Text = L"Tráng Miệng";
 			this->btnTrangMieng->UseVisualStyleBackColor = true;
@@ -220,10 +232,10 @@ namespace PBL2DatMonAn {
 			// 
 			this->button4->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button4->Location = System::Drawing::Point(457, 16);
-			this->button4->Margin = System::Windows::Forms::Padding(2);
+			this->button4->Location = System::Drawing::Point(609, 20);
+			this->button4->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(107, 54);
+			this->button4->Size = System::Drawing::Size(143, 66);
 			this->button4->TabIndex = 4;
 			this->button4->Text = L"Tất cả";
 			this->button4->UseVisualStyleBackColor = true;
@@ -233,10 +245,10 @@ namespace PBL2DatMonAn {
 			this->btnSalah->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->btnSalah->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnSalah->Location = System::Drawing::Point(345, 16);
-			this->btnSalah->Margin = System::Windows::Forms::Padding(2);
+			this->btnSalah->Location = System::Drawing::Point(460, 20);
+			this->btnSalah->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnSalah->Name = L"btnSalah";
-			this->btnSalah->Size = System::Drawing::Size(107, 54);
+			this->btnSalah->Size = System::Drawing::Size(143, 66);
 			this->btnSalah->TabIndex = 3;
 			this->btnSalah->Text = L"Salad";
 			this->btnSalah->UseVisualStyleBackColor = true;
@@ -247,10 +259,10 @@ namespace PBL2DatMonAn {
 			this->btnAppetizer->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->btnAppetizer->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnAppetizer->Location = System::Drawing::Point(233, 16);
-			this->btnAppetizer->Margin = System::Windows::Forms::Padding(2);
+			this->btnAppetizer->Location = System::Drawing::Point(311, 20);
+			this->btnAppetizer->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnAppetizer->Name = L"btnAppetizer";
-			this->btnAppetizer->Size = System::Drawing::Size(107, 54);
+			this->btnAppetizer->Size = System::Drawing::Size(143, 66);
 			this->btnAppetizer->TabIndex = 2;
 			this->btnAppetizer->Text = L"Khai Vị";
 			this->btnAppetizer->UseVisualStyleBackColor = true;
@@ -261,10 +273,10 @@ namespace PBL2DatMonAn {
 			this->btnFoodMain->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->btnFoodMain->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnFoodMain->Location = System::Drawing::Point(122, 16);
-			this->btnFoodMain->Margin = System::Windows::Forms::Padding(2);
+			this->btnFoodMain->Location = System::Drawing::Point(163, 20);
+			this->btnFoodMain->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnFoodMain->Name = L"btnFoodMain";
-			this->btnFoodMain->Size = System::Drawing::Size(107, 54);
+			this->btnFoodMain->Size = System::Drawing::Size(143, 66);
 			this->btnFoodMain->TabIndex = 1;
 			this->btnFoodMain->Text = L"Món Chính";
 			this->btnFoodMain->UseVisualStyleBackColor = true;
@@ -275,10 +287,10 @@ namespace PBL2DatMonAn {
 			this->btnAll->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->btnAll->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnAll->Location = System::Drawing::Point(10, 16);
-			this->btnAll->Margin = System::Windows::Forms::Padding(2);
+			this->btnAll->Location = System::Drawing::Point(13, 20);
+			this->btnAll->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnAll->Name = L"btnAll";
-			this->btnAll->Size = System::Drawing::Size(107, 54);
+			this->btnAll->Size = System::Drawing::Size(143, 66);
 			this->btnAll->TabIndex = 0;
 			this->btnAll->Text = L"Tất cả";
 			this->btnAll->UseVisualStyleBackColor = true;
@@ -288,40 +300,39 @@ namespace PBL2DatMonAn {
 			// 
 			this->pnListFood->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(223)),
 				static_cast<System::Int32>(static_cast<System::Byte>(206)));
-			this->pnListFood->Controls->Add(this->btnDiscount);
+			this->pnListFood->Controls->Add(this->cbChangerTable);
 			this->pnListFood->Controls->Add(this->panel2);
 			this->pnListFood->Controls->Add(this->btnTrangChu);
 			this->pnListFood->Controls->Add(this->btnThanhToan);
-			this->pnListFood->Controls->Add(this->button1);
+			this->pnListFood->Controls->Add(this->btnChangerTable);
 			this->pnListFood->Controls->Add(this->flowLayoutPanel1);
 			this->pnListFood->Controls->Add(this->panel4);
-			this->pnListFood->Location = System::Drawing::Point(704, 34);
-			this->pnListFood->Margin = System::Windows::Forms::Padding(2);
+			this->pnListFood->Location = System::Drawing::Point(939, 42);
+			this->pnListFood->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->pnListFood->Name = L"pnListFood";
-			this->pnListFood->Size = System::Drawing::Size(308, 614);
+			this->pnListFood->Size = System::Drawing::Size(411, 756);
 			this->pnListFood->TabIndex = 0;
 			// 
-			// btnDiscount
+			// cbChangerTable
 			// 
-			this->btnDiscount->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->btnDiscount->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->btnDiscount->Location = System::Drawing::Point(169, 566);
-			this->btnDiscount->Margin = System::Windows::Forms::Padding(2);
-			this->btnDiscount->Name = L"btnDiscount";
-			this->btnDiscount->Size = System::Drawing::Size(95, 41);
-			this->btnDiscount->TabIndex = 5;
-			this->btnDiscount->Text = L"Khuyến mại";
-			this->btnDiscount->UseVisualStyleBackColor = true;
+			this->cbChangerTable->FormattingEnabled = true;
+			this->cbChangerTable->Items->AddRange(gcnew cli::array< System::Object^  >(10) {
+				L"Bàn 1", L"Bàn 2", L"Bàn 3", L"Bàn 4", L"Bàn 5",
+					L"Bàn 6", L"Bàn 7", L"Bàn 8", L"Bàn 9", L"Bàn 10"
+			});
+			this->cbChangerTable->Location = System::Drawing::Point(177, 715);
+			this->cbChangerTable->Name = L"cbChangerTable";
+			this->cbChangerTable->Size = System::Drawing::Size(121, 24);
+			this->cbChangerTable->TabIndex = 5;
 			// 
 			// panel2
 			// 
 			this->panel2->Controls->Add(this->label3);
 			this->panel2->Controls->Add(this->txtMoney);
-			this->panel2->Location = System::Drawing::Point(4, 466);
-			this->panel2->Margin = System::Windows::Forms::Padding(2);
+			this->panel2->Location = System::Drawing::Point(5, 574);
+			this->panel2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->panel2->Name = L"panel2";
-			this->panel2->Size = System::Drawing::Size(296, 43);
+			this->panel2->Size = System::Drawing::Size(395, 53);
 			this->panel2->TabIndex = 4;
 			// 
 			// label3
@@ -329,9 +340,10 @@ namespace PBL2DatMonAn {
 			this->label3->AutoSize = true;
 			this->label3->Font = (gcnew System::Drawing::Font(L"Calibri", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label3->Location = System::Drawing::Point(150, 6);
+			this->label3->Location = System::Drawing::Point(200, 7);
+			this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(51, 23);
+			this->label3->Size = System::Drawing::Size(67, 29);
 			this->label3->TabIndex = 1;
 			this->label3->Text = L"Tổng:";
 			// 
@@ -339,11 +351,11 @@ namespace PBL2DatMonAn {
 			// 
 			this->txtMoney->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->txtMoney->Location = System::Drawing::Point(203, 6);
-			this->txtMoney->Margin = System::Windows::Forms::Padding(2);
+			this->txtMoney->Location = System::Drawing::Point(271, 7);
+			this->txtMoney->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtMoney->Multiline = true;
 			this->txtMoney->Name = L"txtMoney";
-			this->txtMoney->Size = System::Drawing::Size(82, 26);
+			this->txtMoney->Size = System::Drawing::Size(108, 31);
 			this->txtMoney->TabIndex = 0;
 			this->txtMoney->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
@@ -352,10 +364,10 @@ namespace PBL2DatMonAn {
 			this->btnTrangChu->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->btnTrangChu->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnTrangChu->Location = System::Drawing::Point(56, 521);
-			this->btnTrangChu->Margin = System::Windows::Forms::Padding(2);
+			this->btnTrangChu->Location = System::Drawing::Point(25, 641);
+			this->btnTrangChu->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnTrangChu->Name = L"btnTrangChu";
-			this->btnTrangChu->Size = System::Drawing::Size(94, 41);
+			this->btnTrangChu->Size = System::Drawing::Size(125, 50);
 			this->btnTrangChu->TabIndex = 1;
 			this->btnTrangChu->Text = L"Trang Chủ";
 			this->btnTrangChu->UseVisualStyleBackColor = true;
@@ -366,27 +378,28 @@ namespace PBL2DatMonAn {
 			this->btnThanhToan->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->btnThanhToan->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnThanhToan->Location = System::Drawing::Point(169, 521);
-			this->btnThanhToan->Margin = System::Windows::Forms::Padding(2);
+			this->btnThanhToan->Location = System::Drawing::Point(222, 641);
+			this->btnThanhToan->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnThanhToan->Name = L"btnThanhToan";
-			this->btnThanhToan->Size = System::Drawing::Size(94, 41);
+			this->btnThanhToan->Size = System::Drawing::Size(125, 50);
 			this->btnThanhToan->TabIndex = 3;
 			this->btnThanhToan->Text = L"Thanh Toán";
 			this->btnThanhToan->UseVisualStyleBackColor = true;
 			this->btnThanhToan->Click += gcnew System::EventHandler(this, &FormFood::btnThanhToan_Click);
 			// 
-			// button1
+			// btnChangerTable
 			// 
-			this->button1->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->button1->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->btnChangerTable->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->btnChangerTable->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button1->Location = System::Drawing::Point(56, 566);
-			this->button1->Margin = System::Windows::Forms::Padding(2);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(94, 41);
-			this->button1->TabIndex = 2;
-			this->button1->Text = L"Chuyển bàn";
-			this->button1->UseVisualStyleBackColor = true;
+			this->btnChangerTable->Location = System::Drawing::Point(25, 699);
+			this->btnChangerTable->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->btnChangerTable->Name = L"btnChangerTable";
+			this->btnChangerTable->Size = System::Drawing::Size(125, 50);
+			this->btnChangerTable->TabIndex = 2;
+			this->btnChangerTable->Text = L"Chuyển bàn";
+			this->btnChangerTable->UseVisualStyleBackColor = true;
+			this->btnChangerTable->Click += gcnew System::EventHandler(this, &FormFood::btnChangerTable_Click);
 			// 
 			// flowLayoutPanel1
 			// 
@@ -395,9 +408,9 @@ namespace PBL2DatMonAn {
 				static_cast<System::Int32>(static_cast<System::Byte>(223)), static_cast<System::Int32>(static_cast<System::Byte>(206)));
 			this->flowLayoutPanel1->Controls->Add(this->panelOrder);
 			this->flowLayoutPanel1->Location = System::Drawing::Point(0, 0);
-			this->flowLayoutPanel1->Margin = System::Windows::Forms::Padding(8);
+			this->flowLayoutPanel1->Margin = System::Windows::Forms::Padding(11, 10, 11, 10);
 			this->flowLayoutPanel1->Name = L"flowLayoutPanel1";
-			this->flowLayoutPanel1->Size = System::Drawing::Size(301, 464);
+			this->flowLayoutPanel1->Size = System::Drawing::Size(401, 571);
 			this->flowLayoutPanel1->TabIndex = 0;
 			this->flowLayoutPanel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &FormFood::flowLayoutPanel1_Paint);
 			// 
@@ -408,10 +421,10 @@ namespace PBL2DatMonAn {
 			this->panelOrder->Controls->Add(this->numericUpDown1);
 			this->panelOrder->Controls->Add(this->label1);
 			this->panelOrder->Controls->Add(this->pictureBox2);
-			this->panelOrder->Location = System::Drawing::Point(38, 41);
-			this->panelOrder->Margin = System::Windows::Forms::Padding(38, 41, 38, 41);
+			this->panelOrder->Location = System::Drawing::Point(51, 50);
+			this->panelOrder->Margin = System::Windows::Forms::Padding(51, 50, 51, 50);
 			this->panelOrder->Name = L"panelOrder";
-			this->panelOrder->Size = System::Drawing::Size(200, 100);
+			this->panelOrder->Size = System::Drawing::Size(267, 123);
 			this->panelOrder->TabIndex = 10;
 			this->panelOrder->Visible = false;
 			// 
@@ -419,19 +432,18 @@ namespace PBL2DatMonAn {
 			// 
 			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label2->Location = System::Drawing::Point(116, 39);
-			this->label2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label2->Location = System::Drawing::Point(155, 48);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(32, 15);
+			this->label2->Size = System::Drawing::Size(43, 18);
 			this->label2->TabIndex = 3;
 			this->label2->Text = L"14$";
 			// 
 			// numericUpDown1
 			// 
-			this->numericUpDown1->Location = System::Drawing::Point(118, 65);
-			this->numericUpDown1->Margin = System::Windows::Forms::Padding(2);
+			this->numericUpDown1->Location = System::Drawing::Point(157, 80);
+			this->numericUpDown1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->numericUpDown1->Name = L"numericUpDown1";
-			this->numericUpDown1->Size = System::Drawing::Size(27, 20);
+			this->numericUpDown1->Size = System::Drawing::Size(36, 22);
 			this->numericUpDown1->TabIndex = 2;
 			// 
 			// label1
@@ -439,19 +451,18 @@ namespace PBL2DatMonAn {
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(116, 20);
-			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label1->Location = System::Drawing::Point(155, 25);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(74, 19);
+			this->label1->Size = System::Drawing::Size(92, 23);
 			this->label1->TabIndex = 1;
 			this->label1->Text = L"Hambuger";
 			// 
 			// pictureBox2
 			// 
-			this->pictureBox2->Location = System::Drawing::Point(14, 2);
-			this->pictureBox2->Margin = System::Windows::Forms::Padding(2);
+			this->pictureBox2->Location = System::Drawing::Point(19, 2);
+			this->pictureBox2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->pictureBox2->Name = L"pictureBox2";
-			this->pictureBox2->Size = System::Drawing::Size(98, 94);
+			this->pictureBox2->Size = System::Drawing::Size(131, 116);
 			this->pictureBox2->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox2->TabIndex = 0;
 			this->pictureBox2->TabStop = false;
@@ -460,10 +471,10 @@ namespace PBL2DatMonAn {
 			// panel4
 			// 
 			this->panel4->BackColor = System::Drawing::SystemColors::ActiveBorder;
-			this->panel4->Location = System::Drawing::Point(4, 514);
-			this->panel4->Margin = System::Windows::Forms::Padding(2);
+			this->panel4->Location = System::Drawing::Point(5, 633);
+			this->panel4->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->panel4->Name = L"panel4";
-			this->panel4->Size = System::Drawing::Size(285, 3);
+			this->panel4->Size = System::Drawing::Size(380, 4);
 			this->panel4->TabIndex = 0;
 			// 
 			// FlpFood
@@ -472,11 +483,11 @@ namespace PBL2DatMonAn {
 			this->FlpFood->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(223)),
 				static_cast<System::Int32>(static_cast<System::Byte>(206)));
 			this->FlpFood->Controls->Add(this->panel1);
-			this->FlpFood->Location = System::Drawing::Point(7, 34);
-			this->FlpFood->Margin = System::Windows::Forms::Padding(2);
+			this->FlpFood->Location = System::Drawing::Point(9, 42);
+			this->FlpFood->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->FlpFood->Name = L"FlpFood";
-			this->FlpFood->Padding = System::Windows::Forms::Padding(60, 2, 8, 8);
-			this->FlpFood->Size = System::Drawing::Size(691, 509);
+			this->FlpFood->Padding = System::Windows::Forms::Padding(80, 2, 11, 10);
+			this->FlpFood->Size = System::Drawing::Size(921, 626);
 			this->FlpFood->TabIndex = 0;
 			// 
 			// panel1
@@ -485,10 +496,10 @@ namespace PBL2DatMonAn {
 			this->panel1->Controls->Add(this->lbtenGia);
 			this->panel1->Controls->Add(this->lbtenMonan);
 			this->panel1->Controls->Add(this->pictureBox1);
-			this->panel1->Location = System::Drawing::Point(62, 4);
-			this->panel1->Margin = System::Windows::Forms::Padding(2);
+			this->panel1->Location = System::Drawing::Point(83, 4);
+			this->panel1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(141, 96);
+			this->panel1->Size = System::Drawing::Size(188, 118);
 			this->panel1->TabIndex = 0;
 			this->panel1->Visible = false;
 			// 
@@ -497,10 +508,9 @@ namespace PBL2DatMonAn {
 			this->lbtenGia->AutoSize = true;
 			this->lbtenGia->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->lbtenGia->Location = System::Drawing::Point(94, 76);
-			this->lbtenGia->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->lbtenGia->Location = System::Drawing::Point(125, 94);
 			this->lbtenGia->Name = L"lbtenGia";
-			this->lbtenGia->Size = System::Drawing::Size(26, 15);
+			this->lbtenGia->Size = System::Drawing::Size(32, 20);
 			this->lbtenGia->TabIndex = 2;
 			this->lbtenGia->Text = L"14$";
 			// 
@@ -509,19 +519,18 @@ namespace PBL2DatMonAn {
 			this->lbtenMonan->AutoSize = true;
 			this->lbtenMonan->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->lbtenMonan->Location = System::Drawing::Point(2, 74);
-			this->lbtenMonan->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->lbtenMonan->Location = System::Drawing::Point(3, 91);
 			this->lbtenMonan->Name = L"lbtenMonan";
-			this->lbtenMonan->Size = System::Drawing::Size(74, 19);
+			this->lbtenMonan->Size = System::Drawing::Size(92, 23);
 			this->lbtenMonan->TabIndex = 1;
 			this->lbtenMonan->Text = L"Hambuger";
 			// 
 			// pictureBox1
 			// 
-			this->pictureBox1->Location = System::Drawing::Point(15, 3);
-			this->pictureBox1->Margin = System::Windows::Forms::Padding(2);
+			this->pictureBox1->Location = System::Drawing::Point(20, 4);
+			this->pictureBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(104, 70);
+			this->pictureBox1->Size = System::Drawing::Size(139, 86);
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
@@ -530,23 +539,22 @@ namespace PBL2DatMonAn {
 			// 
 			this->lblTenNhanVien->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->lblTenNhanVien->Location = System::Drawing::Point(4, 10);
-			this->lblTenNhanVien->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->lblTenNhanVien->Location = System::Drawing::Point(5, 12);
 			this->lblTenNhanVien->Name = L"lblTenNhanVien";
-			this->lblTenNhanVien->Size = System::Drawing::Size(248, 19);
+			this->lblTenNhanVien->Size = System::Drawing::Size(331, 23);
 			this->lblTenNhanVien->TabIndex = 1;
 			this->lblTenNhanVien->Text = L"label3";
 			// 
 			// FormFood
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1015, 652);
+			this->ClientSize = System::Drawing::Size(1353, 802);
 			this->Controls->Add(this->pnListFood);
 			this->Controls->Add(this->lblTenNhanVien);
 			this->Controls->Add(this->FlpFood);
 			this->Controls->Add(this->pnNav);
-			this->Margin = System::Windows::Forms::Padding(2);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"FormFood";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"FormFood";
@@ -755,6 +763,77 @@ private: System::Void btnTrangChu_Click(System::Object^ sender, System::EventArg
 private: System::Void pictureBox2_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void flowLayoutPanel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void btnChangerTable_Click(System::Object^ sender, System::EventArgs^ e) {
+	//ktra ban
+	if (cbChangerTable->SelectedIndex == -1) {
+		MessageBox::Show("Vui lòng chọn bàn để chuyển");
+		return;
+	}
+
+	//lay so ban dc chon tu cbb
+	String^ soBanMoi = cbChangerTable->SelectedItem->ToString();
+
+	if (soBanMoi == banHienTai->SoBan) {
+		MessageBox::Show(L"Bàn được chọn là bàn trung với bàn hiện tại", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		return;
+	}
+
+	//tim ban moi
+	ManagerTable^ banMoi = nullptr;
+	for each(ManagerTable ^ ban in danhSachBan) {
+		if (ban->SoBan == soBanMoi) {
+			banMoi = ban;
+			break;
+		}
+	}
+
+	if (banMoi == nullptr) {
+		MessageBox::Show(L"Bàn được chọn không tồn tại", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		return;
+	}
+
+	//ktra ban trang thai ban moi
+	if (banMoi->TrangThai != L"Trống") {
+		MessageBox::Show(L"Bàn được chọn đã có người ngồi", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		return;
+	}
+
+	//kiem tra ban hien tai
+	if (banHienTai->DanhSachMon == nullptr || banHienTai->DanhSachMon->Count == 0) {
+		MessageBox::Show(L"Bàn hiện tại không có món nào để chuyển", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		return;
+	}
+
+	//chuyen danh sach mon
+	banMoi->DanhSachMon = gcnew List<MonAn^>();
+	for each(MonAn ^ mon in banHienTai->DanhSachMon) {
+		MonAn^ monMoi = gcnew MonAn(mon->LoaiMon, mon->TenMon, mon->Gia, mon->Anh);
+		monMoi->ID = mon->ID;
+		monMoi->SoLuong = mon->SoLuong;
+		banMoi->DanhSachMon->Add(monMoi);
+	}
+
+	//cap nhat trang thai ban moi
+	banMoi->TrangThai = L"Có Khách";
+	banHienTai->TrangThai = L"Trống";
+	banHienTai->DanhSachMon->Clear();
+
+	//thay doi file
+	if (danhSachBan != nullptr) {
+		//ghi file
+		ManagerTable::GhiDanhSachBan(danhSachBan, banFilePath);
+	}
+
+	//cap nhat banhientai thanh ban moi
+	banHienTai = banMoi;
+
+	//cap nhat giao dien;
+	HienThiMonDaDat();
+	CapNhatTongTien();
+
+	//thong bao thanh cong
+	MessageBox::Show(L"Chuyển sang" + soBanMoi + L" thành công", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
 }
 };
 }
