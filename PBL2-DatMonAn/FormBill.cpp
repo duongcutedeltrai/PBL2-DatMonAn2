@@ -55,7 +55,6 @@ namespace PBL2DatMonAn {
         }
 
         ManagerTable::GhiDanhSachBan(danhSachBan, banFilePath);
-
         //cap nhat lich su hoa don
         if (addHistoryBillForm != nullptr) {
             addHistoryBillForm->UpdateHistory();
@@ -95,7 +94,6 @@ namespace PBL2DatMonAn {
         }
 
         ManagerTable::GhiDanhSachBan(danhSachBan, banFilePath);
-
         //cap nhat lich su hoa don
         if (addHistoryBillForm != nullptr) {
             addHistoryBillForm->UpdateHistory();

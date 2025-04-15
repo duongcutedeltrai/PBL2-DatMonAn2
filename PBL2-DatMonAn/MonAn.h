@@ -21,7 +21,7 @@ namespace PBL2DatMonAn {
         MonAn(String^ id, String^ loai, String^ ten, String^ gia, String^ anh, int soluong);
 
         // Static Methods
-        static void GhiDanhSachMonAn(List<MonAn^>^ danhSachMon, String^ filePath);
-        static List<MonAn^>^ DocDanhSachMonAn(String^ filePath);
+        static void GhiDanhSachMonAn(List<MonAn^>^ danhSachMon, String^ FoodfilePath);
+        static List<MonAn^>^ DocDanhSachMonAn(String^ FoodfilePath);
     };
 }

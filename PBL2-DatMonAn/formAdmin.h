@@ -66,7 +66,7 @@ namespace PBL2DatMonAn {
 	private: System::Windows::Forms::Label^ labelAdmin;
 	private: System::Windows::Forms::Panel^ panel1;
 
-	private: System::Windows::Forms::Panel^ panel2;
+
 
 	private: System::Windows::Forms::Panel^ panel3;
 	private: AddFoodForm^ addFoodForm;
@@ -76,6 +76,7 @@ namespace PBL2DatMonAn {
 	private: System::Windows::Forms::Panel^ panelGeneral;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Button^ btnDiscount;
+	private: System::Windows::Forms::Panel^ panel2;
 
 	private:
 		/// <summary>
@@ -97,15 +98,16 @@ namespace PBL2DatMonAn {
 			this->labelAdmin = (gcnew System::Windows::Forms::Label());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->panel2 = (gcnew System::Windows::Forms::Panel());
 			this->btnDiscount = (gcnew System::Windows::Forms::Button());
 			this->panelGeneral = (gcnew System::Windows::Forms::Panel());
+			this->panel2 = (gcnew System::Windows::Forms::Panel());
 			this->panel1->SuspendLayout();
 			this->panel2->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// btnThemMon
 			// 
+			this->btnThemMon->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom));
 			this->btnThemMon->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(167)), static_cast<System::Int32>(static_cast<System::Byte>(141)),
 				static_cast<System::Int32>(static_cast<System::Byte>(120)));
 			this->btnThemMon->Cursor = System::Windows::Forms::Cursors::Hand;
@@ -126,6 +128,7 @@ namespace PBL2DatMonAn {
 			// 
 			// btnQuanlynhanvien
 			// 
+			this->btnQuanlynhanvien->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom));
 			this->btnQuanlynhanvien->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(167)),
 				static_cast<System::Int32>(static_cast<System::Byte>(141)), static_cast<System::Int32>(static_cast<System::Byte>(120)));
 			this->btnQuanlynhanvien->Cursor = System::Windows::Forms::Cursors::Hand;
@@ -146,6 +149,7 @@ namespace PBL2DatMonAn {
 			// 
 			// btnThongKe
 			// 
+			this->btnThongKe->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom));
 			this->btnThongKe->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(167)), static_cast<System::Int32>(static_cast<System::Byte>(141)),
 				static_cast<System::Int32>(static_cast<System::Byte>(120)));
 			this->btnThongKe->Cursor = System::Windows::Forms::Cursors::Hand;
@@ -166,6 +170,7 @@ namespace PBL2DatMonAn {
 			// 
 			// btnDangXUatAdmin
 			// 
+			this->btnDangXUatAdmin->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
 			this->btnDangXUatAdmin->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(142)),
 				static_cast<System::Int32>(static_cast<System::Byte>(121)), static_cast<System::Int32>(static_cast<System::Byte>(92)));
 			this->btnDangXUatAdmin->Cursor = System::Windows::Forms::Cursors::Hand;
@@ -195,7 +200,6 @@ namespace PBL2DatMonAn {
 			this->labelAdmin->Size = System::Drawing::Size(152, 46);
 			this->labelAdmin->TabIndex = 6;
 			this->labelAdmin->Text = L"Quản Lý";
-
 			// 
 			// panel1
 			// 
@@ -210,7 +214,6 @@ namespace PBL2DatMonAn {
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(1149, 98);
 			this->panel1->TabIndex = 0;
-
 			// 
 			// label1
 			// 
@@ -226,8 +229,45 @@ namespace PBL2DatMonAn {
 			this->label1->TabIndex = 7;
 			this->label1->Text = L"Restaurant D^D";
 			// 
+			// btnDiscount
+			// 
+			this->btnDiscount->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom));
+			this->btnDiscount->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(167)), static_cast<System::Int32>(static_cast<System::Byte>(141)),
+				static_cast<System::Int32>(static_cast<System::Byte>(120)));
+			this->btnDiscount->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->btnDiscount->FlatAppearance->BorderColor = System::Drawing::Color::White;
+			this->btnDiscount->FlatAppearance->BorderSize = 0;
+			this->btnDiscount->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnDiscount->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btnDiscount->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+				static_cast<System::Int32>(static_cast<System::Byte>(18)));
+			this->btnDiscount->Location = System::Drawing::Point(680, 9);
+			this->btnDiscount->Margin = System::Windows::Forms::Padding(0);
+			this->btnDiscount->Name = L"btnDiscount";
+			this->btnDiscount->Size = System::Drawing::Size(181, 50);
+			this->btnDiscount->TabIndex = 6;
+			this->btnDiscount->Text = L"Giảm giá";
+			this->btnDiscount->UseVisualStyleBackColor = false;
+			this->btnDiscount->Click += gcnew System::EventHandler(this, &formAdmin::btnDiscount_Click);
+			// 
+			// panelGeneral
+			// 
+			this->panelGeneral->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->panelGeneral->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(223)),
+				static_cast<System::Int32>(static_cast<System::Byte>(206)));
+			this->panelGeneral->Location = System::Drawing::Point(0, 182);
+			this->panelGeneral->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->panelGeneral->Name = L"panelGeneral";
+			this->panelGeneral->Size = System::Drawing::Size(1151, 578);
+			this->panelGeneral->TabIndex = 8;
+			// 
 			// panel2
 			// 
+			this->panel2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
 			this->panel2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(223)),
 				static_cast<System::Int32>(static_cast<System::Byte>(206)));
 			this->panel2->Controls->Add(this->btnDiscount);
@@ -239,37 +279,6 @@ namespace PBL2DatMonAn {
 			this->panel2->Name = L"panel2";
 			this->panel2->Size = System::Drawing::Size(1149, 74);
 			this->panel2->TabIndex = 7;
-			// 
-			// btnDiscount
-			// 
-			this->btnDiscount->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(167)), static_cast<System::Int32>(static_cast<System::Byte>(141)),
-				static_cast<System::Int32>(static_cast<System::Byte>(120)));
-			this->btnDiscount->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->btnDiscount->FlatAppearance->BorderColor = System::Drawing::Color::White;
-			this->btnDiscount->FlatAppearance->BorderSize = 0;
-			this->btnDiscount->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnDiscount->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->btnDiscount->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
-				static_cast<System::Int32>(static_cast<System::Byte>(18)));
-			this->btnDiscount->Location = System::Drawing::Point(684, 9);
-			this->btnDiscount->Margin = System::Windows::Forms::Padding(0);
-			this->btnDiscount->Name = L"btnDiscount";
-			this->btnDiscount->Size = System::Drawing::Size(181, 50);
-			this->btnDiscount->TabIndex = 6;
-			this->btnDiscount->Text = L"Giảm giá";
-			this->btnDiscount->UseVisualStyleBackColor = false;
-			this->btnDiscount->Click += gcnew System::EventHandler(this, &formAdmin::btnDiscount_Click);
-			// 
-			// panelGeneral
-			// 
-			this->panelGeneral->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(223)),
-				static_cast<System::Int32>(static_cast<System::Byte>(206)));
-			this->panelGeneral->Location = System::Drawing::Point(0, 182);
-			this->panelGeneral->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->panelGeneral->Name = L"panelGeneral";
-			this->panelGeneral->Size = System::Drawing::Size(1151, 578);
-			this->panelGeneral->TabIndex = 8;
 			// 
 			// formAdmin
 			// 

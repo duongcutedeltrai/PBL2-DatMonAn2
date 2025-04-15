@@ -5,6 +5,7 @@
 #include "AddHistoryBillForm.h"
 #include "AddDiscountForm.h"	
 #include "DiscountManager.h"
+
 namespace PBL2DatMonAn {
 
 	using namespace System;
@@ -31,7 +32,7 @@ namespace PBL2DatMonAn {
 			this->banFilePath = banFilePath;
 			this->addHistoryBillForm = historyForm;
 			this->billFilePath = "bill.txt";
-			lblTenNhanVIen->Text = "Ten nhan vien: " + nameStaff;
+			lblTenNhanVIen->Text = "Tên nhân viên: " + nameStaff;
 			lblBanDat->Text = ban->SoBan;
 			Monandachon();
 			ApplyDiscount(); //giam gia
@@ -60,8 +61,8 @@ namespace PBL2DatMonAn {
 		List<ManagerTable^>^ danhSachBan;
 		String^ banFilePath;
 		double discountPercent;
-	//private:
-	//	System::Collections::Generic::List<MonAn^>^ danhSachMon;
+		//private:
+		//	System::Collections::Generic::List<MonAn^>^ danhSachMon;
 	private: System::Windows::Forms::Panel^ panel1;
 	protected:
 	private: System::Windows::Forms::Label^ label1;
@@ -107,6 +108,8 @@ namespace PBL2DatMonAn {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->lblBanDat = (gcnew System::Windows::Forms::Label());
 			this->pnPrice = (gcnew System::Windows::Forms::Panel());
+			this->txtDiscount = (gcnew System::Windows::Forms::TextBox());
+			this->lblDiscount = (gcnew System::Windows::Forms::Label());
 			this->txtPrice = (gcnew System::Windows::Forms::TextBox());
 			this->label14 = (gcnew System::Windows::Forms::Label());
 			this->label15 = (gcnew System::Windows::Forms::Label());
@@ -119,8 +122,6 @@ namespace PBL2DatMonAn {
 			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->lblTenNhanVIen = (gcnew System::Windows::Forms::Label());
 			this->lblDateIn = (gcnew System::Windows::Forms::Label());
-			this->lblDiscount = (gcnew System::Windows::Forms::Label());
-			this->txtDiscount = (gcnew System::Windows::Forms::TextBox());
 			this->dateTimePicker1 = (gcnew System::Windows::Forms::DateTimePicker());
 			this->panel1->SuspendLayout();
 			this->pnPrice->SuspendLayout();
@@ -215,6 +216,23 @@ namespace PBL2DatMonAn {
 			this->pnPrice->Size = System::Drawing::Size(461, 58);
 			this->pnPrice->TabIndex = 6;
 			// 
+			// txtDiscount
+			// 
+			this->txtDiscount->Location = System::Drawing::Point(90, 11);
+			this->txtDiscount->Multiline = true;
+			this->txtDiscount->Name = L"txtDiscount";
+			this->txtDiscount->Size = System::Drawing::Size(100, 32);
+			this->txtDiscount->TabIndex = 3;
+			// 
+			// lblDiscount
+			// 
+			this->lblDiscount->AutoSize = true;
+			this->lblDiscount->Location = System::Drawing::Point(19, 18);
+			this->lblDiscount->Name = L"lblDiscount";
+			this->lblDiscount->Size = System::Drawing::Size(64, 16);
+			this->lblDiscount->TabIndex = 2;
+			this->lblDiscount->Text = L"Giảm giá:";
+			// 
 			// txtPrice
 			// 
 			this->txtPrice->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(223)),
@@ -240,7 +258,6 @@ namespace PBL2DatMonAn {
 			this->label14->Size = System::Drawing::Size(89, 38);
 			this->label14->TabIndex = 0;
 			this->label14->Text = L"Tổng:";
-
 			// 
 			// label15
 			// 
@@ -342,14 +359,13 @@ namespace PBL2DatMonAn {
 			// lblTenNhanVIen
 			// 
 			this->lblTenNhanVIen->AutoSize = true;
-			this->lblTenNhanVIen->BackColor = System::Drawing::SystemColors::ButtonShadow;
-			this->lblTenNhanVIen->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->lblTenNhanVIen->BackColor = System::Drawing::Color::Transparent;
+			this->lblTenNhanVIen->Font = (gcnew System::Drawing::Font(L"Arial", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->lblTenNhanVIen->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
-				static_cast<System::Int32>(static_cast<System::Byte>(18)));
-			this->lblTenNhanVIen->Location = System::Drawing::Point(45, 238);
+			this->lblTenNhanVIen->ForeColor = System::Drawing::Color::Black;
+			this->lblTenNhanVIen->Location = System::Drawing::Point(44, 230);
 			this->lblTenNhanVIen->Name = L"lblTenNhanVIen";
-			this->lblTenNhanVIen->Size = System::Drawing::Size(36, 17);
+			this->lblTenNhanVIen->Size = System::Drawing::Size(58, 26);
 			this->lblTenNhanVIen->TabIndex = 11;
 			this->lblTenNhanVIen->Text = L"label";
 			// 
@@ -362,26 +378,9 @@ namespace PBL2DatMonAn {
 			this->lblDateIn->TabIndex = 12;
 			this->lblDateIn->Text = L"Giờ vào:";
 			// 
-			// lblDiscount
-			// 
-			this->lblDiscount->AutoSize = true;
-			this->lblDiscount->Location = System::Drawing::Point(19, 18);
-			this->lblDiscount->Name = L"lblDiscount";
-			this->lblDiscount->Size = System::Drawing::Size(64, 16);
-			this->lblDiscount->TabIndex = 2;
-			this->lblDiscount->Text = L"Giảm giá:";
-			// 
-			// txtDiscount
-			// 
-			this->txtDiscount->Location = System::Drawing::Point(90, 11);
-			this->txtDiscount->Multiline = true;
-			this->txtDiscount->Name = L"txtDiscount";
-			this->txtDiscount->Size = System::Drawing::Size(100, 32);
-			this->txtDiscount->TabIndex = 3;
-			// 
 			// dateTimePicker1
 			// 
-			this->dateTimePicker1->CustomFormat = L"    dd/MM/yyyy";
+			this->dateTimePicker1->CustomFormat = L"  dd/MM/yyyy HH:mm:ss";
 			this->dateTimePicker1->Format = System::Windows::Forms::DateTimePickerFormat::Custom;
 			this->dateTimePicker1->Location = System::Drawing::Point(110, 271);
 			this->dateTimePicker1->Name = L"dateTimePicker1";
@@ -425,6 +424,6 @@ namespace PBL2DatMonAn {
 	private: System::Void Monandachon();
 	private: System::Void btnChuyenKhoan_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void btnTienMat_Click(System::Object^ sender, System::EventArgs^ e);
-	 private: System::Void ApplyDiscount();
+	private: System::Void ApplyDiscount();
 };
-	}
+}

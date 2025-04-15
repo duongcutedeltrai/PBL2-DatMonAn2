@@ -23,7 +23,7 @@ namespace PBL2DatMonAn {
         PayMent(String^ banID, String^ soBan, String^ tenNhanVien, List<MonAn^>^ danhSachMon, double tongTien, String^ phuongThucThanhToan);
 
         // Static Methods
-        static void GhiDanhSachHoaDon(List<PayMent^>^ danhSachHoaDon, String^ filePath);
-        static List<PayMent^>^ DocDanhSachHoaDon(String^ filePath);
+        static void GhiDanhSachHoaDon(List<PayMent^>^ danhSachHoaDon, String^ BillfilePath);
+        static List<PayMent^>^ DocDanhSachHoaDon(String^ BillfilePath);
     };
 }

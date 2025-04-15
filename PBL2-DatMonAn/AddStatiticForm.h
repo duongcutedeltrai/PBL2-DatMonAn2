@@ -21,6 +21,11 @@ namespace PBL2DatMonAn {
 		{
 			InitializeComponent();
 			billFilePath = "Bill.txt";
+			foodFilePath = "monan.txt";
+
+			dtpFrom->Value = DateTime::Now.AddDays(-1);
+			dtpTo->Value = DateTime::Now;
+
 			//
 			//TODO: Add the constructor code here
 			//
@@ -38,30 +43,27 @@ namespace PBL2DatMonAn {
 			}
 		}
 	private: System::String^ billFilePath;
+		   System::String^ foodFilePath;
 	private: System::Windows::Forms::Panel^ panel1;
-	private: System::Windows::Forms::Panel^ pnDoanhThu;
-	private: System::Windows::Forms::Button^ btnDoanhThu;
-	private: System::Windows::Forms::Label^ lblDoanhThu;
-	private: System::Windows::Forms::Panel^ pnDateTimeInDoanhThu;
-	private: System::Windows::Forms::DateTimePicker^ dateTimeDoanhThuTo;
+	private: System::Windows::Forms::DataVisualization::Charting::Chart^ chartMonAnBanChayNhat;
+	private: System::Windows::Forms::Button^ btnLocSoLuongBanRa;
+	private: System::Windows::Forms::Label^ lblTo;
+	private: System::Windows::Forms::Label^ lblFrom;
+	private: System::Windows::Forms::DateTimePicker^ dtpTo;
+	private: System::Windows::Forms::DateTimePicker^ dtpFrom;
+	private: System::Windows::Forms::DataVisualization::Charting::Chart^ chartSoSanh;
+	private: System::Windows::Forms::Button^ btnLocSoSanh;
+	private: System::Windows::Forms::ComboBox^ cbBoxMonthBefore;
+
+	private: System::Windows::Forms::ComboBox^ cbBoxMonthAfter;
 
 
-	private: System::Windows::Forms::Label^ label3;
-	private: System::Windows::Forms::Panel^ pnDateTimeFromDoanhThu;
-	private: System::Windows::Forms::DateTimePicker^ dateTimeDoanhThuFrom;
 
-	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::DataVisualization::Charting::Chart^ chartDoanhThu;
-	private: System::Windows::Forms::Panel^ pnStatiticSTaff;
-	private: System::Windows::Forms::DataVisualization::Charting::Chart^ chartStatiticStaff;
-	private: System::Windows::Forms::Button^ btnStatiticStaff;
-	private: System::Windows::Forms::Label^ lblStaffStatitic;
-	private: System::Windows::Forms::Panel^ panel3;
-	private: System::Windows::Forms::DateTimePicker^ dateTimeFormStatiticIn;
-	private: System::Windows::Forms::Label^ label5;
-	private: System::Windows::Forms::Panel^ pnStaffStatitics;
-	private: System::Windows::Forms::DateTimePicker^ dateTimeStatiticStaffFrom;
-	private: System::Windows::Forms::Label^ label6;
+
+
+
+
+
 	protected:
 
 	private:
@@ -84,293 +86,415 @@ namespace PBL2DatMonAn {
 			System::Windows::Forms::DataVisualization::Charting::Legend^ legend2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
 			System::Windows::Forms::DataVisualization::Charting::Series^ series2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
-			this->pnStatiticSTaff = (gcnew System::Windows::Forms::Panel());
-			this->chartStatiticStaff = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
-			this->btnStatiticStaff = (gcnew System::Windows::Forms::Button());
-			this->lblStaffStatitic = (gcnew System::Windows::Forms::Label());
-			this->panel3 = (gcnew System::Windows::Forms::Panel());
-			this->dateTimeFormStatiticIn = (gcnew System::Windows::Forms::DateTimePicker());
-			this->label5 = (gcnew System::Windows::Forms::Label());
-			this->pnStaffStatitics = (gcnew System::Windows::Forms::Panel());
-			this->dateTimeStatiticStaffFrom = (gcnew System::Windows::Forms::DateTimePicker());
-			this->label6 = (gcnew System::Windows::Forms::Label());
-			this->pnDoanhThu = (gcnew System::Windows::Forms::Panel());
-			this->chartDoanhThu = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
-			this->btnDoanhThu = (gcnew System::Windows::Forms::Button());
-			this->lblDoanhThu = (gcnew System::Windows::Forms::Label());
-			this->pnDateTimeInDoanhThu = (gcnew System::Windows::Forms::Panel());
-			this->dateTimeDoanhThuTo = (gcnew System::Windows::Forms::DateTimePicker());
-			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->pnDateTimeFromDoanhThu = (gcnew System::Windows::Forms::Panel());
-			this->dateTimeDoanhThuFrom = (gcnew System::Windows::Forms::DateTimePicker());
-			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->lblTo = (gcnew System::Windows::Forms::Label());
+			this->btnLocSoLuongBanRa = (gcnew System::Windows::Forms::Button());
+			this->lblFrom = (gcnew System::Windows::Forms::Label());
+			this->dtpTo = (gcnew System::Windows::Forms::DateTimePicker());
+			this->dtpFrom = (gcnew System::Windows::Forms::DateTimePicker());
+			this->chartMonAnBanChayNhat = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
+			this->chartSoSanh = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
+			this->btnLocSoSanh = (gcnew System::Windows::Forms::Button());
+			this->cbBoxMonthBefore = (gcnew System::Windows::Forms::ComboBox());
+			this->cbBoxMonthAfter = (gcnew System::Windows::Forms::ComboBox());
 			this->panel1->SuspendLayout();
-			this->pnStatiticSTaff->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chartStatiticStaff))->BeginInit();
-			this->panel3->SuspendLayout();
-			this->pnStaffStatitics->SuspendLayout();
-			this->pnDoanhThu->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chartDoanhThu))->BeginInit();
-			this->pnDateTimeInDoanhThu->SuspendLayout();
-			this->pnDateTimeFromDoanhThu->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chartMonAnBanChayNhat))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chartSoSanh))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// panel1
 			// 
-			this->panel1->Controls->Add(this->pnStatiticSTaff);
-			this->panel1->Controls->Add(this->pnDoanhThu);
-			this->panel1->Location = System::Drawing::Point(0, 3);
+			this->panel1->Controls->Add(this->lblTo);
+			this->panel1->Controls->Add(this->btnLocSoLuongBanRa);
+			this->panel1->Controls->Add(this->lblFrom);
+			this->panel1->Controls->Add(this->dtpTo);
+			this->panel1->Controls->Add(this->dtpFrom);
+			this->panel1->Controls->Add(this->chartMonAnBanChayNhat);
+			this->panel1->Location = System::Drawing::Point(3, 3);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(1055, 612);
-			this->panel1->TabIndex = 1;
+			this->panel1->Size = System::Drawing::Size(1397, 366);
+			this->panel1->TabIndex = 0;
 			// 
-			// pnStatiticSTaff
+			// lblTo
 			// 
-			this->pnStatiticSTaff->BackColor = System::Drawing::SystemColors::ActiveCaption;
-			this->pnStatiticSTaff->Controls->Add(this->chartStatiticStaff);
-			this->pnStatiticSTaff->Controls->Add(this->btnStatiticStaff);
-			this->pnStatiticSTaff->Controls->Add(this->lblStaffStatitic);
-			this->pnStatiticSTaff->Controls->Add(this->panel3);
-			this->pnStatiticSTaff->Controls->Add(this->pnStaffStatitics);
-			this->pnStatiticSTaff->Location = System::Drawing::Point(35, 304);
-			this->pnStatiticSTaff->Name = L"pnStatiticSTaff";
-			this->pnStatiticSTaff->Size = System::Drawing::Size(998, 305);
-			this->pnStatiticSTaff->TabIndex = 5;
+			this->lblTo->AutoSize = true;
+			this->lblTo->Location = System::Drawing::Point(619, 19);
+			this->lblTo->Name = L"lblTo";
+			this->lblTo->Size = System::Drawing::Size(67, 16);
+			this->lblTo->TabIndex = 5;
+			this->lblTo->Text = L"Đến ngày:";
 			// 
-			// chartStatiticStaff
+			// btnLocSoLuongBanRa
+			// 
+			this->btnLocSoLuongBanRa->BackColor = System::Drawing::SystemColors::ActiveCaption;
+			this->btnLocSoLuongBanRa->FlatAppearance->BorderSize = 0;
+			this->btnLocSoLuongBanRa->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnLocSoLuongBanRa->Font = (gcnew System::Drawing::Font(L"Arial", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btnLocSoLuongBanRa->Location = System::Drawing::Point(1050, 133);
+			this->btnLocSoLuongBanRa->Name = L"btnLocSoLuongBanRa";
+			this->btnLocSoLuongBanRa->Size = System::Drawing::Size(226, 50);
+			this->btnLocSoLuongBanRa->TabIndex = 1;
+			this->btnLocSoLuongBanRa->Text = L"Lọc tổng số lượng";
+			this->btnLocSoLuongBanRa->UseVisualStyleBackColor = false;
+			this->btnLocSoLuongBanRa->Click += gcnew System::EventHandler(this, &AddStatiticForm::btnLocSoLuongBanRa_Click);
+			// 
+			// lblFrom
+			// 
+			this->lblFrom->AutoSize = true;
+			this->lblFrom->Location = System::Drawing::Point(64, 19);
+			this->lblFrom->Name = L"lblFrom";
+			this->lblFrom->Size = System::Drawing::Size(56, 16);
+			this->lblFrom->TabIndex = 4;
+			this->lblFrom->Text = L"Bắt đầu:";
+			// 
+			// dtpTo
+			// 
+			this->dtpTo->CustomFormat = L"dd/MM/yyyy";
+			this->dtpTo->Format = System::Windows::Forms::DateTimePickerFormat::Custom;
+			this->dtpTo->Location = System::Drawing::Point(709, 13);
+			this->dtpTo->Name = L"dtpTo";
+			this->dtpTo->Size = System::Drawing::Size(200, 22);
+			this->dtpTo->TabIndex = 3;
+			// 
+			// dtpFrom
+			// 
+			this->dtpFrom->CustomFormat = L"  dd/MM/yyyy";
+			this->dtpFrom->Format = System::Windows::Forms::DateTimePickerFormat::Custom;
+			this->dtpFrom->Location = System::Drawing::Point(160, 13);
+			this->dtpFrom->Name = L"dtpFrom";
+			this->dtpFrom->Size = System::Drawing::Size(200, 22);
+			this->dtpFrom->TabIndex = 2;
+			// 
+			// chartMonAnBanChayNhat
 			// 
 			chartArea1->Name = L"ChartArea1";
-			this->chartStatiticStaff->ChartAreas->Add(chartArea1);
+			this->chartMonAnBanChayNhat->ChartAreas->Add(chartArea1);
 			legend1->Name = L"Legend1";
-			this->chartStatiticStaff->Legends->Add(legend1);
-			this->chartStatiticStaff->Location = System::Drawing::Point(0, 95);
-			this->chartStatiticStaff->Name = L"chartStatiticStaff";
+			this->chartMonAnBanChayNhat->Legends->Add(legend1);
+			this->chartMonAnBanChayNhat->Location = System::Drawing::Point(32, 49);
+			this->chartMonAnBanChayNhat->Name = L"chartMonAnBanChayNhat";
 			series1->ChartArea = L"ChartArea1";
+			series1->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Spline;
 			series1->Legend = L"Legend1";
-			series1->Name = L"Doanh thu nhân viên";
-			this->chartStatiticStaff->Series->Add(series1);
-			this->chartStatiticStaff->Size = System::Drawing::Size(998, 184);
-			this->chartStatiticStaff->TabIndex = 6;
-			this->chartStatiticStaff->Text = L"chart1";
+			series1->Name = L"Số lượng";
+			this->chartMonAnBanChayNhat->Series->Add(series1);
+			this->chartMonAnBanChayNhat->Size = System::Drawing::Size(1181, 304);
+			this->chartMonAnBanChayNhat->TabIndex = 0;
+			this->chartMonAnBanChayNhat->Text = L"chart1";
 			// 
-			// btnStatiticStaff
-			// 
-			this->btnStatiticStaff->Font = (gcnew System::Drawing::Font(L"Arial", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->btnStatiticStaff->Location = System::Drawing::Point(771, 45);
-			this->btnStatiticStaff->Name = L"btnStatiticStaff";
-			this->btnStatiticStaff->Size = System::Drawing::Size(133, 44);
-			this->btnStatiticStaff->TabIndex = 4;
-			this->btnStatiticStaff->Text = L"Lọc";
-			this->btnStatiticStaff->UseVisualStyleBackColor = true;
-			this->btnStatiticStaff->Click += gcnew System::EventHandler(this, &AddStatiticForm::btnStatiticStaff_Click);
-			// 
-			// lblStaffStatitic
-			// 
-			this->lblStaffStatitic->AutoSize = true;
-			this->lblStaffStatitic->Font = (gcnew System::Drawing::Font(L"Arial", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->lblStaffStatitic->Location = System::Drawing::Point(16, 15);
-			this->lblStaffStatitic->Name = L"lblStaffStatitic";
-			this->lblStaffStatitic->Size = System::Drawing::Size(178, 23);
-			this->lblStaffStatitic->TabIndex = 3;
-			this->lblStaffStatitic->Text = L"Thống kê nhân viên";
-			// 
-			// panel3
-			// 
-			this->panel3->Controls->Add(this->dateTimeFormStatiticIn);
-			this->panel3->Controls->Add(this->label5);
-			this->panel3->Location = System::Drawing::Point(368, 45);
-			this->panel3->Name = L"panel3";
-			this->panel3->Size = System::Drawing::Size(297, 44);
-			this->panel3->TabIndex = 2;
-			// 
-			// dateTimeFormStatiticIn
-			// 
-			this->dateTimeFormStatiticIn->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->dateTimeFormStatiticIn->CustomFormat = L"   dd/MM/yyyy";
-			this->dateTimeFormStatiticIn->Format = System::Windows::Forms::DateTimePickerFormat::Custom;
-			this->dateTimeFormStatiticIn->Location = System::Drawing::Point(99, 8);
-			this->dateTimeFormStatiticIn->Name = L"dateTimeFormStatiticIn";
-			this->dateTimeFormStatiticIn->Size = System::Drawing::Size(195, 22);
-			this->dateTimeFormStatiticIn->TabIndex = 1;
-			// 
-			// label5
-			// 
-			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(3, 14);
-			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(59, 16);
-			this->label5->TabIndex = 0;
-			this->label5->Text = L"Từ ngày:";
-			// 
-			// pnStaffStatitics
-			// 
-			this->pnStaffStatitics->Controls->Add(this->dateTimeStatiticStaffFrom);
-			this->pnStaffStatitics->Controls->Add(this->label6);
-			this->pnStaffStatitics->Location = System::Drawing::Point(14, 45);
-			this->pnStaffStatitics->Name = L"pnStaffStatitics";
-			this->pnStaffStatitics->Size = System::Drawing::Size(297, 44);
-			this->pnStaffStatitics->TabIndex = 1;
-			// 
-			// dateTimeStatiticStaffFrom
-			// 
-			this->dateTimeStatiticStaffFrom->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->dateTimeStatiticStaffFrom->CustomFormat = L"   dd/MM/yyyy";
-			this->dateTimeStatiticStaffFrom->Format = System::Windows::Forms::DateTimePickerFormat::Custom;
-			this->dateTimeStatiticStaffFrom->Location = System::Drawing::Point(99, 8);
-			this->dateTimeStatiticStaffFrom->Name = L"dateTimeStatiticStaffFrom";
-			this->dateTimeStatiticStaffFrom->Size = System::Drawing::Size(195, 22);
-			this->dateTimeStatiticStaffFrom->TabIndex = 1;
-			// 
-			// label6
-			// 
-			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(3, 14);
-			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(59, 16);
-			this->label6->TabIndex = 0;
-			this->label6->Text = L"Từ ngày:";
-			// 
-			// pnDoanhThu
-			// 
-			this->pnDoanhThu->BackColor = System::Drawing::SystemColors::ActiveCaption;
-			this->pnDoanhThu->Controls->Add(this->chartDoanhThu);
-			this->pnDoanhThu->Controls->Add(this->btnDoanhThu);
-			this->pnDoanhThu->Controls->Add(this->lblDoanhThu);
-			this->pnDoanhThu->Controls->Add(this->pnDateTimeInDoanhThu);
-			this->pnDoanhThu->Controls->Add(this->pnDateTimeFromDoanhThu);
-			this->pnDoanhThu->Location = System::Drawing::Point(35, 19);
-			this->pnDoanhThu->Name = L"pnDoanhThu";
-			this->pnDoanhThu->Size = System::Drawing::Size(998, 279);
-			this->pnDoanhThu->TabIndex = 0;
-			// 
-			// chartDoanhThu
+			// chartSoSanh
 			// 
 			chartArea2->Name = L"ChartArea1";
-			this->chartDoanhThu->ChartAreas->Add(chartArea2);
+			this->chartSoSanh->ChartAreas->Add(chartArea2);
 			legend2->Name = L"Legend1";
-			this->chartDoanhThu->Legends->Add(legend2);
-			this->chartDoanhThu->Location = System::Drawing::Point(0, 95);
-			this->chartDoanhThu->Name = L"chartDoanhThu";
-			this->chartDoanhThu->Palette = System::Windows::Forms::DataVisualization::Charting::ChartColorPalette::Excel;
+			this->chartSoSanh->Legends->Add(legend2);
+			this->chartSoSanh->Location = System::Drawing::Point(35, 437);
+			this->chartSoSanh->Name = L"chartSoSanh";
 			series2->ChartArea = L"ChartArea1";
+			series2->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Spline;
 			series2->Legend = L"Legend1";
-			series2->Name = L"Doanh thu";
-			this->chartDoanhThu->Series->Add(series2);
-			this->chartDoanhThu->Size = System::Drawing::Size(998, 184);
-			this->chartDoanhThu->TabIndex = 5;
-			this->chartDoanhThu->Text = L"chart1";
+			series2->Name = L"Số lượng";
+			this->chartSoSanh->Series->Add(series2);
+			this->chartSoSanh->Size = System::Drawing::Size(1181, 304);
+			this->chartSoSanh->TabIndex = 6;
+			this->chartSoSanh->Text = L"chart1";
 			// 
-			// btnDoanhThu
+			// btnLocSoSanh
 			// 
-			this->btnDoanhThu->Font = (gcnew System::Drawing::Font(L"Arial", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->btnLocSoSanh->BackColor = System::Drawing::SystemColors::ActiveCaption;
+			this->btnLocSoSanh->FlatAppearance->BorderSize = 0;
+			this->btnLocSoSanh->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnLocSoSanh->Font = (gcnew System::Drawing::Font(L"Arial", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnDoanhThu->Location = System::Drawing::Point(771, 45);
-			this->btnDoanhThu->Name = L"btnDoanhThu";
-			this->btnDoanhThu->Size = System::Drawing::Size(133, 44);
-			this->btnDoanhThu->TabIndex = 4;
-			this->btnDoanhThu->Text = L"Lọc";
-			this->btnDoanhThu->UseVisualStyleBackColor = true;
-			this->btnDoanhThu->Click += gcnew System::EventHandler(this, &AddStatiticForm::btnDoanhThu_Click);
+			this->btnLocSoSanh->Location = System::Drawing::Point(1053, 582);
+			this->btnLocSoSanh->Name = L"btnLocSoSanh";
+			this->btnLocSoSanh->Size = System::Drawing::Size(226, 50);
+			this->btnLocSoSanh->TabIndex = 6;
+			this->btnLocSoSanh->Text = L"Tương quan giữa các món ";
+			this->btnLocSoSanh->UseVisualStyleBackColor = false;
+			this->btnLocSoSanh->Click += gcnew System::EventHandler(this, &AddStatiticForm::btnLocSoSanh_Click);
 			// 
-			// lblDoanhThu
+			// cbBoxMonthBefore
 			// 
-			this->lblDoanhThu->AutoSize = true;
-			this->lblDoanhThu->Font = (gcnew System::Drawing::Font(L"Arial", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->lblDoanhThu->Location = System::Drawing::Point(16, 15);
-			this->lblDoanhThu->Name = L"lblDoanhThu";
-			this->lblDoanhThu->Size = System::Drawing::Size(184, 23);
-			this->lblDoanhThu->TabIndex = 3;
-			this->lblDoanhThu->Text = L"Doanh thu bán hàng";
+			this->cbBoxMonthBefore->FormattingEnabled = true;
+			this->cbBoxMonthBefore->Items->AddRange(gcnew cli::array< System::Object^  >(12) {
+				L"01/2025", L"02/2025", L"03/2025", L"04/2025",
+					L"05/2025", L"06/2025", L"07/2025", L"08/2025", L"09/2025", L"10/2025", L"11/2025", L"12/2025"
+			});
+			this->cbBoxMonthBefore->Location = System::Drawing::Point(80, 392);
+			this->cbBoxMonthBefore->Name = L"cbBoxMonthBefore";
+			this->cbBoxMonthBefore->Size = System::Drawing::Size(121, 24);
+			this->cbBoxMonthBefore->TabIndex = 7;
 			// 
-			// pnDateTimeInDoanhThu
+			// cbBoxMonthAfter
 			// 
-			this->pnDateTimeInDoanhThu->Controls->Add(this->dateTimeDoanhThuTo);
-			this->pnDateTimeInDoanhThu->Controls->Add(this->label3);
-			this->pnDateTimeInDoanhThu->Location = System::Drawing::Point(368, 45);
-			this->pnDateTimeInDoanhThu->Name = L"pnDateTimeInDoanhThu";
-			this->pnDateTimeInDoanhThu->Size = System::Drawing::Size(297, 44);
-			this->pnDateTimeInDoanhThu->TabIndex = 2;
-			// 
-			// dateTimeDoanhThuTo
-			// 
-			this->dateTimeDoanhThuTo->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->dateTimeDoanhThuTo->CustomFormat = L"   dd/MM/yyyy";
-			this->dateTimeDoanhThuTo->Format = System::Windows::Forms::DateTimePickerFormat::Custom;
-			this->dateTimeDoanhThuTo->Location = System::Drawing::Point(99, 8);
-			this->dateTimeDoanhThuTo->Name = L"dateTimeDoanhThuTo";
-			this->dateTimeDoanhThuTo->Size = System::Drawing::Size(195, 22);
-			this->dateTimeDoanhThuTo->TabIndex = 1;
-			// 
-			// label3
-			// 
-			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(3, 14);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(59, 16);
-			this->label3->TabIndex = 0;
-			this->label3->Text = L"Từ ngày:";
-			// 
-			// pnDateTimeFromDoanhThu
-			// 
-			this->pnDateTimeFromDoanhThu->Controls->Add(this->dateTimeDoanhThuFrom);
-			this->pnDateTimeFromDoanhThu->Controls->Add(this->label2);
-			this->pnDateTimeFromDoanhThu->Location = System::Drawing::Point(14, 45);
-			this->pnDateTimeFromDoanhThu->Name = L"pnDateTimeFromDoanhThu";
-			this->pnDateTimeFromDoanhThu->Size = System::Drawing::Size(297, 44);
-			this->pnDateTimeFromDoanhThu->TabIndex = 1;
-			// 
-			// dateTimeDoanhThuFrom
-			// 
-			this->dateTimeDoanhThuFrom->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->dateTimeDoanhThuFrom->CustomFormat = L"   dd/MM/yyyy";
-			this->dateTimeDoanhThuFrom->Format = System::Windows::Forms::DateTimePickerFormat::Custom;
-			this->dateTimeDoanhThuFrom->Location = System::Drawing::Point(99, 8);
-			this->dateTimeDoanhThuFrom->Name = L"dateTimeDoanhThuFrom";
-			this->dateTimeDoanhThuFrom->Size = System::Drawing::Size(195, 22);
-			this->dateTimeDoanhThuFrom->TabIndex = 1;
-			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(3, 14);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(59, 16);
-			this->label2->TabIndex = 0;
-			this->label2->Text = L"Từ ngày:";
+			this->cbBoxMonthAfter->FormattingEnabled = true;
+			this->cbBoxMonthAfter->Items->AddRange(gcnew cli::array< System::Object^  >(12) {
+				L"01/2025", L"02/2025", L"03/2025", L"04/2025",
+					L"05/2025", L"06/2025", L"07/2025", L"08/2025", L"09/2025", L"10/2025", L"11/2025", L"12/2025"
+			});
+			this->cbBoxMonthAfter->Location = System::Drawing::Point(483, 392);
+			this->cbBoxMonthAfter->Name = L"cbBoxMonthAfter";
+			this->cbBoxMonthAfter->Size = System::Drawing::Size(121, 24);
+			this->cbBoxMonthAfter->TabIndex = 8;
 			// 
 			// AddStatiticForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->Controls->Add(this->cbBoxMonthAfter);
+			this->Controls->Add(this->cbBoxMonthBefore);
+			this->Controls->Add(this->btnLocSoSanh);
+			this->Controls->Add(this->chartSoSanh);
 			this->Controls->Add(this->panel1);
 			this->Name = L"AddStatiticForm";
-			this->Size = System::Drawing::Size(1058, 698);
+			this->Size = System::Drawing::Size(1405, 864);
+			this->Load += gcnew System::EventHandler(this, &AddStatiticForm::AddStatiticForm_Load);
 			this->panel1->ResumeLayout(false);
-			this->pnStatiticSTaff->ResumeLayout(false);
-			this->pnStatiticSTaff->PerformLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chartStatiticStaff))->EndInit();
-			this->panel3->ResumeLayout(false);
-			this->panel3->PerformLayout();
-			this->pnStaffStatitics->ResumeLayout(false);
-			this->pnStaffStatitics->PerformLayout();
-			this->pnDoanhThu->ResumeLayout(false);
-			this->pnDoanhThu->PerformLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chartDoanhThu))->EndInit();
-			this->pnDateTimeInDoanhThu->ResumeLayout(false);
-			this->pnDateTimeInDoanhThu->PerformLayout();
-			this->pnDateTimeFromDoanhThu->ResumeLayout(false);
-			this->pnDateTimeFromDoanhThu->PerformLayout();
+			this->panel1->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chartMonAnBanChayNhat))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chartSoSanh))->EndInit();
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
-	private: void LoadSTatistics();
-	private: void UpdateChartDoanhThu();
-	private: void UpdateChartStaff();
-	private: System::Void btnDoanhThu_Click(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void btnStatiticStaff_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void AddStatiticForm_Load(System::Object^ sender, System::EventArgs^ e) {
+		VeBieuDoSoLuongMonAn();
+		CapNhatComBoBox();
+		SoSanhCacMonAn();
+	}
+	private:
+		System::Void VeBieuDoSoLuongMonAn() {
+			// Xóa dữ liệu cũ trong series
+			this->chartMonAnBanChayNhat->Series[L"Số lượng"]->Points->Clear();
+
+			// Đọc khoảng thời gian từ DateTimePicker
+			DateTime fromDate = dtpFrom->Value.Date;
+			DateTime toDate = dtpTo->Value.Date.AddDays(1).AddSeconds(-1); // Bao gồm cả ngày cuối cùng
+
+			// Kiểm tra khoảng thời gian hợp lệ
+			if (fromDate > toDate) {
+				MessageBox::Show(L"Ngày bắt đầu phải nhỏ hơn hoặc bằng ngày kết thúc!", "Lỗi", MessageBoxButtons::OK, MessageBoxIcon::Error);
+				return;
+			}
+
+			// Đọc danh sách hóa đơn từ bill.txt
+			List<PayMent^>^ danhSachHoaDon = PayMent::DocDanhSachHoaDon(billFilePath);
+
+			// Lọc hóa đơn theo khoảng thời gian
+			List<PayMent^>^ danhSachHoaDonLoc = gcnew List<PayMent^>();
+			for each (PayMent ^ bill in danhSachHoaDon) {
+				if (bill->ThoiGianThanhToan >= fromDate && bill->ThoiGianThanhToan <= toDate) {
+					danhSachHoaDonLoc->Add(bill);
+				}
+			}
+
+			// Tính tổng số lượng bán ra của từng món
+			Dictionary<String^, int>^ soLuongMonAn = gcnew Dictionary<String^, int>();
+
+			// Đọc danh sách món ăn từ monan.txt
+			List<MonAn^>^ danhSachMonAn = MonAn::DocDanhSachMonAn(foodFilePath);
+			if (danhSachMonAn == nullptr || danhSachMonAn->Count == 0) {
+				MessageBox::Show(L"Không tìm thấy danh sách món ăn trong file monan.txt!", "Lỗi", MessageBoxButtons::OK, MessageBoxIcon::Error);
+				return;
+			}
+
+			// Khởi tạo số lượng bán ra của tất cả món ăn là 0
+			for each (MonAn ^ mon in danhSachMonAn) {
+				soLuongMonAn[mon->TenMon] = 0;
+			}
+
+			// Tính tổng số lượng từ các hóa đơn đã lọc
+			for each (PayMent ^ bill in danhSachHoaDonLoc) {
+				for each (MonAn ^ mon in bill->DanhSachMon) {
+					if (soLuongMonAn->ContainsKey(mon->TenMon)) {
+						soLuongMonAn[mon->TenMon] += mon->SoLuong;
+					}
+				}
+			}
+
+			// Kiểm tra xem có dữ liệu để hiển thị không
+			bool coDuLieu = false;
+			for each (auto pair in soLuongMonAn) {
+				if (pair.Value > 0) { // Sửa pair->Value thành pair.Value
+					coDuLieu = true;
+					break;
+				}
+			}
+
+			if (!coDuLieu) {
+				MessageBox::Show(L"Không có dữ liệu để hiển thị trong khoảng thời gian đã chọn!", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				return;
+			}
+
+			// Thêm dữ liệu vào biểu đồ
+			for each (auto pair in soLuongMonAn) {
+				this->chartMonAnBanChayNhat->Series[L"Số lượng"]->Points->AddXY(pair.Key, pair.Value); 
+			}
+
+			// Tùy chỉnh biểu đồ
+			this->chartMonAnBanChayNhat->ChartAreas["ChartArea1"]->AxisX->Title = L"Tên món ăn";
+			this->chartMonAnBanChayNhat->ChartAreas["ChartArea1"]->AxisY->Title = L"Số lượng món ăn đã bán";
+			this->chartMonAnBanChayNhat->ChartAreas["ChartArea1"]->AxisY->Minimum = 0; // Bắt đầu từ 0
+			this->chartMonAnBanChayNhat->ChartAreas["ChartArea1"]->AxisX->LabelStyle->Angle = 45; // Xoay nhãn trục X
+			this->chartMonAnBanChayNhat->ChartAreas["ChartArea1"]->AxisX->Interval = 1; // Hiển thị tất cả nhãn
+
+			// Tùy chỉnh đường và điểm
+			this->chartMonAnBanChayNhat->Series[L"Số lượng"]->Color = System::Drawing::Color::Blue; // Màu đường
+			this->chartMonAnBanChayNhat->Series[L"Số lượng"]->MarkerStyle = System::Windows::Forms::DataVisualization::Charting::MarkerStyle::Circle; // Đánh dấu điểm
+			this->chartMonAnBanChayNhat->Series[L"Số lượng"]->MarkerSize = 8;
+			this->chartMonAnBanChayNhat->Series[L"Số lượng"]->MarkerColor = System::Drawing::Color::Blue;
+		}
+
+
+
+		private: System::Void SoSanhCacMonAn() {
+			// Xóa dữ liệu cũ trên biểu đồ
+			this->chartSoSanh->Series->Clear();
+
+			// Tạo hai Series mới cho hai tháng
+			this->chartSoSanh->Series->Add(L"Tháng sau");
+			this->chartSoSanh->Series[L"Tháng sau"]->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Line;
+			this->chartSoSanh->Series[L"Tháng sau"]->Color = System::Drawing::Color::Blue;
+			this->chartSoSanh->Series[L"Tháng sau"]->MarkerStyle = System::Windows::Forms::DataVisualization::Charting::MarkerStyle::Circle;
+			this->chartSoSanh->Series[L"Tháng sau"]->MarkerSize = 8;
+			this->chartSoSanh->Series[L"Tháng sau"]->MarkerColor = System::Drawing::Color::Blue;
+
+			this->chartSoSanh->Series->Add(L"Tháng trước");
+			this->chartSoSanh->Series[L"Tháng trước"]->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Line;
+			this->chartSoSanh->Series[L"Tháng trước"]->Color = System::Drawing::Color::Red;
+			this->chartSoSanh->Series[L"Tháng trước"]->MarkerStyle = System::Windows::Forms::DataVisualization::Charting::MarkerStyle::Circle;
+			this->chartSoSanh->Series[L"Tháng trước"]->MarkerSize = 8;
+			this->chartSoSanh->Series[L"Tháng trước"]->MarkerColor = System::Drawing::Color::Red;
+
+			// Đọc danh sách hóa đơn từ bill.txt
+			List<PayMent^>^ danhSachHoaDon = PayMent::DocDanhSachHoaDon(billFilePath);
+			if (danhSachHoaDon->Count == 0) {
+				MessageBox::Show(L"Không có hóa đơn nào để so sánh!", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				return;
+			}
+
+			// Lọc hóa đơn theo tháng đã chọn
+			String^ selectedMonthAfter = cbBoxMonthAfter->SelectedItem->ToString();
+			String^ selectedMonthBefore = cbBoxMonthBefore->SelectedItem->ToString();
+			int monthAfter = Int32::Parse(selectedMonthAfter->Substring(0, 2));
+			int yearAfter = Int32::Parse(selectedMonthAfter->Substring(3, 4));
+			int monthBefore = Int32::Parse(selectedMonthBefore->Substring(0, 2));
+			int yearBefore = Int32::Parse(selectedMonthBefore->Substring(3, 4));
+			DateTime startDateAfter = DateTime(yearAfter, monthAfter, 1);
+			DateTime endDateAfter = startDateAfter.AddMonths(1).AddDays(-1);
+			DateTime startDateBefore = DateTime(yearBefore, monthBefore, 1);
+			DateTime endDateBefore = startDateBefore.AddMonths(1).AddDays(-1);
+			List<PayMent^>^ danhSachHoaDonLocAfter = gcnew List<PayMent^>();
+			List<PayMent^>^ danhSachHoaDonLocBefore = gcnew List<PayMent^>();
+			for each (PayMent ^ bill in danhSachHoaDon) {
+				if (bill->ThoiGianThanhToan >= startDateAfter && bill->ThoiGianThanhToan <= endDateAfter) {
+					danhSachHoaDonLocAfter->Add(bill);
+				}
+				if (bill->ThoiGianThanhToan >= startDateBefore && bill->ThoiGianThanhToan <= endDateBefore) {
+					danhSachHoaDonLocBefore->Add(bill);
+				}
+			}
+
+			// Kiểm tra xem có hóa đơn nào trong tháng đã chọn không
+			if (danhSachHoaDonLocAfter->Count == 0 || danhSachHoaDonLocBefore->Count == 0) {
+				MessageBox::Show(L"Không có hóa đơn nào trong tháng đã chọn!", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				return;
+			}
+
+			// Tính tổng số lượng bán ra của từng món trong tháng đã chọn
+			Dictionary<String^, int>^ soLuongMonAnAfter = gcnew Dictionary<String^, int>();
+			Dictionary<String^, int>^ soLuongMonAnBefore = gcnew Dictionary<String^, int>();
+
+			// Đọc danh sách món ăn từ monan.txt
+			List<MonAn^>^ danhSachMonAn = MonAn::DocDanhSachMonAn(foodFilePath);
+			if (danhSachMonAn == nullptr || danhSachMonAn->Count == 0) {
+				MessageBox::Show(L"Không tìm thấy danh sách món ăn trong file monan.txt!", "Lỗi", MessageBoxButtons::OK, MessageBoxIcon::Error);
+				return;
+			}
+
+			// Khởi tạo số lượng bán ra của tất cả món ăn là 0
+			for each (MonAn ^ mon in danhSachMonAn) {
+				soLuongMonAnAfter[mon->TenMon] = 0;
+				soLuongMonAnBefore[mon->TenMon] = 0;
+			}
+
+			// Tính tổng số lượng từ các hóa đơn đã lọc
+			for each (PayMent ^ bill in danhSachHoaDonLocAfter) {
+				for each (MonAn ^ mon in bill->DanhSachMon) {
+					if (soLuongMonAnAfter->ContainsKey(mon->TenMon)) {
+						soLuongMonAnAfter[mon->TenMon] += mon->SoLuong;
+					}
+				}
+			}
+			for each (PayMent ^ bill in danhSachHoaDonLocBefore) {
+				for each (MonAn ^ mon in bill->DanhSachMon) {
+					if (soLuongMonAnBefore->ContainsKey(mon->TenMon)) {
+						soLuongMonAnBefore[mon->TenMon] += mon->SoLuong;
+					}
+				}
+			}
+
+			// Kiểm tra xem có dữ liệu để hiển thị không
+			bool coDuLieu = false;
+			for each (auto pair in soLuongMonAnAfter) {
+				if (pair.Value > 0) {
+					coDuLieu = true;
+					break;
+				}
+			}
+			if (!coDuLieu) {
+				MessageBox::Show(L"Không có dữ liệu để hiển thị trong tháng đã chọn!", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				return;
+			}
+
+			// Thêm dữ liệu vào biểu đồ
+			for each (auto pair in soLuongMonAnAfter) {
+				this->chartSoSanh->Series[L"Tháng sau"]->Points->AddXY(pair.Key, pair.Value);
+				// Đồng thời thêm dữ liệu cho tháng trước với cùng tên món
+				int soLuongBefore = soLuongMonAnBefore->ContainsKey(pair.Key) ? soLuongMonAnBefore[pair.Key] : 0;
+				this->chartSoSanh->Series[L"Tháng trước"]->Points->AddXY(pair.Key, soLuongBefore);
+			}
+
+			// Tùy chỉnh biểu đồ
+			this->chartSoSanh->ChartAreas["ChartArea1"]->AxisX->Title = L"Tên món ăn";
+			this->chartSoSanh->ChartAreas["ChartArea1"]->AxisY->Title = L"Số lượng món ăn đã bán";
+			this->chartSoSanh->ChartAreas["ChartArea1"]->AxisY->Minimum = 0;
+			this->chartSoSanh->ChartAreas["ChartArea1"]->AxisX->LabelStyle->Angle = 45;
+			this->chartSoSanh->ChartAreas["ChartArea1"]->AxisX->Interval = 1;
+		}
+
+		private: System::Void CapNhatComBoBox() {
+			this->cbBoxMonthAfter->Items->Clear();
+			this->cbBoxMonthBefore->Items->Clear();
+
+			int startYear = 2025;
+			int currentYear = DateTime::Now.Year;
+			int currentMonth = DateTime::Now.Month;
+
+			for (int year = startYear; year <= currentYear; year++) {
+				for (int month = 1; month <= 12; month++) {
+					if (year == currentYear && month > currentMonth) {
+						break;
+					}
+					this->cbBoxMonthAfter->Items->Add(month.ToString("D2") + "/" + year);
+					this->cbBoxMonthBefore->Items->Add(month.ToString("D2") + "/" + year);
+				}
+			}
+
+			if (cbBoxMonthAfter->Items->Count > 0) {
+				cbBoxMonthAfter->SelectedIndex = cbBoxMonthAfter->Items->Count - 1; // Chọn tháng hiện tại
+			}
+
+			if (cbBoxMonthBefore->Items->Count > 0) {
+				cbBoxMonthBefore->SelectedIndex = cbBoxMonthBefore->Items->Count - 1; // Chọn tháng hiện tại
+			}
+		}
+	private: System::Void btnLocSoLuongBanRa_Click(System::Object^ sender, System::EventArgs^ e) {
+		VeBieuDoSoLuongMonAn();
+	}
+private: System::Void btnLocSoSanh_Click(System::Object^ sender, System::EventArgs^ e) {
+	SoSanhCacMonAn();
+}
 };
 }

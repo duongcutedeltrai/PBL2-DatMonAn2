@@ -18,7 +18,7 @@ namespace PBL2DatMonAn {
 		User^ account = gcnew User(name, acc, pass, birt, sex, pos, role);
 		danhsachTaiKhoan->Add(account);
 		//ghi file
-		User::GhiDanhSachTaiKhoan(danhsachTaiKhoan, filePath);
+		User::GhiDanhSachTaiKhoan(danhsachTaiKhoan, UserfilePath);
 		MessageBox::Show(L"Thêm tài khoản thành công", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
 
 		// Thêm panel mới vào FlowLayoutPanel
@@ -46,7 +46,7 @@ namespace PBL2DatMonAn {
 		//add stt
 		Label^ lblSTT = gcnew Label();
 		lblSTT->AutoSize = true;
-		lblSTT->Location = System::Drawing::Point(3, 9);
+		lblSTT->Location = System::Drawing::Point(10, 9);
 		lblSTT->Font = commonFont;
 		lblSTT->Name = L"lblSTT";
 		lblSTT->Size = System::Drawing::Size(38, 19);
@@ -57,7 +57,7 @@ namespace PBL2DatMonAn {
 		Label^ lblAddNameStaff = gcnew Label();
 		lblAddNameStaff->AutoSize = true;
 		lblAddNameStaff->Font = commonFont;
-		lblAddNameStaff->Location = System::Drawing::Point(50, 9);
+		lblAddNameStaff->Location = System::Drawing::Point(100, 9);
 		lblAddNameStaff->Text = user->Name;
 		lblAddNameStaff->Name = L"lblAddNameStaff";
 		lblAddNameStaff->Size = System::Drawing::Size(100, 19);
@@ -67,7 +67,7 @@ namespace PBL2DatMonAn {
 		Label^ lblAddSex = gcnew Label();
 		lblAddSex->AutoSize = true;
 		lblAddSex->Font = commonFont;
-		lblAddSex->Location = System::Drawing::Point(220, 9);
+		lblAddSex->Location = System::Drawing::Point(250, 9);
 		lblAddSex->Text = user->Sex;
 		lblAddSex->Name = L"lblAddSex";
 		lblAddSex->Size = System::Drawing::Size(72, 19);
@@ -77,7 +77,7 @@ namespace PBL2DatMonAn {
 		Label^ lblAddBirtday = gcnew Label();
 		lblAddBirtday->AutoSize = true;
 		lblAddBirtday->Font = commonFont;
-		lblAddBirtday->Location = System::Drawing::Point(300, 9);
+		lblAddBirtday->Location = System::Drawing::Point(340, 9);
 		lblAddBirtday->Text = user->Birtday;
 		lblAddBirtday->Name = L"lblAddBirtday";
 		lblAddBirtday->Size = System::Drawing::Size(82, 19);
@@ -87,7 +87,7 @@ namespace PBL2DatMonAn {
 		Label^ lblAddAccount = gcnew Label();
 		lblAddAccount->AutoSize = true;
 		lblAddAccount->Font = commonFont;
-		lblAddAccount->Location = System::Drawing::Point(450, 9);
+		lblAddAccount->Location = System::Drawing::Point(500, 9);
 		lblAddAccount->Text = user->Account;
 		lblAddAccount->Name = L"lblAddAccount";
 		lblAddAccount->Size = System::Drawing::Size(80, 19);
@@ -97,7 +97,7 @@ namespace PBL2DatMonAn {
 		Label^ lblAddPass = gcnew Label();
 		lblAddPass->AutoSize = true;
 		lblAddPass->Font = commonFont;
-		lblAddPass->Location = System::Drawing::Point(535, 9);
+		lblAddPass->Location = System::Drawing::Point(630, 9);
 		lblAddPass->Text = user->Password;
 		lblAddPass->Name = L"lblAddPass";
 		lblAddPass->Size = System::Drawing::Size(75, 19);
@@ -107,7 +107,7 @@ namespace PBL2DatMonAn {
 		Label^ lblAddPossition = gcnew Label();
 		lblAddPossition->AutoSize = true;
 		lblAddPossition->Font = commonFont;
-		lblAddPossition->Location = System::Drawing::Point(600, 9);
+		lblAddPossition->Location = System::Drawing::Point(730, 9);
 		lblAddPossition->Text = user->Position;
 		lblAddPossition->Name = L"lblAddPossition";
 		lblAddPossition->Size = System::Drawing::Size(44, 19);
@@ -115,7 +115,7 @@ namespace PBL2DatMonAn {
 
 		//add icon 
 		PictureBox^ pictureBox1 = gcnew PictureBox();
-		pictureBox1->Location = System::Drawing::Point(670, 3);
+		pictureBox1->Location = System::Drawing::Point(820, 3);
 		pictureBox1->Name = L"pictureBox1";
 		pictureBox1->Size = System::Drawing::Size(25, 25);
 		pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
@@ -151,7 +151,7 @@ namespace PBL2DatMonAn {
 			Panel^ panelToRemove = safe_cast<Panel^>(pic->Parent);
 			flowLayoutPanel1->Controls->Remove(panelToRemove);
 			UpdateStt();
-			User::GhiDanhSachTaiKhoan(danhsachTaiKhoan, filePath);
+			User::GhiDanhSachTaiKhoan(danhsachTaiKhoan, UserfilePath);
 			MessageBox::Show(L"Xóa tài khoản thành công", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
 		}
 	}

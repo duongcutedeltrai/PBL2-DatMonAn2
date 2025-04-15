@@ -10,12 +10,13 @@ namespace PBL2DatMonAn {
         BoGocControl(pnListFood, 20);
         BoGocControl(pnNav, 20);
 
-        danhSachMonAn = MonAn::DocDanhSachMonAn(filePath);
+        danhSachMonAn = MonAn::DocDanhSachMonAn(FoodfilePath);
         if (danhSachMonAn == nullptr || danhSachMonAn->Count == 0) {
             MessageBox::Show(L"Không có dữ liệu trong file");
         }
         else {
             HienThiDanhSachMon();
+            HienThiMonDaDat();
         }
     }
 
@@ -111,13 +112,13 @@ namespace PBL2DatMonAn {
             return;
         }
 
-        // Kiểm tra banHienTai và DanhSachMon
+
         if (banHienTai == nullptr || banHienTai->DanhSachMon == nullptr) {
             MessageBox::Show(L"Dữ liệu bàn hiện tại không hợp lệ.", "Lỗi", MessageBoxButtons::OK, MessageBoxIcon::Error);
             return;
         }
 
-        // Tìm món trong banHienTai->DanhSachMon bằng ID
+
         int index = -1;
         for (int i = 0; i < banHienTai->DanhSachMon->Count; i++) {
             if (banHienTai->DanhSachMon[i]->ID == mon->ID) {
@@ -126,91 +127,169 @@ namespace PBL2DatMonAn {
             }
         }
 
-        if (index >= 0) {
-            // Món đã có trong danh sách, tăng số lượng
+        if (index != -1) {
+     
             banHienTai->DanhSachMon[index]->SoLuong++;
-            // Cập nhật NumericUpDown trên giao diện
-            for each(Control ^ ctrl in flowLayoutPanel1->Controls) {
-                MonAn^ monInPanel = dynamic_cast<MonAn^>(ctrl->Tag);
-                if (monInPanel != nullptr && monInPanel->ID == mon->ID) {
-                    for each(Control ^ child in ctrl->Controls) {
-                        NumericUpDown^ numSoLuong = dynamic_cast<NumericUpDown^>(child);
-                        if (numSoLuong != nullptr) {
-                            numSoLuong->Value = banHienTai->DanhSachMon[index]->SoLuong;
-                            break;
-                        }
-                    }
-                    break;
-                }
-            }
         }
         else {
-            // Món chưa có, thêm mới vào danh sách
+
             MonAn^ monMoi = gcnew MonAn(mon->LoaiMon, mon->TenMon, mon->Gia, mon->Anh);
             monMoi->ID = mon->ID; // Gán ID để đồng bộ
             monMoi->SoLuong = 1;
             banHienTai->DanhSachMon->Add(monMoi);
             banHienTai->TrangThai = L"Có Khách"; // Cập nhật trạng thái bàn
-
-            // Tạo panel mới để hiển thị món đã chọn
-            Panel^ panelOrder = gcnew Panel();
-            panelOrder->Tag = monMoi; // Gán Tag là monMoi để đồng bộ
-            panelOrder->BackColor = System::Drawing::Color::WhiteSmoke;
-            panelOrder->Size = System::Drawing::Size(268, 124);
-            panelOrder->TabIndex = 3;
-
-            // Giá món ăn
-            Label^ lblGia = gcnew Label();
-            lblGia->Text = monMoi->Gia + " $";
-            lblGia->AutoSize = true;
-            lblGia->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            lblGia->Location = System::Drawing::Point(154, 48);
-            lblGia->TabIndex = 2;
-
-            // NumericUpDown số lượng
-            NumericUpDown^ numSoLuong = gcnew NumericUpDown();
-            numSoLuong->Minimum = 0;
-            numSoLuong->Maximum = 99;
-            numSoLuong->Value = monMoi->SoLuong;
-            numSoLuong->ValueChanged += gcnew System::EventHandler(this, &FormFood::numSoLuong_ValueChanged);
-            numSoLuong->Location = System::Drawing::Point(158, 80);
-            numSoLuong->Size = System::Drawing::Size(36, 22);
-            numSoLuong->TabIndex = 2;
-
-            // Ảnh món ăn
-            PictureBox^ picBox = gcnew PictureBox();
-            picBox->Location = System::Drawing::Point(18, 3);
-            picBox->Size = System::Drawing::Size(130, 116);
-            picBox->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
-            picBox->TabIndex = 0;
-            picBox->TabStop = false;
-            try {
-                picBox->Image = Image::FromFile(monMoi->Anh);
-            }
-            catch (...) {
-                picBox->Image = nullptr;
-            }
-
-            // Tên món ăn
-            Label^ lblTen = gcnew Label();
-            lblTen->Text = monMoi->TenMon;
-            lblTen->AutoSize = true;
-            lblTen->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            lblTen->TabIndex = 1;
-            lblTen->Location = System::Drawing::Point(154, 25);
-
-            // Bo góc panelOrder
-            BoGocControl(panelOrder, 20);
-            panelOrder->Controls->Add(picBox);
-            panelOrder->Controls->Add(lblTen);
-            panelOrder->Controls->Add(lblGia);
-            panelOrder->Controls->Add(numSoLuong);
-            flowLayoutPanel1->Controls->Add(panelOrder);
         }
 
-        // Cập nhật tổng tiền
+        ManagerTable::GhiDanhSachBan(danhSachBan, banFilePath);
+        HienThiMonDaDat(); // Cập nhật giao diện
+        CapNhatTongTien();
+    }
+
+    System::Void FormFood::HienThiMonDaDat() {
+        flowLayoutPanel1->Controls->Clear();
+        if (banHienTai->DanhSachMon != nullptr && banHienTai->DanhSachMon->Count > 0) {
+            for each (MonAn ^ mon in banHienTai->DanhSachMon) {
+                Panel^ panelOrder = gcnew Panel();
+                panelOrder->Tag = mon;
+                panelOrder->BackColor = System::Drawing::Color::WhiteSmoke;
+                panelOrder->Size = System::Drawing::Size(268, 124);
+
+                Label^ lblGia = gcnew Label();
+                lblGia->Text = mon->Gia + "$";
+                lblGia->AutoSize = true;
+                lblGia->Font = gcnew Drawing::Font(L"Microsoft Sans Serif", 10.2F);
+                lblGia->Location = System::Drawing::Point(154, 48);
+
+                PictureBox^ picBox = gcnew PictureBox();
+                picBox->Location = System::Drawing::Point(18, 3);
+                picBox->Size = System::Drawing::Size(130, 116);
+                picBox->SizeMode = PictureBoxSizeMode::StretchImage;
+                try {
+                    picBox->Image = Image::FromFile(mon->Anh);
+                }
+                catch (...) {
+                    picBox->Image = nullptr; // Xử lý nếu ảnh không tồn tại
+                }
+
+                // Nút cộng
+                PictureBox^ picIconAdd = gcnew PictureBox();
+                picIconAdd->Location = System::Drawing::Point(154, 80);
+                picIconAdd->Size = System::Drawing::Size(20, 20);
+                picIconAdd->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+                picIconAdd->BackColor = System::Drawing::Color::Transparent;
+				picIconAdd->Cursor = System::Windows::Forms::Cursors::Hand;
+                picIconAdd->BringToFront();
+                picIconAdd->Parent = panelOrder;
+                picIconAdd->Image = Image::FromFile(".\\Image\\iconCong.jpg");
+                picIconAdd->Tag = mon; // Gán Tag để biết món nào được nhấn
+                picIconAdd->Click += gcnew EventHandler(this, &FormFood::btnAdd_Click); // Thêm sự kiện Click
+
+                // Nút trừ
+                PictureBox^ picIconSubTract = gcnew PictureBox();
+                picIconSubTract->Location = System::Drawing::Point(230, 80);
+                picIconSubTract->Size = System::Drawing::Size(20, 20);
+                picIconSubTract->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+                picIconSubTract->BackColor = System::Drawing::Color::Transparent;
+				picIconSubTract->Cursor = System::Windows::Forms::Cursors::Hand;
+                picIconSubTract->BringToFront();
+                picIconSubTract->Parent = panelOrder;
+                picIconSubTract->Image = Image::FromFile(".\\Image\\iconSubTract (1).png");
+                picIconSubTract->Tag = mon; // Gán Tag để biết món nào được nhấn
+                picIconSubTract->Click += gcnew EventHandler(this, &FormFood::btnSubtract_Click); // Thêm sự kiện Click
+
+                Label^ lblTen = gcnew Label();
+                lblTen->Text = mon->TenMon;
+                lblTen->AutoSize = true;
+                lblTen->Font = gcnew Drawing::Font(L"Segoe UI Semibold", 10.2F, FontStyle::Bold);
+                lblTen->Location = System::Drawing::Point(154, 25);
+
+                // Hiển thị số lượng
+                Label^ lblSoLuong = gcnew Label();
+                lblSoLuong->Text = mon->SoLuong.ToString();
+                lblSoLuong->AutoSize = true;
+                lblSoLuong->Font = gcnew Drawing::Font(L"Segoe UI Semibold", 10.2F);
+                lblSoLuong->Location = System::Drawing::Point(190, 80); // Đặt giữa nút cộng và trừ
+                lblSoLuong->Name = "lblSoLuong"; // Đặt tên để dễ tìm sau này
+
+                BoGocControl(panelOrder, 20);
+                panelOrder->Controls->Add(picBox);
+                panelOrder->Controls->Add(lblTen);
+                panelOrder->Controls->Add(lblGia);
+                panelOrder->Controls->Add(picIconAdd);
+                panelOrder->Controls->Add(picIconSubTract);
+                panelOrder->Controls->Add(lblSoLuong); // Thêm label số lượng
+                flowLayoutPanel1->Controls->Add(panelOrder);
+            }
+            danhSachMonAn = MonAn::DocDanhSachMonAn(FoodfilePath);
+            ManagerTable::GhiDanhSachBan(danhSachBan, banFilePath);
+            CapNhatTongTien();
+        }
+    }
+
+    System::Void FormFood::btnAdd_Click(System::Object^ sender, System::EventArgs^ e) {
+        PictureBox^ picIconAdd = dynamic_cast<PictureBox^>(sender);
+        if (picIconAdd == nullptr || picIconAdd->Tag == nullptr) return;
+
+        MonAn^ mon = dynamic_cast<MonAn^>(picIconAdd->Tag);
+        if (mon == nullptr) return;
+
+        // Tăng số lượng món
+        mon->SoLuong++;
+
+        // Tìm panel chứa món và cập nhật label số lượng
+        Panel^ panelOrder = dynamic_cast<Panel^>(picIconAdd->Parent);
+        if (panelOrder != nullptr) {
+            for each (Control ^ ctrl in panelOrder->Controls) {
+                if (Label^ lblSoLuong = dynamic_cast<Label^>(ctrl)) {
+                    if (lblSoLuong->Name == "lblSoLuong") {
+                        lblSoLuong->Text = mon->SoLuong.ToString();
+                        break;
+                    }
+                }
+            }
+        }
+
+        // Ghi lại thay đổi vào file
+        ManagerTable::GhiDanhSachBan(danhSachBan, banFilePath);
+        CapNhatTongTien();
+    }
+
+    System::Void FormFood::btnSubtract_Click(System::Object^ sender, System::EventArgs^ e) {
+        PictureBox^ picIconSubTract = dynamic_cast<PictureBox^>(sender);
+        if (picIconSubTract == nullptr || picIconSubTract->Tag == nullptr) return;
+
+        MonAn^ mon = dynamic_cast<MonAn^>(picIconSubTract->Tag);
+        if (mon == nullptr) return;
+
+        // Giảm số lượng món
+        mon->SoLuong--;
+
+        if (mon->SoLuong <= 0) {
+            // Xóa món khỏi danh sách nếu số lượng về 0
+            banHienTai->DanhSachMon->Remove(mon);
+            if (banHienTai->DanhSachMon->Count == 0) {
+                banHienTai->TrangThai = L"Trống";
+            }
+            // Cập nhật giao diện
+            HienThiMonDaDat();
+        }
+        else {
+            // Cập nhật label số lượng
+            Panel^ panelOrder = dynamic_cast<Panel^>(picIconSubTract->Parent);
+            if (panelOrder != nullptr) {
+                for each (Control ^ ctrl in panelOrder->Controls) {
+                    if (Label^ lblSoLuong = dynamic_cast<Label^>(ctrl)) {
+                        if (lblSoLuong->Name == "lblSoLuong") {
+                            lblSoLuong->Text = mon->SoLuong.ToString();
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Ghi lại thay đổi vào file
+        ManagerTable::GhiDanhSachBan(danhSachBan, banFilePath);
         CapNhatTongTien();
     }
 
@@ -370,6 +449,7 @@ namespace PBL2DatMonAn {
 
         //cap nhat giao dien;
         HienThiMonDaDat();
+        ManagerTable::GhiDanhSachBan(danhSachBan, banFilePath);
         CapNhatTongTien();
 
         //thong bao thanh cong
@@ -391,70 +471,15 @@ namespace PBL2DatMonAn {
     }
 
     System::Void FormFood::btnTrangChu_Click(System::Object^ sender, System::EventArgs^ e) {
-        // Chuyển về trang chủ
-        this->Hide();
-        formStaff^ main = gcnew formStaff(nameStaff);
-        main->ShowDialog();
+        ManagerTable::GhiDanhSachBan(danhSachBan, banFilePath);
+        formStaff^ trangChu = gcnew formStaff(nameStaff);
+        trangChu->Show();
+        this->Close();
     }
 
 
     //loc danh sach mon
 
-    System::Void FormFood::numSoLuong_ValueChanged(System::Object^ sender, System::EventArgs^ e) {
-        NumericUpDown^ numSoLuong = safe_cast<NumericUpDown^>(sender);
-        Panel^ panelOrder = safe_cast<Panel^>(numSoLuong->Parent);
-
-        // Kiểm tra panelOrder và Tag
-        if (panelOrder == nullptr || panelOrder->Tag == nullptr) {
-            MessageBox::Show(L"Không thể xác định món ăn.", "Lỗi", MessageBoxButtons::OK, MessageBoxIcon::Error);
-            return;
-        }
-
-        MonAn^ mon = safe_cast<MonAn^>(panelOrder->Tag);
-        if (mon == nullptr) {
-            MessageBox::Show(L"Dữ liệu món ăn không hợp lệ.", "Lỗi", MessageBoxButtons::OK, MessageBoxIcon::Error);
-            return;
-        }
-
-        // Kiểm tra banHienTai và DanhSachMon
-        if (banHienTai == nullptr || banHienTai->DanhSachMon == nullptr) {
-            MessageBox::Show(L"Dữ liệu bàn hiện tại không hợp lệ.", "Lỗi", MessageBoxButtons::OK, MessageBoxIcon::Error);
-            return;
-        }
-
-        // Tìm chỉ số của món trong banHienTai->DanhSachMon
-        int index = -1;
-        for (int i = 0; i < banHienTai->DanhSachMon->Count; i++) {
-            if (banHienTai->DanhSachMon[i]->ID == mon->ID) { // So sánh bằng ID
-                index = i;
-                break;
-            }
-        }
-
-        // Nếu món không có trong danh sách, bỏ qua
-        if (index == -1) {
-            MessageBox::Show(L"Món " + mon->TenMon + L"không tồn tại trong danh sách món của bàn.", "Lỗi", MessageBoxButtons::OK, MessageBoxIcon::Warning);
-            return;
-        }
-
-        // Cập nhật số lượng
-        int newSoLuong = Decimal::ToInt32(numSoLuong->Value);
-        banHienTai->DanhSachMon[index]->SoLuong = newSoLuong;
-
-        // Xóa món nếu số lượng về 0
-        if (newSoLuong == 0) {
-            banHienTai->DanhSachMon->RemoveAt(index);
-            flowLayoutPanel1->Controls->Remove(panelOrder);
-
-            // Cập nhật trạng thái bàn nếu không còn món nào
-            if (banHienTai->DanhSachMon->Count == 0) {
-                banHienTai->TrangThai = L"Trống";
-            }
-        }
-
-        // Cập nhật tổng tiền
-        CapNhatTongTien();
-    }
     //bo goc
     System::Void FormFood::BoGocControl(Control^ control, int radius) {
         System::Drawing::Drawing2D::GraphicsPath^ path = gcnew System::Drawing::Drawing2D::GraphicsPath();
@@ -475,102 +500,21 @@ namespace PBL2DatMonAn {
     System::Void FormFood::CapNhatTongTien() {
         double tongTien = 0.0;
 
-        for each(Control ^ ctrl in flowLayoutPanel1->Controls) {
-            Panel^ panelOrder = dynamic_cast<Panel^>(ctrl);
-            if (panelOrder != nullptr && panelOrder->Tag != nullptr) {
-                // Lấy món ăn từ tag
-                MonAn^ mon = dynamic_cast<MonAn^>(panelOrder->Tag);
-                if (mon == nullptr) continue;
-
-                // Tìm Label giá và NumericUpDown trong Controls
+        if (banHienTai != nullptr && banHienTai->DanhSachMon != nullptr) {
+            for each (MonAn ^ mon in banHienTai->DanhSachMon) {
                 double gia = 0.0;
-                int soLuong = 1;
-
-                for each(Control ^ child in panelOrder->Controls) {
-                    if (Label^ lblGia = dynamic_cast<Label^>(child)) {
-                        if (lblGia->Text->Contains(mon->Gia)) {
-                            // Nếu label là giá (khớp nội dung với mon->Gia)
-                            try {
-                                gia = Convert::ToDouble(mon->Gia->Replace("$",""));
-
-                            }
-                            catch (...) {}
-                        }
-                    }
-                    else if (NumericUpDown^ num = dynamic_cast<NumericUpDown^>(child)) {
-                        soLuong = Decimal::ToInt32(num->Value);
-                    }
+                try {
+                    gia = Convert::ToDouble(mon->Gia->Replace("$", ""));
                 }
-
-                tongTien += gia * soLuong;
+                catch (...) {
+                    continue;
+                }
+                tongTien += gia * mon->SoLuong;
             }
         }
 
         txtMoney->Text = tongTien.ToString("F2") + " $";
     }
 
-    System::Void FormFood::HienThiMonDaDat() {
-        flowLayoutPanel1->Controls->Clear();
-        if (banHienTai->DanhSachMon != nullptr && banHienTai->DanhSachMon->Count > 0) {
-            for each(MonAn ^ mon in banHienTai->DanhSachMon) {
-                 //Tìm món ăn trong danhSachMonAn để lấy thông tin đầy đủ (nếu cần)
-               /* MonAn^ monDayDu = nullptr;
-                for each(MonAn ^ monAn in danhSachMonAn) {
-                    if (monAn->ID == mon->ID) {
-                        monDayDu = monAn;
-                        break;
-                    }
-                }*/
-
-                //if (monDayDu == nullptr) {
-                //    // Nếu không tìm thấy món trong danhSachMonAn, bỏ qua hoặc xử lý lỗi
-                //    continue;
-                //}
-
-                Panel^ panelOrder = gcnew Panel();
-                panelOrder->Tag = mon;
-                panelOrder->BackColor = System::Drawing::Color::WhiteSmoke;
-                panelOrder->Size = System::Drawing::Size(268, 124);
-                    
-                Label^ lblGia = gcnew Label();
-                lblGia->Text = mon->Gia + "$";
-                lblGia->AutoSize = true;
-                lblGia->Font = gcnew Drawing::Font(L"Microsoft Sans Serif", 10.2F);
-                lblGia->Location = System::Drawing::Point(154, 48);
-
-                NumericUpDown^ numSoLuong = gcnew NumericUpDown();
-                numSoLuong->Minimum = 0;
-                numSoLuong->Maximum = 99;
-                numSoLuong->Value = mon->SoLuong; // Sử dụng SoLuong từ DanhSachMon
-                numSoLuong->ValueChanged += gcnew System::EventHandler(this, &FormFood::numSoLuong_ValueChanged);
-                numSoLuong->Location = System::Drawing::Point(158, 80);
-                numSoLuong->Size = System::Drawing::Size(36, 22);
-
-                PictureBox^ picBox = gcnew PictureBox();
-                picBox->Location = System::Drawing::Point(18, 3);
-                picBox->Size = System::Drawing::Size(130, 116);
-                picBox->SizeMode = PictureBoxSizeMode::StretchImage;
-                try {
-                    picBox->Image = Image::FromFile(mon->Anh);
-                }
-                catch (...) {
-                    picBox->Image = nullptr; // Xử lý nếu ảnh không tồn tại
-                }
-
-                Label^ lblTen = gcnew Label();
-                lblTen->Text = mon->TenMon;
-                lblTen->AutoSize = true;
-                lblTen->Font = gcnew Drawing::Font(L"Segoe UI Semibold", 10.2F, FontStyle::Bold);
-                lblTen->Location = System::Drawing::Point(154, 25);
-
-                BoGocControl(panelOrder, 20);
-                panelOrder->Controls->Add(picBox);
-                panelOrder->Controls->Add(lblTen);
-                panelOrder->Controls->Add(lblGia);
-                panelOrder->Controls->Add(numSoLuong);
-                flowLayoutPanel1->Controls->Add(panelOrder);
-            }
-            CapNhatTongTien();
-        }
-    }
+   
 }

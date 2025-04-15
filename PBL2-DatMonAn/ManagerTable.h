@@ -18,7 +18,7 @@ namespace PBL2DatMonAn {
         ManagerTable(String^ soBan);
 
         // Static Methods
-        static List<ManagerTable^>^ DocDanhSachBan(String^ filePath);
-        static void GhiDanhSachBan(List<ManagerTable^>^ danhSachBan, String^ filePath);
+        static List<ManagerTable^>^ DocDanhSachBan(String^ BanfilePath);
+        static void GhiDanhSachBan(List<ManagerTable^>^ danhSachBan, String^ BanfilePath);
     };
 }

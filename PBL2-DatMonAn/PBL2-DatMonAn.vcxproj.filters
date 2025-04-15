@@ -130,6 +130,12 @@
     <Image Include="Image\thungrac2.png">
       <Filter>Image</Filter>
     </Image>
+    <Image Include="Image\iconCong.jpg">
+      <Filter>Image</Filter>
+    </Image>
+    <Image Include="Image\iconSubTract (1).png">
+      <Filter>Image</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="monan.txt" />

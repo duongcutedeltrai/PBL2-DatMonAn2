@@ -15,8 +15,8 @@ namespace PBL2DatMonAn {
     public:
         Login(void) {
             InitializeComponent();
-            filePath = "Account.txt";
-            danhsachTaiKhoan = User::DocDanhSachTaiKhoan(filePath);
+            UserfilePath = "Account.txt";
+            danhsachTaiKhoan = User::DocDanhSachTaiKhoan(UserfilePath);
         }
 
     protected:
@@ -27,7 +27,7 @@ namespace PBL2DatMonAn {
         }
 
     private:
-        System::String^ filePath;
+        System::String^ UserfilePath;
         List<User^>^ danhsachTaiKhoan;
         System::ComponentModel::Container^ components;
 

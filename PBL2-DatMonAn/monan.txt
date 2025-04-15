@@ -1,13 +1,12 @@
-﻿20250405143952||Cơm gà xối mỡ||1.88$||Món Chính||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\com-ga-xoi-mo.jpg||
-20250405144618||Mì xào bò||2.08$||Món Chính||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\mi xao bo.png||
-20250405144646||Bún bò Huế||2.00$||Món Chính||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\bunbohue.jpg||
-20250405144726||Phở bò||2.08$||Món Chính||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\phobo.jpg||
-20250405144757||Cá kho tộ||2.29$||Món Chính||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\cakhoto.jpg||
-20250405144840||Chả giò||1.04$||Khai Vị||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\chagio.jpg||
+﻿20250405143952||Cơm gà xối lạc||1.15$||Khai Vị||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\com-ga-xoi-mo.jpg||
+20250405144618||Mì xào bò||2.03$||Món Chính||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\mi xao bo.png||
+20250405144646||Bún bò Huế||1.22$||Món Chính||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\bunbohue.jpg||
+20250405144757||Cá kho tộ||1.99$||Món Chính||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\cakhoto.jpg||
+20250405144840||Chả giò||2.10$||Khai Vị||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\chagio.jpg||
 20250405144905||Gỏi cuốn||0.83$||Khai Vị||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\Gỏi cuốn.jpg||
 20250405145145||Súp cua||1.25$||Khai Vị||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\supcua.jpg||
 20250405145452||Cánh gà chiên nước mắm||1.67$||Món Chính||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\mon-canh-ga-chien-nuoc-mam-than-thanh-889x675.png||
-20250405145601||Khoai tây chiên||0.92$||Khai Vị||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\khoai-tay-chien.jpg||
+20250405145601||Khoai Tây chiên||0.92$||Khai Vị||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\khoai-tay-chien.jpg||
 20250405145732||Salad cá ngừ||1.46$||Salad||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\salad-ca-ngu.jpg||
 20250405145819||Salad gà xé||1.33$||Salad||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\salahgaxe.jpg||
 20250405145844||Salad trái cây||1.25$||Salad||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\salad-trai-cay-sot-mayonnaise-13.jpg||
@@ -20,5 +19,4 @@
 20250405150718||Trà đá||0.21$||Nước uống||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\Tra-Da.jpg||
 20250405150741||Nước cam ép||0.75$||Nước uống||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\nuocscam-620x620.jpg||
 20250405150900||Coca-Cola||0.63$||Nước uống||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\cocacola-marketing-strategy02.jpg||
-20250405150923||Sinh tố dâu||1.04$||Nước uống||D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\cach-lam-sinh-to-dau-dodoto.vn_.jpg||
 20250408133601||Phở Bò||2.5$||Món Chính||openFileDialog1||

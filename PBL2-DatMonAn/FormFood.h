@@ -26,17 +26,16 @@ namespace PBL2DatMonAn {
 			InitializeComponent();
 			this->banHienTai = ban;
 			this->nameStaff = nameStaff;
-			filePath = "monan.txt";
+			FoodfilePath = "monan.txt";
 			this->danhSachBan = danhSachBan;
 			this->banFilePath = banFilePath;
 			this->addHistoryBillForm = historyForm;
-			danhSachMonAn = MonAn::DocDanhSachMonAn(filePath);
+			danhSachMonAn = MonAn::DocDanhSachMonAn(FoodfilePath);
 			lblTenNhanVien->Text = "Ten nhan vien: " + nameStaff;
-
 			cbChangerTable->Items->Clear();
 			if (danhSachBan != nullptr)
 			{
-				for each(ManagerTable ^ ban in danhSachBan)
+				for each (ManagerTable ^ ban in danhSachBan)
 				{
 					cbChangerTable->Items->Add(ban->SoBan);
 				}
@@ -61,7 +60,7 @@ namespace PBL2DatMonAn {
 		}
 	private:
 		System::String^ banFilePath;
-		String^ filePath;
+		String^ FoodfilePath;
 		ManagerTable^ banHienTai;
 		String^ nameStaff;
 		AddHistoryBillForm^ addHistoryBillForm;
@@ -75,8 +74,8 @@ namespace PBL2DatMonAn {
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::ComboBox^ cbChangerTable;
-	//private:
-	//	System::Collections::Generic::List<MonAn^>^ danhSachMon;
+		   //private:
+		   //	System::Collections::Generic::List<MonAn^>^ danhSachMon;
 	private: System::Windows::Forms::Panel^ pnNav;
 	protected:
 	protected:
@@ -93,7 +92,6 @@ namespace PBL2DatMonAn {
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::PictureBox^ pictureBox2;
 	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::NumericUpDown^ numericUpDown1;
 	private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel1;
 	private: System::Windows::Forms::Button^ btnTrangChu;
 	private: System::Windows::Forms::Button^ btnChangerTable;
@@ -137,7 +135,6 @@ namespace PBL2DatMonAn {
 			this->flowLayoutPanel1 = (gcnew System::Windows::Forms::FlowLayoutPanel());
 			this->panelOrder = (gcnew System::Windows::Forms::Panel());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->numericUpDown1 = (gcnew System::Windows::Forms::NumericUpDown());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
 			this->panel4 = (gcnew System::Windows::Forms::Panel());
@@ -152,7 +149,6 @@ namespace PBL2DatMonAn {
 			this->panel2->SuspendLayout();
 			this->flowLayoutPanel1->SuspendLayout();
 			this->panelOrder->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			this->FlpFood->SuspendLayout();
 			this->panel1->SuspendLayout();
@@ -393,7 +389,6 @@ namespace PBL2DatMonAn {
 			// 
 			this->panelOrder->BackColor = System::Drawing::Color::WhiteSmoke;
 			this->panelOrder->Controls->Add(this->label2);
-			this->panelOrder->Controls->Add(this->numericUpDown1);
 			this->panelOrder->Controls->Add(this->label1);
 			this->panelOrder->Controls->Add(this->pictureBox2);
 			this->panelOrder->Location = System::Drawing::Point(51, 50);
@@ -412,14 +407,6 @@ namespace PBL2DatMonAn {
 			this->label2->Size = System::Drawing::Size(43, 18);
 			this->label2->TabIndex = 3;
 			this->label2->Text = L"14$";
-			// 
-			// numericUpDown1
-			// 
-			this->numericUpDown1->Location = System::Drawing::Point(157, 80);
-			this->numericUpDown1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->numericUpDown1->Name = L"numericUpDown1";
-			this->numericUpDown1->Size = System::Drawing::Size(36, 22);
-			this->numericUpDown1->TabIndex = 2;
 			// 
 			// label1
 			// 
@@ -540,7 +527,6 @@ namespace PBL2DatMonAn {
 			this->flowLayoutPanel1->ResumeLayout(false);
 			this->panelOrder->ResumeLayout(false);
 			this->panelOrder->PerformLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
 			this->FlpFood->ResumeLayout(false);
 			this->panel1->ResumeLayout(false);
@@ -553,32 +539,33 @@ namespace PBL2DatMonAn {
 		// hiển thị danh sách món
 	private: System::Void FormFood_Load(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void HienThiDanhSachMon();
+	private: System::Void HienThiMonDaDat();
 	private: System::Void panel_Clicked(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void LocDanhSachMon(String^ loaiMon);
 	private: void BoGocControl(Control^ control, int radius);
 	private: System::Void CapNhatTongTien();
-	private: System::Void HienThiMonDaDat();
 	private: System::Void pictureBox__clicked(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void numSoLuong_ValueChanged(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void btnThanhToan_Click(System::Object^ sender, System::EventArgs^ e);
+		   System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e);
+		   System::Void btnSubtract_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void btnAll_Click(System::Object^ sender, System::EventArgs^ e) {
 		LocDanhSachMon("Tất cả");
 	}
 	private: System::Void btnFoodMain_Click(System::Object^ sender, System::EventArgs^ e) {
-	LocDanhSachMon("Món Chính");
-}
+		LocDanhSachMon("Món Chính");
+	}
 	private: System::Void btnSalah_Click(System::Object^ sender, System::EventArgs^ e) {
-	LocDanhSachMon("Salad");
-}
+		LocDanhSachMon("Salad");
+	}
 	private: System::Void btnAppetizer_Click(System::Object^ sender, System::EventArgs^ e) {
-	LocDanhSachMon(L"Khai Vị");
-}
-	private: System::Void btnTrangMieng_Click(System::Object^ sender, System::EventArgs^ e) {	
-	LocDanhSachMon(L"Tráng Miệng");
-}
+		LocDanhSachMon(L"Khai Vị");
+	}
+	private: System::Void btnTrangMieng_Click(System::Object^ sender, System::EventArgs^ e) {
+		LocDanhSachMon(L"Tráng Miệng");
+	}
 	private: System::Void btnNuocUong_Click(System::Object^ sender, System::EventArgs^ e) {
-	LocDanhSachMon(L"Nước uống");
-}
+		LocDanhSachMon(L"Nước uống");
+	}
 	private: System::Void btnTrangChu_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void btnChangerTable_Click(System::Object^ sender, System::EventArgs^ e);
 };

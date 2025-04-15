@@ -10,31 +10,28 @@ namespace PBL2DatMonAn {
         DanhSachMon = gcnew List<MonAn^>();
     }
 
-    // Đọc danh sách bàn từ file ban.txt
-    List<ManagerTable^>^ ManagerTable::DocDanhSachBan(String^ filePath) {
+    //// Đọc danh sách bàn từ file ban.txt
+    List<ManagerTable^>^ ManagerTable::DocDanhSachBan(String^ BanfilePath) {
         List<ManagerTable^>^ danhSachBan = gcnew List<ManagerTable^>();
         try {
             // Nếu file chưa tồn tại, tạo file với 10 bàn mặc định
-            if (!System::IO::File::Exists(filePath)) {
+            if (!System::IO::File::Exists(BanfilePath)) {
                 for (int i = 1; i <= 10; i++) {
                     ManagerTable^ ban = gcnew ManagerTable(L"Bàn" + i);
                     danhSachBan->Add(ban);
                 }
-                GhiDanhSachBan(danhSachBan, filePath);
+                GhiDanhSachBan(danhSachBan, BanfilePath);
                 return danhSachBan;
             }
-
-            System::IO::StreamReader^ reader = gcnew System::IO::StreamReader(filePath, System::Text::Encoding::UTF8);
+            System::IO::StreamReader^ reader = gcnew System::IO::StreamReader(BanfilePath, System::Text::Encoding::UTF8);
             String^ dong;
             while ((dong = reader->ReadLine()) != nullptr) {
                 if (String::IsNullOrWhiteSpace(dong)) continue; 
                 cli::array<String^>^ parts = dong->Split('|');
                 if (parts->Length < 4) continue; // Đảm bảo đủ 4 trường: ID|SoBan|TrangThai|DanhSachMon
-
                 ManagerTable^ ban = gcnew ManagerTable(parts[1]); // parts[1] là SoBan
                 ban->ID = parts[0]; // Gán ID từ file
                 ban->TrangThai = parts[2];
-
                 // Đọc danh sách món ăn
                 ban->DanhSachMon = gcnew List<MonAn^>();
                 if (!String::IsNullOrEmpty(parts[3])) {
@@ -60,10 +57,10 @@ namespace PBL2DatMonAn {
         return danhSachBan;
     }
 
-    // Ghi danh sách bàn vào file ban.txt
-    void ManagerTable::GhiDanhSachBan(List<ManagerTable^>^ danhSachBan, String^ filePath) {
+    //// Ghi danh sách bàn vào file ban.txt
+    void ManagerTable::GhiDanhSachBan(List<ManagerTable^>^ danhSachBan, String^ BanfilePath) {
         try {
-            System::IO::StreamWriter^ writer = gcnew System::IO::StreamWriter(filePath, false, System::Text::Encoding::UTF8);
+            System::IO::StreamWriter^ writer = gcnew System::IO::StreamWriter(BanfilePath, false, System::Text::Encoding::UTF8);
             for each (ManagerTable ^ ban in danhSachBan) {
                 String^ monAnStr = "";
                 for each (MonAn ^ monAn in ban->DanhSachMon) {
@@ -81,4 +78,6 @@ namespace PBL2DatMonAn {
             MessageBox::Show(L"Lỗi khi ghi file ban.txt: " + ex->Message, L"Lỗi", MessageBoxButtons::OK, MessageBoxIcon::Error);
         }
     }
+
+
 }

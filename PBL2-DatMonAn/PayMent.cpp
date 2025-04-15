@@ -22,9 +22,9 @@ namespace PBL2DatMonAn {
     }
 
     // Ghi danh sách hóa đơn vào file
-    void PayMent::GhiDanhSachHoaDon(List<PayMent^>^ danhSachHoaDon, String^ filePath) {
+    void PayMent::GhiDanhSachHoaDon(List<PayMent^>^ danhSachHoaDon, String^ BillfilePath) {
         try {
-            System::IO::StreamWriter^ writer = gcnew System::IO::StreamWriter(filePath, true, System::Text::Encoding::UTF8);
+            System::IO::StreamWriter^ writer = gcnew System::IO::StreamWriter(BillfilePath, true, System::Text::Encoding::UTF8);
             for each (PayMent ^ bill in danhSachHoaDon) {
                 String^ monAnStr = "";
                 for each (MonAn ^ mon in bill->DanhSachMon) {
@@ -45,14 +45,14 @@ namespace PBL2DatMonAn {
     }
 
     // Đọc danh sách hóa đơn từ file
-    List<PayMent^>^ PayMent::DocDanhSachHoaDon(String^ filePath) {
+    List<PayMent^>^ PayMent::DocDanhSachHoaDon(String^ BillfilePath) {
         List<PayMent^>^ danhSachHoaDon = gcnew List<PayMent^>();
         try {
-            if (!System::IO::File::Exists(filePath)) {
+            if (!System::IO::File::Exists(BillfilePath)) {
                 return danhSachHoaDon; // Trả về danh sách rỗng nếu file không tồn tại
             }
 
-            System::IO::StreamReader^ reader = gcnew System::IO::StreamReader(filePath, System::Text::Encoding::UTF8);
+            System::IO::StreamReader^ reader = gcnew System::IO::StreamReader(BillfilePath, System::Text::Encoding::UTF8);
             String^ line;
             while ((line = reader->ReadLine()) != nullptr) {
                 if (String::IsNullOrWhiteSpace(line)) continue;

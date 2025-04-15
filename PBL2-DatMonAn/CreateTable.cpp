@@ -69,6 +69,9 @@ void CreateTable::TakeAway(int soBan, FlowLayoutPanel^ flpMangVe) {
                 else if (ban->TrangThai == L"Có Khách" || ban->TrangThai == L"Chưa Thanh Toán") {
                     btn->BackColor = Color::Green;
                 }
+                else if (ban->TrangThai == L"Đang Đặt") {
+					btn->BackColor = Color::Orange;
+                }
                 else if (ban->TrangThai == L"Đã Thanh Toán") {
                     btn->BackColor = Color::White;
                 }

@@ -21,9 +21,9 @@ namespace PBL2DatMonAn {
     }
 
     // Ghi danh sách món ăn vào file
-    void MonAn::GhiDanhSachMonAn(List<MonAn^>^ danhSachMon, String^ filePath) {
+    void MonAn::GhiDanhSachMonAn(List<MonAn^>^ danhSachMon, String^ FoodfilePath) {
         try {
-            System::IO::StreamWriter^ writer = gcnew System::IO::StreamWriter(filePath, false, System::Text::Encoding::UTF8);
+            System::IO::StreamWriter^ writer = gcnew System::IO::StreamWriter(FoodfilePath, false, System::Text::Encoding::UTF8);
             for each (MonAn ^ mon in danhSachMon) {
                 String^ dong = String::Format("{0}||{1}||{2}$||{3}||{4}||",
                     mon->ID, mon->TenMon, mon->Gia, mon->LoaiMon, mon->Anh);
@@ -37,10 +37,10 @@ namespace PBL2DatMonAn {
     }
 
     // Đọc danh sách món ăn từ file
-    List<MonAn^>^ MonAn::DocDanhSachMonAn(String^ filePath) {
+    List<MonAn^>^ MonAn::DocDanhSachMonAn(String^ FoodfilePath) {
         List<MonAn^>^ danhSachMon = gcnew List<MonAn^>();
         try {
-            System::IO::StreamReader^ reader = gcnew System::IO::StreamReader(filePath, System::Text::Encoding::UTF8);
+            System::IO::StreamReader^ reader = gcnew System::IO::StreamReader(FoodfilePath, System::Text::Encoding::UTF8);
             String^ dong;
             while ((dong = reader->ReadLine()) != nullptr) {
                 if (String::IsNullOrWhiteSpace(dong)) continue; // Bỏ qua dòng trống

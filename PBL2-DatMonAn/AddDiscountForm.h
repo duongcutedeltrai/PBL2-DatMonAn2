@@ -61,6 +61,7 @@ namespace PBL2DatMonAn {
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::TextBox^ textBox1;
+
 	protected:
 
 	private:

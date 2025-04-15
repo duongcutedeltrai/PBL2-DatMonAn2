@@ -1,2 +1,6 @@
 ﻿20250407234826||duong||1||123||   29/06/2017||Nam ||Phục vụ||Nhân viên
 20250408224214||Dũng||3||123||   23/02/2004||Nam ||Thu ngân||Nhân viên
+20250414143217||Lam Hong Phuc||Phuc||123||   03/12/2024||Nữ||Thu ngân||Nhân viên
+20250414143331||Đặng thu hà||hà||123||   22/10/2024||Nữ||Phục vụ||Nhân viên
+20250414143400||Bạch Lưu Dương||LuuDuong||123||   10/12/2024||Nữ||Đầu bếp||Nhân viên
+20250414143418||Trần MInh Hiếu||hieuthuhai||123||   02/09/2024||Nam ||Thu ngân||Nhân viên

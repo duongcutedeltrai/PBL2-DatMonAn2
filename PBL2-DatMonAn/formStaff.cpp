@@ -22,11 +22,15 @@ namespace PBL2DatMonAn {
     System::Void formStaff::btnDangXuat_Click(System::Object^ sender, System::EventArgs^ e) {
         ResetMauButtonMenu();
         btnDangXuat->BackColor = Color::IndianRed;
-        this->Hide();
-        Login^ login = gcnew Login();
-        login->ShowDialog();
+    
+            this->Hide();
+            Login^ login = gcnew Login();
+            login->ShowDialog();
+            this->Close();
+
      
     }
+
 
     System::Void formStaff::btnLichSuDonHang_Click_1(System::Object^ sender, System::EventArgs^ e) {
         ResetMauButtonMenu();

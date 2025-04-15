@@ -22,7 +22,7 @@ namespace PBL2DatMonAn {
         User(String^ name, String^ acc, String^ pass, String^ birt, String^ sex, String^ pos, String^ role);
 
         // Static Methods
-        static void GhiDanhSachTaiKhoan(List<User^>^ dsTaiKhoan, String^ filePath);
+        static void GhiDanhSachTaiKhoan(List<User^>^ dsTaiKhoan, String^ UserfilePath);
         static List<User^>^ DocDanhSachTaiKhoan(String^ filePath);
     };
 }
