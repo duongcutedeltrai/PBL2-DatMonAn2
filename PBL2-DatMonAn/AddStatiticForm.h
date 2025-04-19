@@ -91,22 +91,27 @@ namespace PBL2DatMonAn {
             this->chartSoSanh->ChartAreas->Add(chartArea1);
             legend1->Name = L"Legend1";
             this->chartSoSanh->Legends->Add(legend1);
-            this->chartSoSanh->Location = System::Drawing::Point(28, 110);
+            this->chartSoSanh->Location = System::Drawing::Point(21, 89);
+            this->chartSoSanh->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
             this->chartSoSanh->Name = L"chartSoSanh";
-            this->chartSoSanh->Size = System::Drawing::Size(1016, 304);
+            this->chartSoSanh->Size = System::Drawing::Size(762, 247);
             this->chartSoSanh->TabIndex = 6;
             this->chartSoSanh->Text = L"chart1";
             // 
             // btnLocSoSanh
             // 
-            this->btnLocSoSanh->BackColor = System::Drawing::SystemColors::ActiveCaption;
+            this->btnLocSoSanh->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(167)), static_cast<System::Int32>(static_cast<System::Byte>(141)),
+                static_cast<System::Int32>(static_cast<System::Byte>(120)));
             this->btnLocSoSanh->FlatAppearance->BorderSize = 0;
             this->btnLocSoSanh->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
             this->btnLocSoSanh->Font = (gcnew System::Drawing::Font(L"Arial", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->btnLocSoSanh->Location = System::Drawing::Point(461, 41);
+            this->btnLocSoSanh->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+                static_cast<System::Int32>(static_cast<System::Byte>(18)));
+            this->btnLocSoSanh->Location = System::Drawing::Point(346, 33);
+            this->btnLocSoSanh->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
             this->btnLocSoSanh->Name = L"btnLocSoSanh";
-            this->btnLocSoSanh->Size = System::Drawing::Size(226, 50);
+            this->btnLocSoSanh->Size = System::Drawing::Size(170, 41);
             this->btnLocSoSanh->TabIndex = 6;
             this->btnLocSoSanh->Text = L"Lọc";
             this->btnLocSoSanh->UseVisualStyleBackColor = false;
@@ -117,9 +122,12 @@ namespace PBL2DatMonAn {
             this->lblDateFrom->AutoSize = true;
             this->lblDateFrom->Font = (gcnew System::Drawing::Font(L"Arial", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->lblDateFrom->Location = System::Drawing::Point(100, 55);
+            this->lblDateFrom->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+                static_cast<System::Int32>(static_cast<System::Byte>(18)));
+            this->lblDateFrom->Location = System::Drawing::Point(75, 45);
+            this->lblDateFrom->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
             this->lblDateFrom->Name = L"lblDateFrom";
-            this->lblDateFrom->Size = System::Drawing::Size(84, 23);
+            this->lblDateFrom->Size = System::Drawing::Size(66, 18);
             this->lblDateFrom->TabIndex = 9;
             this->lblDateFrom->Text = L"Bắt đầu:";
             // 
@@ -128,18 +136,22 @@ namespace PBL2DatMonAn {
             this->lblDateTo->AutoSize = true;
             this->lblDateTo->Font = (gcnew System::Drawing::Font(L"Arial", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->lblDateTo->Location = System::Drawing::Point(768, 55);
+            this->lblDateTo->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+                static_cast<System::Int32>(static_cast<System::Byte>(18)));
+            this->lblDateTo->Location = System::Drawing::Point(576, 45);
+            this->lblDateTo->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
             this->lblDateTo->Name = L"lblDateTo";
-            this->lblDateTo->Size = System::Drawing::Size(89, 23);
+            this->lblDateTo->Size = System::Drawing::Size(68, 18);
             this->lblDateTo->TabIndex = 10;
             this->lblDateTo->Text = L"Kết thúc:";
             // 
             // txtDateTo
             // 
             this->txtDateTo->ForeColor = System::Drawing::Color::Gray;
-            this->txtDateTo->Location = System::Drawing::Point(889, 55);
+            this->txtDateTo->Location = System::Drawing::Point(667, 45);
+            this->txtDateTo->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
             this->txtDateTo->Name = L"txtDateTo";
-            this->txtDateTo->Size = System::Drawing::Size(155, 22);
+            this->txtDateTo->Size = System::Drawing::Size(117, 20);
             this->txtDateTo->TabIndex = 11;
             this->txtDateTo->Text = L"dd/MM/yyyy hoặc yyyy";
             this->txtDateTo->Enter += gcnew System::EventHandler(this, &AddStatiticForm::txtDateTo_Enter);
@@ -148,9 +160,10 @@ namespace PBL2DatMonAn {
             // txtDateFrom
             // 
             this->txtDateFrom->ForeColor = System::Drawing::Color::Gray;
-            this->txtDateFrom->Location = System::Drawing::Point(190, 58);
+            this->txtDateFrom->Location = System::Drawing::Point(142, 47);
+            this->txtDateFrom->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
             this->txtDateFrom->Name = L"txtDateFrom";
-            this->txtDateFrom->Size = System::Drawing::Size(184, 22);
+            this->txtDateFrom->Size = System::Drawing::Size(139, 20);
             this->txtDateFrom->TabIndex = 12;
             this->txtDateFrom->Text = L"dd/MM/yyyy hoặc yyyy";
             this->txtDateFrom->Enter += gcnew System::EventHandler(this, &AddStatiticForm::txtDateFrom_Enter);
@@ -159,9 +172,10 @@ namespace PBL2DatMonAn {
             // txtDoanhThuFrom
             // 
             this->txtDoanhThuFrom->ForeColor = System::Drawing::Color::Gray;
-            this->txtDoanhThuFrom->Location = System::Drawing::Point(190, 430);
+            this->txtDoanhThuFrom->Location = System::Drawing::Point(142, 349);
+            this->txtDoanhThuFrom->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
             this->txtDoanhThuFrom->Name = L"txtDoanhThuFrom";
-            this->txtDoanhThuFrom->Size = System::Drawing::Size(184, 22);
+            this->txtDoanhThuFrom->Size = System::Drawing::Size(139, 20);
             this->txtDoanhThuFrom->TabIndex = 18;
             this->txtDoanhThuFrom->Text = L"dd/MM/yyyy hoặc yyyy";
             this->txtDoanhThuFrom->Enter += gcnew System::EventHandler(this, &AddStatiticForm::txtDoanhThuFrom_Enter);
@@ -170,9 +184,10 @@ namespace PBL2DatMonAn {
             // txtDoanhThuTo
             // 
             this->txtDoanhThuTo->ForeColor = System::Drawing::Color::Gray;
-            this->txtDoanhThuTo->Location = System::Drawing::Point(889, 427);
+            this->txtDoanhThuTo->Location = System::Drawing::Point(667, 347);
+            this->txtDoanhThuTo->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
             this->txtDoanhThuTo->Name = L"txtDoanhThuTo";
-            this->txtDoanhThuTo->Size = System::Drawing::Size(155, 22);
+            this->txtDoanhThuTo->Size = System::Drawing::Size(117, 20);
             this->txtDoanhThuTo->TabIndex = 17;
             this->txtDoanhThuTo->Text = L"dd/MM/yyyy hoặc yyyy";
             this->txtDoanhThuTo->Enter += gcnew System::EventHandler(this, &AddStatiticForm::txtDoanhThuTo_Enter);
@@ -183,9 +198,12 @@ namespace PBL2DatMonAn {
             this->label1->AutoSize = true;
             this->label1->Font = (gcnew System::Drawing::Font(L"Arial", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label1->Location = System::Drawing::Point(768, 427);
+            this->label1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+                static_cast<System::Int32>(static_cast<System::Byte>(18)));
+            this->label1->Location = System::Drawing::Point(576, 347);
+            this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
             this->label1->Name = L"label1";
-            this->label1->Size = System::Drawing::Size(89, 23);
+            this->label1->Size = System::Drawing::Size(68, 18);
             this->label1->TabIndex = 16;
             this->label1->Text = L"Kết thúc:";
             // 
@@ -194,22 +212,29 @@ namespace PBL2DatMonAn {
             this->label2->AutoSize = true;
             this->label2->Font = (gcnew System::Drawing::Font(L"Arial", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label2->Location = System::Drawing::Point(100, 427);
+            this->label2->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+                static_cast<System::Int32>(static_cast<System::Byte>(18)));
+            this->label2->Location = System::Drawing::Point(75, 347);
+            this->label2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
             this->label2->Name = L"label2";
-            this->label2->Size = System::Drawing::Size(84, 23);
+            this->label2->Size = System::Drawing::Size(66, 18);
             this->label2->TabIndex = 15;
             this->label2->Text = L"Bắt đầu:";
             // 
             // btnLocDoanhThu
             // 
-            this->btnLocDoanhThu->BackColor = System::Drawing::SystemColors::ActiveCaption;
+            this->btnLocDoanhThu->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(167)), static_cast<System::Int32>(static_cast<System::Byte>(141)),
+                static_cast<System::Int32>(static_cast<System::Byte>(120)));
             this->btnLocDoanhThu->FlatAppearance->BorderSize = 0;
             this->btnLocDoanhThu->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
             this->btnLocDoanhThu->Font = (gcnew System::Drawing::Font(L"Arial", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->btnLocDoanhThu->Location = System::Drawing::Point(461, 430);
+            this->btnLocDoanhThu->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+                static_cast<System::Int32>(static_cast<System::Byte>(18)));
+            this->btnLocDoanhThu->Location = System::Drawing::Point(346, 349);
+            this->btnLocDoanhThu->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
             this->btnLocDoanhThu->Name = L"btnLocDoanhThu";
-            this->btnLocDoanhThu->Size = System::Drawing::Size(226, 50);
+            this->btnLocDoanhThu->Size = System::Drawing::Size(170, 41);
             this->btnLocDoanhThu->TabIndex = 13;
             this->btnLocDoanhThu->Text = L"Lọc";
             this->btnLocDoanhThu->UseVisualStyleBackColor = false;
@@ -221,9 +246,10 @@ namespace PBL2DatMonAn {
             this->chartDoanhThu->ChartAreas->Add(chartArea2);
             legend2->Name = L"Legend1";
             this->chartDoanhThu->Legends->Add(legend2);
-            this->chartDoanhThu->Location = System::Drawing::Point(28, 482);
+            this->chartDoanhThu->Location = System::Drawing::Point(21, 392);
+            this->chartDoanhThu->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
             this->chartDoanhThu->Name = L"chartDoanhThu";
-            this->chartDoanhThu->Size = System::Drawing::Size(1016, 304);
+            this->chartDoanhThu->Size = System::Drawing::Size(762, 247);
             this->chartDoanhThu->TabIndex = 14;
             this->chartDoanhThu->Text = L"chart1";
             // 
@@ -233,18 +259,20 @@ namespace PBL2DatMonAn {
             this->chartNhanVien->ChartAreas->Add(chartArea3);
             legend3->Name = L"Legend1";
             this->chartNhanVien->Legends->Add(legend3);
-            this->chartNhanVien->Location = System::Drawing::Point(1059, 110);
+            this->chartNhanVien->Location = System::Drawing::Point(794, 89);
+            this->chartNhanVien->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
             this->chartNhanVien->Name = L"chartNhanVien";
-            this->chartNhanVien->Size = System::Drawing::Size(855, 304);
+            this->chartNhanVien->Size = System::Drawing::Size(641, 247);
             this->chartNhanVien->TabIndex = 19;
             this->chartNhanVien->Text = L"chart1";
             // 
             // txtNhanVienFrom
             // 
             this->txtNhanVienFrom->ForeColor = System::Drawing::Color::Gray;
-            this->txtNhanVienFrom->Location = System::Drawing::Point(1221, 58);
+            this->txtNhanVienFrom->Location = System::Drawing::Point(916, 47);
+            this->txtNhanVienFrom->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
             this->txtNhanVienFrom->Name = L"txtNhanVienFrom";
-            this->txtNhanVienFrom->Size = System::Drawing::Size(184, 22);
+            this->txtNhanVienFrom->Size = System::Drawing::Size(139, 20);
             this->txtNhanVienFrom->TabIndex = 24;
             this->txtNhanVienFrom->Text = L"dd/MM/yyyy hoặc yyyy";
             this->txtNhanVienFrom->Enter += gcnew System::EventHandler(this, &AddStatiticForm::txtNhanVienFrom_Enter);
@@ -253,9 +281,10 @@ namespace PBL2DatMonAn {
             // txtNhanVienTo
             // 
             this->txtNhanVienTo->ForeColor = System::Drawing::Color::Gray;
-            this->txtNhanVienTo->Location = System::Drawing::Point(1747, 58);
+            this->txtNhanVienTo->Location = System::Drawing::Point(1310, 47);
+            this->txtNhanVienTo->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
             this->txtNhanVienTo->Name = L"txtNhanVienTo";
-            this->txtNhanVienTo->Size = System::Drawing::Size(155, 22);
+            this->txtNhanVienTo->Size = System::Drawing::Size(117, 20);
             this->txtNhanVienTo->TabIndex = 23;
             this->txtNhanVienTo->Text = L"dd/MM/yyyy hoặc yyyy";
             this->txtNhanVienTo->Enter += gcnew System::EventHandler(this, &AddStatiticForm::txtNhanVienTo_Enter);
@@ -266,9 +295,12 @@ namespace PBL2DatMonAn {
             this->label3->AutoSize = true;
             this->label3->Font = (gcnew System::Drawing::Font(L"Arial", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label3->Location = System::Drawing::Point(1652, 52);
+            this->label3->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+                static_cast<System::Int32>(static_cast<System::Byte>(18)));
+            this->label3->Location = System::Drawing::Point(1239, 42);
+            this->label3->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
             this->label3->Name = L"label3";
-            this->label3->Size = System::Drawing::Size(89, 23);
+            this->label3->Size = System::Drawing::Size(68, 18);
             this->label3->TabIndex = 22;
             this->label3->Text = L"Kết thúc:";
             // 
@@ -277,22 +309,29 @@ namespace PBL2DatMonAn {
             this->label4->AutoSize = true;
             this->label4->Font = (gcnew System::Drawing::Font(L"Arial", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label4->Location = System::Drawing::Point(1115, 55);
+            this->label4->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+                static_cast<System::Int32>(static_cast<System::Byte>(18)));
+            this->label4->Location = System::Drawing::Point(836, 45);
+            this->label4->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
             this->label4->Name = L"label4";
-            this->label4->Size = System::Drawing::Size(84, 23);
+            this->label4->Size = System::Drawing::Size(66, 18);
             this->label4->TabIndex = 21;
             this->label4->Text = L"Bắt đầu:";
             // 
             // btnLocDoanhThuNhanVien
             // 
-            this->btnLocDoanhThuNhanVien->BackColor = System::Drawing::SystemColors::ActiveCaption;
+            this->btnLocDoanhThuNhanVien->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(167)),
+                static_cast<System::Int32>(static_cast<System::Byte>(141)), static_cast<System::Int32>(static_cast<System::Byte>(120)));
             this->btnLocDoanhThuNhanVien->FlatAppearance->BorderSize = 0;
             this->btnLocDoanhThuNhanVien->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
             this->btnLocDoanhThuNhanVien->Font = (gcnew System::Drawing::Font(L"Arial", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->btnLocDoanhThuNhanVien->Location = System::Drawing::Point(1420, 41);
+            this->btnLocDoanhThuNhanVien->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)),
+                static_cast<System::Int32>(static_cast<System::Byte>(41)), static_cast<System::Int32>(static_cast<System::Byte>(18)));
+            this->btnLocDoanhThuNhanVien->Location = System::Drawing::Point(1065, 33);
+            this->btnLocDoanhThuNhanVien->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
             this->btnLocDoanhThuNhanVien->Name = L"btnLocDoanhThuNhanVien";
-            this->btnLocDoanhThuNhanVien->Size = System::Drawing::Size(226, 50);
+            this->btnLocDoanhThuNhanVien->Size = System::Drawing::Size(170, 41);
             this->btnLocDoanhThuNhanVien->TabIndex = 20;
             this->btnLocDoanhThuNhanVien->Text = L"Lọc";
             this->btnLocDoanhThuNhanVien->UseVisualStyleBackColor = false;
@@ -300,7 +339,7 @@ namespace PBL2DatMonAn {
             // 
             // AddStatiticForm
             // 
-            this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+            this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
             this->Controls->Add(this->txtNhanVienFrom);
             this->Controls->Add(this->txtNhanVienTo);
@@ -320,13 +359,15 @@ namespace PBL2DatMonAn {
             this->Controls->Add(this->lblDateFrom);
             this->Controls->Add(this->btnLocSoSanh);
             this->Controls->Add(this->chartSoSanh);
+            this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
             this->Name = L"AddStatiticForm";
-            this->Size = System::Drawing::Size(1983, 864);
+            this->Size = System::Drawing::Size(1487, 702);
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chartSoSanh))->EndInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chartDoanhThu))->EndInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chartNhanVien))->EndInit();
             this->ResumeLayout(false);
             this->PerformLayout();
+
         }
 #pragma endregion
     private:

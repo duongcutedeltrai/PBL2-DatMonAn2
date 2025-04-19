@@ -24,28 +24,48 @@ void CreateTable::TaoDayBan(int soBan, FlowLayoutPanel^ flpBan, List<ManagerTabl
             btnBan->Height = 100;
             btnBan->BackColor = (danhSachBan[i - 1]->TrangThai == L"Trống") ? Color::White : Color::Green;
             btnBan->FlatStyle = FlatStyle::Standard;
-            btnBan->Margin = Padding(20);
+            btnBan->Margin = Padding(10);
             btnBan->Font = gcnew Drawing::Font("Segoe UI", 10, FontStyle::Bold);
             btnBan->ForeColor = Color::Black;
             btnBan->Cursor = Cursors::Hand;
             btnBan->Click += gcnew EventHandler(this, &CreateTable::btnBan_Click);
             flpBan->Controls->Add(btnBan);
+
+            btnBan->BackgroundImage = Image::FromFile(".\\Image\\icontable.png");
+            btnBan->BackgroundImageLayout = ImageLayout::Stretch;
+            btnBan->BackColor = Color::Transparent;
+
+            btnBan->FlatAppearance->BorderSize = 0;
+            btnBan->FlatStyle = FlatStyle::Flat;
+
+            btnBan->FlatAppearance->MouseOverBackColor = Color::FromArgb(202, 177, 142);
+			btnBan->FlatAppearance->MouseDownBackColor = Color::FromArgb(202, 177, 142);
         }
 }
 
 void CreateTable::TakeAway(int soBan, FlowLayoutPanel^ flpMangVe) {
     for (int i = 1; i <= soBan; i++) {
         Button^ btnBanMangve = gcnew Button();
-        btnBanMangve->Text = L"Mang Về " + i;
+        btnBanMangve->Text = L"" + i;
         btnBanMangve->Width = 100;
         btnBanMangve->Height = 100;
         btnBanMangve->BackColor = Color::White;
         btnBanMangve->FlatStyle = FlatStyle::Standard;
-        btnBanMangve->Margin = Padding(20);
+        btnBanMangve->Margin = Padding(15);
         btnBanMangve->Font = gcnew Drawing::Font("Segoe UI", 10, FontStyle::Bold);
         btnBanMangve->ForeColor = Color::Black;
         btnBanMangve->Cursor = Cursors::Hand;
         btnBanMangve->Click += gcnew EventHandler(this, &CreateTable::btnBanMangve_Click);
+
+        btnBanMangve->BackgroundImage = Image::FromFile(".\\Image\\icontable.png");
+        btnBanMangve->BackgroundImageLayout = ImageLayout::Stretch;
+        btnBanMangve->BackColor = Color::Transparent;
+
+        btnBanMangve->FlatAppearance->BorderSize = 0;
+        btnBanMangve->FlatStyle = FlatStyle::Flat;
+
+        btnBanMangve->FlatAppearance->MouseOverBackColor = Color::FromArgb(202, 177, 142);
+        btnBanMangve->FlatAppearance->MouseDownBackColor = Color::FromArgb(202, 177, 142);
 
         flpMangVe->Controls->Add(btnBanMangve);
     }
@@ -64,7 +84,7 @@ void CreateTable::TakeAway(int soBan, FlowLayoutPanel^ flpMangVe) {
 			Button^ btnBan = dynamic_cast<Button^>(control);
             if (btnBan != nullptr) {
                 if (ban->TrangThai == L"Trống") {
-                    btn->BackColor = Color::White;
+                    btn->BackColor = Color::FromArgb(236, 223, 206);
                 }
                 else if (ban->TrangThai == L"Có Khách" || ban->TrangThai == L"Chưa Thanh Toán") {
                     btn->BackColor = Color::Green;
@@ -73,7 +93,7 @@ void CreateTable::TakeAway(int soBan, FlowLayoutPanel^ flpMangVe) {
 					btn->BackColor = Color::Orange;
                 }
                 else if (ban->TrangThai == L"Đã Thanh Toán") {
-                    btn->BackColor = Color::White;
+                    btn->BackColor = Color::FromArgb(236, 223, 206);
                 }
             }
 		}

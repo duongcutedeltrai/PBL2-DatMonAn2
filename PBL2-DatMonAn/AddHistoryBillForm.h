@@ -57,6 +57,7 @@ namespace PBL2DatMonAn {
     private: System::Windows::Forms::Label^ lblTIenMatTotal;
     private: System::Windows::Forms::Label^ lblChuyenKoanTotal;
     private: System::Windows::Forms::Label^ lblTotal;
+    private: System::Windows::Forms::Panel^ panel2;
 
     private:
         System::ComponentModel::Container^ components;
@@ -75,8 +76,10 @@ namespace PBL2DatMonAn {
             this->lblTIenMatTotal = (gcnew System::Windows::Forms::Label());
             this->lblChuyenKoanTotal = (gcnew System::Windows::Forms::Label());
             this->lblTotal = (gcnew System::Windows::Forms::Label());
+            this->panel2 = (gcnew System::Windows::Forms::Panel());
             this->flowLayoutPanel1->SuspendLayout();
             this->panel1->SuspendLayout();
+            this->panel2->SuspendLayout();
             this->SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -88,10 +91,10 @@ namespace PBL2DatMonAn {
             this->flowLayoutPanel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)),
                 static_cast<System::Int32>(static_cast<System::Byte>(223)), static_cast<System::Int32>(static_cast<System::Byte>(206)));
             this->flowLayoutPanel1->Controls->Add(this->panel1);
-            this->flowLayoutPanel1->Location = System::Drawing::Point(11, 43);
-            this->flowLayoutPanel1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+            this->flowLayoutPanel1->Location = System::Drawing::Point(0, 35);
+            this->flowLayoutPanel1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
             this->flowLayoutPanel1->Name = L"flowLayoutPanel1";
-            this->flowLayoutPanel1->Size = System::Drawing::Size(1128, 515);
+            this->flowLayoutPanel1->Size = System::Drawing::Size(866, 418);
             this->flowLayoutPanel1->TabIndex = 0;
             // 
             // panel1
@@ -104,10 +107,10 @@ namespace PBL2DatMonAn {
             this->panel1->Controls->Add(this->lblNav3);
             this->panel1->Controls->Add(this->lblNav2);
             this->panel1->Controls->Add(this->lblNav1);
-            this->panel1->Location = System::Drawing::Point(3, 0);
-            this->panel1->Margin = System::Windows::Forms::Padding(3, 0, 3, 0);
+            this->panel1->Location = System::Drawing::Point(2, 0);
+            this->panel1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
             this->panel1->Name = L"panel1";
-            this->panel1->Size = System::Drawing::Size(1123, 38);
+            this->panel1->Size = System::Drawing::Size(842, 31);
             this->panel1->TabIndex = 0;
             // 
             // lblNav6
@@ -117,9 +120,10 @@ namespace PBL2DatMonAn {
                 static_cast<System::Byte>(0)));
             this->lblNav6->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
                 static_cast<System::Int32>(static_cast<System::Byte>(18)));
-            this->lblNav6->Location = System::Drawing::Point(945, 7);
+            this->lblNav6->Location = System::Drawing::Point(709, 6);
+            this->lblNav6->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
             this->lblNav6->Name = L"lblNav6";
-            this->lblNav6->Size = System::Drawing::Size(153, 24);
+            this->lblNav6->Size = System::Drawing::Size(122, 19);
             this->lblNav6->TabIndex = 5;
             this->lblNav6->Text = L"Giờ thanh toán";
             // 
@@ -130,9 +134,10 @@ namespace PBL2DatMonAn {
                 static_cast<System::Byte>(0)));
             this->label1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
                 static_cast<System::Int32>(static_cast<System::Byte>(18)));
-            this->label1->Location = System::Drawing::Point(639, 7);
+            this->label1->Location = System::Drawing::Point(479, 6);
+            this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
             this->label1->Name = L"label1";
-            this->label1->Size = System::Drawing::Size(245, 24);
+            this->label1->Size = System::Drawing::Size(199, 19);
             this->label1->TabIndex = 4;
             this->label1->Text = L"Phương thức thanh toán";
             // 
@@ -143,9 +148,10 @@ namespace PBL2DatMonAn {
                 static_cast<System::Byte>(0)));
             this->lblNav4->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
                 static_cast<System::Int32>(static_cast<System::Byte>(18)));
-            this->lblNav4->Location = System::Drawing::Point(437, 7);
+            this->lblNav4->Location = System::Drawing::Point(328, 6);
+            this->lblNav4->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
             this->lblNav4->Name = L"lblNav4";
-            this->lblNav4->Size = System::Drawing::Size(100, 24);
+            this->lblNav4->Size = System::Drawing::Size(81, 19);
             this->lblNav4->TabIndex = 3;
             this->lblNav4->Text = L"Tổng tiền";
             // 
@@ -156,9 +162,10 @@ namespace PBL2DatMonAn {
                 static_cast<System::Byte>(0)));
             this->lblNav3->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
                 static_cast<System::Int32>(static_cast<System::Byte>(18)));
-            this->lblNav3->Location = System::Drawing::Point(317, 7);
+            this->lblNav3->Location = System::Drawing::Point(238, 6);
+            this->lblNav3->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
             this->lblNav3->Name = L"lblNav3";
-            this->lblNav3->Size = System::Drawing::Size(47, 24);
+            this->lblNav3->Size = System::Drawing::Size(40, 19);
             this->lblNav3->TabIndex = 2;
             this->lblNav3->Text = L"Bàn";
             // 
@@ -169,9 +176,10 @@ namespace PBL2DatMonAn {
                 static_cast<System::Byte>(0)));
             this->lblNav2->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
                 static_cast<System::Int32>(static_cast<System::Byte>(18)));
-            this->lblNav2->Location = System::Drawing::Point(125, 7);
+            this->lblNav2->Location = System::Drawing::Point(94, 6);
+            this->lblNav2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
             this->lblNav2->Name = L"lblNav2";
-            this->lblNav2->Size = System::Drawing::Size(146, 24);
+            this->lblNav2->Size = System::Drawing::Size(119, 19);
             this->lblNav2->TabIndex = 1;
             this->lblNav2->Text = L"Tên Nhân viên";
             // 
@@ -182,9 +190,10 @@ namespace PBL2DatMonAn {
                 static_cast<System::Byte>(0)));
             this->lblNav1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
                 static_cast<System::Int32>(static_cast<System::Byte>(18)));
-            this->lblNav1->Location = System::Drawing::Point(19, 7);
+            this->lblNav1->Location = System::Drawing::Point(14, 6);
+            this->lblNav1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
             this->lblNav1->Name = L"lblNav1";
-            this->lblNav1->Size = System::Drawing::Size(49, 24);
+            this->lblNav1->Size = System::Drawing::Size(40, 19);
             this->lblNav1->TabIndex = 0;
             this->lblNav1->Text = L"STT";
             this->lblNav1->Click += gcnew System::EventHandler(this, &AddHistoryBillForm::lblNav1_Click);
@@ -192,47 +201,74 @@ namespace PBL2DatMonAn {
             // lblTIenMatTotal
             // 
             this->lblTIenMatTotal->AutoSize = true;
-            this->lblTIenMatTotal->Location = System::Drawing::Point(452, 10);
+            this->lblTIenMatTotal->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->lblTIenMatTotal->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+                static_cast<System::Int32>(static_cast<System::Byte>(18)));
+            this->lblTIenMatTotal->Location = System::Drawing::Point(187, 11);
+            this->lblTIenMatTotal->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
             this->lblTIenMatTotal->Name = L"lblTIenMatTotal";
-            this->lblTIenMatTotal->Size = System::Drawing::Size(62, 16);
+            this->lblTIenMatTotal->Size = System::Drawing::Size(71, 16);
             this->lblTIenMatTotal->TabIndex = 1;
             this->lblTIenMatTotal->Text = L"Tiền mặt:";
+            this->lblTIenMatTotal->Click += gcnew System::EventHandler(this, &AddHistoryBillForm::lblTIenMatTotal_Click);
             // 
             // lblChuyenKoanTotal
             // 
             this->lblChuyenKoanTotal->AutoSize = true;
-            this->lblChuyenKoanTotal->Location = System::Drawing::Point(725, 10);
+            this->lblChuyenKoanTotal->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->lblChuyenKoanTotal->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)),
+                static_cast<System::Int32>(static_cast<System::Byte>(41)), static_cast<System::Int32>(static_cast<System::Byte>(18)));
+            this->lblChuyenKoanTotal->Location = System::Drawing::Point(2, 11);
+            this->lblChuyenKoanTotal->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
             this->lblChuyenKoanTotal->Name = L"lblChuyenKoanTotal";
-            this->lblChuyenKoanTotal->Size = System::Drawing::Size(95, 16);
+            this->lblChuyenKoanTotal->Size = System::Drawing::Size(108, 16);
             this->lblChuyenKoanTotal->TabIndex = 2;
             this->lblChuyenKoanTotal->Text = L"Chuyển khoản:";
             // 
             // lblTotal
             // 
             this->lblTotal->AutoSize = true;
-            this->lblTotal->Location = System::Drawing::Point(168, 10);
+            this->lblTotal->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->lblTotal->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+                static_cast<System::Int32>(static_cast<System::Byte>(18)));
+            this->lblTotal->Location = System::Drawing::Point(655, 11);
+            this->lblTotal->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
             this->lblTotal->Name = L"lblTotal";
-            this->lblTotal->Size = System::Drawing::Size(66, 16);
+            this->lblTotal->Size = System::Drawing::Size(76, 16);
             this->lblTotal->TabIndex = 3;
             this->lblTotal->Text = L"Tổng tiền:";
             // 
+            // panel2
+            // 
+            this->panel2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(223)),
+                static_cast<System::Int32>(static_cast<System::Byte>(206)));
+            this->panel2->Controls->Add(this->lblTotal);
+            this->panel2->Controls->Add(this->lblTIenMatTotal);
+            this->panel2->Controls->Add(this->lblChuyenKoanTotal);
+            this->panel2->Location = System::Drawing::Point(0, 3);
+            this->panel2->Name = L"panel2";
+            this->panel2->Size = System::Drawing::Size(866, 29);
+            this->panel2->TabIndex = 1;
+            // 
             // AddHistoryBillForm
             // 
-            this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+            this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-            this->Controls->Add(this->lblTotal);
-            this->Controls->Add(this->lblChuyenKoanTotal);
-            this->Controls->Add(this->lblTIenMatTotal);
+            this->Controls->Add(this->panel2);
             this->Controls->Add(this->flowLayoutPanel1);
-            this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+            this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
             this->Name = L"AddHistoryBillForm";
-            this->Size = System::Drawing::Size(1155, 561);
+            this->Size = System::Drawing::Size(866, 456);
             this->Load += gcnew System::EventHandler(this, &AddHistoryBillForm::AddHistoryBillForm_Load);
             this->flowLayoutPanel1->ResumeLayout(false);
             this->panel1->ResumeLayout(false);
             this->panel1->PerformLayout();
+            this->panel2->ResumeLayout(false);
+            this->panel2->PerformLayout();
             this->ResumeLayout(false);
-            this->PerformLayout();
 
         }
 #pragma endregion
@@ -402,5 +438,7 @@ private:
     }
     private: System::Void lblNav1_Click(System::Object^ sender, System::EventArgs^ e) {
     }
+private: System::Void lblTIenMatTotal_Click(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }

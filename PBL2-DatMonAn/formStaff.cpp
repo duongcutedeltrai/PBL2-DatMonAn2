@@ -9,7 +9,7 @@ using namespace System::Runtime::InteropServices;
 namespace PBL2DatMonAn {
     System::Void formStaff::formStaff_Load(System::Object^ sender, System::EventArgs^ e) {
         ResetMauButtonMenu();
-        btnChonBan->BackColor = Color::IndianRed;
+        btnChonBan->BackColor = Color::FromArgb(84, 103, 69);
         BoGocControl(btnChonBan, 10);
         BoGocControl(btnLichSuDonHang, 10);
         BoGocControl(btnDangXuat, 10);
@@ -21,7 +21,7 @@ namespace PBL2DatMonAn {
   
     System::Void formStaff::btnDangXuat_Click(System::Object^ sender, System::EventArgs^ e) {
         ResetMauButtonMenu();
-        btnDangXuat->BackColor = Color::IndianRed;
+        btnDangXuat->BackColor = Color::FromArgb(84, 103, 69);
     
             this->Hide();
             Login^ login = gcnew Login();
@@ -38,7 +38,7 @@ namespace PBL2DatMonAn {
         panelMangVe->Visible = false;
         addHistoryBillForm->Visible = true;
         addHistoryBillForm->UpdateHistory();
-        btnLichSuDonHang->BackColor = Color::IndianRed;
+        btnLichSuDonHang->BackColor = Color::FromArgb(84, 103, 69);
     }
 
     System::Void formStaff::btnChonBan_Click(System::Object^ sender, System::EventArgs^ e){
@@ -46,7 +46,7 @@ namespace PBL2DatMonAn {
         panelDanhsachban->Visible = true;
         panelMangVe->Visible = true;
         addHistoryBillForm->Visible = false;
-        btnChonBan->BackColor = Color::IndianRed;
+        btnChonBan->BackColor = Color::FromArgb(84, 103, 69);
     }
 
     System::Void formStaff::BoGocControl(Control^ control, int radius) {
@@ -73,7 +73,7 @@ namespace PBL2DatMonAn {
 
 
     System::Void formStaff::ResetMauButtonMenu() {
-        Color mauMacDinh = Color::Gainsboro;
+        Color mauMacDinh = Color::FromArgb(167, 141, 120);
         btnChonBan->BackColor = mauMacDinh;
         btnLichSuDonHang->BackColor = mauMacDinh;
         btnDangXuat->BackColor = mauMacDinh;

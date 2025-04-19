@@ -110,7 +110,8 @@ namespace PBL2DatMonAn {
             // 
             // panelStaff
             // 
-            this->panelStaff->BackColor = System::Drawing::Color::Gainsboro;
+            this->panelStaff->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(223)),
+                static_cast<System::Int32>(static_cast<System::Byte>(206)));
             this->panelStaff->Controls->Add(this->lblTenNhanVien);
             this->panelStaff->Controls->Add(this->btnDangXuat);
             this->panelStaff->Controls->Add(this->btnLichSuDonHang);
@@ -120,9 +121,9 @@ namespace PBL2DatMonAn {
             this->panelStaff->Font = (gcnew System::Drawing::Font(L"Segoe UI", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->panelStaff->Location = System::Drawing::Point(0, 0);
-            this->panelStaff->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+            this->panelStaff->Margin = System::Windows::Forms::Padding(2);
             this->panelStaff->Name = L"panelStaff";
-            this->panelStaff->Size = System::Drawing::Size(1144, 132);
+            this->panelStaff->Size = System::Drawing::Size(858, 82);
             this->panelStaff->TabIndex = 0;
             // 
             // lblTenNhanVien
@@ -130,9 +131,12 @@ namespace PBL2DatMonAn {
             this->lblTenNhanVien->BackColor = System::Drawing::Color::Transparent;
             this->lblTenNhanVien->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->lblTenNhanVien->Location = System::Drawing::Point(19, 55);
+            this->lblTenNhanVien->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+                static_cast<System::Int32>(static_cast<System::Byte>(18)));
+            this->lblTenNhanVien->Location = System::Drawing::Point(34, 53);
+            this->lblTenNhanVien->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
             this->lblTenNhanVien->Name = L"lblTenNhanVien";
-            this->lblTenNhanVien->Size = System::Drawing::Size(387, 36);
+            this->lblTenNhanVien->Size = System::Drawing::Size(290, 29);
             this->lblTenNhanVien->TabIndex = 0;
             // 
             // btnDangXuat
@@ -143,10 +147,12 @@ namespace PBL2DatMonAn {
             this->btnDangXuat->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
             this->btnDangXuat->Font = (gcnew System::Drawing::Font(L"Segoe UI", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->btnDangXuat->Location = System::Drawing::Point(963, 37);
-            this->btnDangXuat->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+            this->btnDangXuat->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+                static_cast<System::Int32>(static_cast<System::Byte>(18)));
+            this->btnDangXuat->Location = System::Drawing::Point(730, 37);
+            this->btnDangXuat->Margin = System::Windows::Forms::Padding(2);
             this->btnDangXuat->Name = L"btnDangXuat";
-            this->btnDangXuat->Size = System::Drawing::Size(153, 55);
+            this->btnDangXuat->Size = System::Drawing::Size(126, 34);
             this->btnDangXuat->TabIndex = 3;
             this->btnDangXuat->Text = L"Đăng Xuất";
             this->btnDangXuat->UseVisualStyleBackColor = false;
@@ -160,10 +166,12 @@ namespace PBL2DatMonAn {
             this->btnLichSuDonHang->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
             this->btnLichSuDonHang->Font = (gcnew System::Drawing::Font(L"Segoe UI", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->btnLichSuDonHang->Location = System::Drawing::Point(676, 37);
-            this->btnLichSuDonHang->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+            this->btnLichSuDonHang->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+                static_cast<System::Int32>(static_cast<System::Byte>(18)));
+            this->btnLichSuDonHang->Location = System::Drawing::Point(513, 37);
+            this->btnLichSuDonHang->Margin = System::Windows::Forms::Padding(2);
             this->btnLichSuDonHang->Name = L"btnLichSuDonHang";
-            this->btnLichSuDonHang->Size = System::Drawing::Size(261, 58);
+            this->btnLichSuDonHang->Size = System::Drawing::Size(170, 34);
             this->btnLichSuDonHang->TabIndex = 2;
             this->btnLichSuDonHang->Text = L"Lịch sử đơn hàng";
             this->btnLichSuDonHang->UseVisualStyleBackColor = false;
@@ -177,10 +185,12 @@ namespace PBL2DatMonAn {
             this->btnChonBan->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
             this->btnChonBan->Font = (gcnew System::Drawing::Font(L"Segoe UI", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->btnChonBan->Location = System::Drawing::Point(493, 37);
-            this->btnChonBan->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+            this->btnChonBan->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+                static_cast<System::Int32>(static_cast<System::Byte>(18)));
+            this->btnChonBan->Location = System::Drawing::Point(372, 37);
+            this->btnChonBan->Margin = System::Windows::Forms::Padding(2);
             this->btnChonBan->Name = L"btnChonBan";
-            this->btnChonBan->Size = System::Drawing::Size(153, 58);
+            this->btnChonBan->Size = System::Drawing::Size(121, 34);
             this->btnChonBan->TabIndex = 1;
             this->btnChonBan->Text = L"Chọn Bàn";
             this->btnChonBan->UseVisualStyleBackColor = false;
@@ -188,45 +198,53 @@ namespace PBL2DatMonAn {
             // 
             // label1
             // 
-            this->label1->Font = (gcnew System::Drawing::Font(L"Georgia", 19.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label1->Location = System::Drawing::Point(12, 0);
+            this->label1->Font = (gcnew System::Drawing::Font(L"Bernard MT Condensed", 24, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
+                System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+            this->label1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+                static_cast<System::Int32>(static_cast<System::Byte>(18)));
+            this->label1->Location = System::Drawing::Point(77, 9);
+            this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
             this->label1->Name = L"label1";
-            this->label1->Size = System::Drawing::Size(283, 37);
+            this->label1->Size = System::Drawing::Size(247, 36);
             this->label1->TabIndex = 0;
-            this->label1->Text = L"Restaurant DD";
+            this->label1->Text = L"Restaurant D^D";
             // 
             // panelMangVe
             // 
             this->panelMangVe->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
                 | System::Windows::Forms::AnchorStyles::Left)
                 | System::Windows::Forms::AnchorStyles::Right));
-            this->panelMangVe->BackColor = System::Drawing::Color::Gainsboro;
+            this->panelMangVe->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(223)),
+                static_cast<System::Int32>(static_cast<System::Byte>(206)));
             this->panelMangVe->Controls->Add(this->panel8);
             this->panelMangVe->Controls->Add(this->flpMangVe);
             this->panelMangVe->Controls->Add(this->labelMangve);
-            this->panelMangVe->Location = System::Drawing::Point(760, 0);
-            this->panelMangVe->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+            this->panelMangVe->Location = System::Drawing::Point(555, 4);
+            this->panelMangVe->Margin = System::Windows::Forms::Padding(2);
             this->panelMangVe->Name = L"panelMangVe";
-            this->panelMangVe->Size = System::Drawing::Size(389, 489);
+            this->panelMangVe->Size = System::Drawing::Size(307, 424);
             this->panelMangVe->TabIndex = 1;
             // 
             // panel8
             // 
-            this->panel8->BackColor = System::Drawing::Color::Black;
-            this->panel8->Location = System::Drawing::Point(0, 53);
-            this->panel8->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+            this->panel8->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+                static_cast<System::Int32>(static_cast<System::Byte>(18)));
+            this->panel8->Location = System::Drawing::Point(2, 43);
+            this->panel8->Margin = System::Windows::Forms::Padding(2);
             this->panel8->Name = L"panel8";
-            this->panel8->Size = System::Drawing::Size(385, 4);
+            this->panel8->Size = System::Drawing::Size(300, 3);
             this->panel8->TabIndex = 0;
+            this->panel8->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &formStaff::panel8_Paint);
             // 
             // flpMangVe
             // 
             this->flpMangVe->AutoScroll = true;
-            this->flpMangVe->Location = System::Drawing::Point(3, 82);
-            this->flpMangVe->Margin = System::Windows::Forms::Padding(8, 7, 8, 7);
+            this->flpMangVe->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(223)),
+                static_cast<System::Int32>(static_cast<System::Byte>(206)));
+            this->flpMangVe->Location = System::Drawing::Point(22, 67);
+            this->flpMangVe->Margin = System::Windows::Forms::Padding(6);
             this->flpMangVe->Name = L"flpMangVe";
-            this->flpMangVe->Size = System::Drawing::Size(379, 394);
+            this->flpMangVe->Size = System::Drawing::Size(267, 349);
             this->flpMangVe->TabIndex = 5;
             // 
             // labelMangve
@@ -234,9 +252,12 @@ namespace PBL2DatMonAn {
             this->labelMangve->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom));
             this->labelMangve->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 13.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->labelMangve->Location = System::Drawing::Point(101, 16);
+            this->labelMangve->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+                static_cast<System::Int32>(static_cast<System::Byte>(18)));
+            this->labelMangve->Location = System::Drawing::Point(115, 7);
+            this->labelMangve->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
             this->labelMangve->Name = L"labelMangve";
-            this->labelMangve->Size = System::Drawing::Size(179, 33);
+            this->labelMangve->Size = System::Drawing::Size(134, 54);
             this->labelMangve->TabIndex = 4;
             this->labelMangve->Text = L"Mang Về";
             // 
@@ -245,41 +266,49 @@ namespace PBL2DatMonAn {
             this->panelDanhsachban->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
                 | System::Windows::Forms::AnchorStyles::Left)
                 | System::Windows::Forms::AnchorStyles::Right));
-            this->panelDanhsachban->BackColor = System::Drawing::Color::Gainsboro;
+            this->panelDanhsachban->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)),
+                static_cast<System::Int32>(static_cast<System::Byte>(223)), static_cast<System::Int32>(static_cast<System::Byte>(206)));
             this->panelDanhsachban->Controls->Add(this->panel7);
             this->panelDanhsachban->Controls->Add(this->flpBan);
             this->panelDanhsachban->Controls->Add(this->labelDanhsachban);
-            this->panelDanhsachban->Location = System::Drawing::Point(12, 1);
-            this->panelDanhsachban->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+            this->panelDanhsachban->Location = System::Drawing::Point(2, 4);
+            this->panelDanhsachban->Margin = System::Windows::Forms::Padding(2);
             this->panelDanhsachban->Name = L"panelDanhsachban";
-            this->panelDanhsachban->Size = System::Drawing::Size(732, 489);
+            this->panelDanhsachban->Size = System::Drawing::Size(549, 424);
             this->panelDanhsachban->TabIndex = 2;
             // 
             // panel7
             // 
-            this->panel7->BackColor = System::Drawing::Color::Black;
-            this->panel7->Location = System::Drawing::Point(0, 53);
-            this->panel7->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+            this->panel7->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+                static_cast<System::Int32>(static_cast<System::Byte>(18)));
+            this->panel7->Location = System::Drawing::Point(0, 43);
+            this->panel7->Margin = System::Windows::Forms::Padding(2);
             this->panel7->Name = L"panel7";
-            this->panel7->Size = System::Drawing::Size(731, 4);
+            this->panel7->Size = System::Drawing::Size(548, 3);
             this->panel7->TabIndex = 5;
             // 
             // flpBan
             // 
             this->flpBan->AutoScroll = true;
-            this->flpBan->Location = System::Drawing::Point(12, 82);
-            this->flpBan->Margin = System::Windows::Forms::Padding(11, 10, 11, 10);
+            this->flpBan->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(223)),
+                static_cast<System::Int32>(static_cast<System::Byte>(206)));
+            this->flpBan->Location = System::Drawing::Point(9, 67);
+            this->flpBan->Margin = System::Windows::Forms::Padding(8);
             this->flpBan->Name = L"flpBan";
-            this->flpBan->Size = System::Drawing::Size(715, 394);
+            this->flpBan->Size = System::Drawing::Size(532, 349);
             this->flpBan->TabIndex = 4;
+            this->flpBan->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &formStaff::flpBan_Paint);
             // 
             // labelDanhsachban
             // 
             this->labelDanhsachban->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 13.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->labelDanhsachban->Location = System::Drawing::Point(263, 11);
+            this->labelDanhsachban->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
+                static_cast<System::Int32>(static_cast<System::Byte>(18)));
+            this->labelDanhsachban->Location = System::Drawing::Point(197, 7);
+            this->labelDanhsachban->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
             this->labelDanhsachban->Name = L"labelDanhsachban";
-            this->labelDanhsachban->Size = System::Drawing::Size(223, 36);
+            this->labelDanhsachban->Size = System::Drawing::Size(167, 29);
             this->labelDanhsachban->TabIndex = 3;
             this->labelDanhsachban->Text = L"Danh Sách Bàn";
             // 
@@ -291,20 +320,20 @@ namespace PBL2DatMonAn {
             this->panelGeneral->BackColor = System::Drawing::Color::Transparent;
             this->panelGeneral->Controls->Add(this->panelMangVe);
             this->panelGeneral->Controls->Add(this->panelDanhsachban);
-            this->panelGeneral->Location = System::Drawing::Point(0, 138);
-            this->panelGeneral->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+            this->panelGeneral->Location = System::Drawing::Point(0, 86);
+            this->panelGeneral->Margin = System::Windows::Forms::Padding(2);
             this->panelGeneral->Name = L"panelGeneral";
-            this->panelGeneral->Size = System::Drawing::Size(1144, 498);
+            this->panelGeneral->Size = System::Drawing::Size(858, 430);
             this->panelGeneral->TabIndex = 3;
             // 
             // formStaff
             // 
-            this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+            this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-            this->ClientSize = System::Drawing::Size(1144, 639);
+            this->ClientSize = System::Drawing::Size(858, 519);
             this->Controls->Add(this->panelStaff);
             this->Controls->Add(this->panelGeneral);
-            this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+            this->Margin = System::Windows::Forms::Padding(2);
             this->Name = L"formStaff";
             this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
             this->Text = L"formStaff";
@@ -325,5 +354,10 @@ namespace PBL2DatMonAn {
     private: System::Void panelMangVe_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e); 
     private: System::Void BoGocControl(Control^ control, int radius);
     private: System::Void ResetMauButtonMenu();
+
+private: System::Void flpBan_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void panel8_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
 };
 }

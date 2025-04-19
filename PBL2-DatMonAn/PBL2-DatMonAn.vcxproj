@@ -217,6 +217,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\..\File DownLoand\icontable.png" />
     <Image Include="Image\iconAdd.png" />
     <Image Include="Image\iconCong.jpg" />
     <Image Include="Image\iconSubTract (1).png" />

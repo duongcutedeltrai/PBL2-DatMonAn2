@@ -142,6 +142,9 @@
     <Image Include="Image\iconSubTract (1).png">
       <Filter>Image</Filter>
     </Image>
+    <Image Include="..\..\..\File DownLoand\icontable.png">
+      <Filter>Image</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="monan.txt" />

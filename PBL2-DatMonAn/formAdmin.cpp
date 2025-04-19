@@ -6,11 +6,11 @@ using namespace System::Runtime::InteropServices;
 namespace PBL2DatMonAn {
 	System::Void formAdmin::formAdmin_Load(System::Object^ sender, System::EventArgs^ e) {
 		ResetMauButtonMenu();
-		btnThongKe->BackColor = Color::RosyBrown;
+		btnThongKe->BackColor = Color::FromArgb(84, 103, 69);
 	}
 
 	System::Void formAdmin::ResetMauButtonMenu() {
-		Color mauMacDinh = Color::Gainsboro;
+		Color mauMacDinh = Color::FromArgb(142, 121, 92);
 		btnThongKe->BackColor = mauMacDinh;
 		btnQuanlynhanvien->BackColor = mauMacDinh;
 		btnThemMon->BackColor = mauMacDinh;
@@ -20,7 +20,7 @@ namespace PBL2DatMonAn {
 
 	System::Void formAdmin::btnThongKe_Click(System::Object^ sender, System::EventArgs^ e) {
 		ResetMauButtonMenu();
-		btnThongKe->BackColor = Color::RosyBrown;
+		btnThongKe->BackColor = Color::FromArgb(84, 103, 69);
 		addFoodForm->Visible = false;
 		addUserForm->Visible = false;
 		addDiscountForm->Visible = false;
@@ -36,7 +36,7 @@ namespace PBL2DatMonAn {
 
 	System::Void formAdmin::btnThemMon_Click(System::Object^ sender, System::EventArgs^ e) {
 		ResetMauButtonMenu();
-		btnThemMon->BackColor = Color::RosyBrown;
+		btnThemMon->BackColor = Color::FromArgb(84, 103, 69);
 		addFoodForm->Visible = true;
 		addUserForm->Visible = false;
 		addStatiticForm->Visible = false;
@@ -46,7 +46,7 @@ namespace PBL2DatMonAn {
 
 	System::Void formAdmin::btnQuanlynhanvien_Click(System::Object^ sender, System::EventArgs^ e) {
 		ResetMauButtonMenu();
-		btnQuanlynhanvien->BackColor = Color::RosyBrown;
+		btnQuanlynhanvien->BackColor = Color::FromArgb(84, 103, 69);
 		addFoodForm->Visible = false;
 		addStatiticForm->Visible = false;
 		addDiscountForm->Visible = false;
@@ -56,7 +56,7 @@ namespace PBL2DatMonAn {
 
 	System::Void formAdmin::btnDiscount_Click(System::Object^ sender, System::EventArgs^ e) {
 		ResetMauButtonMenu();
-		btnDiscount->BackColor = Color::RosyBrown;
+		btnDiscount->BackColor = Color::FromArgb(84, 103, 69);
 		addFoodForm->Visible = false;
 		addUserForm->Visible = false;
 		addStatiticForm->Visible = false;
