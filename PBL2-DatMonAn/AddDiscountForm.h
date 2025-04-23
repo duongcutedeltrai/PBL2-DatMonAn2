@@ -90,7 +90,7 @@ namespace PBL2DatMonAn {
 			this->panel1->Controls->Add(this->label1);
 			this->panel1->Controls->Add(this->button1);
 			this->panel1->Controls->Add(this->textBox1);
-			this->panel1->Location = System::Drawing::Point(206, 118);
+			this->panel1->Location = System::Drawing::Point(283, 187);
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(634, 281);
 			this->panel1->TabIndex = 0;

@@ -72,7 +72,7 @@ namespace PBL2DatMonAn {
 	private: System::Windows::Forms::Label^ lblBanDat;
 	private: System::Windows::Forms::Panel^ pnPrice;
 	private: System::Windows::Forms::Label^ label14;
-	private: System::Windows::Forms::TextBox^ txtPrice;
+
 	private: System::Windows::Forms::Label^ label15;
 	private: System::Windows::Forms::Button^ btnTienMat;
 	private: System::Windows::Forms::Button^ btnChuyenKhoan;
@@ -86,6 +86,8 @@ namespace PBL2DatMonAn {
 	private: System::Windows::Forms::TextBox^ txtDiscount;
 	private: System::Windows::Forms::Label^ lblDiscount;
 	private: System::Windows::Forms::DateTimePicker^ dateTimePicker1;
+	private: System::Windows::Forms::TextBox^ txtPrice;
+
 
 
 	private:
@@ -110,7 +112,6 @@ namespace PBL2DatMonAn {
 			this->pnPrice = (gcnew System::Windows::Forms::Panel());
 			this->txtDiscount = (gcnew System::Windows::Forms::TextBox());
 			this->lblDiscount = (gcnew System::Windows::Forms::Label());
-			this->txtPrice = (gcnew System::Windows::Forms::TextBox());
 			this->label14 = (gcnew System::Windows::Forms::Label());
 			this->label15 = (gcnew System::Windows::Forms::Label());
 			this->btnTienMat = (gcnew System::Windows::Forms::Button());
@@ -123,6 +124,7 @@ namespace PBL2DatMonAn {
 			this->lblTenNhanVIen = (gcnew System::Windows::Forms::Label());
 			this->lblDateIn = (gcnew System::Windows::Forms::Label());
 			this->dateTimePicker1 = (gcnew System::Windows::Forms::DateTimePicker());
+			this->txtPrice = (gcnew System::Windows::Forms::TextBox());
 			this->panel1->SuspendLayout();
 			this->pnPrice->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->datagridViewBill))->BeginInit();
@@ -206,9 +208,9 @@ namespace PBL2DatMonAn {
 			// 
 			// pnPrice
 			// 
+			this->pnPrice->Controls->Add(this->txtPrice);
 			this->pnPrice->Controls->Add(this->txtDiscount);
 			this->pnPrice->Controls->Add(this->lblDiscount);
-			this->pnPrice->Controls->Add(this->txtPrice);
 			this->pnPrice->Controls->Add(this->label14);
 			this->pnPrice->Location = System::Drawing::Point(12, 542);
 			this->pnPrice->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
@@ -233,19 +235,6 @@ namespace PBL2DatMonAn {
 			this->lblDiscount->TabIndex = 2;
 			this->lblDiscount->Text = L"Giảm giá:";
 			// 
-			// txtPrice
-			// 
-			this->txtPrice->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(223)),
-				static_cast<System::Int32>(static_cast<System::Byte>(206)));
-			this->txtPrice->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->txtPrice->Location = System::Drawing::Point(373, 18);
-			this->txtPrice->Margin = System::Windows::Forms::Padding(11, 10, 11, 10);
-			this->txtPrice->Multiline = true;
-			this->txtPrice->Name = L"txtPrice";
-			this->txtPrice->Size = System::Drawing::Size(59, 43);
-			this->txtPrice->TabIndex = 1;
-			this->txtPrice->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
-			// 
 			// label14
 			// 
 			this->label14->AutoSize = true;
@@ -253,7 +242,7 @@ namespace PBL2DatMonAn {
 				static_cast<System::Byte>(0)));
 			this->label14->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
 				static_cast<System::Int32>(static_cast<System::Byte>(18)));
-			this->label14->Location = System::Drawing::Point(287, 5);
+			this->label14->Location = System::Drawing::Point(271, 5);
 			this->label14->Name = L"label14";
 			this->label14->Size = System::Drawing::Size(89, 38);
 			this->label14->TabIndex = 0;
@@ -315,8 +304,7 @@ namespace PBL2DatMonAn {
 			this->datagridViewBill->AllowUserToAddRows = false;
 			this->datagridViewBill->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
 			this->datagridViewBill->AutoSizeRowsMode = System::Windows::Forms::DataGridViewAutoSizeRowsMode::AllCells;
-			this->datagridViewBill->BackgroundColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)),
-				static_cast<System::Int32>(static_cast<System::Byte>(223)), static_cast<System::Int32>(static_cast<System::Byte>(206)));
+			this->datagridViewBill->BackgroundColor = System::Drawing::SystemColors::GradientActiveCaption;
 			this->datagridViewBill->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->datagridViewBill->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
 				this->Column1,
@@ -387,12 +375,19 @@ namespace PBL2DatMonAn {
 			this->dateTimePicker1->Size = System::Drawing::Size(200, 22);
 			this->dateTimePicker1->TabIndex = 13;
 			// 
+			// txtPrice
+			// 
+			this->txtPrice->Location = System::Drawing::Point(358, 11);
+			this->txtPrice->Multiline = true;
+			this->txtPrice->Name = L"txtPrice";
+			this->txtPrice->Size = System::Drawing::Size(100, 32);
+			this->txtPrice->TabIndex = 4;
+			// 
 			// FormBill
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(223)),
-				static_cast<System::Int32>(static_cast<System::Byte>(206)));
+			this->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
 			this->ClientSize = System::Drawing::Size(496, 686);
 			this->Controls->Add(this->dateTimePicker1);
 			this->Controls->Add(this->lblDateIn);
@@ -425,5 +420,7 @@ namespace PBL2DatMonAn {
 	private: System::Void btnChuyenKhoan_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void btnTienMat_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void ApplyDiscount();
+private: System::Void txtPrice_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }

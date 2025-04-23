@@ -121,10 +121,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AddBaoCaoNhanVienForm.cpp" />
     <ClCompile Include="AddDiscountForm.cpp" />
     <ClCompile Include="AddFoodForm.cpp" />
+    <ClCompile Include="AddFoodNoPayMent.cpp" />
     <ClCompile Include="AddHistoryBillForm.cpp" />
     <ClCompile Include="AddStatiticForm.cpp" />
+    <ClCompile Include="AddThongKeMon.cpp" />
     <ClCompile Include="AddUserForm.cpp" />
     <ClCompile Include="CreateTable.cpp" />
     <ClCompile Include="DiscountManager.cpp" />
@@ -140,16 +143,25 @@
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AddBaoCaoNhanVienForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="AddDiscountForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="AddFoodForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="AddFoodNoPayMent.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="AddHistoryBillForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="AddStatiticForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="AddThongKeMon.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="AddUserForm.h">
@@ -182,17 +194,26 @@
     <ClInclude Include="User.h" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AddBaoCaoNhanVienForm.resx">
+      <DependentUpon>AddBaoCaoNhanVienForm.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddDiscountForm.resx">
       <DependentUpon>AddDiscountForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddFoodForm.resx">
       <DependentUpon>AddFoodForm.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AddFoodNoPayMent.resx">
+      <DependentUpon>AddFoodNoPayMent.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddHistoryBillForm.resx">
       <DependentUpon>AddHistoryBillForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddStatiticForm.resx">
       <DependentUpon>AddStatiticForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddThongKeMon.resx">
+      <DependentUpon>AddThongKeMon.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddUserForm.resx">
       <DependentUpon>AddUserForm.h</DependentUpon>

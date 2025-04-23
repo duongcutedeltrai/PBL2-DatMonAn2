@@ -6,24 +6,30 @@ using namespace System::Runtime::InteropServices;
 namespace PBL2DatMonAn {
 	System::Void formAdmin::formAdmin_Load(System::Object^ sender, System::EventArgs^ e) {
 		ResetMauButtonMenu();
-		btnThongKe->BackColor = Color::RosyBrown;
+		btnQuanlynhanvien->BackColor = Color::RosyBrown;
 	}
 
 	System::Void formAdmin::ResetMauButtonMenu() {
-		Color mauMacDinh = Color::Gainsboro;
-		btnThongKe->BackColor = mauMacDinh;
+		Color mauMacDinh = Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(41)), static_cast<System::Int32>(static_cast<System::Byte>(128)),
+			static_cast<System::Int32>(static_cast<System::Byte>(185)));
 		btnQuanlynhanvien->BackColor = mauMacDinh;
+		btnDoanhThu->BackColor = mauMacDinh;
 		btnThemMon->BackColor = mauMacDinh;
 		btnDangXUatAdmin->BackColor = mauMacDinh;
 		btnDiscount->BackColor = mauMacDinh;
+		btnBaoCaoNhanVien->BackColor = mauMacDinh;
+		btnThongKeMon->BackColor = mauMacDinh;
+		btnFoodNoPayMent->BackColor = mauMacDinh;
 	}
 
-	System::Void formAdmin::btnThongKe_Click(System::Object^ sender, System::EventArgs^ e) {
+	System::Void formAdmin::btnDoanhThu_Click(System::Object^ sender, System::EventArgs^ e) {
 		ResetMauButtonMenu();
-		btnThongKe->BackColor = Color::RosyBrown;
+		btnDoanhThu->BackColor = Color::RosyBrown;
 		addFoodForm->Visible = false;
 		addUserForm->Visible = false;
 		addDiscountForm->Visible = false;
+		addBaoCaoNhanVienForm->Visible = false;
+		addThongKeMon->Visible = false;
 		addStatiticForm->Visible = true;
 		addStatiticForm->BringToFront();
 	}
@@ -41,6 +47,8 @@ namespace PBL2DatMonAn {
 		addUserForm->Visible = false;
 		addStatiticForm->Visible = false;
 		addDiscountForm->Visible = false;
+		addBaoCaoNhanVienForm->Visible = false;
+		addThongKeMon->Visible = false;
 		addFoodForm->BringToFront();
 	}
 
@@ -50,6 +58,8 @@ namespace PBL2DatMonAn {
 		addFoodForm->Visible = false;
 		addStatiticForm->Visible = false;
 		addDiscountForm->Visible = false;
+		addBaoCaoNhanVienForm->Visible = false;
+		addThongKeMon->Visible = false;
 		addUserForm->Visible = true;
 		addUserForm->BringToFront();
 	}
@@ -60,9 +70,50 @@ namespace PBL2DatMonAn {
 		addFoodForm->Visible = false;
 		addUserForm->Visible = false;
 		addStatiticForm->Visible = false;
+		addBaoCaoNhanVienForm->Visible = false;
+		addThongKeMon->Visible = false;
 		addDiscountForm->Visible = true;
 		addDiscountForm->BringToFront();
 	}
+
+	System::Void formAdmin::btnBaoCaoNhanVien_Click(System::Object^ sender, System::EventArgs^ e) {
+		ResetMauButtonMenu();
+		btnBaoCaoNhanVien->BackColor = Color::RosyBrown;
+		addFoodForm->Visible = false;
+		addUserForm->Visible = false;
+		addStatiticForm->Visible = false;
+		addDiscountForm->Visible = false;
+		addThongKeMon->Visible = false;
+		addBaoCaoNhanVienForm->Visible = true;
+		addBaoCaoNhanVienForm->BringToFront();
+	}
+	
+
+	System::Void formAdmin::btnThongKeMon_Click(System::Object^ sender, System::EventArgs^ e) {
+		ResetMauButtonMenu();
+		btnThongKeMon->BackColor = Color::RosyBrown;
+		addFoodForm->Visible = false;
+		addUserForm->Visible = false;
+		addStatiticForm->Visible = false;
+		addDiscountForm->Visible = false;
+		addBaoCaoNhanVienForm->Visible = false;
+		addThongKeMon->Visible = true;
+		addThongKeMon->BringToFront();
+	}
+
+	System::Void formAdmin::btnFoodNoPayMent_Click(System::Object^ sender, System::EventArgs^ e) {
+		ResetMauButtonMenu();
+		btnFoodNoPayMent->BackColor = Color::RosyBrown;
+		addFoodForm->Visible = false;
+		addUserForm->Visible = false;
+		addStatiticForm->Visible = false;
+		addDiscountForm->Visible = false;
+		addBaoCaoNhanVienForm->Visible = false;
+		addThongKeMon->Visible = false;
+		addFoodNoPayMent->Visible = true;
+		addFoodNoPayMent->BringToFront();
+	}
+
 
 	/*private: System::Void BoGocControl(Control^ control, int radius) {
 		System::Drawing::Drawing2D::GraphicsPath^ path = gcnew System::Drawing::Drawing2D::GraphicsPath();

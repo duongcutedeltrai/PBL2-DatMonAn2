@@ -16,8 +16,8 @@ namespace PBL2DatMonAn {
         try {
             // Nếu file chưa tồn tại, tạo file với 10 bàn mặc định
             if (!System::IO::File::Exists(BanfilePath)) {
-                for (int i = 1; i <= 10; i++) {
-                    ManagerTable^ ban = gcnew ManagerTable(L"Bàn" + i);
+                for (int i = 1; i <= 40; i++) {
+                    ManagerTable^ ban = gcnew ManagerTable(L"Bàn" +  i);
                     danhSachBan->Add(ban);
                 }
                 GhiDanhSachBan(danhSachBan, BanfilePath);

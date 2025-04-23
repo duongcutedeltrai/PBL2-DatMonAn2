@@ -1,5 +1,6 @@
 ﻿#include "formStaff.h"
 #include "Login.h"
+#include "ManagerTable.h"
 
 using namespace System;
 using namespace System::Windows::Forms;
@@ -22,7 +23,6 @@ namespace PBL2DatMonAn {
     System::Void formStaff::btnDangXuat_Click(System::Object^ sender, System::EventArgs^ e) {
         ResetMauButtonMenu();
         btnDangXuat->BackColor = Color::IndianRed;
-    
             this->Hide();
             Login^ login = gcnew Login();
             login->ShowDialog();
@@ -73,7 +73,8 @@ namespace PBL2DatMonAn {
 
 
     System::Void formStaff::ResetMauButtonMenu() {
-        Color mauMacDinh = Color::Gainsboro;
+        Color mauMacDinh = Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(41)), static_cast<System::Int32>(static_cast<System::Byte>(128)),
+            static_cast<System::Int32>(static_cast<System::Byte>(185)));
         btnChonBan->BackColor = mauMacDinh;
         btnLichSuDonHang->BackColor = mauMacDinh;
         btnDangXuat->BackColor = mauMacDinh;

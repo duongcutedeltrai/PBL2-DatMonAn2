@@ -146,8 +146,7 @@ namespace PBL2DatMonAn {
 			this->panel1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(223)),
-				static_cast<System::Int32>(static_cast<System::Byte>(206)));
+			this->panel1->BackColor = System::Drawing::SystemColors::InactiveCaption;
 			this->panel1->Controls->Add(this->button1);
 			this->panel1->Controls->Add(this->pnPosition);
 			this->panel1->Controls->Add(this->pnBirthday);
@@ -159,7 +158,7 @@ namespace PBL2DatMonAn {
 			this->panel1->Location = System::Drawing::Point(0, 2);
 			this->panel1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(1151, 411);
+			this->panel1->Size = System::Drawing::Size(1256, 415);
 			this->panel1->TabIndex = 0;
 			// 
 			// button1
@@ -168,7 +167,7 @@ namespace PBL2DatMonAn {
 				static_cast<System::Byte>(0)));
 			this->button1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
 				static_cast<System::Int32>(static_cast<System::Byte>(18)));
-			this->button1->Location = System::Drawing::Point(480, 353);
+			this->button1->Location = System::Drawing::Point(511, 370);
 			this->button1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(115, 39);
@@ -182,10 +181,10 @@ namespace PBL2DatMonAn {
 			this->pnPosition->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom));
 			this->pnPosition->Controls->Add(this->cbPosition);
 			this->pnPosition->Controls->Add(this->label4);
-			this->pnPosition->Location = System::Drawing::Point(763, 303);
+			this->pnPosition->Location = System::Drawing::Point(816, 303);
 			this->pnPosition->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->pnPosition->Name = L"pnPosition";
-			this->pnPosition->Size = System::Drawing::Size(237, 46);
+			this->pnPosition->Size = System::Drawing::Size(237, 50);
 			this->pnPosition->TabIndex = 6;
 			// 
 			// cbPosition
@@ -219,10 +218,10 @@ namespace PBL2DatMonAn {
 			this->pnBirthday->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom));
 			this->pnBirthday->Controls->Add(this->dateTimePicker1);
 			this->pnBirthday->Controls->Add(this->label3);
-			this->pnBirthday->Location = System::Drawing::Point(419, 303);
+			this->pnBirthday->Location = System::Drawing::Point(472, 303);
 			this->pnBirthday->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->pnBirthday->Name = L"pnBirthday";
-			this->pnBirthday->Size = System::Drawing::Size(275, 46);
+			this->pnBirthday->Size = System::Drawing::Size(275, 50);
 			this->pnBirthday->TabIndex = 5;
 			// 
 			// dateTimePicker1
@@ -254,10 +253,10 @@ namespace PBL2DatMonAn {
 			this->pnSex->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom));
 			this->pnSex->Controls->Add(this->cbSex);
 			this->pnSex->Controls->Add(this->label2);
-			this->pnSex->Location = System::Drawing::Point(180, 303);
+			this->pnSex->Location = System::Drawing::Point(233, 303);
 			this->pnSex->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->pnSex->Name = L"pnSex";
-			this->pnSex->Size = System::Drawing::Size(185, 46);
+			this->pnSex->Size = System::Drawing::Size(185, 50);
 			this->pnSex->TabIndex = 4;
 			// 
 			// cbSex
@@ -288,10 +287,10 @@ namespace PBL2DatMonAn {
 			this->pnNameStaff->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom));
 			this->pnNameStaff->Controls->Add(this->txtNameStaff);
 			this->pnNameStaff->Controls->Add(this->lblNameStaff);
-			this->pnNameStaff->Location = System::Drawing::Point(108, 218);
+			this->pnNameStaff->Location = System::Drawing::Point(161, 218);
 			this->pnNameStaff->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->pnNameStaff->Name = L"pnNameStaff";
-			this->pnNameStaff->Size = System::Drawing::Size(957, 69);
+			this->pnNameStaff->Size = System::Drawing::Size(957, 73);
 			this->pnNameStaff->TabIndex = 3;
 			// 
 			// txtNameStaff
@@ -321,10 +320,10 @@ namespace PBL2DatMonAn {
 			this->pnPass->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom));
 			this->pnPass->Controls->Add(this->txtAddPass);
 			this->pnPass->Controls->Add(this->lblPass);
-			this->pnPass->Location = System::Drawing::Point(108, 127);
+			this->pnPass->Location = System::Drawing::Point(161, 127);
 			this->pnPass->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->pnPass->Name = L"pnPass";
-			this->pnPass->Size = System::Drawing::Size(957, 86);
+			this->pnPass->Size = System::Drawing::Size(957, 90);
 			this->pnPass->TabIndex = 2;
 			// 
 			// txtAddPass
@@ -355,10 +354,10 @@ namespace PBL2DatMonAn {
 			this->pnAddAccount->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom));
 			this->pnAddAccount->Controls->Add(this->txtAddAccount);
 			this->pnAddAccount->Controls->Add(this->lblAccount);
-			this->pnAddAccount->Location = System::Drawing::Point(108, 38);
+			this->pnAddAccount->Location = System::Drawing::Point(161, 38);
 			this->pnAddAccount->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->pnAddAccount->Name = L"pnAddAccount";
-			this->pnAddAccount->Size = System::Drawing::Size(957, 73);
+			this->pnAddAccount->Size = System::Drawing::Size(957, 77);
 			this->pnAddAccount->TabIndex = 1;
 			// 
 			// txtAddAccount
@@ -391,7 +390,7 @@ namespace PBL2DatMonAn {
 				static_cast<System::Byte>(0)));
 			this->label1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(63)), static_cast<System::Int32>(static_cast<System::Byte>(41)),
 				static_cast<System::Int32>(static_cast<System::Byte>(18)));
-			this->label1->Location = System::Drawing::Point(367, 0);
+			this->label1->Location = System::Drawing::Point(420, 0);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(380, 35);
 			this->label1->TabIndex = 0;
@@ -401,13 +400,13 @@ namespace PBL2DatMonAn {
 			// 
 			this->flowLayoutPanel1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom));
 			this->flowLayoutPanel1->AutoScroll = true;
-			this->flowLayoutPanel1->BackColor = System::Drawing::Color::White;
+			this->flowLayoutPanel1->BackColor = System::Drawing::SystemColors::InactiveCaption;
 			this->flowLayoutPanel1->Controls->Add(this->panel2);
-			this->flowLayoutPanel1->Location = System::Drawing::Point(0, 418);
+			this->flowLayoutPanel1->Location = System::Drawing::Point(0, 417);
 			this->flowLayoutPanel1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->flowLayoutPanel1->Name = L"flowLayoutPanel1";
 			this->flowLayoutPanel1->Padding = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->flowLayoutPanel1->Size = System::Drawing::Size(1151, 214);
+			this->flowLayoutPanel1->Size = System::Drawing::Size(1268, 230);
 			this->flowLayoutPanel1->TabIndex = 1;
 			// 
 			// panel2
@@ -424,7 +423,7 @@ namespace PBL2DatMonAn {
 			this->panel2->Location = System::Drawing::Point(6, 4);
 			this->panel2->Margin = System::Windows::Forms::Padding(3, 2, 3, 0);
 			this->panel2->Name = L"panel2";
-			this->panel2->Size = System::Drawing::Size(1125, 42);
+			this->panel2->Size = System::Drawing::Size(1096, 42);
 			this->panel2->TabIndex = 0;
 			// 
 			// label5
@@ -520,11 +519,12 @@ namespace PBL2DatMonAn {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackColor = System::Drawing::SystemColors::ActiveCaption;
 			this->Controls->Add(this->flowLayoutPanel1);
 			this->Controls->Add(this->panel1);
 			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"AddUserForm";
-			this->Size = System::Drawing::Size(1151, 647);
+			this->Size = System::Drawing::Size(1271, 647);
 			this->panel1->ResumeLayout(false);
 			this->panel1->PerformLayout();
 			this->pnPosition->ResumeLayout(false);

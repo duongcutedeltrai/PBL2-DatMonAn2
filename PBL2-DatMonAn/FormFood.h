@@ -157,8 +157,7 @@ namespace PBL2DatMonAn {
 			// 
 			// pnNav
 			// 
-			this->pnNav->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(223)),
-				static_cast<System::Int32>(static_cast<System::Byte>(206)));
+			this->pnNav->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
 			this->pnNav->Controls->Add(this->btnNuocUong);
 			this->pnNav->Controls->Add(this->btnTrangMieng);
 			this->pnNav->Controls->Add(this->button4);
@@ -270,8 +269,7 @@ namespace PBL2DatMonAn {
 			// 
 			// pnListFood
 			// 
-			this->pnListFood->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(223)),
-				static_cast<System::Int32>(static_cast<System::Byte>(206)));
+			this->pnListFood->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
 			this->pnListFood->Controls->Add(this->cbChangerTable);
 			this->pnListFood->Controls->Add(this->panel2);
 			this->pnListFood->Controls->Add(this->btnTrangChu);
@@ -292,13 +290,14 @@ namespace PBL2DatMonAn {
 				L"Bàn 1", L"Bàn 2", L"Bàn 3", L"Bàn 4", L"Bàn 5",
 					L"Bàn 6", L"Bàn 7", L"Bàn 8", L"Bàn 9", L"Bàn 10"
 			});
-			this->cbChangerTable->Location = System::Drawing::Point(177, 715);
+			this->cbChangerTable->Location = System::Drawing::Point(222, 715);
 			this->cbChangerTable->Name = L"cbChangerTable";
 			this->cbChangerTable->Size = System::Drawing::Size(121, 24);
 			this->cbChangerTable->TabIndex = 5;
 			// 
 			// panel2
 			// 
+			this->panel2->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
 			this->panel2->Controls->Add(this->label3);
 			this->panel2->Controls->Add(this->txtMoney);
 			this->panel2->Location = System::Drawing::Point(5, 574);
@@ -336,7 +335,7 @@ namespace PBL2DatMonAn {
 			this->btnTrangChu->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->btnTrangChu->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnTrangChu->Location = System::Drawing::Point(25, 641);
+			this->btnTrangChu->Location = System::Drawing::Point(70, 645);
 			this->btnTrangChu->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnTrangChu->Name = L"btnTrangChu";
 			this->btnTrangChu->Size = System::Drawing::Size(125, 50);
@@ -350,7 +349,7 @@ namespace PBL2DatMonAn {
 			this->btnThanhToan->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->btnThanhToan->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnThanhToan->Location = System::Drawing::Point(222, 641);
+			this->btnThanhToan->Location = System::Drawing::Point(218, 645);
 			this->btnThanhToan->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnThanhToan->Name = L"btnThanhToan";
 			this->btnThanhToan->Size = System::Drawing::Size(125, 50);
@@ -364,7 +363,7 @@ namespace PBL2DatMonAn {
 			this->btnChangerTable->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->btnChangerTable->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnChangerTable->Location = System::Drawing::Point(25, 699);
+			this->btnChangerTable->Location = System::Drawing::Point(70, 699);
 			this->btnChangerTable->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnChangerTable->Name = L"btnChangerTable";
 			this->btnChangerTable->Size = System::Drawing::Size(125, 50);
@@ -376,8 +375,7 @@ namespace PBL2DatMonAn {
 			// flowLayoutPanel1
 			// 
 			this->flowLayoutPanel1->AutoScroll = true;
-			this->flowLayoutPanel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)),
-				static_cast<System::Int32>(static_cast<System::Byte>(223)), static_cast<System::Int32>(static_cast<System::Byte>(206)));
+			this->flowLayoutPanel1->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
 			this->flowLayoutPanel1->Controls->Add(this->panelOrder);
 			this->flowLayoutPanel1->Location = System::Drawing::Point(0, 0);
 			this->flowLayoutPanel1->Margin = System::Windows::Forms::Padding(11, 10, 11, 10);
@@ -435,14 +433,13 @@ namespace PBL2DatMonAn {
 			this->panel4->Location = System::Drawing::Point(5, 633);
 			this->panel4->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->panel4->Name = L"panel4";
-			this->panel4->Size = System::Drawing::Size(380, 4);
+			this->panel4->Size = System::Drawing::Size(400, 4);
 			this->panel4->TabIndex = 0;
 			// 
 			// FlpFood
 			// 
 			this->FlpFood->AutoScroll = true;
-			this->FlpFood->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(223)),
-				static_cast<System::Int32>(static_cast<System::Byte>(206)));
+			this->FlpFood->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
 			this->FlpFood->Controls->Add(this->panel1);
 			this->FlpFood->Location = System::Drawing::Point(9, 42);
 			this->FlpFood->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);

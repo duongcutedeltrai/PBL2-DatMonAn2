@@ -154,7 +154,8 @@ namespace PBL2DatMonAn {
             // Login Form
             this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-            this->BackColor = System::Drawing::Color::FromArgb(236, 223, 206);
+            this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(174)), static_cast<System::Int32>(static_cast<System::Byte>(214)),
+                static_cast<System::Int32>(static_cast<System::Byte>(241)));
             this->ClientSize = System::Drawing::Size(430, 192);
             this->Controls->Add(this->btnLogin);
             this->Controls->Add(this->panel3);
