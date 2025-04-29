@@ -1,8 +1,10 @@
 ﻿#include "FormFood.h"
 #include "FormBill.h"
 #include "MonAn.h"
+
 using namespace System;
 using namespace System::Windows::Forms;
+using namespace System::IO;
 
 namespace PBL2DatMonAn {
     System::Void FormFood::FormFood_Load(System::Object^ sender, System::EventArgs^ e) {
@@ -11,18 +13,17 @@ namespace PBL2DatMonAn {
         BoGocControl(pnNav, 20);
 
         danhSachMonAn = MonAn::DocDanhSachMonAn(FoodfilePath);
-        if (danhSachMonAn == nullptr || danhSachMonAn->Count == 0) {
-            MessageBox::Show(L"Không có dữ liệu trong file");
-        }
-        else {
-            HienThiDanhSachMon();
+        HienThiDanhSachMon();
+        DocDanhSachMonTuFile();
+        if (banHienTai != nullptr && banHienTai->DanhSachMon != nullptr) {
             HienThiMonDaDat();
+            CapNhatTongTien();
         }
     }
 
     System::Void FormFood::HienThiDanhSachMon() {
         FlpFood->Controls->Clear();
-        for each (MonAn ^ mon in danhSachMonAn)
+        for each(MonAn ^ mon in danhSachMonAn)
         {
             Button^ button = gcnew Button();
             button->BackColor = Color::White;
@@ -34,7 +35,6 @@ namespace PBL2DatMonAn {
             button->Click += gcnew EventHandler(this, &FormFood::panel_Clicked);
             button->Cursor = Cursors::Hand;
 
-            // Ảnh món ăn
             PictureBox^ picBox = gcnew PictureBox();
             picBox->Location = System::Drawing::Point(10, 13);
             picBox->Size = System::Drawing::Size(100, 87);
@@ -47,7 +47,7 @@ namespace PBL2DatMonAn {
                 BoGocControl(picBox, 5);
             }
             catch (...) {
-                picBox->Image = nullptr; // Xử lý nếu ảnh không tồn tại
+                picBox->Image = nullptr;
             }
 
             Label^ lblTen = gcnew Label();
@@ -60,7 +60,6 @@ namespace PBL2DatMonAn {
             lblTen->BackColor = System::Drawing::Color::Transparent;
             lblTen->TabIndex = 1;
 
-            //gia
             Label^ lblGia = gcnew Label();
             lblGia->AutoSize = true;
             lblGia->Text = mon->Gia + " $";
@@ -71,7 +70,6 @@ namespace PBL2DatMonAn {
             lblGia->BackColor = System::Drawing::Color::Transparent;
             lblGia->TabIndex = 2;
 
-            //icon
             PictureBox^ picIcon = gcnew PictureBox();
             picIcon->Location = System::Drawing::Point(230, 80);
             picIcon->Size = System::Drawing::Size(20, 20);
@@ -80,16 +78,13 @@ namespace PBL2DatMonAn {
             picIcon->BackColor = System::Drawing::Color::Transparent;
             picIcon->BringToFront();
             picIcon->Parent = button;
-            picIcon->Image = Image::FromFile(".\\Image\\iconAdd.png"); // Đường dẫn đến icon
-
-
+            picIcon->Image = Image::FromFile(".\\Image\\iconAdd.png");
 
             button->Controls->Add(picBox);
             button->Controls->Add(lblTen);
             button->Controls->Add(lblGia);
 
             FlpFood->Controls->Add(button);
-            // Các control bên trong cũng cần gán Tag để bắt được khi click:
             picBox->Tag = mon;
             lblTen->Tag = mon;
             lblGia->Tag = mon;
@@ -112,12 +107,10 @@ namespace PBL2DatMonAn {
             return;
         }
 
-
         if (banHienTai == nullptr || banHienTai->DanhSachMon == nullptr) {
             MessageBox::Show(L"Dữ liệu bàn hiện tại không hợp lệ.", "Lỗi", MessageBoxButtons::OK, MessageBoxIcon::Error);
             return;
         }
-
 
         int index = -1;
         for (int i = 0; i < banHienTai->DanhSachMon->Count; i++) {
@@ -128,102 +121,103 @@ namespace PBL2DatMonAn {
         }
 
         if (index != -1) {
-     
             banHienTai->DanhSachMon[index]->SoLuong++;
         }
         else {
-
             MonAn^ monMoi = gcnew MonAn(mon->LoaiMon, mon->TenMon, mon->Gia, mon->Anh);
-            monMoi->ID = mon->ID; // Gán ID để đồng bộ
+            monMoi->ID = mon->ID;
             monMoi->SoLuong = 1;
             banHienTai->DanhSachMon->Add(monMoi);
-            banHienTai->TrangThai = L"Có Khách"; // Cập nhật trạng thái bàn
+            banHienTai->TrangThai = L"Có Khách";
         }
 
+        LuuDanhSachMonVaoFile("tamthoi.txt");
         ManagerTable::GhiDanhSachBan(danhSachBan, banFilePath);
-        HienThiMonDaDat(); // Cập nhật giao diện
+        HienThiMonDaDat();
         CapNhatTongTien();
     }
 
     System::Void FormFood::HienThiMonDaDat() {
         flowLayoutPanel1->Controls->Clear();
-        if (banHienTai->DanhSachMon != nullptr && banHienTai->DanhSachMon->Count > 0) {
-            for each (MonAn ^ mon in banHienTai->DanhSachMon) {
-                Panel^ panelOrder = gcnew Panel();
-                panelOrder->Tag = mon;
-                panelOrder->BackColor = System::Drawing::Color::WhiteSmoke;
-                panelOrder->Size = System::Drawing::Size(268, 124);
-
-                Label^ lblGia = gcnew Label();
-                lblGia->Text = mon->Gia + "$";
-                lblGia->AutoSize = true;
-                lblGia->Font = gcnew Drawing::Font(L"Microsoft Sans Serif", 10.2F);
-                lblGia->Location = System::Drawing::Point(154, 48);
-
-                PictureBox^ picBox = gcnew PictureBox();
-                picBox->Location = System::Drawing::Point(18, 3);
-                picBox->Size = System::Drawing::Size(130, 116);
-                picBox->SizeMode = PictureBoxSizeMode::StretchImage;
-                try {
-                    picBox->Image = Image::FromFile(mon->Anh);
-                }
-                catch (...) {
-                    picBox->Image = nullptr; // Xử lý nếu ảnh không tồn tại
-                }
-
-                // Nút cộng
-                PictureBox^ picIconAdd = gcnew PictureBox();
-                picIconAdd->Location = System::Drawing::Point(154, 80);
-                picIconAdd->Size = System::Drawing::Size(20, 20);
-                picIconAdd->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
-                picIconAdd->BackColor = System::Drawing::Color::Transparent;
-				picIconAdd->Cursor = System::Windows::Forms::Cursors::Hand;
-                picIconAdd->BringToFront();
-                picIconAdd->Parent = panelOrder;
-                picIconAdd->Image = Image::FromFile(".\\Image\\iconCong.jpg");
-                picIconAdd->Tag = mon; // Gán Tag để biết món nào được nhấn
-                picIconAdd->Click += gcnew EventHandler(this, &FormFood::btnAdd_Click); // Thêm sự kiện Click
-
-                // Nút trừ
-                PictureBox^ picIconSubTract = gcnew PictureBox();
-                picIconSubTract->Location = System::Drawing::Point(230, 80);
-                picIconSubTract->Size = System::Drawing::Size(20, 20);
-                picIconSubTract->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
-                picIconSubTract->BackColor = System::Drawing::Color::Transparent;
-				picIconSubTract->Cursor = System::Windows::Forms::Cursors::Hand;
-                picIconSubTract->BringToFront();
-                picIconSubTract->Parent = panelOrder;
-                picIconSubTract->Image = Image::FromFile(".\\Image\\iconSubTract (1).png");
-                picIconSubTract->Tag = mon; // Gán Tag để biết món nào được nhấn
-                picIconSubTract->Click += gcnew EventHandler(this, &FormFood::btnSubtract_Click); // Thêm sự kiện Click
-
-                Label^ lblTen = gcnew Label();
-                lblTen->Text = mon->TenMon;
-                lblTen->AutoSize = true;
-                lblTen->Font = gcnew Drawing::Font(L"Segoe UI Semibold", 10.2F, FontStyle::Bold);
-                lblTen->Location = System::Drawing::Point(154, 25);
-
-                // Hiển thị số lượng
-                Label^ lblSoLuong = gcnew Label();
-                lblSoLuong->Text = mon->SoLuong.ToString();
-                lblSoLuong->AutoSize = true;
-                lblSoLuong->Font = gcnew Drawing::Font(L"Segoe UI Semibold", 10.2F);
-                lblSoLuong->Location = System::Drawing::Point(190, 80); // Đặt giữa nút cộng và trừ
-                lblSoLuong->Name = "lblSoLuong"; // Đặt tên để dễ tìm sau này
-
-                BoGocControl(panelOrder, 20);
-                panelOrder->Controls->Add(picBox);
-                panelOrder->Controls->Add(lblTen);
-                panelOrder->Controls->Add(lblGia);
-                panelOrder->Controls->Add(picIconAdd);
-                panelOrder->Controls->Add(picIconSubTract);
-                panelOrder->Controls->Add(lblSoLuong); // Thêm label số lượng
-                flowLayoutPanel1->Controls->Add(panelOrder);
-            }
-            danhSachMonAn = MonAn::DocDanhSachMonAn(FoodfilePath);
-            ManagerTable::GhiDanhSachBan(danhSachBan, banFilePath);
+        if (banHienTai == nullptr || banHienTai->DanhSachMon == nullptr || banHienTai->DanhSachMon->Count == 0) {
+            Console::WriteLine("Bàn hiện tại (" + (banHienTai != nullptr ? banHienTai->SoBan : "null") + ") không có món");
             CapNhatTongTien();
+            return;
         }
+
+        Console::WriteLine("Hiển thị món cho bàn: " + banHienTai->SoBan + ", số món: " + banHienTai->DanhSachMon->Count);
+        for each(MonAn ^ mon in banHienTai->DanhSachMon) {
+            Panel^ panelOrder = gcnew Panel();
+            panelOrder->Tag = mon;
+            panelOrder->BackColor = System::Drawing::Color::WhiteSmoke;
+            panelOrder->Size = System::Drawing::Size(268, 124);
+
+            Label^ lblGia = gcnew Label();
+            lblGia->Text = mon->Gia;
+            lblGia->AutoSize = true;
+            lblGia->Font = gcnew Drawing::Font(L"Microsoft Sans Serif", 10.2F);
+            lblGia->Location = System::Drawing::Point(154, 48);
+
+            PictureBox^ picBox = gcnew PictureBox();
+            picBox->Location = System::Drawing::Point(18, 3);
+            picBox->Size = System::Drawing::Size(130, 116);
+            picBox->SizeMode = PictureBoxSizeMode::StretchImage;
+            try {
+                picBox->Image = Image::FromFile(mon->Anh);
+            }
+            catch (...) {
+                picBox->Image = nullptr;
+            }
+
+            PictureBox^ picIconAdd = gcnew PictureBox();
+            picIconAdd->Location = System::Drawing::Point(154, 80);
+            picIconAdd->Size = System::Drawing::Size(20, 20);
+            picIconAdd->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+            picIconAdd->BackColor = System::Drawing::Color::Transparent;
+            picIconAdd->Cursor = System::Windows::Forms::Cursors::Hand;
+            picIconAdd->BringToFront();
+            picIconAdd->Parent = panelOrder;
+            picIconAdd->Image = Image::FromFile(".\\Image\\iconCong.jpg");
+            picIconAdd->Tag = mon;
+            picIconAdd->Click += gcnew EventHandler(this, &FormFood::btnAdd_Click);
+
+            PictureBox^ picIconSubTract = gcnew PictureBox();
+            picIconSubTract->Location = System::Drawing::Point(230, 80);
+            picIconSubTract->Size = System::Drawing::Size(20, 20);
+            picIconSubTract->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+            picIconSubTract->BackColor = System::Drawing::Color::Transparent;
+            picIconSubTract->Cursor = System::Windows::Forms::Cursors::Hand;
+            picIconSubTract->BringToFront();
+            picIconSubTract->Parent = panelOrder;
+            picIconSubTract->Image = Image::FromFile(".\\Image\\iconSubTract (1).png");
+            picIconSubTract->Tag = mon;
+            picIconSubTract->Click += gcnew EventHandler(this, &FormFood::btnSubtract_Click);
+
+            Label^ lblTen = gcnew Label();
+            lblTen->Text = mon->TenMon;
+            lblTen->AutoSize = true;
+            lblTen->Font = gcnew Drawing::Font(L"Segoe UI Semibold", 10.2F, FontStyle::Bold);
+            lblTen->Location = System::Drawing::Point(154, 25);
+
+            Label^ lblSoLuong = gcnew Label();
+            lblSoLuong->Text = mon->SoLuong.ToString();
+            lblSoLuong->AutoSize = true;
+            lblSoLuong->Font = gcnew Drawing::Font(L"Segoe UI Semibold", 10.2F);
+            lblSoLuong->Location = System::Drawing::Point(190, 80);
+            lblSoLuong->Name = "lblSoLuong";
+
+            BoGocControl(panelOrder, 20);
+            panelOrder->Controls->Add(picBox);
+            panelOrder->Controls->Add(lblTen);
+            panelOrder->Controls->Add(lblGia);
+            panelOrder->Controls->Add(picIconAdd);
+            panelOrder->Controls->Add(picIconSubTract);
+            panelOrder->Controls->Add(lblSoLuong);
+            flowLayoutPanel1->Controls->Add(panelOrder);
+        }
+
+        ManagerTable::GhiDanhSachBan(danhSachBan, banFilePath);
+        CapNhatTongTien();
     }
 
     System::Void FormFood::btnAdd_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -233,13 +227,11 @@ namespace PBL2DatMonAn {
         MonAn^ mon = dynamic_cast<MonAn^>(picIconAdd->Tag);
         if (mon == nullptr) return;
 
-        // Tăng số lượng món
         mon->SoLuong++;
 
-        // Tìm panel chứa món và cập nhật label số lượng
         Panel^ panelOrder = dynamic_cast<Panel^>(picIconAdd->Parent);
         if (panelOrder != nullptr) {
-            for each (Control ^ ctrl in panelOrder->Controls) {
+            for each(Control ^ ctrl in panelOrder->Controls) {
                 if (Label^ lblSoLuong = dynamic_cast<Label^>(ctrl)) {
                     if (lblSoLuong->Name == "lblSoLuong") {
                         lblSoLuong->Text = mon->SoLuong.ToString();
@@ -249,7 +241,7 @@ namespace PBL2DatMonAn {
             }
         }
 
-        // Ghi lại thay đổi vào file
+        LuuDanhSachMonVaoFile("tamthoi.txt");
         ManagerTable::GhiDanhSachBan(danhSachBan, banFilePath);
         CapNhatTongTien();
     }
@@ -261,23 +253,19 @@ namespace PBL2DatMonAn {
         MonAn^ mon = dynamic_cast<MonAn^>(picIconSubTract->Tag);
         if (mon == nullptr) return;
 
-        // Giảm số lượng món
         mon->SoLuong--;
 
         if (mon->SoLuong <= 0) {
-            // Xóa món khỏi danh sách nếu số lượng về 0
             banHienTai->DanhSachMon->Remove(mon);
             if (banHienTai->DanhSachMon->Count == 0) {
                 banHienTai->TrangThai = L"Trống";
             }
-            // Cập nhật giao diện
-            HienThiMonDaDat();
+            LuuDanhSachMonVaoFile("tamthoi.txt");
         }
         else {
-            // Cập nhật label số lượng
             Panel^ panelOrder = dynamic_cast<Panel^>(picIconSubTract->Parent);
             if (panelOrder != nullptr) {
-                for each (Control ^ ctrl in panelOrder->Controls) {
+                for each(Control ^ ctrl in panelOrder->Controls) {
                     if (Label^ lblSoLuong = dynamic_cast<Label^>(ctrl)) {
                         if (lblSoLuong->Name == "lblSoLuong") {
                             lblSoLuong->Text = mon->SoLuong.ToString();
@@ -286,36 +274,35 @@ namespace PBL2DatMonAn {
                     }
                 }
             }
+            LuuDanhSachMonVaoFile("tamthoi.txt");
         }
 
-        // Ghi lại thay đổi vào file
         ManagerTable::GhiDanhSachBan(danhSachBan, banFilePath);
+        HienThiMonDaDat();
         CapNhatTongTien();
     }
 
     System::Void FormFood::pictureBox__clicked(System::Object^ sender, System::EventArgs^ e) {
-        // Nếu bấm vào ảnh, gọi sự kiện Click của panel chứa nó
         PictureBox^ picBox = dynamic_cast<PictureBox^>(sender);
         if (picBox != nullptr && picBox->Parent != nullptr) {
-            panel_Clicked(picBox->Parent, e); // Gọi hàm panel__clicked
+            panel_Clicked(picBox->Parent, e);
         }
     }
 
     System::Void FormFood::LocDanhSachMon(String^ loaiMon) {
-        FlpFood->Controls->Clear(); // Xóa các control hiện có trong FlpFood
+        FlpFood->Controls->Clear();
         for each(MonAn ^ mon in danhSachMonAn) {
-            if (loaiMon == "Tất cả" || mon -> LoaiMon == loaiMon) { // Lọc món ăn
+            if (loaiMon == "Tất cả" || mon->LoaiMon == loaiMon) {
                 Button^ button = gcnew Button();
                 button->BackColor = Color::White;
                 button->Location = System::Drawing::Point(23, 23);
                 button->UseVisualStyleBackColor = true;
                 button->Size = System::Drawing::Size(264, 115);
                 button->TabIndex = 0;
-                button->Tag = mon; // Gán món ăn vào Tag để xử lý khi click
+                button->Tag = mon;
                 button->Click += gcnew EventHandler(this, &FormFood::panel_Clicked);
                 button->Cursor = Cursors::Hand;
 
-                // Ảnh món ăn
                 PictureBox^ picBox = gcnew PictureBox();
                 picBox->Location = System::Drawing::Point(10, 13);
                 picBox->Size = System::Drawing::Size(100, 87);
@@ -325,13 +312,12 @@ namespace PBL2DatMonAn {
                 picBox->Parent = button;
                 try {
                     picBox->Image = Image::FromFile(mon->Anh);
-                    BoGocControl(picBox, 5); // Bo góc cho ảnh
+                    BoGocControl(picBox, 5);
                 }
                 catch (...) {
-                    picBox->Image = nullptr; // Xử lý nếu ảnh không tồn tại
+                    picBox->Image = nullptr;
                 }
 
-                // Tên món ăn
                 Label^ lblTen = gcnew Label();
                 lblTen->Text = mon->TenMon;
                 lblTen->Font = (gcnew System::Drawing::Font(L"Arial", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
@@ -342,7 +328,6 @@ namespace PBL2DatMonAn {
                 lblTen->BackColor = System::Drawing::Color::Transparent;
                 lblTen->TabIndex = 1;
 
-                // Giá món ăn
                 Label^ lblGia = gcnew Label();
                 lblGia->AutoSize = true;
                 lblGia->Text = mon->Gia + " $";
@@ -353,7 +338,6 @@ namespace PBL2DatMonAn {
                 lblGia->BackColor = System::Drawing::Color::Transparent;
                 lblGia->TabIndex = 2;
 
-                //icon
                 PictureBox^ picIcon = gcnew PictureBox();
                 picIcon->Location = System::Drawing::Point(230, 80);
                 picIcon->Size = System::Drawing::Size(20, 20);
@@ -362,17 +346,14 @@ namespace PBL2DatMonAn {
                 picIcon->BackColor = System::Drawing::Color::Transparent;
                 picIcon->BringToFront();
                 picIcon->Parent = button;
-                picIcon->Image = Image::FromFile(".\\Image\\iconAdd.png"); // Đường dẫn đến icon
+                picIcon->Image = Image::FromFile(".\\Image\\iconAdd.png");
 
-                // Thêm các control vào button
                 button->Controls->Add(picBox);
                 button->Controls->Add(lblTen);
                 button->Controls->Add(lblGia);
 
-                // Thêm button vào FlpFood
                 FlpFood->Controls->Add(button);
 
-                // Gán Tag và sự kiện Click cho các control bên trong
                 picBox->Tag = mon;
                 lblTen->Tag = mon;
                 lblGia->Tag = mon;
@@ -384,13 +365,11 @@ namespace PBL2DatMonAn {
     }
 
     System::Void FormFood::btnChangerTable_Click(System::Object^ sender, System::EventArgs^ e) {
-        //ktra ban
         if (cbChangerTable->SelectedIndex == -1) {
             MessageBox::Show("Vui lòng chọn bàn để chuyển");
             return;
         }
 
-        //lay so ban dc chon tu cbb
         String^ soBanMoi = cbChangerTable->SelectedItem->ToString();
 
         if (soBanMoi == banHienTai->SoBan) {
@@ -398,9 +377,8 @@ namespace PBL2DatMonAn {
             return;
         }
 
-        //tim ban moi
         ManagerTable^ banMoi = nullptr;
-        for each (ManagerTable ^ ban in danhSachBan) {
+        for each(ManagerTable ^ ban in danhSachBan) {
             if (ban->SoBan == soBanMoi) {
                 banMoi = ban;
                 break;
@@ -412,75 +390,67 @@ namespace PBL2DatMonAn {
             return;
         }
 
-        //ktra ban trang thai ban moi
         if (banMoi->TrangThai != L"Trống") {
             MessageBox::Show(L"Bàn được chọn đã có người ngồi", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
             return;
         }
 
-        //kiem tra ban hien tai
         if (banHienTai->DanhSachMon == nullptr || banHienTai->DanhSachMon->Count == 0) {
             MessageBox::Show(L"Bàn hiện tại không có món nào để chuyển", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
             return;
         }
 
-        //chuyen danh sach mon
         banMoi->DanhSachMon = gcnew List<MonAn^>();
-        for each (MonAn ^ mon in banHienTai->DanhSachMon) {
+        for each(MonAn ^ mon in banHienTai->DanhSachMon) {
             MonAn^ monMoi = gcnew MonAn(mon->LoaiMon, mon->TenMon, mon->Gia, mon->Anh);
             monMoi->ID = mon->ID;
             monMoi->SoLuong = mon->SoLuong;
             banMoi->DanhSachMon->Add(monMoi);
         }
 
-        //cap nhat trang thai ban moi
         banMoi->TrangThai = L"Có Khách";
         banHienTai->TrangThai = L"Trống";
         banHienTai->DanhSachMon->Clear();
 
-        //thay doi file
-        if (danhSachBan != nullptr) {
-            //ghi file
-            ManagerTable::GhiDanhSachBan(danhSachBan, banFilePath);
-        }
+        LuuDanhSachMonVaoFile("tamthoi.txt");
+        ManagerTable::GhiDanhSachBan(danhSachBan, banFilePath);
 
-        //cap nhat banhientai thanh ban moi
         banHienTai = banMoi;
 
-        //cap nhat giao dien;
         HienThiMonDaDat();
-        ManagerTable::GhiDanhSachBan(danhSachBan, banFilePath);
         CapNhatTongTien();
 
-        //thong bao thanh cong
         MessageBox::Show(L"Chuyển sang" + soBanMoi + L" thành công", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
     }
 
-    //thanhtoan
     System::Void FormFood::btnThanhToan_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (banHienTai->DanhSachMon->Count == 0) {
-			MessageBox::Show(L"Không có món nào trong danh sách!", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
-			return;
-		}
+        if (banHienTai->DanhSachMon->Count == 0) {
+            MessageBox::Show(L"Không có món nào trong danh sách!", "Thông báo", MessageBoxButtons::OK, MessageBoxIcon::Information);
+            return;
+        }
 
-		//goi form bill
-		FormBill^ formBill = gcnew FormBill(banHienTai->DanhSachMon, banHienTai,nameStaff, danhSachBan, banFilePath, addHistoryBillForm);
-        formBill->ShowDialog();
-        HienThiMonDaDat();
-		CapNhatTongTien();
+        FormBill^ formBill = gcnew FormBill(banHienTai->DanhSachMon, banHienTai, nameStaff, danhSachBan, banFilePath, addHistoryBillForm);
+        if (formBill->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
+            banHienTai->DanhSachMon->Clear();
+            banHienTai->TrangThai = L"Trống";
+            LuuDanhSachMonVaoFile("tamthoi.txt");
+            ManagerTable::GhiDanhSachBan(danhSachBan, banFilePath);
+            HienThiMonDaDat();
+            CapNhatTongTien();
+        }
     }
 
     System::Void FormFood::btnTrangChu_Click(System::Object^ sender, System::EventArgs^ e) {
+        LuuDanhSachMonVaoFile("tamthoi.txt");
         ManagerTable::GhiDanhSachBan(danhSachBan, banFilePath);
+
         formStaff^ trangChu = gcnew formStaff(nameStaff);
         trangChu->Show();
         this->Close();
+        LuuDanhSachMonVaoFile("tamthoi.txt");
+        ManagerTable::GhiDanhSachBan(danhSachBan, banFilePath);
     }
 
-
-    //loc danh sach mon
-
-    //bo goc
     System::Void FormFood::BoGocControl(Control^ control, int radius) {
         System::Drawing::Drawing2D::GraphicsPath^ path = gcnew System::Drawing::Drawing2D::GraphicsPath();
         int w = control->Width;
@@ -496,12 +466,11 @@ namespace PBL2DatMonAn {
         control->Region = gcnew System::Drawing::Region(path);
     }
 
-    //tinh tien
     System::Void FormFood::CapNhatTongTien() {
         double tongTien = 0.0;
 
         if (banHienTai != nullptr && banHienTai->DanhSachMon != nullptr) {
-            for each (MonAn ^ mon in banHienTai->DanhSachMon) {
+            for each(MonAn ^ mon in banHienTai->DanhSachMon) {
                 double gia = 0.0;
                 try {
                     gia = Convert::ToDouble(mon->Gia->Replace("$", ""));
@@ -516,5 +485,239 @@ namespace PBL2DatMonAn {
         txtMoney->Text = tongTien.ToString("F2") + " $";
     }
 
+    void FormFood::LuuDanhSachMonVaoFile(String^ VirttualOrderFilePath) {
+        try {
+            if (danhSachBan == nullptr || danhSachBan->Count == 0) {
+                if (File::Exists(VirttualOrderFilePath)) {
+                    File::Delete(VirttualOrderFilePath);
+                }
+                Console::WriteLine("Không có bàn nào để lưu");
+                return;
+            }
+
+            StreamWriter^ writer = nullptr;
+            try {
+                writer = gcnew StreamWriter(VirttualOrderFilePath, false, System::Text::Encoding::UTF8);
+                int tablesSaved = 0;
+
+                for each(ManagerTable ^ ban in danhSachBan) {
+                    if (ban == nullptr || ban->DanhSachMon == nullptr || ban->DanhSachMon->Count == 0) {
+                        continue;
+                    }
+
+                    String^ danhSachMonAnStr = "";
+                    double tongTien = 0.0;
+                    for each(MonAn ^ monAn in ban->DanhSachMon) {
+                        if (monAn == nullptr) continue;
+
+                        String^ giaMonAnStr = monAn->Gia;
+                        if (String::IsNullOrEmpty(giaMonAnStr)) {
+                            MessageBox::Show("Giá món ăn không hợp lệ: " + monAn->TenMon, "Lỗi",
+                                MessageBoxButtons::OK, MessageBoxIcon::Error);
+                            continue;
+                        }
+
+                        giaMonAnStr = giaMonAnStr->Replace("$", "")->Replace(",", "")->Trim();
+                        double giaMonAn;
+                        if (!Double::TryParse(giaMonAnStr, giaMonAn)) {
+                            MessageBox::Show("Giá món ăn không hợp lệ: " + monAn->TenMon, "Lỗi",
+                                MessageBoxButtons::OK, MessageBoxIcon::Error);
+                            continue;
+                        }
+
+                        int soLuong = monAn->SoLuong;
+                        danhSachMonAnStr += String::Format("{0}:{1}:{2}:{3};",
+                            monAn->LoaiMon, monAn->TenMon, giaMonAnStr, soLuong);
+                        tongTien += giaMonAn * soLuong;
+                    }
+
+                    if (!String::IsNullOrEmpty(danhSachMonAnStr)) {
+                        danhSachMonAnStr = danhSachMonAnStr->Substring(0, danhSachMonAnStr->Length - 1);
+
+                        String^ soBan = ban->SoBan;
+                        String^ idBan = ban->ID;
+                        DateTime now = DateTime::Now;
+                        String^ thoiGian = now.ToString("yyyy-MM-dd HH:mm:ss");
+
+                        String^ line = String::Format("{0}|{1}|{2}|{3}|{4}",
+                            idBan, soBan, thoiGian, tongTien.ToString("F2"), danhSachMonAnStr);
+                        writer->WriteLine(line);
+                        tablesSaved++;
+                        Console::WriteLine("Ghi bàn: " + soBan + " với " + ban->DanhSachMon->Count + " món");
+                    }
+                }
+
+                if (tablesSaved == 0 && File::Exists(VirttualOrderFilePath)) {
+                    writer->Close();
+                    writer = nullptr;
+                    File::Delete(VirttualOrderFilePath);
+                    Console::WriteLine("Xóa file tamthoi.txt vì không có bàn nào được lưu");
+                }
+            }
+            finally {
+                if (writer != nullptr) {
+                    writer->Close();
+                }
+            }
+        }
+        catch (Exception^ ex) {
+            MessageBox::Show("Lỗi khi ghi file: " + ex->Message, "Lỗi",
+                MessageBoxButtons::OK, MessageBoxIcon::Error);
+        }
+    }
+
+    void FormFood::DocDanhSachMonTuFile() {
+        // Clear all tables' orders10 orders to avoid duplicates
+        for each(ManagerTable ^ ban in danhSachBan) {
+            if (ban != nullptr) {
+                if (ban->DanhSachMon == nullptr) {
+                    ban->DanhSachMon = gcnew List<MonAn^>();
+                }
+                else {
+                    ban->DanhSachMon->Clear();
+                }
+                ban->TrangThai = L"Trống";
+            }
+        }
+
+        if (!File::Exists("tamthoi.txt")) {
+            if (banHienTai != nullptr) {
+                HienThiMonDaDat();
+                CapNhatTongTien();
+            }
+            Console::WriteLine("Không tìm thấy file tamthoi.txt");
+            return;
+        }
+
+        try {
+            StreamReader^ reader = nullptr;
+            try {
+                reader = gcnew StreamReader("tamthoi.txt", System::Text::Encoding::UTF8);
+                String^ line;
+
+                while ((line = reader->ReadLine()) != nullptr) {
+                    if (String::IsNullOrEmpty(line)) continue;
+
+                    array<String^>^ parts = line->Split('|');
+                    if (parts->Length < 5) {
+                        Console::WriteLine("Dòng không hợp lệ: " + line);
+                        continue;
+                    }
+
+                    String^ idBan = parts[0];
+                    String^ soBan = parts[1];
+                    String^ thoiGian = parts[2];
+                    String^ tongTien = parts[3];
+                    String^ danhSachMonStr = parts[4];
+
+                    ManagerTable^ targetTable = nullptr;
+                    for each(ManagerTable ^ ban in danhSachBan) {
+                        if (ban->ID == idBan) {
+                            targetTable = ban;
+                            break;
+                        }
+                    }
+
+                    if (targetTable == nullptr) {
+                        Console::WriteLine("Không tìm thấy bàn với ID: " + idBan);
+                        continue;
+                    }
+
+                    if (targetTable->DanhSachMon == nullptr) {
+                        targetTable->DanhSachMon = gcnew List<MonAn^>();
+                    }
+
+                    array<String^>^ monAnParts = danhSachMonStr->Split(';');
+                    for each(String ^ monAnStr in monAnParts) {
+                        if (String::IsNullOrEmpty(monAnStr)) continue;
+
+                        array<String^>^ monAnDetails = monAnStr->Split(':');
+                        if (monAnDetails->Length < 4) {
+                            Console::WriteLine("Món ăn không hợp lệ: " + monAnStr);
+                            continue;
+                        }
+
+                        String^ loaiMon = monAnDetails[0];
+                        String^ tenMon = monAnDetails[1];
+                        String^ giaMon = monAnDetails[2];
+                        int soLuong;
+                        if (!Int32::TryParse(monAnDetails[3], soLuong)) {
+                            Console::WriteLine("Số lượng không hợp lệ cho món: " + tenMon);
+                            continue;
+                        }
+
+                        MonAn^ monAnGoc = nullptr;
+                        for each(MonAn ^ mon in danhSachMonAn) {
+                            if (mon->TenMon == tenMon && mon->Gia == (giaMon + "$")) {
+                                monAnGoc = mon;
+                                break;
+                            }
+                        }
+
+                        MonAn^ mon;
+                        if (monAnGoc != nullptr) {
+                            mon = gcnew MonAn(monAnGoc->LoaiMon, monAnGoc->TenMon, monAnGoc->Gia, monAnGoc->Anh);
+                            mon->ID = monAnGoc->ID;
+                        }
+                        else {
+                            mon = gcnew MonAn(loaiMon, tenMon, giaMon + "$", "");
+                        }
+                        mon->SoLuong = soLuong;
+                        targetTable->DanhSachMon->Add(mon);
+                    }
+
+                    if (targetTable->DanhSachMon->Count > 0) {
+                        targetTable->TrangThai = L"Có Khách";
+                        Console::WriteLine("Đọc bàn: " + soBan + " với " + targetTable->DanhSachMon->Count + " món");
+                    }
+                }
+
+                if (banHienTai != nullptr) {
+                    HienThiMonDaDat();
+                    CapNhatTongTien();
+                    Console::WriteLine("Khôi phục giao diện cho bàn: " + banHienTai->SoBan);
+                }
+            }
+            finally {
+                if (reader != nullptr) {
+                    reader->Close();
+                }
+            }
+
+            if (danhSachBan != nullptr) {
+                ManagerTable::GhiDanhSachBan(danhSachBan, banFilePath);
+            }
+        }
+        catch (Exception^ ex) {
+            MessageBox::Show("Lỗi khi đọc file: " + ex->Message, "Lỗi",
+                MessageBoxButtons::OK, MessageBoxIcon::Error);
+        }
+    }
+
+    void FormFood::XoaDanhSachMonTam() {
+        try {
+            if (banHienTai != nullptr) {
+                if (banHienTai->DanhSachMon == nullptr) {
+                    banHienTai->DanhSachMon = gcnew List<MonAn^>();
+                }
+                else {
+                    banHienTai->DanhSachMon->Clear();
+                }
+                banHienTai->TrangThai = L"Trống";
+            }
+
+            LuuDanhSachMonVaoFile("tamthoi.txt");
+            ManagerTable::GhiDanhSachBan(danhSachBan, banFilePath);
+
+            HienThiMonDaDat();
+            CapNhatTongTien();
+        }
+        catch (Exception^ ex) {
+            MessageBox::Show("Lỗi khi xóa danh sách món tạm: " + ex->Message, "Lỗi",
+                MessageBoxButtons::OK, MessageBoxIcon::Error);
+        }
+    }
    
+
+
 }

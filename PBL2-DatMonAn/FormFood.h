@@ -27,6 +27,7 @@ namespace PBL2DatMonAn {
 			this->banHienTai = ban;
 			this->nameStaff = nameStaff;
 			FoodfilePath = "monan.txt";
+			String^ VirttualOrderFilePath = "tamthoi.txt";
 			this->danhSachBan = danhSachBan;
 			this->banFilePath = banFilePath;
 			this->addHistoryBillForm = historyForm;
@@ -41,12 +42,11 @@ namespace PBL2DatMonAn {
 				}
 			}
 			HienThiMonDaDat();
+			ListView^ danhSachMonAn;
 			//
 			//TODO: Add the constructor code here
 			//
 		}
-
-
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
@@ -61,11 +61,13 @@ namespace PBL2DatMonAn {
 	private:
 		System::String^ banFilePath;
 		String^ FoodfilePath;
+		String^ VirttualOrderFilePath = "tamthoi.txt";
 		ManagerTable^ banHienTai;
 		String^ nameStaff;
 		AddHistoryBillForm^ addHistoryBillForm;
 		List<ManagerTable^>^ danhSachBan;
 		List<MonAn^>^ danhSachMonAn;
+		List<MonAn^>^ DanhSachMonDangChon;
 	private: System::Windows::Forms::Label^ lblTenNhanVien;
 	private: System::Windows::Forms::FlowLayoutPanel^ FlpFood;
 	private: System::Windows::Forms::Panel^ panel1;
@@ -533,7 +535,7 @@ namespace PBL2DatMonAn {
 
 		}
 #pragma endregion
-		// hiển thị danh sách món
+		// hiển thị danh sách mónbtnThanhToan
 	private: System::Void FormFood_Load(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void HienThiDanhSachMon();
 	private: System::Void HienThiMonDaDat();
@@ -543,6 +545,9 @@ namespace PBL2DatMonAn {
 	private: System::Void CapNhatTongTien();
 	private: System::Void pictureBox__clicked(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void btnThanhToan_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void LuuDanhSachMonVaoFile(String^ VirttualOrderFilePath);
+	private: System::Void DocDanhSachMonTuFile();
+	private: System::Void XoaDanhSachMonTam();
 		   System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e);
 		   System::Void btnSubtract_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void btnAll_Click(System::Object^ sender, System::EventArgs^ e) {

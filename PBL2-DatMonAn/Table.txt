@@ -1,4 +1,4 @@
-﻿20250423024926|Bàn 1|Trống|
+﻿20250423024926|Bàn 1|Có Khách|20250428104220:Món Chính:Cá kho tộ:1.99$::1;20250428104220:Món Chính:Bún bò Huế:1.22$::1;20250428104220:Món Chính:Cá kho tộ:1.99$::1;20250428104220:Món Chính:Bún bò Huế:1.22$::1;20250405144646:Món Chính:Bún bò Huế:1.22:D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\bunbohue.jpg:1
 20250423024926|Bàn 2|Trống|
 20250423024926|Bàn 3|Trống|
 20250423024926|Bàn 4|Trống|
