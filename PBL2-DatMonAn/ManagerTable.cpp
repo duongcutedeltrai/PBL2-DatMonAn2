@@ -3,43 +3,41 @@
 namespace PBL2DatMonAn {
     // Constructor
     ManagerTable::ManagerTable(String^ soBan) {
-        DateTime now = DateTime::Now;
-        ID = now.ToString("yyyyMMddHHmmss");
+        
         SoBan = soBan;
         TrangThai = L"Trống";
         DanhSachMon = gcnew List<MonAn^>();
     }
 
-    //// Đọc danh sách bàn từ file ban.txt
     List<ManagerTable^>^ ManagerTable::DocDanhSachBan(String^ BanfilePath) {
         List<ManagerTable^>^ danhSachBan = gcnew List<ManagerTable^>();
         try {
-            // Nếu file chưa tồn tại, tạo file với 10 bàn mặc định
             if (!System::IO::File::Exists(BanfilePath)) {
                 for (int i = 1; i <= 40; i++) {
-                    ManagerTable^ ban = gcnew ManagerTable(L"Bàn" +  i);
+                    ManagerTable^ ban = gcnew ManagerTable(L"Bàn" + i);
+                    ban->ID = "Ban" + i; // Gán ID cố định dựa trên số bàn
                     danhSachBan->Add(ban);
                 }
                 GhiDanhSachBan(danhSachBan, BanfilePath);
                 return danhSachBan;
             }
+            // Đọc file như hiện tại
             System::IO::StreamReader^ reader = gcnew System::IO::StreamReader(BanfilePath, System::Text::Encoding::UTF8);
             String^ dong;
             while ((dong = reader->ReadLine()) != nullptr) {
-                if (String::IsNullOrWhiteSpace(dong)) continue; 
+                if (String::IsNullOrWhiteSpace(dong)) continue;
                 cli::array<String^>^ parts = dong->Split('|');
-                if (parts->Length < 4) continue; // Đảm bảo đủ 4 trường: ID|SoBan|TrangThai|DanhSachMon
-                ManagerTable^ ban = gcnew ManagerTable(parts[1]); // parts[1] là SoBan
-                ban->ID = parts[0]; // Gán ID từ file
+                if (parts->Length < 4) continue;
+                ManagerTable^ ban = gcnew ManagerTable(parts[1]);
+                ban->ID = parts[0]; // Đọc ID từ file
                 ban->TrangThai = parts[2];
-                // Đọc danh sách món ăn
                 ban->DanhSachMon = gcnew List<MonAn^>();
                 if (!String::IsNullOrEmpty(parts[3])) {
                     cli::array<String^>^ monAnParts = parts[3]->Split(';');
                     for each (String ^ monAnStr in monAnParts) {
                         if (String::IsNullOrWhiteSpace(monAnStr)) continue;
                         cli::array<String^>^ monAnDetails = monAnStr->Split(':');
-                        if (monAnDetails->Length == 6) { // Đảm bảo đủ 6 trường: ID:LoaiMon:TenMon:Gia:Anh:SoLuong
+                        if (monAnDetails->Length == 6) {
                             MonAn^ monAn = gcnew MonAn(monAnDetails[1], monAnDetails[2], monAnDetails[3], monAnDetails[4]);
                             monAn->ID = monAnDetails[0];
                             monAn->SoLuong = Convert::ToInt32(monAnDetails[5]);

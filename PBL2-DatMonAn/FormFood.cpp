@@ -441,9 +441,6 @@ namespace PBL2DatMonAn {
     }
 
     System::Void FormFood::btnTrangChu_Click(System::Object^ sender, System::EventArgs^ e) {
-        LuuDanhSachMonVaoFile("tamthoi.txt");
-        ManagerTable::GhiDanhSachBan(danhSachBan, banFilePath);
-
         formStaff^ trangChu = gcnew formStaff(nameStaff);
         trangChu->Show();
         this->Close();
@@ -485,214 +482,253 @@ namespace PBL2DatMonAn {
         txtMoney->Text = tongTien.ToString("F2") + " $";
     }
 
-    void FormFood::LuuDanhSachMonVaoFile(String^ VirttualOrderFilePath) {
-        try {
-            if (danhSachBan == nullptr || danhSachBan->Count == 0) {
-                if (File::Exists(VirttualOrderFilePath)) {
-                    File::Delete(VirttualOrderFilePath);
+        void FormFood::LuuDanhSachMonVaoFile(String^ VirttualOrderFilePath) {
+            try {
+                if (danhSachBan == nullptr || danhSachBan->Count == 0) {
+                    if (File::Exists(VirttualOrderFilePath)) {
+                        File::Delete(VirttualOrderFilePath);
+                    }
+                    Console::WriteLine("Không có bàn nào để lưu");
+                    return;
                 }
-                Console::WriteLine("Không có bàn nào để lưu");
+
+                StreamWriter^ writer = nullptr;
+                try {
+                    writer = gcnew StreamWriter(VirttualOrderFilePath, false, System::Text::Encoding::UTF8);
+                    int tablesSaved = 0;
+
+                    for each (ManagerTable ^ ban in danhSachBan) {
+                        if (ban == nullptr || ban->DanhSachMon == nullptr || ban->DanhSachMon->Count == 0) {
+                            continue;
+                        }
+
+                        String^ danhSachMonAnStr = "";
+                        double tongTien = 0.0;
+                        for each (MonAn ^ monAn in ban->DanhSachMon) {
+                            if (monAn == nullptr) {
+                                Console::WriteLine("Món ăn là null, bỏ qua...");
+                                continue;
+                            }
+
+                            // Validate all properties
+                            if (String::IsNullOrEmpty(monAn->LoaiMon) || String::IsNullOrEmpty(monAn->TenMon) ||
+                                String::IsNullOrEmpty(monAn->Gia) || String::IsNullOrEmpty(monAn->Anh)) {
+                                MessageBox::Show("Thông tin món ăn không đầy đủ: " + (monAn->TenMon ? monAn->TenMon : "Không có tên"),
+                                    "Lỗi", MessageBoxButtons::OK, MessageBoxIcon::Error);
+                                continue;
+                            }
+
+                            String^ giaMonAnStr = monAn->Gia;
+                            if (String::IsNullOrEmpty(giaMonAnStr)) {
+                                MessageBox::Show("Giá món ăn không hợp lệ: " + monAn->TenMon, "Lỗi",
+                                    MessageBoxButtons::OK, MessageBoxIcon::Error);
+                                continue;
+                            }
+
+                            giaMonAnStr = giaMonAnStr->Replace("$", "")->Replace(",", "")->Trim();
+                            double giaMonAn;
+                            if (!Double::TryParse(giaMonAnStr, giaMonAn)) {
+                                MessageBox::Show("Giá món ăn không hợp lệ: " + monAn->TenMon, "Lỗi",
+                                    MessageBoxButtons::OK, MessageBoxIcon::Error);
+                                continue;
+                            }
+
+                            int soLuong = monAn->SoLuong;
+                            // Đảm bảo tất cả các giá trị đều hợp lệ trước khi gọi String::Format
+                            try {
+                                String^ imageName = Path::GetFileName(monAn->Anh);
+                                danhSachMonAnStr += String::Format("{0}:{1}:{2}:{3}:{4};",
+                                    monAn->LoaiMon, monAn->TenMon, giaMonAnStr, soLuong, imageName);
+                            }
+                            catch (Exception^ ex) {
+                                MessageBox::Show("Lỗi khi định dạng món ăn: " + monAn->TenMon + ", lỗi: " + ex->Message,
+                                    "Lỗi", MessageBoxButtons::OK, MessageBoxIcon::Error);
+                                continue;
+                            }
+                            tongTien += giaMonAn * soLuong;
+                        }
+
+                        if (!String::IsNullOrEmpty(danhSachMonAnStr)) {
+                            danhSachMonAnStr = danhSachMonAnStr->Substring(0, danhSachMonAnStr->Length - 1);
+
+                            String^ soBan = ban->SoBan;
+                            String^ idBan = ban->ID;
+                            DateTime now = DateTime::Now;
+                            String^ thoiGian = now.ToString("yyyy-MM-dd HH:mm:ss");
+
+                            // Validate arguments for the second String::Format
+                            if (String::IsNullOrEmpty(idBan) || String::IsNullOrEmpty(soBan) || 
+                                String::IsNullOrEmpty(thoiGian) || String::IsNullOrEmpty(danhSachMonAnStr)) {
+                                MessageBox::Show("Thông tin bàn không đầy đủ: " + (soBan ? soBan : "Không có số bàn"),
+                                    "Lỗi", MessageBoxButtons::OK, MessageBoxIcon::Error);
+                                continue;
+                            }
+
+                            String^ line;
+                            try {
+                                line = String::Format("{0}|{1}|{2}|{3}|{4}",
+                                    idBan, soBan, thoiGian, tongTien.ToString("F2"), danhSachMonAnStr);
+                            }
+                            catch (Exception^ ex) {
+                                MessageBox::Show("Lỗi khi định dạng dòng cho bàn: " + soBan + ", lỗi: " + ex->Message,
+                                    "Lỗi", MessageBoxButtons::OK, MessageBoxIcon::Error);
+                                continue;
+                            }
+
+                            writer->WriteLine(line);
+                            tablesSaved++;
+                            Console::WriteLine("Ghi bàn: " + soBan + " với " + ban->DanhSachMon->Count + " món");
+                        }
+                    }
+
+                    if (tablesSaved == 0 && File::Exists(VirttualOrderFilePath)) {
+                        writer->Close();
+                        writer = nullptr;
+                        File::Delete(VirttualOrderFilePath);
+                        Console::WriteLine("Xóa file tamthoi.txt vì không có bàn nào được lưu");
+                    }
+                }
+                finally {
+                    if (writer != nullptr) {
+                        writer->Close();
+                    }
+                }
+            }
+            catch (Exception^ ex) {
+                MessageBox::Show("Lỗi khi ghi file: " + ex->Message, "Lỗi",
+                    MessageBoxButtons::OK, MessageBoxIcon::Error);
+            }
+        }
+
+        void FormFood::DocDanhSachMonTuFile() {
+            for each (ManagerTable ^ ban in danhSachBan) {
+                if (ban != nullptr) {
+                    if (ban->DanhSachMon == nullptr) {
+                        ban->DanhSachMon = gcnew List<MonAn^>();
+                    }
+                    else {
+                        ban->DanhSachMon->Clear();
+                    }
+                    ban->TrangThai = L"Trống";
+                }
+            }
+
+            if (!File::Exists("tamthoi.txt")) {
+                if (banHienTai != nullptr) {
+                    HienThiMonDaDat();
+                    CapNhatTongTien();
+                }
+                Console::WriteLine("Không tìm thấy file tamthoi.txt");
                 return;
             }
 
-            StreamWriter^ writer = nullptr;
             try {
-                writer = gcnew StreamWriter(VirttualOrderFilePath, false, System::Text::Encoding::UTF8);
-                int tablesSaved = 0;
+                StreamReader^ reader = nullptr;
+                try {
+                    reader = gcnew StreamReader("tamthoi.txt", System::Text::Encoding::UTF8);
+                    String^ line;
 
-                for each(ManagerTable ^ ban in danhSachBan) {
-                    if (ban == nullptr || ban->DanhSachMon == nullptr || ban->DanhSachMon->Count == 0) {
-                        continue;
-                    }
+                    while ((line = reader->ReadLine()) != nullptr) {
+                        if (String::IsNullOrEmpty(line)) continue;
 
-                    String^ danhSachMonAnStr = "";
-                    double tongTien = 0.0;
-                    for each(MonAn ^ monAn in ban->DanhSachMon) {
-                        if (monAn == nullptr) continue;
-
-                        String^ giaMonAnStr = monAn->Gia;
-                        if (String::IsNullOrEmpty(giaMonAnStr)) {
-                            MessageBox::Show("Giá món ăn không hợp lệ: " + monAn->TenMon, "Lỗi",
-                                MessageBoxButtons::OK, MessageBoxIcon::Error);
+                        array<String^>^ parts = line->Split('|');
+                        if (parts->Length < 5) {
+                            Console::WriteLine("Dòng không hợp lệ: " + line);
                             continue;
                         }
 
-                        giaMonAnStr = giaMonAnStr->Replace("$", "")->Replace(",", "")->Trim();
-                        double giaMonAn;
-                        if (!Double::TryParse(giaMonAnStr, giaMonAn)) {
-                            MessageBox::Show("Giá món ăn không hợp lệ: " + monAn->TenMon, "Lỗi",
-                                MessageBoxButtons::OK, MessageBoxIcon::Error);
-                            continue;
-                        }
+                        String^ idBan = parts[0];
+                        String^ soBan = parts[1];
+                        String^ thoiGian = parts[2];
+                        String^ tongTien = parts[3];
+                        String^ danhSachMonStr = parts[4];
 
-                        int soLuong = monAn->SoLuong;
-                        danhSachMonAnStr += String::Format("{0}:{1}:{2}:{3};",
-                            monAn->LoaiMon, monAn->TenMon, giaMonAnStr, soLuong);
-                        tongTien += giaMonAn * soLuong;
-                    }
-
-                    if (!String::IsNullOrEmpty(danhSachMonAnStr)) {
-                        danhSachMonAnStr = danhSachMonAnStr->Substring(0, danhSachMonAnStr->Length - 1);
-
-                        String^ soBan = ban->SoBan;
-                        String^ idBan = ban->ID;
-                        DateTime now = DateTime::Now;
-                        String^ thoiGian = now.ToString("yyyy-MM-dd HH:mm:ss");
-
-                        String^ line = String::Format("{0}|{1}|{2}|{3}|{4}",
-                            idBan, soBan, thoiGian, tongTien.ToString("F2"), danhSachMonAnStr);
-                        writer->WriteLine(line);
-                        tablesSaved++;
-                        Console::WriteLine("Ghi bàn: " + soBan + " với " + ban->DanhSachMon->Count + " món");
-                    }
-                }
-
-                if (tablesSaved == 0 && File::Exists(VirttualOrderFilePath)) {
-                    writer->Close();
-                    writer = nullptr;
-                    File::Delete(VirttualOrderFilePath);
-                    Console::WriteLine("Xóa file tamthoi.txt vì không có bàn nào được lưu");
-                }
-            }
-            finally {
-                if (writer != nullptr) {
-                    writer->Close();
-                }
-            }
-        }
-        catch (Exception^ ex) {
-            MessageBox::Show("Lỗi khi ghi file: " + ex->Message, "Lỗi",
-                MessageBoxButtons::OK, MessageBoxIcon::Error);
-        }
-    }
-
-    void FormFood::DocDanhSachMonTuFile() {
-        // Clear all tables' orders10 orders to avoid duplicates
-        for each(ManagerTable ^ ban in danhSachBan) {
-            if (ban != nullptr) {
-                if (ban->DanhSachMon == nullptr) {
-                    ban->DanhSachMon = gcnew List<MonAn^>();
-                }
-                else {
-                    ban->DanhSachMon->Clear();
-                }
-                ban->TrangThai = L"Trống";
-            }
-        }
-
-        if (!File::Exists("tamthoi.txt")) {
-            if (banHienTai != nullptr) {
-                HienThiMonDaDat();
-                CapNhatTongTien();
-            }
-            Console::WriteLine("Không tìm thấy file tamthoi.txt");
-            return;
-        }
-
-        try {
-            StreamReader^ reader = nullptr;
-            try {
-                reader = gcnew StreamReader("tamthoi.txt", System::Text::Encoding::UTF8);
-                String^ line;
-
-                while ((line = reader->ReadLine()) != nullptr) {
-                    if (String::IsNullOrEmpty(line)) continue;
-
-                    array<String^>^ parts = line->Split('|');
-                    if (parts->Length < 5) {
-                        Console::WriteLine("Dòng không hợp lệ: " + line);
-                        continue;
-                    }
-
-                    String^ idBan = parts[0];
-                    String^ soBan = parts[1];
-                    String^ thoiGian = parts[2];
-                    String^ tongTien = parts[3];
-                    String^ danhSachMonStr = parts[4];
-
-                    ManagerTable^ targetTable = nullptr;
-                    for each(ManagerTable ^ ban in danhSachBan) {
-                        if (ban->ID == idBan) {
-                            targetTable = ban;
-                            break;
-                        }
-                    }
-
-                    if (targetTable == nullptr) {
-                        Console::WriteLine("Không tìm thấy bàn với ID: " + idBan);
-                        continue;
-                    }
-
-                    if (targetTable->DanhSachMon == nullptr) {
-                        targetTable->DanhSachMon = gcnew List<MonAn^>();
-                    }
-
-                    array<String^>^ monAnParts = danhSachMonStr->Split(';');
-                    for each(String ^ monAnStr in monAnParts) {
-                        if (String::IsNullOrEmpty(monAnStr)) continue;
-
-                        array<String^>^ monAnDetails = monAnStr->Split(':');
-                        if (monAnDetails->Length < 4) {
-                            Console::WriteLine("Món ăn không hợp lệ: " + monAnStr);
-                            continue;
-                        }
-
-                        String^ loaiMon = monAnDetails[0];
-                        String^ tenMon = monAnDetails[1];
-                        String^ giaMon = monAnDetails[2];
-                        int soLuong;
-                        if (!Int32::TryParse(monAnDetails[3], soLuong)) {
-                            Console::WriteLine("Số lượng không hợp lệ cho món: " + tenMon);
-                            continue;
-                        }
-
-                        MonAn^ monAnGoc = nullptr;
-                        for each(MonAn ^ mon in danhSachMonAn) {
-                            if (mon->TenMon == tenMon && mon->Gia == (giaMon + "$")) {
-                                monAnGoc = mon;
+                        ManagerTable^ targetTable = nullptr;
+                        for each (ManagerTable ^ ban in danhSachBan) {
+                            if (ban->ID == idBan && ban->SoBan == soBan) { // So sánh cả ID và số bàn
+                                targetTable = ban;
                                 break;
                             }
                         }
 
-                        MonAn^ mon;
-                        if (monAnGoc != nullptr) {
-                            mon = gcnew MonAn(monAnGoc->LoaiMon, monAnGoc->TenMon, monAnGoc->Gia, monAnGoc->Anh);
-                            mon->ID = monAnGoc->ID;
+                        if (targetTable == nullptr) {
+                            Console::WriteLine("Không tìm thấy bàn với ID: " + idBan + " và số bàn: " + soBan);
+                            continue;
                         }
-                        else {
-                            mon = gcnew MonAn(loaiMon, tenMon, giaMon + "$", "");
+
+                        if (targetTable->DanhSachMon == nullptr) {
+                            targetTable->DanhSachMon = gcnew List<MonAn^>();
                         }
-                        mon->SoLuong = soLuong;
-                        targetTable->DanhSachMon->Add(mon);
+
+                        array<String^>^ monAnParts = danhSachMonStr->Split(';');
+                        for each (String ^ monAnStr in monAnParts) {
+                            if (String::IsNullOrEmpty(monAnStr)) continue;
+
+                            array<String^>^ monAnDetails = monAnStr->Split(':');
+                            if (monAnDetails->Length < 5) {
+                                Console::WriteLine("Món ăn không hợp lệ: " + monAnStr);
+                                continue;
+                            }
+
+                            String^ loaiMon = monAnDetails[0];
+                            String^ tenMon = monAnDetails[1];
+                            String^ giaMon = monAnDetails[2];
+
+                            int soLuong;
+                            if (!Int32::TryParse(monAnDetails[3], soLuong)) {
+                                Console::WriteLine("Số lượng không hợp lệ cho món: " + tenMon);
+                                continue;
+                            }
+
+                            String^ imageName = monAnDetails[4];
+                            String^ imagePath = Path::Combine(".\\Image\\", imageName);
+
+                            MonAn^ monAnGoc = nullptr;
+                            for each (MonAn ^ mon in danhSachMonAn) {
+                                if (mon->TenMon == tenMon && mon->Gia == (giaMon + "$")) {
+                                    monAnGoc = mon;
+                                    break;
+                                }
+                            }
+
+                            MonAn^ mon;
+                            if (monAnGoc != nullptr) {
+                                mon = gcnew MonAn(monAnGoc->LoaiMon, monAnGoc->TenMon, monAnGoc->Gia, imagePath);
+                                mon->ID = monAnGoc->ID;
+                            }
+                            else {
+                                mon = gcnew MonAn(loaiMon, tenMon, giaMon + "$", imagePath);
+                            }
+                            mon->SoLuong = soLuong;
+                            targetTable->DanhSachMon->Add(mon);
+                        }
+
+                        if (targetTable->DanhSachMon->Count > 0) {
+                            targetTable->TrangThai = L"Có Khách";
+                            Console::WriteLine("Đọc bàn: " + soBan + " với " + targetTable->DanhSachMon->Count + " món");
+                        }
                     }
 
-                    if (targetTable->DanhSachMon->Count > 0) {
-                        targetTable->TrangThai = L"Có Khách";
-                        Console::WriteLine("Đọc bàn: " + soBan + " với " + targetTable->DanhSachMon->Count + " món");
+                    if (banHienTai != nullptr) {
+                        HienThiMonDaDat();
+                        CapNhatTongTien();
+                        Console::WriteLine("Khôi phục giao diện cho bàn: " + banHienTai->SoBan);
+                    }
+                }
+                finally {
+                    if (reader != nullptr) {
+                        reader->Close();
                     }
                 }
 
-                if (banHienTai != nullptr) {
-                    HienThiMonDaDat();
-                    CapNhatTongTien();
-                    Console::WriteLine("Khôi phục giao diện cho bàn: " + banHienTai->SoBan);
+                if (danhSachBan != nullptr) {
+                    ManagerTable::GhiDanhSachBan(danhSachBan, banFilePath);
                 }
             }
-            finally {
-                if (reader != nullptr) {
-                    reader->Close();
-                }
-            }
-
-            if (danhSachBan != nullptr) {
-                ManagerTable::GhiDanhSachBan(danhSachBan, banFilePath);
+            catch (Exception^ ex) {
+                MessageBox::Show("Lỗi khi đọc file: " + ex->Message, "Lỗi", MessageBoxButtons::OK, MessageBoxIcon::Error);
             }
         }
-        catch (Exception^ ex) {
-            MessageBox::Show("Lỗi khi đọc file: " + ex->Message, "Lỗi",
-                MessageBoxButtons::OK, MessageBoxIcon::Error);
-        }
-    }
 
     void FormFood::XoaDanhSachMonTam() {
         try {

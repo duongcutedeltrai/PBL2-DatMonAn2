@@ -166,7 +166,6 @@
     <Text Include="Account.txt" />
     <Text Include="Table.txt" />
     <Text Include="bill.txt" />
-    <Text Include="tamthoi.txt" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PBL2-DatMonAn.rc">

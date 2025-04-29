@@ -27,7 +27,7 @@ namespace PBL2DatMonAn {
 			this->banHienTai = ban;
 			this->nameStaff = nameStaff;
 			FoodfilePath = "monan.txt";
-			String^ VirttualOrderFilePath = "tamthoi.txt";
+			VirttualOrderFilePath = "tamthoi.txt";
 			this->danhSachBan = danhSachBan;
 			this->banFilePath = banFilePath;
 			this->addHistoryBillForm = historyForm;
@@ -61,7 +61,7 @@ namespace PBL2DatMonAn {
 	private:
 		System::String^ banFilePath;
 		String^ FoodfilePath;
-		String^ VirttualOrderFilePath = "tamthoi.txt";
+		String^ VirttualOrderFilePath ;
 		ManagerTable^ banHienTai;
 		String^ nameStaff;
 		AddHistoryBillForm^ addHistoryBillForm;

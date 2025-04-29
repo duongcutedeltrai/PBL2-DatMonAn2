@@ -248,7 +248,6 @@
     <Text Include="Account.txt" />
     <Text Include="bill.txt" />
     <Text Include="monan.txt" />
-    <Text Include="tamthoi.txt" />
     <Text Include="Table.txt" />
   </ItemGroup>
   <ItemGroup>

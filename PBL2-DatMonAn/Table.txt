@@ -1,40 +1,40 @@
-﻿20250423024926|Bàn 1|Có Khách|20250428104220:Món Chính:Cá kho tộ:1.99$::1;20250428104220:Món Chính:Bún bò Huế:1.22$::1;20250428104220:Món Chính:Cá kho tộ:1.99$::1;20250428104220:Món Chính:Bún bò Huế:1.22$::1;20250405144646:Món Chính:Bún bò Huế:1.22:D:\PBL1\PBL2-DatMonAn\PBL2-DatMonAn\Image\bunbohue.jpg:1
-20250423024926|Bàn 2|Trống|
-20250423024926|Bàn 3|Trống|
-20250423024926|Bàn 4|Trống|
-20250423024926|Bàn 5|Trống|
-20250423024926|Bàn 6|Trống|
-20250423024926|Bàn 7|Trống|
-20250423024926|Bàn 8|Trống|
-20250423024926|Bàn 9|Trống|
-20250423024926|Bàn 10|Trống|
-20250423024926|Bàn 11|Trống|
-20250423024926|Bàn 12|Trống|
-20250423024926|Bàn 13|Trống|
-20250423024926|Bàn 14|Trống|
-20250423024926|Bàn 15|Trống|
-20250423024926|Bàn 16|Trống|
-20250423024926|Bàn 17|Trống|
-20250423024926|Bàn 18|Trống|
-20250423024926|Bàn 19|Trống|
-20250423024926|Bàn 20|Trống|
-20250423024926|Bàn 21|Trống|
-20250423024926|Bàn 22|Trống|
-20250423024926|Bàn 23|Trống|
-20250423024926|Bàn 24|Trống|
-20250423024926|Bàn 25|Trống|
-20250423024926|Bàn 26|Trống|
-20250423024926|Bàn 27|Trống|
-20250423024926|Bàn 28|Trống|
-20250423024926|Bàn 29|Trống|
-20250423024926|Bàn 30|Trống|
-20250423024926|Bàn 31|Trống|
-20250423024926|Bàn 32|Trống|
-20250423024926|Bàn 33|Trống|
-20250423024926|Bàn 34|Trống|
-20250423024926|Bàn 35|Trống|
-20250423024926|Bàn 36|Trống|
-20250423024926|Bàn 37|Trống|
-20250423024926|Bàn 38|Trống|
-20250423024926|Bàn 39|Trống|
-20250423024926|Bàn 40|Trống|
+﻿Ban1|Bàn1|Trống|
+Ban2|Bàn2|Trống|
+Ban3|Bàn3|Trống|
+Ban4|Bàn4|Trống|
+Ban5|Bàn5|Trống|
+Ban6|Bàn6|Trống|
+Ban7|Bàn7|Trống|
+Ban8|Bàn8|Trống|
+Ban9|Bàn9|Trống|
+Ban10|Bàn10|Trống|
+Ban11|Bàn11|Trống|
+Ban12|Bàn12|Trống|
+Ban13|Bàn13|Trống|
+Ban14|Bàn14|Trống|
+Ban15|Bàn15|Trống|
+Ban16|Bàn16|Trống|
+Ban17|Bàn17|Trống|
+Ban18|Bàn18|Trống|
+Ban19|Bàn19|Trống|
+Ban20|Bàn20|Trống|
+Ban21|Bàn21|Trống|
+Ban22|Bàn22|Trống|
+Ban23|Bàn23|Trống|
+Ban24|Bàn24|Trống|
+Ban25|Bàn25|Trống|
+Ban26|Bàn26|Trống|
+Ban27|Bàn27|Trống|
+Ban28|Bàn28|Trống|
+Ban29|Bàn29|Trống|
+Ban30|Bàn30|Trống|
+Ban31|Bàn31|Trống|
+Ban32|Bàn32|Trống|
+Ban33|Bàn33|Trống|
+Ban34|Bàn34|Trống|
+Ban35|Bàn35|Trống|
+Ban36|Bàn36|Trống|
+Ban37|Bàn37|Trống|
+Ban38|Bàn38|Trống|
+Ban39|Bàn39|Trống|
+Ban40|Bàn40|Trống|
